@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ECommerceTeahouseApplication<tea_house_e_commerce>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "es.kohchiku_bayashi.e_commerce_teahouse.ECommerceTeahouseApplication",
+            "projectName": "tea_house_e_commerce",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://127.0.0.1:9000"
+      client:
+        registration:
+          client-app:
+            provider: spring
+            client-id: client-app
+            client-secret: 1234
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/authorized"
+            scope:
+            - openid
+            - profile
+            - user
+            - admin
+            client-name: client-app
+        provider:
+          spring:
+            # Igual que arriba: apuntar al issuer correcto del auth-server
+            issuer-uri: "http://127.0.0.1:9000"
+    
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_jpa_crud
+    username: root
+    password: asas1234
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect 
+    show-sql: true
+    hibernate:
+      ddl-auto: update #Remove on production

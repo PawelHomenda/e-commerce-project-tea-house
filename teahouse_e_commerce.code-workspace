@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "api_service"
+		},
+		{
+			"path": "auth_server"
+		}
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic"
+	}
+}
