@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Tea House - Sesión cerrada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logout-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .logout-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .logout-container h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .logout-container p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <div class="logout-icon">👋</div>
+        <h1>¡Hasta pronto!</h1>
+        <p>Tu sesión ha sido cerrada correctamente.</p>
+        <p>Tu navegador volverá a la página anterior automáticamente.</p>
+        <a href="http://127.0.0.1:8080" class="back-link">Volver a la aplicación</a>
+    </div>
+    
+    <script>
+        // Redirigir después de 3 segundos
+        setTimeout(function() {
+            window.location.href = 'http://127.0.0.1:8080';
+        }, 3000);
+    </script>
+</body>
+</html>

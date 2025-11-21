@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Tea House - Autorización</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .consent-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+        }
+        
+        .consent-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .consent-header h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .consent-header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .app-info {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        
+        .app-info p {
+            margin: 8px 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .app-info strong {
+            color: #333;
+        }
+        
+        .scopes {
+            margin-bottom: 25px;
+        }
+        
+        .scopes h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .scope-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .scope-item input[type="checkbox"] {
+            margin-right: 12px;
+            margin-top: 3px;
+            cursor: pointer;
+        }
+        
+        .scope-description {
+            flex: 1;
+        }
+        
+        .scope-description strong {
+            color: #333;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .scope-description small {
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        
+        .button-group form {
+            flex: 1;
+        }
+        
+        .button-group button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn-approve {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-approve:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-deny {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-deny:hover {
+            background-color: #efefef;
+        }
+    </style>
+</head>
+<body>
+    <div class="consent-container">
+        <div class="consent-header">
+            <h1>🔐 Autorización requerida</h1>
+            <p>La aplicación solicita acceso a tu cuenta</p>
+        </div>
+        
+        <div class="app-info">
+            <p><strong>Aplicación:</strong> <span th:text="${client_id}">Client Application</span></p>
+            <p><strong>Usuario:</strong> <span th:text="${principal.name}">username</span></p>
+        </div>
+        
+        <div class="scopes">
+            <h3>Permisos solicitados:</h3>
+            <div th:each="scope : ${scopes}">
+                <div class="scope-item">
+                    <input type="checkbox" name="scope" th:value="${scope}" th:id="${'scope_' + scope}" checked disabled>
+                    <div class="scope-description">
+                        <strong th:text="${scope}">scope</strong>
+                        <small th:if="${scope == 'openid'}">Identificar tu cuenta de forma segura</small>
+                        <small th:if="${scope == 'profile'}">Acceder a tu información de perfil</small>
+                        <small th:if="${scope == 'user'}">Permisos de usuario</small>
+                        <small th:if="${scope == 'admin'}">Permisos de administrador</small>
+                        <small th:if="${scope == 'read'}">Lectura de datos</small>
+                        <small th:if="${scope == 'write'}">Escritura de datos</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <form th:action="@{/oauth2/authorize}" method="post">
+                <input type="hidden" name="client_id" th:value="${client_id}">
+                <input type="hidden" name="state" th:value="${state}">
+                <input type="hidden" name="scope" th:value="${scope}">
+                <button type="submit" class="btn-approve">✓ Autorizar</button>
+            </form>
+            <form th:action="@{/oauth2/authorize}" method="post">
+                <input type="hidden" name="client_id" th:value="${client_id}">
+                <input type="hidden" name="state" th:value="${state}">
+                <input type="hidden" name="error" value="access_denied">
+                <button type="submit" class="btn-deny">✕ Rechazar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -26,6 +26,8 @@ import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
@@ -75,16 +77,22 @@ public class SecurityConfig {
 
 	@Bean 
 	@Order(2)
-	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
+	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, JwtEncoder jwtEncoder)
 			throws Exception {
+		JwtAuthenticationSuccessHandler successHandler = new JwtAuthenticationSuccessHandler(jwtEncoder);
+		
 		http
 			.authorizeHttpRequests((authorize) -> authorize
+				.requestMatchers("/login", "/logout", "/register").permitAll()
 				.anyRequest().authenticated()
 			)
 			// Form login handles the redirect to the login page from the
 			// authorization server filter chain
             .csrf(scrf -> scrf.disable())
-			.formLogin(Customizer.withDefaults());
+			.formLogin((formLogin) -> formLogin
+				.loginPage("/login")
+				.successHandler(successHandler)
+				.permitAll());
 
 		return http.build();
 	}
@@ -167,6 +175,11 @@ public class SecurityConfig {
 	@Bean
 	public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
 		return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
+	}
+
+	@Bean
+	public JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwkSource) {
+		return new NimbusJwtEncoder(jwkSource);
 	}
 
 	@Bean
