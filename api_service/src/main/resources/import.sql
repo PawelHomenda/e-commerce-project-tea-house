@@ -2,4 +2,4 @@
     Import data
  */
 
- source casa_te.sql
+source casa_te.sql;
