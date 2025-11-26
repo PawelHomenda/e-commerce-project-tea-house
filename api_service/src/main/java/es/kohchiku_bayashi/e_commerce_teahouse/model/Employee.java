@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -44,11 +45,14 @@ public class Employee {
     @Column(nullable = false, unique = true, length = 50)
     private String email;
     
+    // ✅ Ignoramos completamente estas colecciones para evitar ciclos
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     @ToString.Exclude
     private List<OrderClient> orderClients;
     
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     @ToString.Exclude
     private List<OrderProvider> orderProviders;
 }

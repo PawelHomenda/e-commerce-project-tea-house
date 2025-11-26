@@ -91,84 +91,84 @@ INSERT INTO inventory (id_product, current_quantity, minimum_quantity) VALUES
 -- ============================================
 INSERT INTO orders_clients (id_employee, order_date, order_state, service_type) VALUES
 -- Pedidos completados
-(1, '2025-10-01', 'ENTREGADO', 'MESA'),
-(2, '2025-10-01', 'ENTREGADO', 'LLEVAR'),
-(3, '2025-10-02', 'ENTREGADO', 'MESA'),
-(1, '2025-10-02', 'ENTREGADO', 'ENVIO'),
-(4, '2025-10-03', 'ENTREGADO', 'MESA'),
+(1, '2025-10-01', 'DELIVERED', 'TABLE'),
+(2, '2025-10-01', 'DELIVERED', 'TAKEAWAY'),
+(3, '2025-10-02', 'DELIVERED', 'TABLE'),
+(1, '2025-10-02', 'DELIVERED', 'DELIVERY'),
+(4, '2025-10-03', 'DELIVERED', 'TABLE'),
 
 -- Pedidos en proceso
-(2, '2025-10-13', 'EN PREPARACION', 'LLEVAR'),
-(5, '2025-10-13', 'EN PREPARACION', 'MESA'),
-(3, '2025-10-13', 'PENDIENTE', 'ENVIO'),
+(2, '2025-10-13', 'PREPARING', 'TAKEAWAY'),
+(5, '2025-10-13', 'PREPARING', 'TABLE'),
+(3, '2025-10-13', 'PENDENT', 'DELIVERY'),
 
--- Pedidos cancelados
-(1, '2025-10-10', 'CANCELADO', 'MESA'),
-(4, '2025-10-11', 'CANCELADO', 'LLEVAR');
+-- Pedidos CANCELEDs
+(1, '2025-10-10', 'CANCELED', 'TABLE'),
+(4, '2025-10-11', 'CANCELED', 'TAKEAWAY');
 
 -- ============================================
 -- DETALLES DE PEDIDOS DE CLIENTES
 -- ============================================
 INSERT INTO details_order_client (id_order_client, id_product, quantity, unit_price) VALUES
--- Pedido 1: María González (MESA)
+-- Pedido 1: María González (TABLE)
 (1, 1, 2, 3.50),    -- 2 Té Verde
 (1, 11, 1, 12.00),  -- 1 Pastel Chocolate
 (1, 15, 3, 2.00),   -- 3 Galletas
 
--- Pedido 2: Luis Fernández (LLEVAR)
+-- Pedido 2: Luis Fernández (TAKEAWAY)
 (2, 2, 1, 3.00),    -- 1 Té Negro
 (2, 15, 2, 2.00),   -- 2 Galletas
 (2, 14, 1, 8.00),   -- 1 Brownie
 
--- Pedido 3: Ana Rodríguez (MESA)
+-- Pedido 3: Ana Rodríguez (TABLE)
 (3, 3, 2, 4.50),    -- 2 Té Oolong
 (3, 12, 1, 14.00),  -- 1 Cheesecake
 (3, 17, 3, 3.00),   -- 3 Macarons
 
--- Pedido 4: Pedro Martínez (ENVIO)
+-- Pedido 4: Pedro Martínez (DELIVERY)
 (4, 6, 2, 3.80),    -- 2 Chai Masala
 (4, 13, 1, 11.50),  -- 1 Tarta Zanahoria
 (4, 15, 5, 2.00),   -- 5 Galletas
 
--- Pedido 5: Carmen Sánchez (MESA)
+-- Pedido 5: Carmen Sánchez (TABLE)
 (5, 4, 2, 5.00),    -- 2 Té Blanco
 (5, 18, 1, 13.00),  -- 1 Tarta Limón
 (5, 20, 1, 10.00),  -- 1 Tiramisú
 (5, 17, 4, 3.00),   -- 4 Macarons
 
--- Pedido 6: José García (EN PREPARACION - LLEVAR)
+-- Pedido 6: José García (EN PREPARACION - TAKEAWAY)
 (6, 7, 2, 4.80),    -- 2 Matcha Latte
 (6, 19, 2, 4.50),   -- 2 Croissant
 
--- Pedido 7: Laura Jiménez (EN PREPARACION - MESA)
+-- Pedido 7: Laura Jiménez (EN PREPARACION - TABLE)
 (7, 5, 2, 3.20),    -- 2 Té Rooibos
 (7, 11, 1, 12.00),  -- 1 Pastel Chocolate
 (7, 12, 1, 14.00),  -- 1 Cheesecake
 (7, 15, 3, 2.00),   -- 3 Galletas
 
--- Pedido 8: Roberto Torres (PENDIENTE - ENVIO)
+-- Pedido 8: Roberto Torres (PENDENT - DELIVERY)
 (8, 8, 2, 3.50),    -- 2 Té Helado
 (8, 14, 1, 8.00),   -- 1 Brownie
 (8, 15, 4, 2.00),   -- 4 Galletas
 
--- Pedido 9: Isabel Romero (CANCELADO)
+-- Pedido 9: Isabel Romero (CANCELED)
 (9, 1, 1, 3.50),    -- 1 Té Verde
 
--- Pedido 10: Francisco Navarro (CANCELADO)
+-- Pedido 10: Francisco Navarro (CANCELED)
 (10, 2, 1, 3.00);   -- 1 Té Negro
 
 -- ============================================
 -- FACTURAS DE CLIENTES
 -- ============================================
 INSERT INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES
-(1, 'FC-0001', '2025-10-01', 25.50, 'CREDITO', '2025-10-01'),
-(2, 'FC-0002', '2025-10-01', 15.50, 'METALICO', '2025-10-01'),
-(3, 'FC-0003', '2025-10-02', 32.00, 'CREDITO', '2025-10-02'),
-(4, 'FC-0004', '2025-10-02', 28.50, 'METALICO', '2025-10-03'),
-(5, 'FC-0005', '2025-10-03', 41.00, 'METALICO', '2025-10-03'),
-(6, 'FC-0006', '2025-10-13', 18.80, 'CREDITO', NULL),          -- Pendiente de pago
-(7, 'FC-0007', '2025-10-13', 35.50, 'CREDITO', NULL),           -- Pendiente de pago
-(8, 'FC-0008', '2025-10-13', 22.00, 'METALICO', NULL);     -- Pendiente de pago
+(1, 'FC-0001', '2025-10-01', 25.50, 'CREDIT', '2025-10-01'),
+(2, 'FC-0002', '2025-10-01', 15.50, 'METALIC', '2025-10-01'),
+(3, 'FC-0003', '2025-10-02', 32.00, 'CREDIT', '2025-10-02'),
+(4, 'FC-0004', '2025-10-02', 28.50, 'METALIC', '2025-10-03'),
+(5, 'FC-0005', '2025-10-03', 41.00, 'METALIC', '2025-10-03'),
+(6, 'FC-0006', '2025-10-13', 18.80, 'CREDIT', NULL),          -- PENDENT de pago
+(7, 'FC-0007', '2025-10-13', 35.50, 'CREDIT', NULL),           -- PENDENT de pago
+(8, 'FC-0008', '2025-10-13', 22.00, 'METALIC', NULL);     -- PENDENT de pago
 
 -- ============================================
 -- PEDIDOS A PROVEEDORES
@@ -231,13 +231,13 @@ INSERT INTO details_order_provider (id_order_provider, id_product, quantity, uni
 -- FACTURAS DE PROVEEDORES
 -- ============================================
 INSERT INTO invoices_providers (id_order_provider, invoice_number, invoice_date, total, payment_state, payment_date) VALUES
-(1, 'FP-TDM-089', '2025-09-15', 850.00, 'PAGADO', '2025-09-30'),
-(2, 'FP-DA-145', '2025-09-18', 420.00, 'PAGADO', '2025-10-02'),
-(3, 'FP-DTT-234', '2025-09-22', 650.00, 'PAGADO', '2025-10-05'),
-(4, 'FP-INS-067', '2025-09-28', 380.00, 'PAGADO', '2025-10-10'),
-(5, 'FP-TDM-098', '2025-10-05', 920.00, 'PENDIENTE', NULL),
-(6, 'FP-PPI-023', '2025-10-08', 550.00, 'PENDIENTE', NULL),
-(7, 'FP-DA-156', '2025-10-12', 480.00, 'PENDIENTE', NULL);
+(1, 'FP-TDM-089', '2025-09-15', 850.00, 'PAID', '2025-09-30'),
+(2, 'FP-DA-145', '2025-09-18', 420.00, 'PAID', '2025-10-02'),
+(3, 'FP-DTT-234', '2025-09-22', 650.00, 'PAID', '2025-10-05'),
+(4, 'FP-INS-067', '2025-09-28', 380.00, 'PAID', '2025-10-10'),
+(5, 'FP-TDM-098', '2025-10-05', 920.00, 'PENDENT', NULL),
+(6, 'FP-PPI-023', '2025-10-08', 550.00, 'PENDENT', NULL),
+(7, 'FP-DA-156', '2025-10-12', 480.00, 'PENDENT', NULL);
 
 -- ============================================
 -- VERIFICACIÓN DE DATOS INSERTADOS

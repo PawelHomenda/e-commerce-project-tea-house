@@ -1,5 +1,7 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.OrderState;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ServiceType;
 import jakarta.persistence.*;
@@ -20,8 +22,10 @@ public class OrderClient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    // ✅ Mostramos el empleado pero ignoramos sus colecciones
     @ManyToOne
     @JoinColumn(name = "id_employee", nullable = false)
+    @JsonIgnoreProperties({"orderClients", "orderProviders"})
     private Employee employee;
     
     @NotNull(message = "La fecha del pedido es obligatoria")
@@ -38,11 +42,15 @@ public class OrderClient {
     @Column(name = "service_type", nullable = false)
     private ServiceType serviceType;
     
+    // ✅ @JsonManagedReference: SÍ serializa la factura
     @OneToOne(mappedBy = "orderClient", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "orderclient-invoice")
     @ToString.Exclude
     private InvoiceClient invoiceClient;
     
+    // ✅ @JsonManagedReference: SÍ serializa los detalles
     @OneToMany(mappedBy = "orderClient", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "orderclient-details")
     @ToString.Exclude
     private List<DetailOrderClient> detailOrderClients;
 }

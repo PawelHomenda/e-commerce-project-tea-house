@@ -21,6 +21,7 @@
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/OrderProvider.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/Product.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/Provider.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/converter/OrderStateConverter.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/enums/OrderState.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/enums/PaymentMethod.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/enums/PaymentState.java

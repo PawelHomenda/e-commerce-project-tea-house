@@ -1,5 +1,7 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ProductCategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -42,18 +44,23 @@ public class Product {
     private String measureUnit;
     
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT true")
+    @Builder.Default
     private Boolean active = true;
     
+    // ✅ @JsonManagedReference: SÍ serializa el inventario
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "product-inventory")
     @ToString.Exclude
     private Inventory inventory;
     
+    // ✅ Ignoramos estas colecciones para evitar ciclos infinitos
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonIgnore
     @ToString.Exclude
     private List<DetailOrderProvider> detailOrderProviders;
     
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonIgnore
     @ToString.Exclude
     private List<DetailOrderClient> detailOrderClients;
 }
-

@@ -1,5 +1,7 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -16,12 +18,16 @@ public class DetailOrderClient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    // ✅ @JsonBackReference: NO serializa el pedido (evita ciclo)
     @ManyToOne
     @JoinColumn(name = "id_order_client", nullable = false)
+    @JsonBackReference(value = "orderclient-details")
     private OrderClient orderClient;
     
+    // ✅ Mostramos el producto pero ignoramos sus colecciones
     @ManyToOne
     @JoinColumn(name = "id_product", nullable = false)
+    @JsonIgnoreProperties({"inventory", "detailOrderProviders", "detailOrderClients"})
     private Product product;
     
     @NotNull(message = "La cantidad es obligatoria")

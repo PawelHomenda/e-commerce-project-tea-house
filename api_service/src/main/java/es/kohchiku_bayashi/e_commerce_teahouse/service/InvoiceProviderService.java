@@ -55,7 +55,7 @@ public class InvoiceProviderService {
     
     public InvoiceProvider markAsPaid(Long id, LocalDate paymentDate) {
         InvoiceProvider invoice = findById(id);
-        invoice.setPaymentState(PaymentState.PAGADO);
+        invoice.setPaymentState(PaymentState.PAID);
         invoice.setPaymentDate(paymentDate);
         return invoiceProviderRepository.save(invoice);
     }

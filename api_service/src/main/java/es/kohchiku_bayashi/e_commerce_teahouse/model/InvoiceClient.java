@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.PaymentMethod;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -18,8 +19,10 @@ public class InvoiceClient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    // ✅ @JsonBackReference: NO serializa el pedido (evita ciclo)
     @OneToOne
     @JoinColumn(name = "id_order_client", nullable = false)
+    @JsonBackReference(value = "orderclient-invoice")
     private OrderClient orderClient;
     
     @Size(max = 20)
@@ -34,8 +37,9 @@ public class InvoiceClient {
     private Double total;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "payment_method", columnDefinition = "VARCHAR(20) DEFAULT 'METALICO'")
-    private PaymentMethod paymentMethod = PaymentMethod.METALICO;
+    @Column(name = "payment_method", columnDefinition = "VARCHAR(20) DEFAULT 'METALIC'")
+    @Builder.Default
+    private PaymentMethod paymentMethod = PaymentMethod.METALIC;
     
     @Column(name = "payment_date")
     private LocalDate paymentDate;

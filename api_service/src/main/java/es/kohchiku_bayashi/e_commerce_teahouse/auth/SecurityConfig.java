@@ -12,9 +12,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests((authHttp) -> authHttp
+        http.authorizeHttpRequests((authHttp) -> authHttp
                         // PÚBLICOS - Swagger y documentación
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/v3/api-docs.yaml").permitAll()
                         .requestMatchers("/webjars/**").permitAll()
@@ -42,14 +40,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/employees/**").hasAuthority("SCOPE_admin")
                         .requestMatchers("/api/orders/providers/**").hasAuthority("SCOPE_admin")
                         .requestMatchers("/api/invoices/**").hasAuthority("SCOPE_admin")
-
                         .anyRequest().authenticated())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling(exceptions -> exceptions
-                        .authenticationEntryPoint((request, response, authException) -> {
-                            response.sendRedirect("http://127.0.0.1:9000/login");
-                        }))
-                .oauth2ResourceServer(resourceServer -> resourceServer.jwt(withDefaults()));
+                        .csrf(csrf-> csrf.disable())
+                        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .oauth2ResourceServer( resourceServer -> resourceServer.jwt(withDefaults()));
 
         return http.build();
     }

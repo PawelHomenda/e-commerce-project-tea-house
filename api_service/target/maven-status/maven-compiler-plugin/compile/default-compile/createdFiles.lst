@@ -50,6 +50,7 @@ es/kohchiku_bayashi/e_commerce_teahouse/controller/DetailOrderClientController.c
 es/kohchiku_bayashi/e_commerce_teahouse/repository/InvoiceClientRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/auth/SecurityConfig.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderClient.class
+es/kohchiku_bayashi/e_commerce_teahouse/model/converter/OrderStateConverter.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderClient$DetailOrderClientBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/OrderClient.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceProvider.class

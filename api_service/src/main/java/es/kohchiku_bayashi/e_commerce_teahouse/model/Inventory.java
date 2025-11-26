@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -16,8 +17,10 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    // ✅ @JsonBackReference: NO serializa el producto (evita el ciclo)
     @OneToOne
     @JoinColumn(name = "id_product", nullable = false)
+    @JsonBackReference(value = "product-inventory")
     private Product product;
     
     @NotNull(message = "La cantidad actual es obligatoria")

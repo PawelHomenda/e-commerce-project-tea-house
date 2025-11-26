@@ -70,7 +70,7 @@ create table invoices_providers(
     invoice_number varchar(20) unique,
     invoice_date date,
     total float(6,2),
-    payment_state enum("PAGADO","PENDIENTE"),
+    payment_state enum("PAID","PENDENT"),
     payment_date date,
     primary key(id),
     foreign key(id_order_provider) references orders_providers(id)
@@ -80,8 +80,8 @@ create table orders_clients(
     id bigint not null auto_increment,
     id_employee bigint not null,
     order_date date not null,
-    order_state enum("PENDIENTE","EN PREPARACION","ENTREGADO","CANCELADO"),
-    service_type enum("LLEVAR","MESA","ENVIO"),
+    order_state enum("PENDENT","PREPARING","DELIVERED","CANCELED"),
+    service_type enum("TAKEAWAY","TABLE","DELIVERY"),
     primary key(id),
     foreign key(id_employee) references employees(id)
 );
@@ -92,7 +92,7 @@ create table invoices_clients(
     invoice_number varchar(20)unique,
     invoice_date date,
     total float(6,2),
-    payment_method enum("METALICO","CREDITO") default "METALICO",
+    payment_method enum("METALIC","CREDIT") default "METALICO",
     payment_date date,
     primary key(id),
     foreign key(id_order_client) references orders_clients(id)

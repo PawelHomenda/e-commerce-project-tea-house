@@ -1,6 +1,24 @@
 spring:
   security:
     oauth2:
+      client:
+        registration:
+          client-app:
+            client-id: "client-app"
+            client-secret: "1234"
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8080/login/oauth2/code/client-app"
+            scope: 
+              - openid
+              - profile
+              - email
+        provider:
+          client-app:
+            issuer-uri: "http://127.0.0.1:9000"
+            authorization-uri: "http://127.0.0.1:9000/oauth2/authorize"
+            token-uri: "http://127.0.0.1:9000/oauth2/token"
+            user-info-uri: "http://127.0.0.1:9000/userinfo"
+            jwk-set-uri: "http://127.0.0.1:9000/oauth2/jwks"
       resourceserver:
         jwt:
           issuer-uri: "http://127.0.0.1:9000"

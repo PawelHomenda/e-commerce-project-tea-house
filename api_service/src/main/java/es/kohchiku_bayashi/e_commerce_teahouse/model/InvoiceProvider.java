@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.PaymentState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -18,8 +19,10 @@ public class InvoiceProvider {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    // ✅ @JsonBackReference: NO serializa el pedido (evita ciclo)
     @OneToOne
     @JoinColumn(name = "id_order_provider", nullable = false)
+    @JsonBackReference(value = "orderprovider-invoice")
     private OrderProvider orderProvider;
     
     @Size(max = 20)
@@ -41,6 +44,6 @@ public class InvoiceProvider {
     private LocalDate paymentDate;
     
     public boolean isPaid() {
-        return paymentState == PaymentState.PAGADO;
+        return paymentState == PaymentState.PAID;
     }
 }

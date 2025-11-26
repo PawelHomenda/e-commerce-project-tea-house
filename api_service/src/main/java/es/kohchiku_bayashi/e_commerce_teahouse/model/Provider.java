@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -44,7 +45,9 @@ public class Provider {
     @Column(nullable = false, length = 100)
     private String address;
     
+    // ✅ Ignoramos esta colección para evitar ciclos
     @OneToMany(mappedBy = "provider", cascade = CascadeType.ALL)
+    @JsonIgnore
     @ToString.Exclude
     private List<OrderProvider> orderProviders;
 }
