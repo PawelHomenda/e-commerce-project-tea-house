@@ -49,7 +49,8 @@ create table inventory(
     current_quantity int not null,
     minimum_quantity int not null,
     primary key(id),
-    foreign key(id_product) references products(id)
+    foreign key(id_product) references products(id),
+    unique key unique_product (id_product)
 );
 
 create table orders_providers(

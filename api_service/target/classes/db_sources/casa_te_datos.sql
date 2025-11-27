@@ -77,14 +77,17 @@ INSERT INTO inventory (id_product, current_quantity, minimum_quantity) VALUES
 -- Postres
 (11, 20, 5),    -- Pastel de Chocolate
 (12, 18, 5),    -- Cheesecake de Fresa
-(13, 15, 4),    -- Tarta de Zanahoria
-(14, 25, 8),    -- Brownie con Nueces
-(15, 80, 15),   -- Galletas de Mantequilla
-(16, 30, 10),   -- Scones con Mermelada
-(17, 50, 12),   -- Macarons Surtidos
-(18, 12, 4),    -- Tarta de Limón
-(19, 35, 10),   -- Croissant de Almendra
-(20, 16, 5);    -- Tiramisú
+(13, 25, 8),    -- Cheesecake de Matcha
+(14, 15, 4),    -- Tarta de Zanahoria
+(15, 25, 8),    -- Brownie con Nueces
+(16, 80, 15),   -- Galletas de Mantequilla
+(17, 30, 10),   -- Scones con Mermelada
+(18, 50, 12),   -- Macarons Surtidos
+(19, 12, 4),    -- Tarta de Limón
+(20, 35, 10),   -- Croissant de Almendra
+(21, 30, 10),   -- Dorayaki
+(22, 40, 12),   -- Mochi
+(23, 16, 5);    -- Tiramisú
 
 -- ============================================
 -- PEDIDOS DE CLIENTES

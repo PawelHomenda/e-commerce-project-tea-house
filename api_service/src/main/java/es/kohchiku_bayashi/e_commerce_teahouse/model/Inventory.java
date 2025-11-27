@@ -19,7 +19,7 @@ public class Inventory {
     
     // ✅ @JsonBackReference: NO serializa el producto (evita el ciclo)
     @OneToOne
-    @JoinColumn(name = "id_product", nullable = false)
+    @JoinColumn(name = "id_product", nullable = false, unique = true)
     @JsonBackReference(value = "product-inventory")
     private Product product;
     
