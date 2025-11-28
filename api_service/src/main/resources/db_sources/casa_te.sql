@@ -93,7 +93,7 @@ create table invoices_clients(
     invoice_number varchar(20)unique,
     invoice_date date,
     total float(6,2),
-    payment_method enum("METALIC","CREDIT") default "METALICO",
+    payment_method enum("METALIC","CREDIT") default "METALIC",
     payment_date date,
     primary key(id),
     foreign key(id_order_client) references orders_clients(id)
@@ -143,5 +143,5 @@ source casa_te_datos.sql;
 
 source casa_te_consultas.sql;
 
-source casa_te_disparadores.sql;
 
+source casa_te_disparadores.sql;
