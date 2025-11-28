@@ -143,5 +143,6 @@ source casa_te_datos.sql;
 
 source casa_te_consultas.sql;
 
+source casa_te_vistas.sql;
 
 source casa_te_disparadores.sql;
