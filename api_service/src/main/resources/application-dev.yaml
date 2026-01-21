@@ -1,0 +1,50 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          client-app:
+            client-id: "client-app"
+            client-secret: "1234"
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8080/login/oauth2/code/client-app"
+            scope: 
+              - openid
+              - profile
+              - email
+        provider:
+          client-app:
+            # No usar issuer-uri en dev para evitar conectar al servidor
+            authorization-uri: "http://127.0.0.1:9000/oauth2/authorize"
+            token-uri: "http://127.0.0.1:9000/oauth2/token"
+            user-info-uri: "http://127.0.0.1:9000/userinfo"
+            jwk-set-uri: "http://127.0.0.1:9000/oauth2/jwks"
+      resourceserver:
+        jwt:
+          # En desarrollo, solo especificamos la JWK URI, no el issuer-uri
+          issuer-uri: "http://127.0.0.1:9000"
+    
+  datasource:
+    url: jdbc:mysql://localhost:3306/casa_te
+    username: root
+    password: asas1234
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect 
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop # ✅ Regenera BD en cada inicio (desarrollo)
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+  web:
+    resources:
+      cache:
+        period: 0
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always

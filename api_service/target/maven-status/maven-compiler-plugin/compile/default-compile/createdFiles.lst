@@ -1,6 +1,7 @@
 es/kohchiku_bayashi/e_commerce_teahouse/repository/ProviderRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Inventory.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/InventoryRepository.class
+es/kohchiku_bayashi/e_commerce_teahouse/model/Client.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/OrderProviderRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Inventory$InventoryBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/InvoiceProviderController.class
@@ -19,10 +20,12 @@ es/kohchiku_bayashi/e_commerce_teahouse/service/InvoiceProviderService.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceClient$InvoiceClientBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/OrderClientRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/EmployeeRepository.class
+es/kohchiku_bayashi/e_commerce_teahouse/model/Client$ClientBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/ProductService.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/OrderProviderService.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderController.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/DetailOrderProviderService.class
+es/kohchiku_bayashi/e_commerce_teahouse/repository/ClientRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceProvider$InvoiceProviderBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/OrderClient$OrderClientBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/DetailOrderProviderRepository.class
@@ -37,6 +40,7 @@ es/kohchiku_bayashi/e_commerce_teahouse/controller/OrderClientController.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/InventoryService.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Product$ProductBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/InvoiceProviderRepository.class
+es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderOrdersController.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Employee.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/DetailOrderClientService.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceClient.class
@@ -50,7 +54,7 @@ es/kohchiku_bayashi/e_commerce_teahouse/controller/DetailOrderClientController.c
 es/kohchiku_bayashi/e_commerce_teahouse/repository/InvoiceClientRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/auth/SecurityConfig.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderClient.class
-es/kohchiku_bayashi/e_commerce_teahouse/model/converter/OrderStateConverter.class
+es/kohchiku_bayashi/e_commerce_teahouse/service/ClientService.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderClient$DetailOrderClientBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/OrderClient.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceProvider.class

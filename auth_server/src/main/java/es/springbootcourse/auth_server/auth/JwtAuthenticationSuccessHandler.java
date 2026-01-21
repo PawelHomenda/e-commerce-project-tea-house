@@ -33,9 +33,19 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
 		Instant now = Instant.now();
 		long expiresIn = 3600; // 1 hora
 
+		// Mapeo de roles a scopes específicos
 		String scopes = authentication.getAuthorities().stream()
 				.map(GrantedAuthority::getAuthority)
-				.map(auth -> auth.startsWith("ROLE_") ? auth.substring(5).toLowerCase() : auth.toLowerCase())
+				.map(auth -> {
+					String role = auth.startsWith("ROLE_") ? auth.substring(5).toUpperCase() : auth.toUpperCase();
+					switch(role) {
+						case "CLIENT": return "user:client";
+						case "EMPLOYEE": return "user:employee";
+						case "PROVIDER": return "user:provider";
+						case "ADMIN": return "admin";
+						default: return role.toLowerCase();
+					}
+				})
 				.collect(Collectors.joining(" "));
 
 		JwtClaimsSet claims = JwtClaimsSet.builder()

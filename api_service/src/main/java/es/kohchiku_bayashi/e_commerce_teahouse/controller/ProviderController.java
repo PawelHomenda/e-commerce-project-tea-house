@@ -6,6 +6,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +21,41 @@ public class ProviderController {
     
     private final ProviderService providerService;
     
-    @GetMapping
+    // ✅ SEGURO: Solo ADMIN ve todos
+    @GetMapping("/admin/all")
     public ResponseEntity<List<Provider>> getAllProviders() {
         return ResponseEntity.ok(providerService.findAll());
     }
     
+    // ✅ SEGURO: Proveedor ve sus propios datos, ADMIN ve todos
+    @GetMapping
+    public ResponseEntity<?> getMyProvider(
+            @AuthenticationPrincipal Jwt jwt) {
+        String oauth2Id = jwt.getClaimAsString("sub");
+        List<String> scopes = jwt.getClaimAsStringList("scope");
+        
+        // Si es admin, devuelve todos los proveedores
+        if (scopes.contains("admin")) {
+            return ResponseEntity.ok(providerService.findAll());
+        }
+        
+        // Si no es admin, devuelve solo su perfil
+        return ResponseEntity.ok(providerService.findByOauth2Id(oauth2Id));
+    }
+    
+    // ✅ SEGURO: Proveedor solo ve sus datos o ADMIN ve cualquiera
     @GetMapping("/{id}")
-    public ResponseEntity<Provider> getProviderById(@PathVariable Long id) {
-        return ResponseEntity.ok(providerService.findById(id));
+    public ResponseEntity<Provider> getProviderById(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Jwt jwt) {
+        Provider provider = providerService.findById(id);
+        String oauth2Id = jwt.getClaimAsString("sub");
+        
+        if (!provider.getOauth2Id().equals(oauth2Id) && 
+            !jwt.getClaimAsStringList("scope").contains("admin")) {
+            throw new AccessDeniedException("No tienes acceso a este proveedor");
+        }
+        return ResponseEntity.ok(provider);
     }
     
     @GetMapping("/email/{email}")
@@ -39,7 +69,8 @@ public class ProviderController {
     }
     
     @PostMapping
-    public ResponseEntity<Provider> createProvider(@Valid @RequestBody Provider provider) {
+    public ResponseEntity<Provider> createProvider(
+            @Valid @RequestBody Provider provider) {
         return ResponseEntity.status(HttpStatus.CREATED).body(providerService.save(provider));
     }
     

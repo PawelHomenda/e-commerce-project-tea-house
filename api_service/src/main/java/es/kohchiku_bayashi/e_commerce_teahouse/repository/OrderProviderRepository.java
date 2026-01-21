@@ -34,4 +34,8 @@ public interface OrderProviderRepository extends JpaRepository<OrderProvider, Lo
     
     @Query("SELECT p.name, SUM(op.total) FROM OrderProvider op JOIN op.provider p GROUP BY p.name ORDER BY SUM(op.total)")
     List<Object[]> getTotalCostByProvider();
+    
+    // ✅ Nuevo: Buscar órdenes por oauth2Id del proveedor
+    @Query("SELECT op FROM OrderProvider op WHERE op.provider.oauth2Id = :oauth2Id")
+    List<OrderProvider> findByProviderOauth2Id(@Param("oauth2Id") String oauth2Id);
 }

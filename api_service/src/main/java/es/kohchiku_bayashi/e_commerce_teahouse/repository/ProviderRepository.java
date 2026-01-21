@@ -12,6 +12,8 @@ public interface ProviderRepository extends JpaRepository<Provider, Long> {
     
     Optional<Provider> findByEmail(String email);
     
+    Optional<Provider> findByOauth2Id(String oauth2Id);
+    
     boolean existsByEmail(String email);
     
     List<Provider> findByNameContainingIgnoreCase(String name);

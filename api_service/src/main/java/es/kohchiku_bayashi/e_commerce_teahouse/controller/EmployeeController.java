@@ -6,6 +6,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +21,41 @@ public class EmployeeController {
     
     private final EmployeeService employeeService;
     
-    @GetMapping
+    // ✅ SEGURO: Solo ADMIN ve todos
+    @GetMapping("/admin/all")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.findAll());
     }
     
+    // ✅ SEGURO: Empleado ve sus propios datos, ADMIN ve todos
+    @GetMapping
+    public ResponseEntity<?> getMyProfile(
+            @AuthenticationPrincipal Jwt jwt) {
+        String oauth2Id = jwt.getClaimAsString("sub");
+        List<String> scopes = jwt.getClaimAsStringList("scope");
+        
+        // Si es admin, devuelve todos los empleados
+        if (scopes.contains("admin")) {
+            return ResponseEntity.ok(employeeService.findAll());
+        }
+        
+        // Si no es admin, devuelve solo su perfil
+        return ResponseEntity.ok(employeeService.findByOauth2Id(oauth2Id));
+    }
+    
+    // ✅ SEGURO: Empleado solo ve sus datos o ADMIN ve cualquiera
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        return ResponseEntity.ok(employeeService.findById(id));
+    public ResponseEntity<Employee> getEmployeeById(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Jwt jwt) {
+        Employee employee = employeeService.findById(id);
+        String oauth2Id = jwt.getClaimAsString("sub");
+        
+        if (!employee.getOauth2Id().equals(oauth2Id) && 
+            !jwt.getClaimAsStringList("scope").contains("admin")) {
+            throw new AccessDeniedException("No tienes acceso a este empleado");
+        }
+        return ResponseEntity.ok(employee);
     }
     
     @GetMapping("/email/{email}")

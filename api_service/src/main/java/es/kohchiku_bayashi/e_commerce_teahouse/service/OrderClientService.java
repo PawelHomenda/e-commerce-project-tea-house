@@ -27,6 +27,11 @@ public class OrderClientService {
                 .orElseThrow(() -> new RuntimeException("Pedido no encontrado con id: " + id));
     }
     
+    // ✅ Nuevo: Buscar pedidos por oauth2Id del cliente
+    public List<OrderClient> findByClientOauth2Id(String oauth2Id) {
+        return orderClientRepository.findByClientOauth2Id(oauth2Id);
+    }
+    
     public OrderClient save(OrderClient orderClient) {
         return orderClientRepository.save(orderClient);
     }

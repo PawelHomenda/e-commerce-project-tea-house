@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AuthServerApplication",
+            "request": "launch",
+            "mainClass": "es.springbootcourse.auth_server.AuthServerApplication",
+            "projectName": "auth-server"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ECommerceTeahouseApplication<tea_house_e_commerce>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

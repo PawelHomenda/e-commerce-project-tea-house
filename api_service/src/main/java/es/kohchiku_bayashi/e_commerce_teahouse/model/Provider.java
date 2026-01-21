@@ -45,6 +45,13 @@ public class Provider {
     @Column(nullable = false, length = 100)
     private String address;
     
+    @NotBlank(message = "El ID OAuth2 es obligatorio")
+    @Column(name = "oauth2_id", nullable = false, unique = true, length = 255)
+    private String oauth2Id;
+    
+    @Column(name = "oauth2_provider", length = 50)
+    private String oauth2Provider;
+    
     // ✅ Ignoramos esta colección para evitar ciclos
     @OneToMany(mappedBy = "provider", cascade = CascadeType.ALL)
     @JsonIgnore

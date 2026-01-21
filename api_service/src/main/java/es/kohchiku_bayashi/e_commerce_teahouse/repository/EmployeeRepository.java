@@ -13,6 +13,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     
     Optional<Employee> findByEmail(String email);
     
+    Optional<Employee> findByOauth2Id(String oauth2Id);
+    
     boolean existsByEmail(String email);
     
     List<Employee> findByFirstNameContainingIgnoreCase(String firstName);

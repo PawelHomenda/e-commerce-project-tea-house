@@ -22,3 +22,10 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+IMPLEMENTATION_GUIDE.md
+.gitignore
+api_service/SECURITY_IMPLEMENTATION.md
+.gitignore
+api_service/MIGRATION_NOTES.md
+api_service/src/main/resources/db_sources/README.md
+api_service/target/classes/db_sources/README.md

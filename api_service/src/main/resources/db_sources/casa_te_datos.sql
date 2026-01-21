@@ -1,26 +1,56 @@
-/*
-    DATOS DE PRUEBA - CASA DE TÉ
-    Inserción de registros de ejemplo para todas las tablas
-*/
-
-system cls;
+-- =====================================================================
+-- CASA DE TÉ - DATOS DE PRUEBA
+-- =====================================================================
+-- Inserción de registros de ejemplo para todas las tablas
+-- Usar: mysql -u root -p casa_te < casa_te_datos.sql
+-- =====================================================================
 
 USE casa_te;
 
--- ============================================
--- EMPLEADOS
--- ============================================
-INSERT INTO employees (first_name, last_name, salary, phone_number, email) VALUES
-('Juan', 'Pérez García', 2500.00, '612345678', 'juan.perez@casate.com'),
-('María', 'López Martínez', 2800.00, '623456789', 'maria.lopez@casate.com'),
-('Carlos', 'García Rodríguez', 2600.00, '634567890', 'carlos.garcia@casate.com'),
-('Ana', 'Martínez Sánchez', 2700.00, '645678901', 'ana.martinez@casate.com'),
-('Luis', 'Fernández Díaz', 2400.00, '656789012', 'luis.fernandez@casate.com');
+-- =====================================================================
+-- 1. EMPLEADOS (5 registros) - con credenciales OAuth2
+-- =====================================================================
+SET FOREIGN_KEY_CHECKS = 0;
 
--- ============================================
--- PRODUCTOS
--- ============================================
-INSERT INTO products (name, description, category, price, measure_unit, active) VALUES
+INSERT IGNORE INTO employees (first_name, last_name, salary, phone_number, email, oauth2_id, oauth2_provider) VALUES
+('Juan', 'Pérez García', 2500.00, '612345678', 'juan.perez@casate.com', 'user', 'keycloak'),
+('María', 'López Martínez', 2800.00, '623456789', 'maria.lopez@casate.com', 'tanaka', 'keycloak'),
+('Carlos', 'García Rodríguez', 2600.00, '634567890', 'carlos.garcia@casate.com', 'employee4', 'keycloak'),
+('Ana', 'Martínez Sánchez', 2700.00, '645678901', 'ana.martinez@casate.com', 'employee5', 'keycloak'),
+('Luis', 'Fernández Díaz', 2400.00, '656789012', 'luis.fernandez@casate.com', 'employee6', 'keycloak');
+
+-- =====================================================================
+-- 2. PROVEEDORES (5 registros) - con credenciales OAuth2
+-- =====================================================================
+
+INSERT IGNORE INTO providers (name, contact, phone_number, email, address, oauth2_id, oauth2_provider) VALUES
+('TéDelMundo S.L.', 'Carlos Ruiz Hernández', '915551001', 'ventas@tedelmundo.com', 'Calle del Té 123, 28001 Madrid', 'provider1', 'keycloak'),
+('Dulces Artesanales García', 'Ana María García López', '933334002', 'pedidos@dulcesartesanales.com', 'Avenida Gourmet 45, 08015 Barcelona', 'provider2', 'keycloak'),
+('Distribuciones TeaTime', 'Pedro Sánchez Martín', '963337003', 'contacto@teatime.es', 'Polígono Industrial Las Flores 7, 46980 Valencia', 'provider3', 'keycloak'),
+('Infusiones Naturales Del Sur', 'Carmen Jiménez Torres', '954441004', 'info@infusionesnaturales.com', 'Calle Andalucía 89, 41001 Sevilla', 'provider4', 'keycloak'),
+('Pastelería Premium Imports', 'Miguel Ángel Rodríguez', '944445005', 'comercial@pasteleriapr.com', 'Barrio de Deusto 34, 48014 Bilbao', 'provider5', 'keycloak');
+
+-- =====================================================================
+-- 3. CLIENTES (10 registros) - con credenciales OAuth2
+-- =====================================================================
+
+INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address, oauth2_id, oauth2_provider) VALUES
+('Roberto', 'Sánchez López', 'roberto.sanchez@email.com', '670111222', 'Calle Principal 123, Madrid', 'client1', 'keycloak'),
+('Elena', 'García Fernández', 'elena.garcia@email.com', '671222333', 'Avenida Central 456, Barcelona', 'client2', 'keycloak'),
+('Miguel', 'Rodríguez Martín', 'miguel.rodriguez@email.com', '672333444', 'Plaza Mayor 789, Valencia', 'client3', 'keycloak'),
+('Sofía', 'Martínez Ruiz', 'sofia.martinez@email.com', '673444555', 'Calle Flores 321, Bilbao', 'client4', 'keycloak'),
+('David', 'López Jiménez', 'david.lopez@email.com', '674555666', 'Paseo del Parque 654, Sevilla', 'client5', 'keycloak'),
+('Isabel', 'Pérez Torres', 'isabel.perez@email.com', '675666777', 'Calle Real 987, Málaga', 'client6', 'keycloak'),
+('Francisco', 'Díaz Cabrera', 'francisco.diaz@email.com', '676777888', 'Avenida del Mar 246, Alicante', 'client7', 'keycloak'),
+('Teresa', 'Gómez Soto', 'teresa.gomez@email.com', '677888999', 'Calle Comercio 135, Zaragoza', 'client8', 'keycloak'),
+('Antonio', 'Moreno Ruiz', 'antonio.moreno@email.com', '678999000', 'Plaza Nueva 802, Granada', 'client9', 'keycloak'),
+('Marta', 'Jiménez Navarro', 'marta.jimenez@email.com', '679000111', 'Calle Paz 573, Córdoba', 'client10', 'keycloak');
+
+-- =====================================================================
+-- 4. PRODUCTOS (23 registros) - 10 bebidas, 13 postres
+-- =====================================================================
+
+INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES
 -- BEBIDAS (Tés)
 ('Té Verde Sencha', 'Té verde japonés de alta calidad, suave y refrescante', 'DRINK', 3.50, 'taza', 1),
 ('Té Negro Earl Grey', 'Té negro aromático con bergamota', 'DRINK', 3.00, 'taza', 1),
@@ -48,20 +78,16 @@ INSERT INTO products (name, description, category, price, measure_unit, active) 
 ('Mochi', 'Pastel de arroz con relleno de frutas en su interior', 'DESSERT', 3.50, 'unidad', 1),
 ('Tiramisú', 'Postre italiano clásico con café y mascarpone', 'DESSERT', 10.00, 'porción', 1);
 
--- ============================================
--- PROVEEDORES
--- ============================================
-INSERT INTO providers (name, contact, phone_number, email, address) VALUES
-('TéDelMundo S.L.', 'Carlos Ruiz Hernández', '915551001', 'ventas@tedelmundo.com', 'Calle del Té 123, 28001 Madrid'),
-('Dulces Artesanales García', 'Ana María García López', '933334002', 'pedidos@dulcesartesanales.com', 'Avenida Gourmet 45, 08015 Barcelona'),
-('Distribuciones TeaTime', 'Pedro Sánchez Martín', '963337003', 'contacto@teatime.es', 'Polígono Industrial Las Flores 7, 46980 Valencia'),
-('Infusiones Naturales Del Sur', 'Carmen Jiménez Torres', '954441004', 'info@infusionesnaturales.com', 'Calle Andalucía 89, 41001 Sevilla'),
-('Pastelería Premium Imports', 'Miguel Ángel Rodríguez', '944445005', 'comercial@pasteleriapr.com', 'Barrio de Deusto 34, 48014 Bilbao');
+-- =====================================================================
+-- 5. PROVEEDORES - MOVIDO AL PASO 2
+-- =====================================================================
+-- (Ver sección 2 - PROVEEDORES)
 
--- ============================================
--- INVENTARIO
--- ============================================
-INSERT INTO inventory (id_product, current_quantity, minimum_quantity) VALUES
+-- =====================================================================
+-- 6. INVENTARIO (23 registros) - 1 por cada producto
+-- =====================================================================
+
+INSERT IGNORE INTO inventory (id_product, current_quantity, minimum_quantity) VALUES
 -- Bebidas
 (1, 150, 30),   -- Té Verde Sencha
 (2, 120, 25),   -- Té Negro Earl Grey
@@ -89,30 +115,32 @@ INSERT INTO inventory (id_product, current_quantity, minimum_quantity) VALUES
 (22, 40, 12),   -- Mochi
 (23, 16, 5);    -- Tiramisú
 
--- ============================================
--- PEDIDOS DE CLIENTES
--- ============================================
-INSERT INTO orders_clients (id_employee, order_date, order_state, service_type) VALUES
+-- =====================================================================
+-- 7. PEDIDOS DE CLIENTES (10 registros)
+-- =====================================================================
+
+INSERT IGNORE INTO orders_clients (id_client, id_employee, order_date, order_state, service_type) VALUES
 -- Pedidos completados
-(1, '2025-10-01', 'DELIVERED', 'TABLE'),
-(2, '2025-10-01', 'DELIVERED', 'TAKEAWAY'),
-(3, '2025-10-02', 'DELIVERED', 'TABLE'),
-(1, '2025-10-02', 'DELIVERED', 'DELIVERY'),
-(4, '2025-10-03', 'DELIVERED', 'TABLE'),
+(1, 1, '2025-10-01', 'DELIVERED', 'TABLE'),
+(2, 2, '2025-10-01', 'DELIVERED', 'TAKEAWAY'),
+(3, 3, '2025-10-02', 'DELIVERED', 'TABLE'),
+(4, 1, '2025-10-02', 'DELIVERED', 'DELIVERY'),
+(5, 4, '2025-10-03', 'DELIVERED', 'TABLE'),
 
 -- Pedidos en proceso
-(2, '2025-10-13', 'PREPARING', 'TAKEAWAY'),
-(5, '2025-10-13', 'PREPARING', 'TABLE'),
-(3, '2025-10-13', 'PENDENT', 'DELIVERY'),
+(6, 2, '2025-10-13', 'PREPARING', 'TAKEAWAY'),
+(7, 5, '2025-10-13', 'PREPARING', 'TABLE'),
+(8, 3, '2025-10-13', 'PENDENT', 'DELIVERY'),
 
--- Pedidos CANCELEDs
-(1, '2025-10-10', 'CANCELED', 'TABLE'),
-(4, '2025-10-11', 'CANCELED', 'TAKEAWAY');
+-- Pedidos cancelados
+(9, 1, '2025-10-10', 'CANCELED', 'TABLE'),
+(10, 4, '2025-10-11', 'CANCELED', 'TAKEAWAY');
 
--- ============================================
--- DETALLES DE PEDIDOS DE CLIENTES
--- ============================================
-INSERT INTO details_order_client (id_order_client, id_product, quantity, unit_price) VALUES
+-- =====================================================================
+-- 8. DETALLES DE PEDIDOS DE CLIENTES (29 registros)
+-- =====================================================================
+
+INSERT IGNORE INTO details_order_client (id_order_client, id_product, quantity, unit_price) VALUES
 -- Pedido 1: María González (TABLE)
 (1, 1, 2, 3.50),    -- 2 Té Verde
 (1, 11, 1, 12.00),  -- 1 Pastel Chocolate
@@ -160,10 +188,11 @@ INSERT INTO details_order_client (id_order_client, id_product, quantity, unit_pr
 -- Pedido 10: Francisco Navarro (CANCELED)
 (10, 2, 1, 3.00);   -- 1 Té Negro
 
--- ============================================
--- FACTURAS DE CLIENTES
--- ============================================
-INSERT INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES
+-- =====================================================================
+-- 9. FACTURAS DE CLIENTES (8 registros)
+-- =====================================================================
+
+INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES
 (1, 'FC-0001', '2025-10-01', 25.50, 'CREDIT', '2025-10-01'),
 (2, 'FC-0002', '2025-10-01', 15.50, 'METALIC', '2025-10-01'),
 (3, 'FC-0003', '2025-10-02', 32.00, 'CREDIT', '2025-10-02'),
@@ -173,10 +202,11 @@ INSERT INTO invoices_clients (id_order_client, invoice_number, invoice_date, tot
 (7, 'FC-0007', '2025-10-13', 35.50, 'CREDIT', NULL),           -- PENDENT de pago
 (8, 'FC-0008', '2025-10-13', 22.00, 'METALIC', NULL);     -- PENDENT de pago
 
--- ============================================
--- PEDIDOS A PROVEEDORES
--- ============================================
-INSERT INTO orders_providers (id_provider, id_employee, order_date, total, observations) VALUES
+-- =====================================================================
+-- 10. PEDIDOS A PROVEEDORES (7 registros)
+-- =====================================================================
+
+INSERT IGNORE INTO orders_providers (id_provider, id_employee, order_date, total, observations) VALUES
 (1, 3, '2025-09-15', 850.00, 'Pedido mensual de tés variados'),
 (2, 3, '2025-09-18', 420.00, 'Reposición de postres frescos'),
 (3, 3, '2025-09-22', 650.00, 'Pedido urgente - stock bajo'),
@@ -185,10 +215,11 @@ INSERT INTO orders_providers (id_provider, id_employee, order_date, total, obser
 (5, 3, '2025-10-08', 550.00, 'Pastelería importada para eventos'),
 (2, 3, '2025-10-12', 480.00, 'Reposición semanal postres');
 
--- ============================================
--- DETALLES DE PEDIDOS A PROVEEDORES
--- ============================================
-INSERT INTO details_order_provider (id_order_provider, id_product, quantity, unit_price) VALUES
+-- =====================================================================
+-- 11. DETALLES DE PEDIDOS A PROVEEDORES (30 registros)
+-- =====================================================================
+
+INSERT IGNORE INTO details_order_provider (id_order_provider, id_product, quantity, unit_price) VALUES
 -- Pedido 1: TéDelMundo (15-Sep)
 (1, 1, 100, 2.00),   -- 100 Té Verde @ 2.00
 (1, 2, 80, 1.80),    -- 80 Té Negro @ 1.80
@@ -230,10 +261,13 @@ INSERT INTO details_order_provider (id_order_provider, id_product, quantity, uni
 (7, 12, 15, 9.00),   -- 15 Cheesecake @ 9.00
 (7, 15, 80, 0.80);   -- 80 Galletas @ 0.80
 
--- ============================================
--- FACTURAS DE PROVEEDORES
--- ============================================
-INSERT INTO invoices_providers (id_order_provider, invoice_number, invoice_date, total, payment_state, payment_date) VALUES
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- =====================================================================
+-- 12. FACTURAS DE PROVEEDORES (7 registros)
+-- =====================================================================
+
+INSERT IGNORE INTO invoices_providers (id_order_provider, invoice_number, invoice_date, total, payment_state, payment_date) VALUES
 (1, 'FP-TDM-089', '2025-09-15', 850.00, 'PAID', '2025-09-30'),
 (2, 'FP-DA-145', '2025-09-18', 420.00, 'PAID', '2025-10-02'),
 (3, 'FP-DTT-234', '2025-09-22', 650.00, 'PAID', '2025-10-05'),
@@ -242,18 +276,23 @@ INSERT INTO invoices_providers (id_order_provider, invoice_number, invoice_date,
 (6, 'FP-PPI-023', '2025-10-08', 550.00, 'PENDENT', NULL),
 (7, 'FP-DA-156', '2025-10-12', 480.00, 'PENDENT', NULL);
 
--- ============================================
--- VERIFICACIÓN DE DATOS INSERTADOS
--- ============================================
-SELECT '=== RESUMEN DE DATOS INSERTADOS ===' AS '';
-SELECT CONCAT('Empleados: ', COUNT(*)) AS Total FROM employees;
-SELECT CONCAT('Productos: ', COUNT(*)) AS Total FROM products;
-SELECT CONCAT('Proveedores: ', COUNT(*)) AS Total FROM providers;
-SELECT CONCAT('Registros de Inventario: ', COUNT(*)) AS Total FROM inventory;
-SELECT CONCAT('Pedidos de Clientes: ', COUNT(*)) AS Total FROM orders_clients;
-SELECT CONCAT('Detalles Pedidos Clientes: ', COUNT(*)) AS Total FROM details_order_client;
-SELECT CONCAT('Facturas de Clientes: ', COUNT(*)) AS Total FROM invoices_clients;
-SELECT CONCAT('Pedidos a Proveedores: ', COUNT(*)) AS Total FROM orders_providers;
-SELECT CONCAT('Detalles Pedidos Proveedores: ', COUNT(*)) AS Total FROM details_order_provider;
-SELECT CONCAT('Facturas de Proveedores: ', COUNT(*)) AS Total FROM invoices_providers;
-SELECT 'Datos de prueba insertados correctamente' AS Resultado;
+-- =====================================================================
+-- RESUMEN DE DATOS INSERTADOS
+-- =====================================================================
+
+SELECT '✓ Datos de prueba insertados correctamente' AS Resultado;
+SELECT CONCAT('  • Empleados: ', COUNT(*)) AS Estadísticas FROM employees;
+SELECT CONCAT('  • Clientes: ', COUNT(*)) AS Estadísticas FROM clients;
+SELECT CONCAT('  • Proveedores: ', COUNT(*)) AS Estadísticas FROM providers;
+SELECT CONCAT('  • Productos: ', COUNT(*)) AS Estadísticas FROM products;
+SELECT CONCAT('  • Inventario: ', COUNT(*)) AS Estadísticas FROM inventory;
+SELECT CONCAT('  • Pedidos Clientes: ', COUNT(*)) AS Estadísticas FROM orders_clients;
+SELECT CONCAT('  • Detalles Ped. Clientes: ', COUNT(*)) AS Estadísticas FROM details_order_client;
+SELECT CONCAT('  • Facturas Clientes: ', COUNT(*)) AS Estadísticas FROM invoices_clients;
+SELECT CONCAT('  • Pedidos Proveedores: ', COUNT(*)) AS Estadísticas FROM orders_providers;
+SELECT CONCAT('  • Detalles Ped. Proveedores: ', COUNT(*)) AS Estadísticas FROM details_order_provider;
+SELECT CONCAT('  • Facturas Proveedores: ', COUNT(*)) AS Estadísticas FROM invoices_providers;
+
+-- =====================================================================
+-- FIN - Casa de Té E-Commerce Datos de Prueba
+-- =====================================================================

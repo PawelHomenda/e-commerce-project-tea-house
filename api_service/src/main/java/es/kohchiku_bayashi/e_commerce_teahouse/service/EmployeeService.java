@@ -29,6 +29,12 @@ public class EmployeeService {
                 .orElseThrow(() -> new RuntimeException("Empleado no encontrado con email: " + email));
     }
     
+    // ✅ Nuevo: Buscar por oauth2Id
+    public Employee findByOauth2Id(String oauth2Id) {
+        return employeeRepository.findByOauth2Id(oauth2Id)
+                .orElseThrow(() -> new RuntimeException("Empleado no encontrado con oauth2Id: " + oauth2Id));
+    }
+    
     public Employee save(Employee employee) {
         if (employeeRepository.existsByEmail(employee.getEmail())) {
             throw new RuntimeException("Ya existe un empleado con el email: " + employee.getEmail());
@@ -66,5 +72,22 @@ public class EmployeeService {
     
     public List<Employee> findBySalaryRange(Double minSalary, Double maxSalary) {
         return employeeRepository.findBySalaryBetween(minSalary, maxSalary);
+    }
+    
+    // ✅ Auto-crear empleado desde OAuth2
+    public Employee getOrCreateEmployeeFromOAuth2(String oauth2Id, String email, String firstName, String lastName, String provider) {
+        return employeeRepository.findByOauth2Id(oauth2Id)
+                .orElseGet(() -> {
+                    Employee newEmployee = Employee.builder()
+                            .oauth2Id(oauth2Id)
+                            .email(email)
+                            .firstName(firstName)
+                            .lastName(lastName)
+                            .oauth2Provider(provider)
+                            .salary(0.0) // Default salary, debe ser actualizado
+                            .phoneNumber("0000000000") // Default, debe ser actualizado
+                            .build();
+                    return employeeRepository.save(newEmployee);
+                });
     }
 }

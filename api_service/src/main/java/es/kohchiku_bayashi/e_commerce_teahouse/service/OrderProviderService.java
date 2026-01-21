@@ -26,6 +26,11 @@ public class OrderProviderService {
                 .orElseThrow(() -> new RuntimeException("Pedido no encontrado con id: " + id));
     }
     
+    // ✅ Nuevo: Buscar órdenes por oauth2Id del proveedor
+    public List<OrderProvider> findByProviderOauth2Id(String oauth2Id) {
+        return orderProviderRepository.findByProviderOauth2Id(oauth2Id);
+    }
+    
     public OrderProvider save(OrderProvider orderProvider) {
         return orderProviderRepository.save(orderProvider);
     }

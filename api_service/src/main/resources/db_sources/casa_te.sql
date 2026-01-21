@@ -4,8 +4,6 @@
     /puente/mis_cosas/programacion/casa_te.sql
 */
 
-system cls
-
 drop database if exists casa_te;
 
 create database if not exists casa_te;
@@ -19,7 +17,10 @@ create table employees(
     salary float(8,2) not null,
     phone_number varchar(15) not null,
     email varchar(50) unique not null,
-    primary key(id)
+    oauth2_id varchar(255) unique not null,
+    oauth2_provider varchar(50),
+    primary key(id),
+    index idx_oauth2_id (oauth2_id)
 );
 
 create table products(
@@ -40,7 +41,10 @@ create table providers(
 	phone_number varchar(10) not null,
 	email varchar(50) unique not null,
 	address varchar(100) not null,
-	primary key(id)
+	oauth2_id varchar(255) unique not null,
+	oauth2_provider varchar(50),
+	primary key(id),
+	index idx_oauth2_id (oauth2_id)
 );
 
 create table inventory(
@@ -51,6 +55,23 @@ create table inventory(
     primary key(id),
     foreign key(id_product) references products(id),
     unique key unique_product (id_product)
+);
+
+-- ✅ Tabla de clientes vinculada con OAuth2
+create table clients(
+    id bigint not null auto_increment,
+    first_name varchar(50) not null,
+    last_name varchar(50) not null,
+    email varchar(50) unique not null,
+    phone_number varchar(15),
+    address varchar(100),
+    oauth2_id varchar(255) unique not null,
+    oauth2_provider varchar(50),
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp on update current_timestamp,
+    primary key(id),
+    index idx_oauth2_id (oauth2_id),
+    index idx_email (email)
 );
 
 create table orders_providers(
@@ -79,12 +100,16 @@ create table invoices_providers(
 
 create table orders_clients(
     id bigint not null auto_increment,
-    id_employee bigint not null,
+    id_client bigint not null,
+    id_employee bigint,
     order_date date not null,
-    order_state enum("PENDENT","PREPARING","DELIVERED","CANCELED"),
-    service_type enum("TAKEAWAY","TABLE","DELIVERY"),
+    order_state enum("PENDENT","PREPARING","DELIVERED","CANCELED") default "PENDENT",
+    service_type enum("TAKEAWAY","TABLE","DELIVERY") not null,
     primary key(id),
-    foreign key(id_employee) references employees(id)
+    foreign key(id_client) references clients(id),
+    foreign key(id_employee) references employees(id),
+    index idx_client (id_client),
+    index idx_employee (id_employee)
 );
 
 create table invoices_clients(
@@ -141,8 +166,8 @@ describe details_order_client;
 
 source casa_te_datos.sql;
 
-source casa_te_consultas.sql;
+-- source casa_te_consultas.sql;
 
-source casa_te_vistas.sql;
+-- source casa_te_vistas.sql;
 
-source casa_te_disparadores.sql;
+-- source casa_te_disparadores.sql;

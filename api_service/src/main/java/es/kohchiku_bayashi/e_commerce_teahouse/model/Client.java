@@ -7,12 +7,12 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "clients")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Employee {
+public class Client {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +28,11 @@ public class Employee {
     @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
     
-    @NotNull(message = "El salario es obligatorio")
-    @DecimalMin(value = "0.0", inclusive = false)
-    @Column(nullable = false)
-    private Double salary;
+    @NotBlank(message = "El email es obligatorio")
+    @Email(message = "El email debe ser válido")
+    @Size(max = 50)
+    @Column(nullable = false, unique = true, length = 50)
+    private String email;
     
     @NotBlank(message = "El número de teléfono es obligatorio")
     @Size(max = 15)
@@ -39,11 +40,8 @@ public class Employee {
     @Column(name = "phone_number", nullable = false, length = 15)
     private String phoneNumber;
     
-    @NotBlank(message = "El email es obligatorio")
-    @Email(message = "El email debe ser válido")
-    @Size(max = 50)
-    @Column(nullable = false, unique = true, length = 50)
-    private String email;
+    @Column(name = "address", length = 100)
+    private String address;
     
     @NotBlank(message = "El ID OAuth2 es obligatorio")
     @Column(name = "oauth2_id", nullable = false, unique = true, length = 255)
@@ -52,14 +50,9 @@ public class Employee {
     @Column(name = "oauth2_provider", length = 50)
     private String oauth2Provider;
     
-    // ✅ Ignoramos completamente estas colecciones para evitar ciclos
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    // ✅ Relación con los pedidos del cliente
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     @JsonIgnore
     @ToString.Exclude
     private List<OrderClient> orderClients;
-    
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    @JsonIgnore
-    @ToString.Exclude
-    private List<OrderProvider> orderProviders;
 }

@@ -1,16 +1,15 @@
 -- =====================================================================
--- CASA DE TÉ - DATOS DE PRUEBA
+-- CASA DE TÉ - DATOS DE PRUEBA (AUTO-EJECUTADO POR SPRING BOOT)
 -- =====================================================================
--- Inserción de registros de ejemplo para todas las tablas
--- Usar: mysql -u root -p casa_te < casa_te_datos.sql
+-- Spring Boot ejecuta este archivo automáticamente después de schema.sql
+-- cuando spring.jpa.hibernate.ddl-auto = create
 -- =====================================================================
 
-USE casa_te;
-
--- =====================================================================
--- 1. EMPLEADOS (5 registros) - con credenciales OAuth2
--- =====================================================================
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- =====================================================================
+-- 1. EMPLEADOS (5 registros)
+-- =====================================================================
 
 INSERT IGNORE INTO employees (first_name, last_name, salary, phone_number, email, oauth2_id, oauth2_provider) VALUES
 ('Juan', 'Pérez García', 2500.00, '612345678', 'juan.perez@casate.com', 'user', 'keycloak'),
@@ -20,7 +19,7 @@ INSERT IGNORE INTO employees (first_name, last_name, salary, phone_number, email
 ('Luis', 'Fernández Díaz', 2400.00, '656789012', 'luis.fernandez@casate.com', 'employee6', 'keycloak');
 
 -- =====================================================================
--- 2. PROVEEDORES (5 registros) - con credenciales OAuth2
+-- 2. PROVEEDORES (5 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO providers (name, contact, phone_number, email, address, oauth2_id, oauth2_provider) VALUES
@@ -31,7 +30,7 @@ INSERT IGNORE INTO providers (name, contact, phone_number, email, address, oauth
 ('Pastelería Premium Imports', 'Miguel Ángel Rodríguez', '944445005', 'comercial@pasteleriapr.com', 'Barrio de Deusto 34, 48014 Bilbao', 'provider5', 'keycloak');
 
 -- =====================================================================
--- 3. CLIENTES (10 registros) - con credenciales OAuth2
+-- 3. CLIENTES (10 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address, oauth2_id, oauth2_provider) VALUES
@@ -47,7 +46,7 @@ INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address,
 ('Marta', 'Jiménez Navarro', 'marta.jimenez@email.com', '679000111', 'Calle Paz 573, Córdoba', 'client10', 'keycloak');
 
 -- =====================================================================
--- 4. PRODUCTOS (23 registros) - 10 bebidas, 13 postres
+-- 4. PRODUCTOS (23 registros - 10 bebidas, 13 postres)
 -- =====================================================================
 
 INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES
@@ -62,7 +61,6 @@ INSERT IGNORE INTO products (name, description, category, price, measure_unit, a
 ('Té Helado de Melocotón', 'Refrescante té frío con frutas', 'DRINK', 3.50, 'vaso', 1),
 ('Infusión de Menta', 'Menta fresca natural', 'DRINK', 2.80, 'taza', 1),
 ('Infusión de Manzanilla', 'Relajante infusión de flores', 'DRINK', 2.50, 'taza', 1),
-
 -- POSTRES
 ('Pastel de Chocolate', 'Delicioso pastel de chocolate casero con ganache', 'DESSERT', 12.00, 'porción', 1),
 ('Cheesecake de Fresa', 'Tarta de queso con topping de fresas frescas', 'DESSERT', 14.00, 'porción', 1),
@@ -79,117 +77,50 @@ INSERT IGNORE INTO products (name, description, category, price, measure_unit, a
 ('Tiramisú', 'Postre italiano clásico con café y mascarpone', 'DESSERT', 10.00, 'porción', 1);
 
 -- =====================================================================
--- 5. PROVEEDORES - MOVIDO AL PASO 2
--- =====================================================================
--- (Ver sección 2 - PROVEEDORES)
-
--- =====================================================================
--- 6. INVENTARIO (23 registros) - 1 por cada producto
+-- 5. INVENTARIO (23 registros - 1 por cada producto)
 -- =====================================================================
 
 INSERT IGNORE INTO inventory (id_product, current_quantity, minimum_quantity) VALUES
--- Bebidas
-(1, 150, 30),   -- Té Verde Sencha
-(2, 120, 25),   -- Té Negro Earl Grey
-(3, 80, 20),    -- Té Oolong Premium
-(4, 50, 15),    -- Té Blanco Silver Needle
-(5, 100, 20),   -- Té Rooibos
-(6, 90, 20),    -- Té Chai Masala
-(7, 60, 15),    -- Té Matcha Latte
-(8, 70, 15),    -- Té Helado de Melocotón
-(9, 110, 25),   -- Infusión de Menta
-(10, 95, 20),   -- Infusión de Manzanilla
-
--- Postres
-(11, 20, 5),    -- Pastel de Chocolate
-(12, 18, 5),    -- Cheesecake de Fresa
-(13, 25, 8),    -- Cheesecake de Matcha
-(14, 15, 4),    -- Tarta de Zanahoria
-(15, 25, 8),    -- Brownie con Nueces
-(16, 80, 15),   -- Galletas de Mantequilla
-(17, 30, 10),   -- Scones con Mermelada
-(18, 50, 12),   -- Macarons Surtidos
-(19, 12, 4),    -- Tarta de Limón
-(20, 35, 10),   -- Croissant de Almendra
-(21, 30, 10),   -- Dorayaki
-(22, 40, 12),   -- Mochi
-(23, 16, 5);    -- Tiramisú
+(1, 150, 30), (2, 120, 25), (3, 80, 20), (4, 50, 15), (5, 100, 20),
+(6, 90, 20), (7, 60, 15), (8, 70, 15), (9, 110, 25), (10, 95, 20),
+(11, 20, 5), (12, 18, 5), (13, 25, 8), (14, 15, 4), (15, 25, 8),
+(16, 80, 15), (17, 30, 10), (18, 50, 12), (19, 12, 4), (20, 35, 10),
+(21, 30, 10), (22, 40, 12), (23, 16, 5);
 
 -- =====================================================================
--- 7. PEDIDOS DE CLIENTES (10 registros)
+-- 6. PEDIDOS DE CLIENTES (10 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO orders_clients (id_client, id_employee, order_date, order_state, service_type) VALUES
--- Pedidos completados
 (1, 1, '2025-10-01', 'DELIVERED', 'TABLE'),
 (2, 2, '2025-10-01', 'DELIVERED', 'TAKEAWAY'),
 (3, 3, '2025-10-02', 'DELIVERED', 'TABLE'),
 (4, 1, '2025-10-02', 'DELIVERED', 'DELIVERY'),
 (5, 4, '2025-10-03', 'DELIVERED', 'TABLE'),
-
--- Pedidos en proceso
 (6, 2, '2025-10-13', 'PREPARING', 'TAKEAWAY'),
 (7, 5, '2025-10-13', 'PREPARING', 'TABLE'),
 (8, 3, '2025-10-13', 'PENDENT', 'DELIVERY'),
-
--- Pedidos cancelados
 (9, 1, '2025-10-10', 'CANCELED', 'TABLE'),
 (10, 4, '2025-10-11', 'CANCELED', 'TAKEAWAY');
 
 -- =====================================================================
--- 8. DETALLES DE PEDIDOS DE CLIENTES (29 registros)
+-- 7. DETALLES DE PEDIDOS DE CLIENTES (29 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO details_order_client (id_order_client, id_product, quantity, unit_price) VALUES
--- Pedido 1: María González (TABLE)
-(1, 1, 2, 3.50),    -- 2 Té Verde
-(1, 11, 1, 12.00),  -- 1 Pastel Chocolate
-(1, 15, 3, 2.00),   -- 3 Galletas
-
--- Pedido 2: Luis Fernández (TAKEAWAY)
-(2, 2, 1, 3.00),    -- 1 Té Negro
-(2, 15, 2, 2.00),   -- 2 Galletas
-(2, 14, 1, 8.00),   -- 1 Brownie
-
--- Pedido 3: Ana Rodríguez (TABLE)
-(3, 3, 2, 4.50),    -- 2 Té Oolong
-(3, 12, 1, 14.00),  -- 1 Cheesecake
-(3, 17, 3, 3.00),   -- 3 Macarons
-
--- Pedido 4: Pedro Martínez (DELIVERY)
-(4, 6, 2, 3.80),    -- 2 Chai Masala
-(4, 13, 1, 11.50),  -- 1 Tarta Zanahoria
-(4, 15, 5, 2.00),   -- 5 Galletas
-
--- Pedido 5: Carmen Sánchez (TABLE)
-(5, 4, 2, 5.00),    -- 2 Té Blanco
-(5, 18, 1, 13.00),  -- 1 Tarta Limón
-(5, 20, 1, 10.00),  -- 1 Tiramisú
-(5, 17, 4, 3.00),   -- 4 Macarons
-
--- Pedido 6: José García (EN PREPARACION - TAKEAWAY)
-(6, 7, 2, 4.80),    -- 2 Matcha Latte
-(6, 19, 2, 4.50),   -- 2 Croissant
-
--- Pedido 7: Laura Jiménez (EN PREPARACION - TABLE)
-(7, 5, 2, 3.20),    -- 2 Té Rooibos
-(7, 11, 1, 12.00),  -- 1 Pastel Chocolate
-(7, 12, 1, 14.00),  -- 1 Cheesecake
-(7, 15, 3, 2.00),   -- 3 Galletas
-
--- Pedido 8: Roberto Torres (PENDENT - DELIVERY)
-(8, 8, 2, 3.50),    -- 2 Té Helado
-(8, 14, 1, 8.00),   -- 1 Brownie
-(8, 15, 4, 2.00),   -- 4 Galletas
-
--- Pedido 9: Isabel Romero (CANCELED)
-(9, 1, 1, 3.50),    -- 1 Té Verde
-
--- Pedido 10: Francisco Navarro (CANCELED)
-(10, 2, 1, 3.00);   -- 1 Té Negro
+(1, 1, 2, 3.50), (1, 11, 1, 12.00), (1, 15, 3, 2.00),
+(2, 2, 1, 3.00), (2, 15, 2, 2.00), (2, 14, 1, 8.00),
+(3, 3, 2, 4.50), (3, 12, 1, 14.00), (3, 17, 3, 3.00),
+(4, 6, 2, 3.80), (4, 13, 1, 11.50), (4, 15, 5, 2.00),
+(5, 4, 2, 5.00), (5, 18, 1, 13.00), (5, 20, 1, 10.00), (5, 17, 4, 3.00),
+(6, 7, 2, 4.80), (6, 19, 2, 4.50),
+(7, 5, 2, 3.20), (7, 11, 1, 12.00), (7, 12, 1, 14.00), (7, 15, 3, 2.00),
+(8, 8, 2, 3.50), (8, 14, 1, 8.00), (8, 15, 4, 2.00),
+(9, 1, 1, 3.50),
+(10, 2, 1, 3.00);
 
 -- =====================================================================
--- 9. FACTURAS DE CLIENTES (8 registros)
+-- 8. FACTURAS DE CLIENTES (8 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES
@@ -198,12 +129,12 @@ INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_da
 (3, 'FC-0003', '2025-10-02', 32.00, 'CREDIT', '2025-10-02'),
 (4, 'FC-0004', '2025-10-02', 28.50, 'METALIC', '2025-10-03'),
 (5, 'FC-0005', '2025-10-03', 41.00, 'METALIC', '2025-10-03'),
-(6, 'FC-0006', '2025-10-13', 18.80, 'CREDIT', NULL),          -- PENDENT de pago
-(7, 'FC-0007', '2025-10-13', 35.50, 'CREDIT', NULL),           -- PENDENT de pago
-(8, 'FC-0008', '2025-10-13', 22.00, 'METALIC', NULL);     -- PENDENT de pago
+(6, 'FC-0006', '2025-10-13', 18.80, 'CREDIT', NULL),
+(7, 'FC-0007', '2025-10-13', 35.50, 'CREDIT', NULL),
+(8, 'FC-0008', '2025-10-13', 22.00, 'METALIC', NULL);
 
 -- =====================================================================
--- 10. PEDIDOS A PROVEEDORES (7 registros)
+-- 9. PEDIDOS A PROVEEDORES (7 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO orders_providers (id_provider, id_employee, order_date, total, observations) VALUES
@@ -216,55 +147,20 @@ INSERT IGNORE INTO orders_providers (id_provider, id_employee, order_date, total
 (2, 3, '2025-10-12', 480.00, 'Reposición semanal postres');
 
 -- =====================================================================
--- 11. DETALLES DE PEDIDOS A PROVEEDORES (30 registros)
+-- 10. DETALLES DE PEDIDOS A PROVEEDORES (30 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO details_order_provider (id_order_provider, id_product, quantity, unit_price) VALUES
--- Pedido 1: TéDelMundo (15-Sep)
-(1, 1, 100, 2.00),   -- 100 Té Verde @ 2.00
-(1, 2, 80, 1.80),    -- 80 Té Negro @ 1.80
-(1, 3, 50, 3.00),    -- 50 Té Oolong @ 3.00
-(1, 4, 30, 3.50),    -- 30 Té Blanco @ 3.50
-
--- Pedido 2: Dulces Artesanales (18-Sep)
-(2, 11, 15, 7.00),   -- 15 Pastel Chocolate @ 7.00
-(2, 12, 12, 9.00),   -- 12 Cheesecake @ 9.00
-(2, 13, 10, 7.50),   -- 10 Tarta Zanahoria @ 7.50
-(2, 18, 8, 8.50),    -- 8 Tarta Limón @ 8.50
-
--- Pedido 3: Distribuciones TeaTime (22-Sep - URGENTE)
-(3, 6, 60, 2.50),    -- 60 Chai Masala @ 2.50
-(3, 7, 40, 3.20),    -- 40 Matcha Latte @ 3.20
-(3, 8, 50, 2.00),    -- 50 Té Helado @ 2.00
-(3, 15, 100, 0.80),  -- 100 Galletas @ 0.80
-
--- Pedido 4: Infusiones Naturales Del Sur (28-Sep)
-(4, 5, 80, 1.90),    -- 80 Rooibos @ 1.90
-(4, 9, 70, 1.50),    -- 70 Menta @ 1.50
-(4, 10, 60, 1.30),   -- 60 Manzanilla @ 1.30
-
--- Pedido 5: TéDelMundo (05-Oct - PREMIUM)
-(5, 3, 60, 3.00),    -- 60 Té Oolong @ 3.00
-(5, 4, 50, 3.50),    -- 50 Té Blanco @ 3.50
-(5, 1, 120, 2.00),   -- 120 Té Verde @ 2.00
-(5, 7, 50, 3.20),    -- 50 Matcha Latte @ 3.20
-
--- Pedido 6: Pastelería Premium Imports (08-Oct)
-(6, 17, 60, 2.00),   -- 60 Macarons @ 2.00
-(6, 20, 20, 6.50),   -- 20 Tiramisú @ 6.50
-(6, 19, 40, 2.80),   -- 40 Croissant @ 2.80
-(6, 16, 35, 4.00),   -- 35 Scones @ 4.00
-
--- Pedido 7: Dulces Artesanales (12-Oct - SEMANAL)
-(7, 11, 18, 7.00),   -- 18 Pastel Chocolate @ 7.00
-(7, 14, 30, 5.00),   -- 30 Brownie @ 5.00
-(7, 12, 15, 9.00),   -- 15 Cheesecake @ 9.00
-(7, 15, 80, 0.80);   -- 80 Galletas @ 0.80
-
-SET FOREIGN_KEY_CHECKS = 1;
+(1, 1, 100, 2.00), (1, 2, 80, 1.80), (1, 3, 50, 3.00), (1, 4, 30, 3.50),
+(2, 11, 15, 7.00), (2, 12, 12, 9.00), (2, 13, 10, 7.50), (2, 18, 8, 8.50),
+(3, 6, 60, 2.50), (3, 7, 40, 3.20), (3, 8, 50, 2.00), (3, 15, 100, 0.80),
+(4, 5, 80, 1.90), (4, 9, 70, 1.50), (4, 10, 60, 1.30),
+(5, 3, 60, 3.00), (5, 4, 50, 3.50), (5, 1, 120, 2.00), (5, 7, 50, 3.20),
+(6, 17, 60, 2.00), (6, 20, 20, 6.50), (6, 19, 40, 2.80), (6, 16, 35, 4.00),
+(7, 11, 18, 7.00), (7, 14, 30, 5.00), (7, 12, 15, 9.00), (7, 15, 80, 0.80);
 
 -- =====================================================================
--- 12. FACTURAS DE PROVEEDORES (7 registros)
+-- 11. FACTURAS DE PROVEEDORES (7 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO invoices_providers (id_order_provider, invoice_number, invoice_date, total, payment_state, payment_date) VALUES
@@ -276,23 +172,4 @@ INSERT IGNORE INTO invoices_providers (id_order_provider, invoice_number, invoic
 (6, 'FP-PPI-023', '2025-10-08', 550.00, 'PENDENT', NULL),
 (7, 'FP-DA-156', '2025-10-12', 480.00, 'PENDENT', NULL);
 
--- =====================================================================
--- RESUMEN DE DATOS INSERTADOS
--- =====================================================================
-
-SELECT '✓ Datos de prueba insertados correctamente' AS Resultado;
-SELECT CONCAT('  • Empleados: ', COUNT(*)) AS Estadísticas FROM employees;
-SELECT CONCAT('  • Clientes: ', COUNT(*)) AS Estadísticas FROM clients;
-SELECT CONCAT('  • Proveedores: ', COUNT(*)) AS Estadísticas FROM providers;
-SELECT CONCAT('  • Productos: ', COUNT(*)) AS Estadísticas FROM products;
-SELECT CONCAT('  • Inventario: ', COUNT(*)) AS Estadísticas FROM inventory;
-SELECT CONCAT('  • Pedidos Clientes: ', COUNT(*)) AS Estadísticas FROM orders_clients;
-SELECT CONCAT('  • Detalles Ped. Clientes: ', COUNT(*)) AS Estadísticas FROM details_order_client;
-SELECT CONCAT('  • Facturas Clientes: ', COUNT(*)) AS Estadísticas FROM invoices_clients;
-SELECT CONCAT('  • Pedidos Proveedores: ', COUNT(*)) AS Estadísticas FROM orders_providers;
-SELECT CONCAT('  • Detalles Ped. Proveedores: ', COUNT(*)) AS Estadísticas FROM details_order_provider;
-SELECT CONCAT('  • Facturas Proveedores: ', COUNT(*)) AS Estadísticas FROM invoices_providers;
-
--- =====================================================================
--- FIN - Casa de Té E-Commerce Datos de Prueba
--- =====================================================================
+SET FOREIGN_KEY_CHECKS = 1;

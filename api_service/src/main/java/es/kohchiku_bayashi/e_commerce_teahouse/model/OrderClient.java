@@ -22,9 +22,15 @@ public class OrderClient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    // ✅ Mostramos el empleado pero ignoramos sus colecciones
+    // ✅ Cliente que realiza el pedido (vinculado a OAuth2)
     @ManyToOne
-    @JoinColumn(name = "id_employee", nullable = false)
+    @JoinColumn(name = "id_client", nullable = false)
+    @JsonIgnoreProperties({"orderClients"})
+    private Client client;
+    
+    // ✅ Empleado que gestiona el pedido (puede ser nulo si está pendiente)
+    @ManyToOne
+    @JoinColumn(name = "id_employee")
     @JsonIgnoreProperties({"orderClients", "orderProviders"})
     private Employee employee;
     

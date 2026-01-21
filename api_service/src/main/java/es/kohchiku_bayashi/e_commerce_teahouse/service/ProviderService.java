@@ -29,6 +29,12 @@ public class ProviderService {
                 .orElseThrow(() -> new RuntimeException("Proveedor no encontrado con email: " + email));
     }
     
+    // ✅ Nuevo: Buscar por oauth2Id
+    public Provider findByOauth2Id(String oauth2Id) {
+        return providerRepository.findByOauth2Id(oauth2Id)
+                .orElseThrow(() -> new RuntimeException("Proveedor no encontrado con oauth2Id: " + oauth2Id));
+    }
+    
     public Provider save(Provider provider) {
         if (providerRepository.existsByEmail(provider.getEmail())) {
             throw new RuntimeException("Ya existe un proveedor con el email: " + provider.getEmail());
@@ -62,5 +68,20 @@ public class ProviderService {
     
     public List<Provider> findByName(String name) {
         return providerRepository.findByNameContainingIgnoreCase(name);
+    }
+    
+    // ✅ Auto-crear proveedor desde OAuth2
+    public Provider getOrCreateProviderFromOAuth2(String oauth2Id, String email, String name, String contact, String provider) {
+        return providerRepository.findByOauth2Id(oauth2Id)
+                .orElseGet(() -> {
+                    Provider newProvider = Provider.builder()
+                            .oauth2Id(oauth2Id)
+                            .email(email)
+                            .name(name)
+                            .contact(contact)
+                            .oauth2Provider(provider)
+                            .build();
+                    return providerRepository.save(newProvider);
+                });
     }
 }

@@ -99,28 +99,124 @@ public class SecurityConfig {
 
 	@Bean
 	public UserDetailsService userDetailsService() {
-		// Usuario normal
-		UserDetails user = User.builder()
-				.username("user")
-				.password("{noop}1234")
-				.roles("USER")
-				.build();
-		
-		// Administrador
+		// ============================================
+		// ADMINISTRADOR
+		// ============================================
 		UserDetails admin = User.builder()
 				.username("admin")
 				.password("{noop}1234")
 				.roles("ADMIN")
 				.build();
-		
-		// Usuario con ambos roles
-		UserDetails tanaka = User.builder()
-				.username("tanaka")
+
+		// ============================================
+		// CLIENTES (Customers)
+		// ============================================
+		UserDetails client1 = User.builder()
+				.username("client1")
 				.password("{noop}1234")
-				.roles("USER", "ADMIN")
+				.roles("CLIENT")
+				.build();
+		
+		UserDetails client2 = User.builder()
+				.username("client2")
+				.password("{noop}1234")
+				.roles("CLIENT")
+				.build();
+		
+		UserDetails client3 = User.builder()
+				.username("client3")
+				.password("{noop}1234")
+				.roles("CLIENT")
+				.build();
+		
+		UserDetails client4 = User.builder()
+				.username("client4")
+				.password("{noop}1234")
+				.roles("CLIENT")
+				.build();
+		
+		UserDetails client5 = User.builder()
+				.username("client5")
+				.password("{noop}1234")
+				.roles("CLIENT")
 				.build();
 
-		return new InMemoryUserDetailsManager(user, admin, tanaka);
+		// ============================================
+		// EMPLEADOS (Employees)
+		// ============================================
+		UserDetails empUser = User.builder()
+				.username("user")
+				.password("{noop}1234")
+				.roles("EMPLOYEE")
+				.build();
+		
+		UserDetails empTanaka = User.builder()
+				.username("tanaka")
+				.password("{noop}1234")
+				.roles("EMPLOYEE")
+				.build();
+		
+		UserDetails emp4 = User.builder()
+				.username("employee4")
+				.password("{noop}1234")
+				.roles("EMPLOYEE")
+				.build();
+		
+		UserDetails emp5 = User.builder()
+				.username("employee5")
+				.password("{noop}1234")
+				.roles("EMPLOYEE")
+				.build();
+		
+		UserDetails emp6 = User.builder()
+				.username("employee6")
+				.password("{noop}1234")
+				.roles("EMPLOYEE")
+				.build();
+
+		// ============================================
+		// PROVEEDORES (Providers)
+		// ============================================
+		UserDetails prov1 = User.builder()
+				.username("provider1")
+				.password("{noop}1234")
+				.roles("PROVIDER")
+				.build();
+		
+		UserDetails prov2 = User.builder()
+				.username("provider2")
+				.password("{noop}1234")
+				.roles("PROVIDER")
+				.build();
+		
+		UserDetails prov3 = User.builder()
+				.username("provider3")
+				.password("{noop}1234")
+				.roles("PROVIDER")
+				.build();
+		
+		UserDetails prov4 = User.builder()
+				.username("provider4")
+				.password("{noop}1234")
+				.roles("PROVIDER")
+				.build();
+		
+		UserDetails prov5 = User.builder()
+				.username("provider5")
+				.password("{noop}1234")
+				.roles("PROVIDER")
+				.build();
+
+		return new InMemoryUserDetailsManager(
+			// Admin
+			admin,
+			// Clients
+			client1, client2, client3, client4, client5,
+			// Employees
+			empUser, empTanaka, emp4, emp5, emp6,
+			// Providers
+			prov1, prov2, prov3, prov4, prov5
+		);
 	}
 
 	@Bean
@@ -138,7 +234,9 @@ public class SecurityConfig {
 				.scope(OidcScopes.PROFILE)
                 .scope("read")
                 .scope("write")
-				.scope("user")
+				.scope("user:client")
+				.scope("user:employee")
+				.scope("user:provider")
 				.scope("admin")
 				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
 				.build();

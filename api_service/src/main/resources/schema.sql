@@ -1,16 +1,10 @@
-/*
-	GENEREACIÓN DE BASES DE DATOS - CASA DE TÉ
+-- ============================================================
+-- Schema SQL - Casa de Té E-Commerce
+-- Se ejecuta automáticamente al iniciar la aplicación
+-- ============================================================
 
-    /puente/mis_cosas/programacion/casa_te.sql
-*/
-
-drop database if exists casa_te;
-
-create database if not exists casa_te;
-
-use casa_te;
-
-create table employees(
+-- 1. Tabla de empleados con OAuth2
+create table if not exists employees(
     id bigint not null auto_increment,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
@@ -23,7 +17,8 @@ create table employees(
     index idx_oauth2_id (oauth2_id)
 );
 
-create table products(
+-- 2. Tabla de productos
+create table if not exists products(
     id bigint not null auto_increment,
     name varchar(50) not null,
     description text not null,
@@ -34,7 +29,8 @@ create table products(
 	primary key(id)
 );
 
-create table providers(
+-- 3. Tabla de proveedores con OAuth2
+create table if not exists providers(
 	id bigint not null auto_increment,
 	name varchar(50) not null,
 	contact varchar(50) not null,
@@ -47,7 +43,8 @@ create table providers(
 	index idx_oauth2_id (oauth2_id)
 );
 
-create table inventory(
+-- 4. Tabla de inventario
+create table if not exists inventory(
     id bigint not null auto_increment,
     id_product bigint not null,
     current_quantity int not null,
@@ -57,8 +54,8 @@ create table inventory(
     unique key unique_product (id_product)
 );
 
--- ✅ Tabla de clientes vinculada con OAuth2
-create table clients(
+-- 5. Tabla de clientes con OAuth2
+create table if not exists clients(
     id bigint not null auto_increment,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
@@ -74,7 +71,8 @@ create table clients(
     index idx_email (email)
 );
 
-create table orders_providers(
+-- 6. Tabla de órdenes de proveedores
+create table if not exists orders_providers(
     id bigint not null auto_increment,
     id_provider bigint not null,
     id_employee bigint not null,
@@ -83,10 +81,13 @@ create table orders_providers(
     observations TEXT,
     primary key(id),
     foreign key(id_provider) references providers(id),
-    foreign key(id_employee) references employees(id)
+    foreign key(id_employee) references employees(id),
+    index idx_provider (id_provider),
+    index idx_employee (id_employee)
 );
 
-create table invoices_providers(
+-- 7. Tabla de facturas de proveedores
+create table if not exists invoices_providers(
     id bigint not null auto_increment,
     id_order_provider bigint not null,
     invoice_number varchar(20) unique,
@@ -95,10 +96,12 @@ create table invoices_providers(
     payment_state enum("PAID","PENDENT"),
     payment_date date,
     primary key(id),
-    foreign key(id_order_provider) references orders_providers(id)
+    foreign key(id_order_provider) references orders_providers(id),
+    index idx_order (id_order_provider)
 );
 
-create table orders_clients(
+-- 8. Tabla de órdenes de clientes (modificada)
+create table if not exists orders_clients(
     id bigint not null auto_increment,
     id_client bigint not null,
     id_employee bigint,
@@ -112,19 +115,22 @@ create table orders_clients(
     index idx_employee (id_employee)
 );
 
-create table invoices_clients(
+-- 9. Tabla de facturas de clientes
+create table if not exists invoices_clients(
     id bigint not null auto_increment,
     id_order_client bigint not null,
-    invoice_number varchar(20)unique,
+    invoice_number varchar(20) unique,
     invoice_date date,
     total float(6,2),
     payment_method enum("METALIC","CREDIT") default "METALIC",
     payment_date date,
     primary key(id),
-    foreign key(id_order_client) references orders_clients(id)
+    foreign key(id_order_client) references orders_clients(id),
+    index idx_order (id_order_client)
 );
 
-create table details_order_provider(
+-- 10. Tabla de detalles de órdenes de proveedores
+create table if not exists detail_order_providers(
     id bigint not null auto_increment,
     id_order_provider bigint not null,
     id_product bigint not null,
@@ -132,10 +138,12 @@ create table details_order_provider(
 	unit_price float(5,2),
     primary key(id),
     foreign key(id_order_provider) references orders_providers(id),
-    foreign key(id_product) references products(id)
+    foreign key(id_product) references products(id),
+    index idx_order (id_order_provider)
 );
 
-create table details_order_client(
+-- 11. Tabla de detalles de órdenes de clientes
+create table if not exists detail_order_clients(
 	id bigint not null auto_increment,
 	id_order_client bigint not null,
 	id_product bigint not null,
@@ -143,31 +151,6 @@ create table details_order_client(
 	unit_price float(5,2),
 	primary key(id),
 	foreign key(id_order_client) references orders_clients(id),
-    foreign key(id_product) references products(id)
+    foreign key(id_product) references products(id),
+    index idx_order (id_order_client)
 );
-
-describe employees;
-
-describe products;
-
-describe providers;
-
-describe inventory;
-
-describe orders_clients;
-
-describe invoices_providers;
-
-describe invoices_clients;
-
-describe details_order_provider;
-
-describe details_order_client;
-
-source casa_te_datos.sql;
-
--- source casa_te_consultas.sql;
-
--- source casa_te_vistas.sql;
-
--- source casa_te_disparadores.sql;

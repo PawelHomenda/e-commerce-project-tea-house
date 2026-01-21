@@ -30,4 +30,8 @@ public interface OrderClientRepository extends JpaRepository<OrderClient, Long> 
     
     @Query("SELECT oc FROM OrderClient oc WHERE oc.orderState IN ('PENDIENTE', 'EN_PREPARACION')")
     List<OrderClient> findActiveOrders();
+    
+    // ✅ Nuevo: Buscar pedidos por oauth2Id del cliente
+    @Query("SELECT oc FROM OrderClient oc WHERE oc.client.oauth2Id = :oauth2Id")
+    List<OrderClient> findByClientOauth2Id(@Param("oauth2Id") String oauth2Id);
 }
