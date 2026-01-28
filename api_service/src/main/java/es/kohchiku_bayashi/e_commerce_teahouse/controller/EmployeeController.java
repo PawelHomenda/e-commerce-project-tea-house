@@ -40,22 +40,31 @@ public class EmployeeController {
         }
         
         // Si no es admin, devuelve solo su perfil
-        return ResponseEntity.ok(employeeService.findByOauth2Id(oauth2Id));
+        try {
+            return ResponseEntity.ok(employeeService.findByOauth2Id(oauth2Id));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Empleado no encontrado \n error: " + e.getMessage());
+        }
     }
     
-    // ✅ SEGURO: Empleado solo ve sus datos o ADMIN ve cualquiera
+    // El Empleado solo ve sus datos o ADMIN ve cualquiera
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(
             @PathVariable Long id,
             @AuthenticationPrincipal Jwt jwt) {
-        Employee employee = employeeService.findById(id);
-        String oauth2Id = jwt.getClaimAsString("sub");
-        
-        if (!employee.getOauth2Id().equals(oauth2Id) && 
-            !jwt.getClaimAsStringList("scope").contains("admin")) {
-            throw new AccessDeniedException("No tienes acceso a este empleado");
+        try {
+            Employee employee = employeeService.findById(id);
+            String oauth2Id = jwt.getClaimAsString("sub");
+            
+            if (!employee.getOauth2Id().equals(oauth2Id) && 
+                !jwt.getClaimAsStringList("scope").contains("admin")) {
+                throw new AccessDeniedException("No tienes acceso a este empleado");
+            }
+            return ResponseEntity.ok(employee);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(employee);
     }
     
     @GetMapping("/email/{email}")

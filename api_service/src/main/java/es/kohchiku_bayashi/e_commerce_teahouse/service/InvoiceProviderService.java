@@ -59,5 +59,15 @@ public class InvoiceProviderService {
         invoice.setPaymentDate(paymentDate);
         return invoiceProviderRepository.save(invoice);
     }
+
+    public List<InvoiceProvider> findByProviderOAuth2Id(String oAuth2Id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByProviderOAuth2Id'");
+    }
+
+    public List<InvoiceProvider> findByEmployeeOAuth2Id(String oAuth2Id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByEmployeeOAuth2Id'");
+    }
 }
 

@@ -29,4 +29,13 @@ public interface InvoiceClientRepository extends JpaRepository<InvoiceClient, Lo
     
     @Query("SELECT SUM(ic.total) FROM InvoiceClient ic WHERE MONTH(ic.invoiceDate) = :month")
     Double getTotalIncomeByMonth(@Param("month") int month);
+
+    @Query("SELECT ic FROM InvoiceClient ic WHERE ic.orderClient.client.oauth2Id = :oAuth2Id")
+    List<InvoiceClient> findByClientOAuth2Id(@Param("oAuth2Id") String oAuth2Id);
+
+    @Query("SELECT ic FROM InvoiceClient ic WHERE ic.orderClient.employee.oauth2Id = :oAuth2Id")
+    List<InvoiceClient> findByEmployeeOAuth2Id(@Param("oAuth2Id") String oAuth2Id);
+
+    @Query("SELECT ic FROM InvoiceClient ic WHERE ic.paymentDate IS NULL")
+    List<InvoiceClient> findPendingPayments();
 }

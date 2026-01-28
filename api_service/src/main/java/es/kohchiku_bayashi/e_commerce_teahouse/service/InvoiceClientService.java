@@ -66,4 +66,12 @@ public class InvoiceClientService {
         invoice.setPaymentDate(paymentDate);
         return invoiceClientRepository.save(invoice);
     }
+
+    public  List<InvoiceClient> findByClientOAuth2Id(String oAuth2Id) {
+        return invoiceClientRepository.findByClientOAuth2Id(oAuth2Id);
+    }
+
+    public  List<InvoiceClient> findByEmployeeOAuth2Id(String oAuth2Id) {
+        return invoiceClientRepository.findByEmployeeOAuth2Id(oAuth2Id);
+    }
 }

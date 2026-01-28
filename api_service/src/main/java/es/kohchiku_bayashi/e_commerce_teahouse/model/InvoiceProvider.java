@@ -46,4 +46,8 @@ public class InvoiceProvider {
     public boolean isPaid() {
         return paymentState == PaymentState.PAID;
     }
+
+    public OrderProvider getOrderProvider() {
+        return orderProvider;
+    }
 }

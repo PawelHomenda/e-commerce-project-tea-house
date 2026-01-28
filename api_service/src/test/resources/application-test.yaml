@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none  # IMPORTANTE: dejar que schema.sql maneje la creación
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql  # Usa el schema.sql de test/resources
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration
+      - org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration

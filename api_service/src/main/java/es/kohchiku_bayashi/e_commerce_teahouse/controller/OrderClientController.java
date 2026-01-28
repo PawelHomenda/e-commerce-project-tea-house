@@ -31,33 +31,38 @@ public class OrderClientController {
         return ResponseEntity.ok(orderClientService.findAll());
     }
     
-    // ✅ SEGURO: Cliente ve solo sus pedidos, ADMIN ve todos
+    // ✅ SEGURO: Cliente ve solo sus pedidos, ADMIN/EMPLOYEE ve todos
     @GetMapping
     public ResponseEntity<List<OrderClient>> getMyOrders(
             @AuthenticationPrincipal Jwt jwt) {
         String oauth2Id = jwt.getClaimAsString("sub");
         List<String> scopes = jwt.getClaimAsStringList("scope");
         
-        // Si es admin, devuelve todos los pedidos
-        if (scopes.contains("admin")) {
+        // Si es admin o employee, devuelve todos los pedidos
+        if (scopes.contains("admin") || scopes.contains("user:employee")) {
             return ResponseEntity.ok(orderClientService.findAll());
         }
         
-        // Si no es admin, devuelve solo sus pedidos
+        // Si no es admin/employee, devuelve solo sus pedidos
         return ResponseEntity.ok(orderClientService.findByClientOauth2Id(oauth2Id));
     }
     
-    // ✅ SEGURO: Cliente solo puede ver su propio pedido
+    // ✅ SEGURO: Cliente solo puede ver su propio pedido, ADMIN/EMPLOYEE ve todo
     @GetMapping("/{id}")
     public ResponseEntity<OrderClient> getOrderById(
             @PathVariable Long id,
             @AuthenticationPrincipal Jwt jwt) {
         String oauth2Id = jwt.getClaimAsString("sub");
+        List<String> scopes = jwt.getClaimAsStringList("scope");
         OrderClient order = orderClientService.findById(id);
         
-        // Validar que el usuario sea dueño del pedido o sea ADMIN
-        if (!order.getClient().getOauth2Id().equals(oauth2Id) && 
-            !jwt.getClaimAsStringList("scope").contains("admin")) {
+        // ADMIN/EMPLOYEE ven todo
+        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+            return ResponseEntity.ok(order);
+        }
+        
+        // Cliente solo ve su propio pedido
+        if (!order.getClient().getOauth2Id().equals(oauth2Id)) {
             throw new AccessDeniedException("No tienes acceso a este pedido");
         }
         return ResponseEntity.ok(order);

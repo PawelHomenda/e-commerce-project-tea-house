@@ -145,6 +145,22 @@
             margin-bottom: 5px;
             font-weight: 600;
         }
+        
+        .scope-info {
+            background-color: #e8f0fe;
+            border-left: 4px solid #667eea;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 3px;
+            font-size: 11px;
+            color: #333;
+        }
+        
+        .scope-info strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #667eea;
+        }
     </style>
 </head>
 <body>
@@ -183,11 +199,11 @@
             
             <div class="credentials-section">
                 <h4>👔 Empleados (Ver sus datos)</h4>
-                <p><strong>user</strong> - Juan Pérez (Empleado)</p>
-                <p><strong>tanaka</strong> - María López (Empleado)</p>
-                <p><strong>employee4</strong> - Carlos García (Empleado)</p>
-                <p><strong>employee5</strong> - Ana Martínez (Empleado)</p>
-                <p><strong>employee6</strong> - Luis Fernández (Empleado)</p>
+                <p><strong>employee1</strong> - Juan García Martínez</p>
+                <p><strong>employee2</strong> - María López Sánchez</p>
+                <p><strong>employee3</strong> - Carlos Rodríguez González</p>
+                <p><strong>employee4</strong> - Ana Martínez Jiménez</p>
+                <p><strong>employee5</strong> - David Fernández Díaz</p>
             </div>
             
             <div class="credentials-section">
@@ -201,11 +217,18 @@
             
             <div class="credentials-section">
                 <h4>👥 Clientes (Ver sus órdenes)</h4>
-                <p><strong>client1</strong> - Roberto Sánchez</p>
-                <p><strong>client2</strong> - Elena García</p>
-                <p><strong>client3</strong> - Miguel Rodríguez</p>
-                <p><strong>client4</strong> - Sofía Martínez</p>
-                <p><strong>client5</strong> - David López</p>
+                <p><strong>client1</strong> - Roberto Sánchez López</p>
+                <p><strong>client2</strong> - Elena García Fernández</p>
+                <p><strong>client3</strong> - Miguel Rodríguez Martín</p>
+                <p><strong>client4</strong> - Sofía Martínez Ruiz</p>
+                <p><strong>client5</strong> - David López Jiménez</p>
+            </div>
+            
+            <div class="scope-info">
+                <strong>🔑 Scopes OAuth2:</strong>
+                <p>openid, profile, email - Acceso a datos de perfil</p>
+                <p>read, write - Lectura y escritura de datos</p>
+                <p>user:client, user:employee, user:provider, admin - Roles específicos</p>
             </div>
         </div>
     </div>

@@ -27,4 +27,7 @@ public interface DetailOrderClientRepository extends JpaRepository<DetailOrderCl
     
     @Query("SELECT p FROM Product p WHERE p.id NOT IN (SELECT DISTINCT doc.product.id FROM DetailOrderClient doc)")
     List<Product> findProductsWithoutSales();
+
+    @Query("SELECT doc FROM DetailOrderClient doc JOIN doc.orderClient oc JOIN oc.client c WHERE c.oauth2Id = :oAuth2Id")
+    List<DetailOrderClient> findByClientOAuth2Id(String oAuth2Id);
 }

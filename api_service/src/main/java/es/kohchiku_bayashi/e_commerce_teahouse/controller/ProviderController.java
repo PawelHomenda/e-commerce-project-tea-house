@@ -34,12 +34,12 @@ public class ProviderController {
         String oauth2Id = jwt.getClaimAsString("sub");
         List<String> scopes = jwt.getClaimAsStringList("scope");
         
-        // Si es admin, devuelve todos los proveedores
-        if (scopes.contains("admin")) {
+        // Si es admin o employee, devuelve todos los proveedores
+        if (scopes.contains("admin") || scopes.contains("user:employee")) {
             return ResponseEntity.ok(providerService.findAll());
         }
         
-        // Si no es admin, devuelve solo su perfil
+        // Si no es admin/employee, devuelve solo su perfil
         return ResponseEntity.ok(providerService.findByOauth2Id(oauth2Id));
     }
     
@@ -50,9 +50,15 @@ public class ProviderController {
             @AuthenticationPrincipal Jwt jwt) {
         Provider provider = providerService.findById(id);
         String oauth2Id = jwt.getClaimAsString("sub");
+        List<String> scopes = jwt.getClaimAsStringList("scope");
         
-        if (!provider.getOauth2Id().equals(oauth2Id) && 
-            !jwt.getClaimAsStringList("scope").contains("admin")) {
+        // Admin y employees ven todo
+        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+            return ResponseEntity.ok(provider);
+        }
+        
+        // Proveedor solo ve sus datos
+        if (!provider.getOauth2Id().equals(oauth2Id)) {
             throw new AccessDeniedException("No tienes acceso a este proveedor");
         }
         return ResponseEntity.ok(provider);

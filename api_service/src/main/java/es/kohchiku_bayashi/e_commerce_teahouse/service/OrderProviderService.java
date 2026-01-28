@@ -69,4 +69,8 @@ public class OrderProviderService {
     public BigDecimal getTotalCostByMonth(int month) {
         return orderProviderRepository.getTotalCostByMonth(month);
     }
+
+    public List<OrderProvider>  findByProviderOAuth2Id(String oauth2Id) {
+        return orderProviderRepository.findByProviderOauth2Id(oauth2Id);
+    }
 }

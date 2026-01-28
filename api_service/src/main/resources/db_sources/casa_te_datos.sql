@@ -12,7 +12,7 @@ USE casa_te;
 -- =====================================================================
 SET FOREIGN_KEY_CHECKS = 0;
 
-INSERT IGNORE INTO employees (first_name, last_name, salary, phone_number, email, oauth2_id, oauth2_provider) VALUES
+INSERT INTO employees (first_name, last_name, salary, phone_number, email, oauth2_id, oauth2_provider) VALUES
 ('Juan', 'Pérez García', 2500.00, '612345678', 'juan.perez@casate.com', 'user', 'keycloak'),
 ('María', 'López Martínez', 2800.00, '623456789', 'maria.lopez@casate.com', 'tanaka', 'keycloak'),
 ('Carlos', 'García Rodríguez', 2600.00, '634567890', 'carlos.garcia@casate.com', 'employee4', 'keycloak'),
@@ -23,7 +23,7 @@ INSERT IGNORE INTO employees (first_name, last_name, salary, phone_number, email
 -- 2. PROVEEDORES (5 registros) - con credenciales OAuth2
 -- =====================================================================
 
-INSERT IGNORE INTO providers (name, contact, phone_number, email, address, oauth2_id, oauth2_provider) VALUES
+INSERT INTO providers (name, contact, phone_number, email, address, oauth2_id, oauth2_provider) VALUES
 ('TéDelMundo S.L.', 'Carlos Ruiz Hernández', '915551001', 'ventas@tedelmundo.com', 'Calle del Té 123, 28001 Madrid', 'provider1', 'keycloak'),
 ('Dulces Artesanales García', 'Ana María García López', '933334002', 'pedidos@dulcesartesanales.com', 'Avenida Gourmet 45, 08015 Barcelona', 'provider2', 'keycloak'),
 ('Distribuciones TeaTime', 'Pedro Sánchez Martín', '963337003', 'contacto@teatime.es', 'Polígono Industrial Las Flores 7, 46980 Valencia', 'provider3', 'keycloak'),
@@ -34,7 +34,7 @@ INSERT IGNORE INTO providers (name, contact, phone_number, email, address, oauth
 -- 3. CLIENTES (10 registros) - con credenciales OAuth2
 -- =====================================================================
 
-INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address, oauth2_id, oauth2_provider) VALUES
+INSERT INTO clients (first_name, last_name, email, phone_number, address, oauth2_id, oauth2_provider) VALUES
 ('Roberto', 'Sánchez López', 'roberto.sanchez@email.com', '670111222', 'Calle Principal 123, Madrid', 'client1', 'keycloak'),
 ('Elena', 'García Fernández', 'elena.garcia@email.com', '671222333', 'Avenida Central 456, Barcelona', 'client2', 'keycloak'),
 ('Miguel', 'Rodríguez Martín', 'miguel.rodriguez@email.com', '672333444', 'Plaza Mayor 789, Valencia', 'client3', 'keycloak'),
@@ -50,7 +50,7 @@ INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address,
 -- 4. PRODUCTOS (23 registros) - 10 bebidas, 13 postres
 -- =====================================================================
 
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES
+INSERT INTO products (name, description, category, price, measure_unit, active) VALUES
 -- BEBIDAS (Tés)
 ('Té Verde Sencha', 'Té verde japonés de alta calidad, suave y refrescante', 'DRINK', 3.50, 'taza', 1),
 ('Té Negro Earl Grey', 'Té negro aromático con bergamota', 'DRINK', 3.00, 'taza', 1),
@@ -87,7 +87,7 @@ INSERT IGNORE INTO products (name, description, category, price, measure_unit, a
 -- 6. INVENTARIO (23 registros) - 1 por cada producto
 -- =====================================================================
 
-INSERT IGNORE INTO inventory (id_product, current_quantity, minimum_quantity) VALUES
+INSERT INTO inventory (id_product, current_quantity, minimum_quantity) VALUES
 -- Bebidas
 (1, 150, 30),   -- Té Verde Sencha
 (2, 120, 25),   -- Té Negro Earl Grey
@@ -119,7 +119,7 @@ INSERT IGNORE INTO inventory (id_product, current_quantity, minimum_quantity) VA
 -- 7. PEDIDOS DE CLIENTES (10 registros)
 -- =====================================================================
 
-INSERT IGNORE INTO orders_clients (id_client, id_employee, order_date, order_state, service_type) VALUES
+INSERT INTO orders_clients (id_client, id_employee, order_date, order_state, service_type) VALUES
 -- Pedidos completados
 (1, 1, '2025-10-01', 'DELIVERED', 'TABLE'),
 (2, 2, '2025-10-01', 'DELIVERED', 'TAKEAWAY'),
@@ -140,7 +140,7 @@ INSERT IGNORE INTO orders_clients (id_client, id_employee, order_date, order_sta
 -- 8. DETALLES DE PEDIDOS DE CLIENTES (29 registros)
 -- =====================================================================
 
-INSERT IGNORE INTO details_order_client (id_order_client, id_product, quantity, unit_price) VALUES
+INSERT INTO details_order_client (id_order_client, id_product, quantity, unit_price) VALUES
 -- Pedido 1: María González (TABLE)
 (1, 1, 2, 3.50),    -- 2 Té Verde
 (1, 11, 1, 12.00),  -- 1 Pastel Chocolate
@@ -192,7 +192,7 @@ INSERT IGNORE INTO details_order_client (id_order_client, id_product, quantity, 
 -- 9. FACTURAS DE CLIENTES (8 registros)
 -- =====================================================================
 
-INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES
+INSERT INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES
 (1, 'FC-0001', '2025-10-01', 25.50, 'CREDIT', '2025-10-01'),
 (2, 'FC-0002', '2025-10-01', 15.50, 'METALIC', '2025-10-01'),
 (3, 'FC-0003', '2025-10-02', 32.00, 'CREDIT', '2025-10-02'),
@@ -206,7 +206,7 @@ INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_da
 -- 10. PEDIDOS A PROVEEDORES (7 registros)
 -- =====================================================================
 
-INSERT IGNORE INTO orders_providers (id_provider, id_employee, order_date, total, observations) VALUES
+INSERT INTO orders_providers (id_provider, id_employee, order_date, total, observations) VALUES
 (1, 3, '2025-09-15', 850.00, 'Pedido mensual de tés variados'),
 (2, 3, '2025-09-18', 420.00, 'Reposición de postres frescos'),
 (3, 3, '2025-09-22', 650.00, 'Pedido urgente - stock bajo'),
@@ -219,7 +219,7 @@ INSERT IGNORE INTO orders_providers (id_provider, id_employee, order_date, total
 -- 11. DETALLES DE PEDIDOS A PROVEEDORES (30 registros)
 -- =====================================================================
 
-INSERT IGNORE INTO details_order_provider (id_order_provider, id_product, quantity, unit_price) VALUES
+INSERT INTO details_order_provider (id_order_provider, id_product, quantity, unit_price) VALUES
 -- Pedido 1: TéDelMundo (15-Sep)
 (1, 1, 100, 2.00),   -- 100 Té Verde @ 2.00
 (1, 2, 80, 1.80),    -- 80 Té Negro @ 1.80
@@ -267,7 +267,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- 12. FACTURAS DE PROVEEDORES (7 registros)
 -- =====================================================================
 
-INSERT IGNORE INTO invoices_providers (id_order_provider, invoice_number, invoice_date, total, payment_state, payment_date) VALUES
+INSERT invoices_providers (id_order_provider, invoice_number, invoice_date, total, payment_state, payment_date) VALUES
 (1, 'FP-TDM-089', '2025-09-15', 850.00, 'PAID', '2025-09-30'),
 (2, 'FP-DA-145', '2025-09-18', 420.00, 'PAID', '2025-10-02'),
 (3, 'FP-DTT-234', '2025-09-22', 650.00, 'PAID', '2025-10-05'),

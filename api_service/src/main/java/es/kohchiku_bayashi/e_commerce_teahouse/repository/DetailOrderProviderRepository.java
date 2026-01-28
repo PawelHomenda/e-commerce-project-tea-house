@@ -22,4 +22,10 @@ public interface DetailOrderProviderRepository extends JpaRepository<DetailOrder
     
     @Query("SELECT p.name, SUM(dop.quantity) FROM DetailOrderProvider dop JOIN dop.product p JOIN dop.orderProvider op WHERE MONTH(op.orderDate) = :month GROUP BY p.name ORDER BY SUM(dop.quantity) DESC")
     List<Object[]> getTotalProductsPurchasedByMonth(@Param("month") int month);
+
+    @Query("SELECT dop FROM DetailOrderProvider dop JOIN dop.orderProvider op WHERE op.provider.oauth2Id = :oAuth2Id")
+    List<DetailOrderProvider> findByProviderOAuth2Id(String oAuth2Id);
+
+    @Query("SELECT dop FROM DetailOrderProvider dop JOIN dop.orderProvider op WHERE op.employee.oauth2Id = :oAuth2Id")
+    List<DetailOrderProvider> findByEmployeeOAuth2Id(String oAuth2Id);
 }

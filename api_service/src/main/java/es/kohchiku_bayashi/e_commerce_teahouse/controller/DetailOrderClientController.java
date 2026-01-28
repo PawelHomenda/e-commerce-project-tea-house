@@ -5,8 +5,12 @@ import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
 import es.kohchiku_bayashi.e_commerce_teahouse.service.DetailOrderClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,14 +23,49 @@ public class DetailOrderClientController {
     
     private final DetailOrderClientService detailOrderClientService;
     
-    @GetMapping
+
+    @GetMapping("/admin/all")
     public ResponseEntity<List<DetailOrderClient>> getAllDetails() {
-        return ResponseEntity.ok(detailOrderClientService.findAll());
+            return ResponseEntity.ok(detailOrderClientService.findAll());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<DetailOrderClient>> getMyDetails(@AuthenticationPrincipal Jwt jwt) {
+        String OAuth2Id = jwt.getClaimAsString("sub");
+        List<String> scopes = jwt.getClaimAsStringList("scope");
+
+        if (scopes.contains("admin") || scopes.contains("user:employee")){
+            return ResponseEntity.ok(detailOrderClientService.findAll());
+        }
+        else if(scopes.contains("user:client")){
+            return ResponseEntity.ok(detailOrderClientService.findByClientOAuth2Id(OAuth2Id));
+        }
+        throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");
     }
     
+    // ✅ SEGURO: Validar propiedad del detalle de orden
     @GetMapping("/{id}")
-    public ResponseEntity<DetailOrderClient> getDetailById(@PathVariable Long id) {
-        return ResponseEntity.ok(detailOrderClientService.findById(id));
+    public ResponseEntity<DetailOrderClient> getDetailById(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Jwt jwt) {
+        String oauth2Id = jwt.getClaimAsString("sub");
+        List<String> scopes = jwt.getClaimAsStringList("scope");
+        DetailOrderClient detail = detailOrderClientService.findById(id);
+        
+        // Admin/Employee ven todo
+        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+            return ResponseEntity.ok(detail);
+        }
+        
+        // Cliente solo ve detalles de sus propias órdenes
+        if (scopes.contains("user:client")) {
+            if (detail.getOrderClient().getClient().getOauth2Id().equals(oauth2Id)) {
+                return ResponseEntity.ok(detail);
+            }
+            throw new AccessDeniedException("No tienes acceso a este detalle de orden");
+        }
+        
+        throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");
     }
     
     @GetMapping("/statistics/top5-revenue")

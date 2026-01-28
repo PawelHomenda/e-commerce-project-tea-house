@@ -47,4 +47,8 @@ public class InvoiceClient {
     public boolean isPaid() {
         return paymentDate != null;
     }
+
+    public OrderClient getOrderClient() {
+        return orderClient;
+    }
 }

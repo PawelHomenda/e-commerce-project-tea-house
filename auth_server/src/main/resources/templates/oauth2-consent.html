@@ -141,13 +141,29 @@
         .btn-deny:hover {
             background-color: #efefef;
         }
+        
+        .security-info {
+            background-color: #f0f8ff;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #333;
+        }
+        
+        .security-info strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="consent-container">
         <div class="consent-header">
             <h1>🔐 Autorización requerida</h1>
-            <p>La aplicación solicita acceso a tu cuenta</p>
+            <p>La aplicación solicita acceso a tu cuenta Tea House</p>
         </div>
         
         <div class="app-info">
@@ -163,11 +179,14 @@
                     <div class="scope-description">
                         <strong th:text="${scope}">scope</strong>
                         <small th:if="${scope == 'openid'}">Identificar tu cuenta de forma segura</small>
-                        <small th:if="${scope == 'profile'}">Acceder a tu información de perfil</small>
-                        <small th:if="${scope == 'user'}">Permisos de usuario</small>
-                        <small th:if="${scope == 'admin'}">Permisos de administrador</small>
-                        <small th:if="${scope == 'read'}">Lectura de datos</small>
-                        <small th:if="${scope == 'write'}">Escritura de datos</small>
+                        <small th:if="${scope == 'profile'}">Acceder a tu información de perfil (nombre, apellido, etc.)</small>
+                        <small th:if="${scope == 'email'}">Acceder a tu dirección de correo electrónico</small>
+                        <small th:if="${scope == 'read'}">Lectura de datos (obtener información)</small>
+                        <small th:if="${scope == 'write'}">Escritura de datos (crear y modificar información)</small>
+                        <small th:if="${scope == 'user:client'}">Acceso específico para Clientes</small>
+                        <small th:if="${scope == 'user:employee'}">Acceso específico para Empleados</small>
+                        <small th:if="${scope == 'user:provider'}">Acceso específico para Proveedores</small>
+                        <small th:if="${scope == 'admin'}">Permisos de administrador (acceso total)</small>
                     </div>
                 </div>
             </div>
@@ -186,6 +205,12 @@
                 <input type="hidden" name="error" value="access_denied">
                 <button type="submit" class="btn-deny">✕ Rechazar</button>
             </form>
+        </div>
+        
+        <div class="security-info">
+            <strong>🔒 Información de seguridad:</strong>
+            <p>Tus datos están protegidos con OAuth 2.0. Esta página solo solicita acceso cuando es necesario.</p>
+            <p>Tu contraseña nunca será compartida con aplicaciones de terceros.</p>
         </div>
     </div>
 </body>

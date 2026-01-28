@@ -29,3 +29,13 @@ api_service/SECURITY_IMPLEMENTATION.md
 api_service/MIGRATION_NOTES.md
 api_service/src/main/resources/db_sources/README.md
 api_service/target/classes/db_sources/README.md
+api_service/target/surefire-reports/*
+api_service/target/maven-status/maven-compiler-plugin/*
+api_service/PRUEBAS_JUNIT.md
+api_service/README_TESTS.md
+api_service/RESUMEN_FINAL.md
+api_service/CICD_INTEGRACION.md
+api_service/EJEMPLOS_USO.md
+api_service/ESTADISTICAS_PRUEBAS.md
+api_service/GUIA_EJECUCION_PRUEBAS.md
+api_service/INDICE_COMPLETO.md

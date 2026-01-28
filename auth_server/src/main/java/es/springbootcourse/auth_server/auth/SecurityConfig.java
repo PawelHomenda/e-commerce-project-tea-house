@@ -39,6 +39,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -83,16 +84,43 @@ public class SecurityConfig {
 		
 		http
 			.authorizeHttpRequests((authorize) -> authorize
-				.requestMatchers("/login", "/logout", "/register").permitAll()
+				.requestMatchers("/login", "/logout", "/register", "/error").permitAll()
+				.requestMatchers("/actuator/health").permitAll()
 				.anyRequest().authenticated()
 			)
-			// Form login handles the redirect to the login page from the
-			// authorization server filter chain
-            .csrf(scrf -> scrf.disable())
+			// CSRF Protection
+			.csrf((csrf) -> csrf
+				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+			)
+			// Form login configuration
 			.formLogin((formLogin) -> formLogin
 				.loginPage("/login")
 				.successHandler(successHandler)
-				.permitAll());
+				.failureUrl("/login?error=true")
+				.permitAll()
+			)
+			// Logout configuration
+			.logout((logout) -> logout
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login?logout=true")
+				.invalidateHttpSession(true)
+				.clearAuthentication(true)
+				.deleteCookies("JSESSIONID")
+				.permitAll()
+			)
+			// Session management
+			.sessionManagement((session) -> session
+				.sessionConcurrency((concurrency) -> concurrency
+					.maximumSessions(1)
+					.expiredUrl("/login?session=expired")
+				)
+			)
+			// Headers security
+			.headers((headers) -> headers
+				.frameOptions((frame) -> frame.sameOrigin())
+			)
+			// CORS handling
+			.cors(Customizer.withDefaults());
 
 		return http.build();
 	}
@@ -109,7 +137,7 @@ public class SecurityConfig {
 				.build();
 
 		// ============================================
-		// CLIENTES (Customers)
+		// CLIENTES (Customers) - Sincronizados con BD
 		// ============================================
 		UserDetails client1 = User.builder()
 				.username("client1")
@@ -128,54 +156,30 @@ public class SecurityConfig {
 				.password("{noop}1234")
 				.roles("CLIENT")
 				.build();
-		
-		UserDetails client4 = User.builder()
-				.username("client4")
-				.password("{noop}1234")
-				.roles("CLIENT")
-				.build();
-		
-		UserDetails client5 = User.builder()
-				.username("client5")
-				.password("{noop}1234")
-				.roles("CLIENT")
-				.build();
 
 		// ============================================
-		// EMPLEADOS (Employees)
+		// EMPLEADOS (Employees) - Sincronizados con BD
 		// ============================================
-		UserDetails empUser = User.builder()
-				.username("user")
+		UserDetails emp1 = User.builder()
+				.username("employee1")
 				.password("{noop}1234")
 				.roles("EMPLOYEE")
 				.build();
 		
-		UserDetails empTanaka = User.builder()
-				.username("tanaka")
+		UserDetails emp2 = User.builder()
+				.username("employee2")
 				.password("{noop}1234")
 				.roles("EMPLOYEE")
 				.build();
-		
-		UserDetails emp4 = User.builder()
-				.username("employee4")
-				.password("{noop}1234")
-				.roles("EMPLOYEE")
-				.build();
-		
-		UserDetails emp5 = User.builder()
-				.username("employee5")
-				.password("{noop}1234")
-				.roles("EMPLOYEE")
-				.build();
-		
-		UserDetails emp6 = User.builder()
-				.username("employee6")
+
+		UserDetails emp3 = User.builder()
+				.username("employee3")
 				.password("{noop}1234")
 				.roles("EMPLOYEE")
 				.build();
 
 		// ============================================
-		// PROVEEDORES (Providers)
+		// PROVEEDORES (Providers) - Sincronizados con BD
 		// ============================================
 		UserDetails prov1 = User.builder()
 				.username("provider1")
@@ -194,28 +198,16 @@ public class SecurityConfig {
 				.password("{noop}1234")
 				.roles("PROVIDER")
 				.build();
-		
-		UserDetails prov4 = User.builder()
-				.username("provider4")
-				.password("{noop}1234")
-				.roles("PROVIDER")
-				.build();
-		
-		UserDetails prov5 = User.builder()
-				.username("provider5")
-				.password("{noop}1234")
-				.roles("PROVIDER")
-				.build();
 
 		return new InMemoryUserDetailsManager(
 			// Admin
 			admin,
-			// Clients
-			client1, client2, client3, client4, client5,
-			// Employees
-			empUser, empTanaka, emp4, emp5, emp6,
-			// Providers
-			prov1, prov2, prov3, prov4, prov5
+			// Clients (3 usuarios coinciden con BD)
+			client1, client2, client3,
+			// Employees (3 usuarios coinciden con BD)
+			emp1, emp2, emp3,
+ 			// Providers (3 usuarios coinciden con BD)
+			prov1, prov2, prov3
 		);
 	}
 
@@ -224,21 +216,33 @@ public class SecurityConfig {
 		RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
 				.clientId("client-app")
 				.clientSecret("{noop}1234")
+				.clientName("Tea House Client App")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+				// Authorization Code Flow (para usuarios)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+				// Refresh Token Flow (para renovar tokens)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+				// Redirect URIs después del login
 				.redirectUri("http://127.0.0.1:8080/login/oauth2/code/client-app")
 				.redirectUri("http://127.0.0.1:8080/authorized")
+				// Post-logout redirect
 				.postLogoutRedirectUri("http://127.0.0.1:8080/logout")
+				// Scopes solicitados
 				.scope(OidcScopes.OPENID)
 				.scope(OidcScopes.PROFILE)
+				.scope(OidcScopes.EMAIL)
                 .scope("read")
                 .scope("write")
 				.scope("user:client")
 				.scope("user:employee")
 				.scope("user:provider")
 				.scope("admin")
-				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+				// Configuración del cliente
+				.clientSettings(ClientSettings.builder()
+					.requireAuthorizationConsent(true)  // Mostrar pantalla de consentimiento
+					.requireProofKey(false)             // PKCE no requerido
+					.build()
+				)
 				.build();
 
 		return new InMemoryRegisteredClientRepository(oidcClient);

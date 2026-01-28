@@ -53,4 +53,12 @@ public class DetailOrderProviderService {
     public List<Object[]> getTotalProductsPurchasedByMonth(int month) {
         return detailOrderProviderRepository.getTotalProductsPurchasedByMonth(month);
     }
+
+    public List<DetailOrderProvider> findByProviderOAuth2Id(String oAuth2Id) {
+        return detailOrderProviderRepository.findByProviderOAuth2Id(oAuth2Id);
+    }
+
+    public List<DetailOrderProvider> findByEmployeeOAuth2Id(String oAuth2Id) {
+        return detailOrderProviderRepository.findByEmployeeOAuth2Id(oAuth2Id);
+    }
 }

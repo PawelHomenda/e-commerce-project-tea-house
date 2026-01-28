@@ -62,4 +62,8 @@ public class DetailOrderClientService {
     public List<Product> findProductsWithoutSales() {
         return detailOrderClientRepository.findProductsWithoutSales();
     }
+
+    public List<DetailOrderClient> findByClientOAuth2Id(String oAuth2Id) {
+        return detailOrderClientRepository.findByClientOAuth2Id(oAuth2Id);
+    }
 }
