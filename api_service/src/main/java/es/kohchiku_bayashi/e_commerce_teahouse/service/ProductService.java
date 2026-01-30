@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.service;
 
+import es.kohchiku_bayashi.e_commerce_teahouse.exception.ResourceNotFoundException;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ProductCategory;
 import es.kohchiku_bayashi.e_commerce_teahouse.repository.ProductRepository;
@@ -22,7 +23,7 @@ public class ProductService {
     
     public Product findById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con id: " + id));
     }
     
     public Product save(Product product) {
@@ -44,7 +45,7 @@ public class ProductService {
     
     public void deleteById(Long id) {
         if (!productRepository.existsById(id)) {
-            throw new RuntimeException("Producto no encontrado con id: " + id);
+            throw new ResourceNotFoundException("Producto no encontrado con id: " + id);
         }
         productRepository.deleteById(id);
     }

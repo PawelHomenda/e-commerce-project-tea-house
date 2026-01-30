@@ -35,13 +35,30 @@ public class DetailOrderClient {
     @Column(nullable = false)
     private Integer quantity;
     
+    // ✅ unitPrice es opcional - se carga automáticamente del producto
     @DecimalMin(value = "0.0", inclusive = false)
     @Column(name = "unit_price")
     private Double unitPrice;
     
+    // ✅ Descuento específico para este detalle (0-100%)
+    @Min(value = 0)
+    @Max(value = 100)
+    @Column(name = "discount_percentage")
+    private Double discountPercentage = 0.0;
+    
+    // ✅ Precio final con descuento aplicado
+    @Transient
+    public Double getFinalUnitPrice() {
+        if (unitPrice == null) return 0.0;
+        if (discountPercentage == null || discountPercentage == 0) {
+            return unitPrice;
+        }
+        return unitPrice - (unitPrice * discountPercentage / 100);
+    }
+    
     public Double getSubtotal() {
         if (quantity != null && unitPrice != null) {
-            return quantity * unitPrice;
+            return quantity * getFinalUnitPrice();
         }
         return 0.0;
     }

@@ -20,7 +20,7 @@ public class InvoiceProvider {
     private Long id;
     
     // ✅ @JsonBackReference: NO serializa el pedido (evita ciclo)
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     @JoinColumn(name = "id_order_provider", nullable = false)
     @JsonBackReference(value = "orderprovider-invoice")
     private OrderProvider orderProvider;

@@ -2,4 +2,5 @@
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/auth_server/src/main/java/es/springbootcourse/auth_server/auth/JwtAuthenticationSuccessHandler.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/auth_server/src/main/java/es/springbootcourse/auth_server/auth/SecurityConfig.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/auth_server/src/main/java/es/springbootcourse/auth_server/controllers/LoginController.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/auth_server/src/main/java/es/springbootcourse/auth_server/exception/GlobalExceptionHandler.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/auth_server/src/main/java/es/springbootcourse/auth_server/service/JwtTokenService.java

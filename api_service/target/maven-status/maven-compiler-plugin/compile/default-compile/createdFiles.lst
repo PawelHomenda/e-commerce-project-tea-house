@@ -1,9 +1,11 @@
 es/kohchiku_bayashi/e_commerce_teahouse/repository/ProviderRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Inventory.class
+es/kohchiku_bayashi/e_commerce_teahouse/auth/SecurityConfig$1.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/InventoryRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Client.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/OrderProviderRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Inventory$InventoryBuilder.class
+es/kohchiku_bayashi/e_commerce_teahouse/exception/DuplicateResourceException.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/InvoiceProviderController.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/EmployeeService.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/enums/ServiceType.class
@@ -24,6 +26,7 @@ es/kohchiku_bayashi/e_commerce_teahouse/model/Client$ClientBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/ProductService.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/OrderProviderService.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderController.class
+es/kohchiku_bayashi/e_commerce_teahouse/exception/DataIntegrityException.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/DetailOrderProviderService.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/ClientRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceProvider$InvoiceProviderBuilder.class
@@ -40,9 +43,11 @@ es/kohchiku_bayashi/e_commerce_teahouse/controller/OrderClientController.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/InventoryService.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Product$ProductBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/InvoiceProviderRepository.class
+es/kohchiku_bayashi/e_commerce_teahouse/exception/ResourceNotFoundException.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderOrdersController.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Employee.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/DetailOrderClientService.class
+es/kohchiku_bayashi/e_commerce_teahouse/exception/GlobalExceptionHandler.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceClient.class
 es/kohchiku_bayashi/e_commerce_teahouse/ECommerceTeahouseApplication.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/DetailOrderClientRepository.class

@@ -12,6 +12,10 @@
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/ProductController.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderController.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderOrdersController.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/exception/DataIntegrityException.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/exception/DuplicateResourceException.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/exception/GlobalExceptionHandler.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/exception/ResourceNotFoundException.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/Client.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderClient.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderProvider.java

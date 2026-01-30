@@ -23,6 +23,7 @@ public class OrderClient {
     private Long id;
     
     // ✅ Cliente que realiza el pedido (vinculado a OAuth2)
+    @NotNull(message = "El cliente es obligatorio para crear una orden")
     @ManyToOne
     @JoinColumn(name = "id_client", nullable = false)
     @JsonIgnoreProperties({"orderClients"})
@@ -48,8 +49,14 @@ public class OrderClient {
     @Column(name = "service_type", nullable = false)
     private ServiceType serviceType;
     
+    // ✅ Descuento global del pedido completo (0-100%)
+    @Min(value = 0)
+    @Max(value = 100)
+    @Column(name = "discount_percentage")
+    private Double discountPercentage = 0.0;
+    
     // ✅ @JsonManagedReference: SÍ serializa la factura
-    @OneToOne(mappedBy = "orderClient", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "orderClient")
     @JsonManagedReference(value = "orderclient-invoice")
     @ToString.Exclude
     private InvoiceClient invoiceClient;
@@ -59,4 +66,25 @@ public class OrderClient {
     @JsonManagedReference(value = "orderclient-details")
     @ToString.Exclude
     private List<DetailOrderClient> detailOrderClients;
+    
+    // ✅ Calcula el subtotal sin descuento
+    @Transient
+    public Double getSubtotal() {
+        if (detailOrderClients == null || detailOrderClients.isEmpty()) {
+            return 0.0;
+        }
+        return detailOrderClients.stream()
+                .mapToDouble(DetailOrderClient::getSubtotal)
+                .sum();
+    }
+    
+    // ✅ Calcula el total con descuento global
+    @Transient
+    public Double getTotal() {
+        Double subtotal = getSubtotal();
+        if (discountPercentage == null || discountPercentage == 0) {
+            return subtotal;
+        }
+        return subtotal - (subtotal * discountPercentage / 100);
+    }
 }

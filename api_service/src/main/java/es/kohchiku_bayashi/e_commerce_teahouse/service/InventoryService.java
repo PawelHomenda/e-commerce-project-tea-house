@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.service;
 
+import es.kohchiku_bayashi.e_commerce_teahouse.exception.ResourceNotFoundException;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Inventory;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
 import es.kohchiku_bayashi.e_commerce_teahouse.repository.InventoryRepository;
@@ -23,12 +24,12 @@ public class InventoryService {
     
     public Inventory findById(Long id) {
         return inventoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Inventario no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Inventario no encontrado con id: " + id));
     }
     
     public Inventory findByProductId(Long productId) {
         return inventoryRepository.findByProductId(productId)
-                .orElseThrow(() -> new RuntimeException("Inventario no encontrado para el producto: " + productId));
+                .orElseThrow(() -> new ResourceNotFoundException("Inventario no encontrado para el producto: " + productId));
     }
     
     public Inventory save(Inventory inventory) {
@@ -46,7 +47,7 @@ public class InventoryService {
     
     public void deleteById(Long id) {
         if (!inventoryRepository.existsById(id)) {
-            throw new RuntimeException("Inventario no encontrado con id: " + id);
+            throw new ResourceNotFoundException("Inventario no encontrado con id: " + id);
         }
         inventoryRepository.deleteById(id);
     }

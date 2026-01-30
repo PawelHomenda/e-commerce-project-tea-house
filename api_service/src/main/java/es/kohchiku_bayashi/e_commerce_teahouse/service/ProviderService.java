@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.service;
 
+import es.kohchiku_bayashi.e_commerce_teahouse.exception.ResourceNotFoundException;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Provider;
 import es.kohchiku_bayashi.e_commerce_teahouse.repository.ProviderRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,18 +22,18 @@ public class ProviderService {
     
     public Provider findById(Long id) {
         return providerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Proveedor no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado con id: " + id));
     }
     
     public Provider findByEmail(String email) {
         return providerRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Proveedor no encontrado con email: " + email));
+                .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado con email: " + email));
     }
     
     // ✅ Nuevo: Buscar por oauth2Id
     public Provider findByOauth2Id(String oauth2Id) {
         return providerRepository.findByOauth2Id(oauth2Id)
-                .orElseThrow(() -> new RuntimeException("Proveedor no encontrado con oauth2Id: " + oauth2Id));
+                .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado con oauth2Id: " + oauth2Id));
     }
     
     public Provider save(Provider provider) {
@@ -61,7 +62,7 @@ public class ProviderService {
     
     public void deleteById(Long id) {
         if (!providerRepository.existsById(id)) {
-            throw new RuntimeException("Proveedor no encontrado con id: " + id);
+            throw new ResourceNotFoundException("Proveedor no encontrado con id: " + id);
         }
         providerRepository.deleteById(id);
     }

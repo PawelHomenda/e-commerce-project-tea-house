@@ -23,7 +23,6 @@ public class DetailOrderClientController {
     
     private final DetailOrderClientService detailOrderClientService;
     
-
     @GetMapping("/admin/all")
     public ResponseEntity<List<DetailOrderClient>> getAllDetails() {
             return ResponseEntity.ok(detailOrderClientService.findAll());

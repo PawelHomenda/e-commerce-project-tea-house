@@ -80,12 +80,12 @@ public class OrderProviderController {
     }
     
     @GetMapping("/total-cost")
-    public ResponseEntity<BigDecimal> getTotalCost() {
+    public ResponseEntity<Double> getTotalCost() {
         return ResponseEntity.ok(orderProviderService.getTotalCost());
     }
     
     @GetMapping("/total-cost/month/{month}")
-    public ResponseEntity<BigDecimal> getTotalCostByMonth(@PathVariable int month) {
+    public ResponseEntity<Double> getTotalCostByMonth(@PathVariable int month) {
         return ResponseEntity.ok(orderProviderService.getTotalCostByMonth(month));
     }
     

@@ -1,5 +1,6 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.service;
 
+import es.kohchiku_bayashi.e_commerce_teahouse.exception.ResourceNotFoundException;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.DetailOrderClient;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
 import es.kohchiku_bayashi.e_commerce_teahouse.repository.DetailOrderClientRepository;
@@ -15,6 +16,8 @@ import java.util.List;
 public class DetailOrderClientService {
     
     private final DetailOrderClientRepository detailOrderClientRepository;
+    private final OrderClientService orderClientService;
+    private final ProductService productService;
     
     public List<DetailOrderClient> findAll() {
         return detailOrderClientRepository.findAll();
@@ -22,27 +25,61 @@ public class DetailOrderClientService {
     
     public DetailOrderClient findById(Long id) {
         return detailOrderClientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Detalle no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Detalle no encontrado con id: " + id));
     }
     
     public DetailOrderClient save(DetailOrderClient detailOrderClient) {
+        // ✅ Cargar la orden existente (obligatorio)
+        if (detailOrderClient.getOrderClient() != null && detailOrderClient.getOrderClient().getId() != null) {
+            detailOrderClient.setOrderClient(orderClientService.findById(detailOrderClient.getOrderClient().getId()));
+        }
+        
+        // ✅ Cargar el producto existente (obligatorio)
+        if (detailOrderClient.getProduct() != null && detailOrderClient.getProduct().getId() != null) {
+            detailOrderClient.setProduct(productService.findById(detailOrderClient.getProduct().getId()));
+        }
+        
+        // ✅ Si unitPrice es null, cargarlo automáticamente del producto
+        if (detailOrderClient.getUnitPrice() == null && detailOrderClient.getProduct() != null) {
+            detailOrderClient.setUnitPrice(detailOrderClient.getProduct().getPrice());
+        }
+        
         return detailOrderClientRepository.save(detailOrderClient);
     }
     
     public DetailOrderClient update(Long id, DetailOrderClient detailOrderClient) {
         DetailOrderClient existing = findById(id);
         
-        existing.setOrderClient(detailOrderClient.getOrderClient());
-        existing.setProduct(detailOrderClient.getProduct());
+        // ✅ Cargar la orden si es proporcionada
+        if (detailOrderClient.getOrderClient() != null && detailOrderClient.getOrderClient().getId() != null) {
+            existing.setOrderClient(orderClientService.findById(detailOrderClient.getOrderClient().getId()));
+        }
+        
+        // ✅ Cargar el producto si es proporcionado
+        if (detailOrderClient.getProduct() != null && detailOrderClient.getProduct().getId() != null) {
+            existing.setProduct(productService.findById(detailOrderClient.getProduct().getId()));
+        }
+        
         existing.setQuantity(detailOrderClient.getQuantity());
-        existing.setUnitPrice(detailOrderClient.getUnitPrice());
+        
+        // ✅ Actualizar unitPrice solo si es proporcionado, sino cargar del producto
+        if (detailOrderClient.getUnitPrice() != null) {
+            existing.setUnitPrice(detailOrderClient.getUnitPrice());
+        } else if (existing.getProduct() != null) {
+            existing.setUnitPrice(existing.getProduct().getPrice());
+        }
+        
+        // ✅ Actualizar discountPercentage si es proporcionado
+        if (detailOrderClient.getDiscountPercentage() != null) {
+            existing.setDiscountPercentage(detailOrderClient.getDiscountPercentage());
+        }
         
         return detailOrderClientRepository.save(existing);
     }
     
     public void deleteById(Long id) {
         if (!detailOrderClientRepository.existsById(id)) {
-            throw new RuntimeException("Detalle no encontrado con id: " + id);
+            throw new ResourceNotFoundException("Detalle no encontrado con id: " + id);
         }
         detailOrderClientRepository.deleteById(id);
     }

@@ -1,7 +1,7 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.service;
 
+import es.kohchiku_bayashi.e_commerce_teahouse.exception.ResourceNotFoundException;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.InvoiceClient;
-import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.PaymentMethod;
 import es.kohchiku_bayashi.e_commerce_teahouse.repository.InvoiceClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,7 @@ import java.util.List;
 public class InvoiceClientService {
     
     private final InvoiceClientRepository invoiceClientRepository;
+    private final OrderClientService orderClientService;
     
     public List<InvoiceClient> findAll() {
         return invoiceClientRepository.findAll();
@@ -23,19 +24,50 @@ public class InvoiceClientService {
     
     public InvoiceClient findById(Long id) {
         return invoiceClientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Factura no encontrada con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura no encontrada con id: " + id));
     }
     
     public InvoiceClient save(InvoiceClient invoiceClient) {
+        // ✅ Cargar la orden del cliente existente (obligatorio)
+        if (invoiceClient.getOrderClient() != null && invoiceClient.getOrderClient().getId() != null) {
+            invoiceClient.setOrderClient(orderClientService.findById(invoiceClient.getOrderClient().getId()));
+        }
+        
+        // ✅ Establecer fecha de factura si no se proporciona
+        if (invoiceClient.getInvoiceDate() == null) {
+            invoiceClient.setInvoiceDate(LocalDate.now());
+        }
+        
+        // ✅ Calcular total automáticamente del OrderClient si no se proporciona
+        if (invoiceClient.getTotal() == null && invoiceClient.getOrderClient() != null) {
+            invoiceClient.setTotal(invoiceClient.getOrderClient().getTotal());
+        }
+        
         return invoiceClientRepository.save(invoiceClient);
     }
     
     public InvoiceClient update(Long id, InvoiceClient invoiceClient) {
         InvoiceClient existing = findById(id);
         
+        // ✅ Actualizar orden si se proporciona
+        if (invoiceClient.getOrderClient() != null && invoiceClient.getOrderClient().getId() != null) {
+            existing.setOrderClient(orderClientService.findById(invoiceClient.getOrderClient().getId()));
+        }
+        
         existing.setInvoiceNumber(invoiceClient.getInvoiceNumber());
-        existing.setInvoiceDate(invoiceClient.getInvoiceDate());
-        existing.setTotal(invoiceClient.getTotal());
+        
+        // ✅ Actualizar fecha de factura si se proporciona
+        if (invoiceClient.getInvoiceDate() != null) {
+            existing.setInvoiceDate(invoiceClient.getInvoiceDate());
+        }
+        
+        // ✅ Actualizar total (si se proporciona, usar ese; sino usar el del OrderClient)
+        if (invoiceClient.getTotal() != null) {
+            existing.setTotal(invoiceClient.getTotal());
+        } else if (existing.getOrderClient() != null) {
+            existing.setTotal(existing.getOrderClient().getTotal());
+        }
+        
         existing.setPaymentMethod(invoiceClient.getPaymentMethod());
         existing.setPaymentDate(invoiceClient.getPaymentDate());
         
@@ -44,7 +76,7 @@ public class InvoiceClientService {
     
     public void deleteById(Long id) {
         if (!invoiceClientRepository.existsById(id)) {
-            throw new RuntimeException("Factura no encontrada con id: " + id);
+            throw new ResourceNotFoundException("Factura no encontrada con id: " + id);
         }
         invoiceClientRepository.deleteById(id);
     }
