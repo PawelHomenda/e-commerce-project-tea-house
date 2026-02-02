@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "auth_server"
+		},
+		{
+			"path": "browser-interface"
 		}
 	],
 	"settings": {
