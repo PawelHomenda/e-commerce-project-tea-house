@@ -1,0 +1,302 @@
+<div class="admin-container">
+  <div class="admin-header">
+    <h1>Panel de Administración</h1>
+  </div>
+
+  <!-- Mensajes de estado -->
+  <div class="alerts">
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  <!-- Tabs de navegación -->
+  <div class="admin-tabs">
+    <button 
+      class="tab-button"
+      [class.active]="activeTab === 'products'"
+      (click)="activeTab = 'products'; loadProducts()"
+    >
+      Productos
+    </button>
+    <button 
+      class="tab-button"
+      [class.active]="activeTab === 'orders'"
+      (click)="switchToOrders()"
+    >
+      Órdenes
+    </button>
+  </div>
+
+  <!-- ======================== TAB PRODUCTOS ======================== -->
+  <div *ngIf="activeTab === 'products'" class="admin-tab-content">
+    <div class="products-header">
+      <h2>Gestión de Productos</h2>
+      <button class="btn btn-success" (click)="addProductForm()" *ngIf="!isEditingProduct">
+        + Nuevo Producto
+      </button>
+    </div>
+
+    <!-- Formulario de producto -->
+    <div *ngIf="isEditingProduct" class="product-form-section">
+      <h3>{{ selectedProduct ? 'Editar Producto' : 'Nuevo Producto' }}</h3>
+      <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input 
+              type="text" 
+              id="name" 
+              class="form-control" 
+              formControlName="name"
+              [class.is-invalid]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+            >
+          </div>
+          <div class="form-group">
+            <label for="price">Precio</label>
+            <input 
+              type="number" 
+              id="price" 
+              class="form-control" 
+              formControlName="price"
+              step="0.01"
+              [class.is-invalid]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+            >
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="stock">Stock</label>
+            <input 
+              type="number" 
+              id="stock" 
+              class="form-control" 
+              formControlName="stock"
+              [class.is-invalid]="productForm.get('stock')?.invalid && productForm.get('stock')?.touched"
+            >
+          </div>
+          <div class="form-group">
+            <label for="categoryId">Categoría</label>
+            <select 
+              id="categoryId" 
+              class="form-control" 
+              formControlName="categoryId"
+              [class.is-invalid]="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched"
+            >
+              <option value="">Selecciona una categoría</option>
+              <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea 
+            id="description" 
+            class="form-control" 
+            formControlName="description"
+            rows="4"
+            [class.is-invalid]="productForm.get('description')?.invalid && productForm.get('description')?.touched"
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="imageUrl">URL de Imagen</label>
+            <input 
+              type="url" 
+              id="imageUrl" 
+              class="form-control" 
+              formControlName="imageUrl"
+              [class.is-invalid]="productForm.get('imageUrl')?.invalid && productForm.get('imageUrl')?.touched"
+            >
+          </div>
+          <div class="form-group">
+            <label for="thumbnailUrl">URL de Miniatura</label>
+            <input 
+              type="url" 
+              id="thumbnailUrl" 
+              class="form-control" 
+              formControlName="thumbnailUrl"
+            >
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="origin">Origen</label>
+            <input 
+              type="text" 
+              id="origin" 
+              class="form-control" 
+              formControlName="origin"
+              [class.is-invalid]="productForm.get('origin')?.invalid && productForm.get('origin')?.touched"
+            >
+          </div>
+          <div class="form-group">
+            <label for="weight">Peso</label>
+            <input 
+              type="number" 
+              id="weight" 
+              class="form-control" 
+              formControlName="weight"
+              step="0.1"
+              [class.is-invalid]="productForm.get('weight')?.invalid && productForm.get('weight')?.touched"
+            >
+          </div>
+          <div class="form-group">
+            <label for="unit">Unidad</label>
+            <select id="unit" class="form-control" formControlName="unit">
+              <option value="g">Gramos (g)</option>
+              <option value="kg">Kilogramos (kg)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success" [disabled]="!productForm.valid || isSubmittingProduct">
+            {{ isSubmittingProduct ? 'Guardando...' : 'Guardar Producto' }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="cancelEditProduct()" [disabled]="isSubmittingProduct">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Lista de productos -->
+    <div *ngIf="!isLoadingProducts && !isEditingProduct" class="products-table-section">
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Origen</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.name }}</td>
+            <td>{{ product.category.name }}</td>
+            <td>{{ product.price | currency }}</td>
+            <td [ngClass]="{ 'text-danger': product.stock === 0 }">{{ product.stock }}</td>
+            <td>{{ product.origin }}</td>
+            <td>
+              <button class="btn btn-sm btn-primary" (click)="editProduct(product)">Editar</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Paginación -->
+      <div class="pagination-controls" *ngIf="totalProductPages > 1">
+        <button class="btn btn-sm" (click)="previousProductPage()" [disabled]="currentProductPage === 0">
+          Anterior
+        </button>
+        <span class="page-info">
+          Página {{ currentProductPage + 1 }} de {{ totalProductPages }}
+        </span>
+        <button class="btn btn-sm" (click)="nextProductPage()" [disabled]="currentProductPage >= totalProductPages - 1">
+          Siguiente
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="isLoadingProducts" class="loading">
+      <p>Cargando productos...</p>
+    </div>
+  </div>
+
+  <!-- ======================== TAB ÓRDENES ======================== -->
+  <div *ngIf="activeTab === 'orders'" class="admin-tab-content">
+    <div class="orders-header">
+      <h2>Gestión de Órdenes</h2>
+      <div class="filter-group">
+        <label for="orderStatusFilter">Filtrar por estado:</label>
+        <select id="orderStatusFilter" [(ngModel)]="orderStatusFilter" (change)="filterOrdersByStatus()" class="form-control">
+          <option value="">Todas las órdenes</option>
+          <option value="PENDING">Pendiente</option>
+          <option value="CONFIRMED">Confirmada</option>
+          <option value="PROCESSING">En Proceso</option>
+          <option value="SHIPPED">Enviada</option>
+          <option value="DELIVERED">Entregada</option>
+          <option value="CANCELLED">Cancelada</option>
+          <option value="REFUNDED">Reembolsada</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Lista de órdenes -->
+    <div *ngIf="!isLoadingOrders" class="orders-table-section">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>#Orden</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Pago</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td><strong>#{{ order.orderNumber }}</strong></td>
+            <td>{{ order.user.firstName }} {{ order.user.lastName }}</td>
+            <td>{{ order.total | currency }}</td>
+            <td>
+              <select [value]="order.status" (change)="updateOrderStatus(order, $any($event.target).value)" class="form-control form-control-sm">
+                <option value="PENDING">Pendiente</option>
+                <option value="CONFIRMED">Confirmada</option>
+                <option value="PROCESSING">En Proceso</option>
+                <option value="SHIPPED">Enviada</option>
+                <option value="DELIVERED">Entregada</option>
+                <option value="CANCELLED">Cancelada</option>
+                <option value="REFUNDED">Reembolsada</option>
+              </select>
+            </td>
+            <td>
+              <span class="badge" [ngClass]="{
+                'badge-success': order.paymentStatus === 'PAID',
+                'badge-warning': order.paymentStatus === 'PENDING',
+                'badge-danger': order.paymentStatus === 'FAILED' || order.paymentStatus === 'REFUNDED'
+              }">
+                {{ order.paymentStatus === 'PAID' ? 'Pagado' : order.paymentStatus === 'PENDING' ? 'Pendiente' : order.paymentStatus === 'FAILED' ? 'Fallido' : 'Reembolsado' }}
+              </span>
+            </td>
+            <td>{{ order.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>
+              <button class="btn btn-sm btn-info" (click)="viewOrderDetails(order)">Ver</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Paginación -->
+      <div class="pagination-controls" *ngIf="totalOrderPages > 1">
+        <button class="btn btn-sm" (click)="previousOrderPage()" [disabled]="currentOrderPage === 0">
+          Anterior
+        </button>
+        <span class="page-info">
+          Página {{ currentOrderPage + 1 }} de {{ totalOrderPages }}
+        </span>
+        <button class="btn btn-sm" (click)="nextOrderPage()" [disabled]="currentOrderPage >= totalOrderPages - 1">
+          Siguiente
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="isLoadingOrders" class="loading">
+      <p>Cargando órdenes...</p>
+    </div>
+  </div>
+</div>

@@ -176,9 +176,9 @@ body {
 
 .title-emphasis {
   display: block;
+  color: var(--primary-dark);
   background: linear-gradient(135deg, var(--accent-gold), var(--accent-copper));
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: fadeIn 1s ease-out 0.7s both, shimmer 3s ease-in-out infinite;
 }

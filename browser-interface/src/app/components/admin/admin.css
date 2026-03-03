@@ -1,0 +1,429 @@
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.admin-header {
+  margin-bottom: 30px;
+  border-bottom: 2px solid #8B4513;
+  padding-bottom: 15px;
+}
+
+.admin-header h1 {
+  color: #5D2E0F;
+  margin: 0;
+  font-size: 2.5em;
+}
+
+.alerts {
+  margin-bottom: 20px;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #ddd;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  color: #666;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  margin-bottom: -2px;
+}
+
+.tab-button:hover {
+  color: #5D2E0F;
+}
+
+.tab-button.active {
+  color: #5D2E0F;
+  border-bottom-color: #8B4513;
+}
+
+.admin-tab-content {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================== PRODUCTOS ======================== */
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.products-header h2 {
+  color: #5D2E0F;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-success {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #4cae4c;
+}
+
+.btn-primary {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #46b8da;
+}
+
+.btn-info {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+  background-color: #46b8da;
+}
+
+.btn-warning {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: #ec971f;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #c9302c;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.9em;
+}
+
+.product-form-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.product-form-section h3 {
+  color: #5D2E0F;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.3em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  font-family: inherit;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #8B4513;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+.form-control.is-invalid {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.products-table-section {
+  margin-top: 25px;
+}
+
+.products-table,
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.products-table th,
+.orders-table th {
+  background-color: #f0f0f0;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+}
+
+.products-table td,
+.orders-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.products-table tbody tr:hover,
+.orders-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.text-danger {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.page-info {
+  min-width: 150px;
+  text-align: center;
+  color: #333;
+  font-weight: 600;
+}
+
+.loading {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 1.1em;
+  color: #666;
+}
+
+/* ======================== ÓRDENES ======================== */
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.orders-header h2 {
+  color: #5D2E0F;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.form-control-sm {
+  padding: 6px 10px;
+  font-size: 0.9em;
+}
+
+.orders-table-section {
+  margin-top: 25px;
+  overflow-x: auto;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.badge-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.badge-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.badge-secondary {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border: 1px solid #d6d8db;
+}
+
+@media (max-width: 768px) {
+  .products-header,
+  .orders-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .products-header button,
+  .orders-header button {
+    width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .products-table,
+  .orders-table {
+    font-size: 0.9em;
+  }
+
+  .products-table th,
+  .products-table td,
+  .orders-table th,
+  .orders-table td {
+    padding: 8px;
+  }
+
+  .admin-tabs {
+    flex-direction: column;
+  }
+
+  .tab-button {
+    text-align: left;
+    margin-bottom: -1px;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+    padding-left: 10px;
+  }
+
+  .tab-button.active {
+    border-left-color: #8B4513;
+  }
+}
