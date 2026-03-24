@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: teahouse-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: teahouse_db
+      MYSQL_ROOT_PASSWORD: asas1234
+    ports:
+      - "3306:3306"
+    networks:
+      - teahouse-network
+    volumes:
+      - db_data:/var/lib/mysql
+
+  auth-server:
+    build: ./auth_server
+    container_name: teahouse-auth
+    ports:
+      - "9000:9000" # Sincronizado con server.port=9000
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/teahouse_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=asas1234
+    depends_on:
+      - db
+    networks:
+      - teahouse-network
+
+  business-server:
+    build: ./api_service
+    container_name: teahouse-business
+    ports:
+      - "8080:8080"
+    environment:
+      # Sobrescribimos localhost por el nombre del servicio 'db'
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/teahouse_db?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=asas1234
+      # Sobrescribimos el issuer para que apunte al servicio 'auth-server'
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=http://auth-server:9000
+    depends_on:
+      - db
+      - auth-server
+    networks:
+      - teahouse-network
+
+networks:
+  teahouse-network:
+    driver: bridge
+
+volumes:
+  db_data:
