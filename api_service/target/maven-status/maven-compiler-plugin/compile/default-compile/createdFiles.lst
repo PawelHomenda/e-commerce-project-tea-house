@@ -1,4 +1,6 @@
 es/kohchiku_bayashi/e_commerce_teahouse/repository/ProviderRepository.class
+es/kohchiku_bayashi/e_commerce_teahouse/model/Category.class
+es/kohchiku_bayashi/e_commerce_teahouse/controller/CategoryController.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Inventory.class
 es/kohchiku_bayashi/e_commerce_teahouse/auth/SecurityConfig$1.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/InventoryRepository.class
@@ -8,8 +10,8 @@ es/kohchiku_bayashi/e_commerce_teahouse/model/Inventory$InventoryBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/exception/DuplicateResourceException.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/InvoiceProviderController.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/EmployeeService.class
-es/kohchiku_bayashi/e_commerce_teahouse/model/enums/ServiceType.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderProvider.class
+es/kohchiku_bayashi/e_commerce_teahouse/model/enums/ServiceType.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/OrderProviderController.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/enums/PaymentState.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Provider$ProviderBuilder.class
@@ -23,6 +25,7 @@ es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceClient$InvoiceClientBuilder
 es/kohchiku_bayashi/e_commerce_teahouse/repository/OrderClientRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/EmployeeRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Client$ClientBuilder.class
+es/kohchiku_bayashi/e_commerce_teahouse/repository/CategoryRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/ProductService.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/OrderProviderService.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderController.class
@@ -37,6 +40,7 @@ es/kohchiku_bayashi/e_commerce_teahouse/controller/InvoiceClientController.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/EmployeeController.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/enums/PaymentMethod.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/enums/ProductCategory.class
+es/kohchiku_bayashi/e_commerce_teahouse/service/CategoryService.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/ProductRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/DetailOrderProviderController.class
 es/kohchiku_bayashi/e_commerce_teahouse/controller/OrderClientController.class
@@ -44,9 +48,9 @@ es/kohchiku_bayashi/e_commerce_teahouse/service/InventoryService.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Product$ProductBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/repository/InvoiceProviderRepository.class
 es/kohchiku_bayashi/e_commerce_teahouse/exception/ResourceNotFoundException.class
-es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderOrdersController.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Employee.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/DetailOrderClientService.class
+es/kohchiku_bayashi/e_commerce_teahouse/model/Category$CategoryBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/exception/GlobalExceptionHandler.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceClient.class
 es/kohchiku_bayashi/e_commerce_teahouse/ECommerceTeahouseApplication.class
@@ -62,6 +66,7 @@ es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderClient.class
 es/kohchiku_bayashi/e_commerce_teahouse/service/ClientService.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderClient$DetailOrderClientBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/OrderClient.class
+es/kohchiku_bayashi/e_commerce_teahouse/config/CorsConfig.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/InvoiceProvider.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderProvider$DetailOrderProviderBuilder.class
 es/kohchiku_bayashi/e_commerce_teahouse/model/Provider.class

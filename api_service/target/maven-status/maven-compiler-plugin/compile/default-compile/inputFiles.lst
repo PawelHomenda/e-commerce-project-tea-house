@@ -1,6 +1,8 @@
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/ECommerceTeahouseApplication.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/auth/SecurityConfig.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/config/CorsConfig.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/AuthController.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/CategoryController.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/DetailOrderClientController.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/DetailOrderProviderController.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/EmployeeController.java
@@ -11,11 +13,11 @@
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/OrderProviderController.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/ProductController.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderController.java
-/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/controller/ProviderOrdersController.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/exception/DataIntegrityException.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/exception/DuplicateResourceException.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/exception/GlobalExceptionHandler.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/exception/ResourceNotFoundException.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/Category.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/Client.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderClient.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/DetailOrderProvider.java
@@ -32,6 +34,7 @@
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/enums/PaymentState.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/enums/ProductCategory.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/model/enums/ServiceType.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/repository/CategoryRepository.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/repository/ClientRepository.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/repository/DetailOrderClientRepository.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/repository/DetailOrderProviderRepository.java
@@ -43,6 +46,7 @@
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/repository/OrderProviderRepository.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/repository/ProductRepository.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/repository/ProviderRepository.java
+/home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/service/CategoryService.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/service/ClientService.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/service/DetailOrderClientService.java
 /home/shinoboyo/Documentos/projects/java/springboot/personal_porfolio/e-commerce-project-tea-house/api_service/src/main/java/es/kohchiku_bayashi/e_commerce_teahouse/service/DetailOrderProviderService.java

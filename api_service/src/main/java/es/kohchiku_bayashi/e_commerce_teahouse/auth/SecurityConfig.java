@@ -17,6 +17,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.Arrays;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -63,19 +67,40 @@ public class SecurityConfig {
     }
     
     @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:3000"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+    
+    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authHttp) -> authHttp
+        http.cors((cors) -> cors.configurationSource(corsConfigurationSource()))
+            .authorizeHttpRequests((authHttp) -> authHttp
                         // PÚBLICOS - Swagger y documentación
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/v3/api-docs.yaml").permitAll()
                         .requestMatchers("/webjars/**").permitAll()
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/authorized").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/token").permitAll()
 
                         // ============================================
-                        // PRODUCTOS - Lectura todos, escritura solo ADMIN
+                        // CATEGORÍAS - Lectura pública, escritura solo ADMIN
                         // ============================================
-                        .requestMatchers(HttpMethod.GET, "/api/products/**")
-                        .hasAnyAuthority("SCOPE_user:client", "SCOPE_user:employee", "SCOPE_user:provider", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/categories/**").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.PUT, "/api/categories/**").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.DELETE, "/api/categories/**").hasAuthority("SCOPE_admin")
+
+                        // ============================================
+                        // PRODUCTOS - Lectura pública, escritura solo ADMIN
+                        // ============================================
+                        .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/products/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/products/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasAuthority("SCOPE_admin")
@@ -152,8 +177,7 @@ public class SecurityConfig {
                                 response.getWriter().write(objectMapper.writeValueAsString(body));
                             }))
                         .oauth2ResourceServer(resourceServer -> resourceServer
-                            .jwt(withDefaults())
-                            .authenticationEntryPoint(customAuthenticationEntryPoint()));
+                        .jwt(withDefaults()));
 
         return http.build();
     }

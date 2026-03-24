@@ -4,6 +4,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.List;
 import java.util.UUID;
 
 import com.nimbusds.jose.jwk.JWKSet;
@@ -11,6 +12,8 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+
+import es.springbootcourse.auth_server.service.JwtTokenService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,11 +42,35 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration config = new CorsConfiguration();
+
+    config.setAllowedOrigins(List.of(
+        "http://localhost:4200",   // Angular dev
+        "http://127.0.0.1:4200"
+    ));
+    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    config.setAllowedHeaders(List.of("*"));
+    config.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+    return source;
+}
 
 	@Bean
 	@Order(1)
@@ -78,19 +105,21 @@ public class SecurityConfig {
 
 	@Bean 
 	@Order(2)
-	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, JwtEncoder jwtEncoder)
+	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, JwtTokenService jwtTokenService)
 			throws Exception {
-		JwtAuthenticationSuccessHandler successHandler = new JwtAuthenticationSuccessHandler(jwtEncoder);
+		JwtAuthenticationSuccessHandler successHandler = new JwtAuthenticationSuccessHandler(jwtTokenService);
 		
 		http
 			.authorizeHttpRequests((authorize) -> authorize
 				.requestMatchers("/login", "/logout", "/register", "/error").permitAll()
 				.requestMatchers("/actuator/health").permitAll()
+				.requestMatchers("/api/auth/login").permitAll()
 				.anyRequest().authenticated()
 			)
 			// CSRF Protection
-			.csrf((csrf) -> csrf
+			.csrf(csrf -> csrf
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+				.ignoringRequestMatchers("/api/**")
 			)
 			// Form login configuration
 			.formLogin((formLogin) -> formLogin
@@ -225,8 +254,10 @@ public class SecurityConfig {
 				// Redirect URIs después del login
 				.redirectUri("http://127.0.0.1:8080/login/oauth2/code/client-app")
 				.redirectUri("http://127.0.0.1:8080/authorized")
+				.redirectUri("http://localhost:4200/authorized")
 				// Post-logout redirect
 				.postLogoutRedirectUri("http://127.0.0.1:8080/logout")
+				.postLogoutRedirectUri("http://localhost:4200/logout")
 				// Scopes solicitados
 				.scope(OidcScopes.OPENID)
 				.scope(OidcScopes.PROFILE)
@@ -287,6 +318,13 @@ public class SecurityConfig {
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
 		return AuthorizationServerSettings.builder().build();
+	}
+
+	// Añadir este bean dentro de la clase, al final, junto a los demás @Bean
+	@Bean
+	public AuthenticationManager authenticationManager(
+			AuthenticationConfiguration config) throws Exception {
+		return config.getAuthenticationManager();
 	}
 
 }

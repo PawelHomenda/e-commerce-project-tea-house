@@ -25,7 +25,8 @@ spring:
           issuer-uri: "http://127.0.0.1:9000"
     
   datasource:
-    url: jdbc:mysql://localhost:3306/casa_te
+    # include parameters to avoid crashes when rows contain '0000-00-00' dates
+    url: jdbc:mysql://localhost:3306/casa_te?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC&useLegacyDatetimeCode=false
     username: root
     password: asas1234
   jpa:
@@ -44,6 +45,8 @@ spring:
       cache:
         period: 0
 server:
+  # default port used by the API; change to a free port or set via
+  # -Dserver.port=\${PORT:8080} if 8080 is already occupied
   port: 8080
   error:
     include-message: always

@@ -69,13 +69,13 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   loadRelatedProducts(productId: number): void {
-    this.productService.getRelatedProducts(productId, 4)
+    this.productService.getActiveProducts()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (products) => {
-          this.relatedProducts = products;
+        next: (products: Product[]) => {
+          this.relatedProducts = products.filter(p => p.id !== productId).slice(0, 4);
         },
-        error: (error) => {
+        error: (error: any) => {
           console.error('Error loading related products:', error);
         }
       });

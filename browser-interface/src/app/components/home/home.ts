@@ -1,17 +1,24 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { RouterModule, Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
+import { CategoryService } from '../../services/category.service';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 import { Product, Category } from '../../models/product.model';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
 export class HomeComponent implements OnInit {
+signup() {
+  this.router.navigate(['/login']);
+}
   
   // Categorías de té (cargadas desde el backend)
   categories: Category[] = [];
@@ -25,11 +32,20 @@ export class HomeComponent implements OnInit {
   newsletterEmail = '';
   newsletterSubmitted = false;
   loading = true;
+  loadingCategories = true;
+  loadingProducts = true;
   error: string | null = null;
+  
+  // Timestamps para mostrar cuando se obtuvieron los datos
+  categoriesLoadTime: string | null = null;
+  productsLoadTime: string | null = null;
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private categoryService: CategoryService,
+    public cartService: CartService,
+    public authService: AuthService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,36 +61,53 @@ export class HomeComponent implements OnInit {
    * Cargar categorías desde el backend
    */
   loadCategories(): void {
-    this.productService.getAllCategories().subscribe({
+    this.loadingCategories = true;
+    this.categoryService.getActiveCategories().subscribe({
       next: (categories) => {
-        this.categories = categories;
-        console.log('Categorías cargadas:', categories);
+        if (categories && categories.length > 0) {
+          this.categories = categories;
+          this.categoriesLoadTime = new Date().toLocaleTimeString('es-ES');
+          console.log('✓ Categorías cargadas del API:', categories);
+        } else {
+          console.warn('⚠️ No se encontraron categorías en el servidor');
+          this.categories = this.getExampleCategories();
+        }
+        this.loadingCategories = false;
       },
       error: (err) => {
-        console.error('Error cargando categorías:', err);
-        this.error = 'No se pudieron cargar las categorías';
-        // Fallback a categorías de ejemplo si falla
+        console.error('❌ Error cargando categorías del API:', err.message || err);
         this.categories = this.getExampleCategories();
+        this.loadingCategories = false;
       }
     });
   }
 
   /**
-   * Cargar productos destacados desde el backend
+   * Cargar productos desde el backend
    */
   loadFeaturedProducts(): void {
-    this.loading = true;
-    this.productService.getFeaturedProducts(8).subscribe({
+    this.loadingProducts = true;
+    this.error = null;
+    this.productService.getActiveProducts().subscribe({
       next: (products) => {
-        this.featuredProducts = products;
-        this.loading = false;
-        console.log('Productos destacados cargados:', products);
+        if (products && products.length > 0) {
+          // Limitar a 8 productos
+          this.featuredProducts = products.slice(0, 8);
+          this.productsLoadTime = new Date().toLocaleTimeString('es-ES');
+          this.loadingProducts = false;
+          this.loading = false;
+          console.log('✓ Productos cargados del API:', products);
+        } else {
+          console.warn('⚠️ No se encontraron productos en el servidor');
+          this.loadingProducts = false;
+          this.loading = false;
+          this.featuredProducts = this.getExampleProducts();
+        }
       },
       error: (err) => {
-        console.error('Error cargando productos:', err);
-        this.error = 'No se pudieron cargar los productos';
+        console.error('❌ Error cargando productos del API:', err.message || err);
+        this.loadingProducts = false;
         this.loading = false;
-        // Fallback a productos de ejemplo si falla
         this.featuredProducts = this.getExampleProducts();
       }
     });
@@ -298,6 +331,7 @@ export class HomeComponent implements OnInit {
     return [
       {
         id: 1,
+        active: true,
         name: 'Dragon Well Premium',
         description: 'Té verde de alta calidad',
         price: 28.50,

@@ -1,7 +1,7 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.repository;
 
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
-import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ProductCategory;
+import es.kohchiku_bayashi.e_commerce_teahouse.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     
-    List<Product> findByCategory(ProductCategory category);
+    List<Product> findByCategory(Category category);
     
     List<Product> findByActive(Boolean active);
     
@@ -27,7 +27,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     
     List<Product> findByNameContainingIgnoreCase(String name);
     
-    List<Product> findByCategoryAndActiveTrue(ProductCategory category);
+    List<Product> findByCategoryAndActiveTrue(Category category);
     
     @Query("SELECT p FROM Product p ORDER BY p.price ASC")
     List<Product> findAllOrderByPriceAsc();

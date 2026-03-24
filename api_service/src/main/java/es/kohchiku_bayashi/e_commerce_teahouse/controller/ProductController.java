@@ -1,8 +1,9 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.controller;
 
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
-import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ProductCategory;
+import es.kohchiku_bayashi.e_commerce_teahouse.model.Category;
 import es.kohchiku_bayashi.e_commerce_teahouse.service.ProductService;
+import es.kohchiku_bayashi.e_commerce_teahouse.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.List;
 public class ProductController {
     
     private final ProductService productService;
+    private final CategoryService categoryService;
     
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
@@ -29,8 +31,10 @@ public class ProductController {
         return ResponseEntity.ok(productService.findById(id));
     }
     
-    @GetMapping("/category/{category}")
-    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable ProductCategory category) {
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable Long categoryId) {
+        Category category = categoryService.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("Category not found with id: " + categoryId));
         return ResponseEntity.ok(productService.findByCategory(category));
     }
     

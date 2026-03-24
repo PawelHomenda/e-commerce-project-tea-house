@@ -5,7 +5,7 @@ export interface CartItem {
   id: number;
   product: Product;
   quantity: number;
-  subtotal: number;
+  price: number;
 }
 
 /**

@@ -1,56 +1,66 @@
 <div class="product-container">
   <!-- Mensajes de estado -->
   <div class="alerts">
-    <div *ngIf="successMessage" class="alert alert-success">
-      {{ successMessage }}
-    </div>
-    <div *ngIf="errorMessage" class="alert alert-danger">
+    @if (successMessage) {
+      <div class="alert alert-success">
+        {{ successMessage }}
+      </div>
+    }
+    @else if (errorMessage) {
+    <div class="alert alert-danger">
       {{ errorMessage }}
     </div>
-  </div>
+  }
+</div>
 
-  <!-- Indicador de carga -->
-  <div *ngIf="isLoading" class="loading">
+<!-- Indicador de carga -->
+@if (isLoading) {
+  <div class="loading">
     <p>Cargando producto...</p>
   </div>
+}
 
-  <!-- Detalle del producto -->
-  <div *ngIf="product && !isLoading" class="product-detail">
+<!-- Detalle del producto -->
+@if (product && !isLoading) {
+  <div class="product-detail">
     <div class="product-row">
       <!-- Imagen del producto -->
       <div class="product-image-section">
         <div class="product-image">
           <img [src]="product.imageUrl" [alt]="product.name" />
-          <div *ngIf="product.isNew" class="badge-new">Nuevo</div>
-          <div *ngIf="product.isBestseller" class="badge-bestseller">Bestseller</div>
-          <div *ngIf="product.isLimitedEdition" class="badge-limited">Edición Limitada</div>
+          @if (product.isNew) {
+            <div class="badge-new">Nuevo</div>
+          }
+          @if (product.isBestseller) {
+            <div class="badge-bestseller">Bestseller</div>
+          }
+          @if (product.isLimitedEdition) {
+            <div class="badge-limited">Edición Limitada</div>
+          }
         </div>
       </div>
-
       <!-- Información del producto -->
       <div class="product-info-section">
         <h1>{{ product.name }}</h1>
-
         <!-- Categoría -->
         <p class="category">
-          <strong>Categoría:</strong> 
+          <strong>Categoría:</strong>
           <span class="category-name">{{ product.category.name }}</span>
         </p>
-
         <!-- Calificación -->
         <div class="rating-section">
           <div class="rating">
             <div class="stars">
-              <span *ngFor="let i of [1,2,3,4,5]" [class.filled]="i <= Math.round(product.rating)">★</span>
+              @for (i of [1,2,3,4,5]; track i) {
+                <span [class.filled]="i <= Math.round(product.rating)">★</span>
+              }
             </div>
             <span class="rating-value">{{ product.rating.toFixed(1) }}/5</span>
             <span class="review-count">({{ product.reviewCount }} comentarios)</span>
           </div>
         </div>
-
         <!-- Descripción -->
         <p class="description">{{ product.description }}</p>
-
         <!-- Detalles del producto -->
         <div class="product-details">
           <div class="detail-item">
@@ -60,65 +70,66 @@
             <strong>Peso:</strong> {{ product.weight }}{{ product.unit === 'kg' ? ' kg' : ' g' }}
           </div>
           <div class="detail-item" [class.out-of-stock]="isOutOfStock()">
-            <strong>Stock:</strong> 
-            <span *ngIf="isOutOfStock()" class="text-danger">No disponible</span>
-            <span *ngIf="!isOutOfStock()">{{ product.stock }} unidades disponibles</span>
+            <strong>Stock:</strong>
+            @if (isOutOfStock()) {
+              <span class="text-danger">No disponible</span>
+            }
+            @if (!isOutOfStock()) {
+              <span>{{ product.stock }} unidades disponibles</span>
+            }
           </div>
         </div>
-
         <!-- Precio -->
         <div class="price-section">
-          <span class="price">{{ product.price | currency }}</span>
+          <span class="price">{{ product.price | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
         </div>
-
         <!-- Cantidad y botones -->
         <div class="purchase-section">
           <div class="quantity-selector">
             <label for="quantity">Cantidad:</label>
             <div class="quantity-controls">
-              <button 
-                type="button" 
-                class="btn-quantity" 
+              <button
+                type="button"
+                class="btn-quantity"
                 (click)="decreaseQuantity()"
                 [disabled]="quantity <= 1 || isOutOfStock()"
-              >
+                >
                 -
               </button>
-              <input 
-                type="number" 
-                id="quantity" 
+              <input
+                type="number"
+                id="quantity"
                 [(ngModel)]="quantity"
-                min="1" 
+                min="1"
                 [max]="product.stock"
                 [disabled]="isOutOfStock()"
                 class="quantity-input"
-              >
-              <button 
-                type="button" 
-                class="btn-quantity" 
+                >
+              <button
+                type="button"
+                class="btn-quantity"
                 (click)="increaseQuantity()"
                 [disabled]="quantity >= product.stock || isOutOfStock()"
-              >
+                >
                 +
               </button>
             </div>
           </div>
-
           <div class="action-buttons">
-            <button 
-              type="button" 
+            <button
+              type="button"
               class="btn btn-primary btn-add-cart"
               (click)="addToCart()"
               [disabled]="isOutOfStock() || isAddingToCart"
-            >
+              >
               {{ isAddingToCart ? 'Añadiendo...' : 'Añadir al Carrito' }}
             </button>
-            <button 
-              type="button" 
+            <button
+              type="button"
               class="btn btn-success btn-buy-now"
               (click)="buyNow()"
               [disabled]="isOutOfStock() || isAddingToCart"
-            >
+              >
               Comprar Ahora
             </button>
           </div>
@@ -126,23 +137,30 @@
       </div>
     </div>
   </div>
+}
 
-  <!-- Productos relacionados -->
-  <div *ngIf="relatedProducts.length > 0 && !isLoading" class="related-products">
+<!-- Productos relacionados -->
+@if (relatedProducts.length > 0 && !isLoading) {
+  <div class="related-products">
     <h2>Productos Relacionados</h2>
     <div class="products-grid">
-      <div *ngFor="let relatedProduct of relatedProducts" class="product-card" (click)="viewProduct(relatedProduct.id)">
-        <div class="product-image-small">
-          <img [src]="relatedProduct.thumbnailUrl || relatedProduct.imageUrl" [alt]="relatedProduct.name" />
+      @for (relatedProduct of relatedProducts; track relatedProduct) {
+        <div class="product-card" (click)="viewProduct(relatedProduct.id)">
+          <div class="product-image-small">
+            <img [src]="relatedProduct.thumbnailUrl || relatedProduct.imageUrl" [alt]="relatedProduct.name" />
+          </div>
+          <h3>{{ relatedProduct.name }}</h3>
+          <p class="product-price">{{ relatedProduct.price | currency:'EUR':'symbol':'1.2-2':'es' }}</p>
+          <div class="rating-small">
+            <span class="stars-small">
+              @for (i of [1,2,3,4,5]; track i) {
+                <span [class.filled]="i <= Math.round(relatedProduct.rating)">★</span>
+              }
+            </span>
+          </div>
         </div>
-        <h3>{{ relatedProduct.name }}</h3>
-        <p class="product-price">{{ relatedProduct.price | currency }}</p>
-        <div class="rating-small">
-          <span class="stars-small">
-            <span *ngFor="let i of [1,2,3,4,5]" [class.filled]="i <= Math.round(relatedProduct.rating)">★</span>
-          </span>
-        </div>
-      </div>
+      }
     </div>
   </div>
+}
 </div>

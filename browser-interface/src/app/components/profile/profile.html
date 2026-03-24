@@ -5,96 +5,120 @@
 
   <!-- Mensajes de estado -->
   <div class="alerts">
-    <div *ngIf="successMessage" class="alert alert-success">
-      {{ successMessage }}
-    </div>
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
-    </div>
+    @if (successMessage) {
+      <div class="alert alert-success">
+        {{ successMessage }}
+      </div>
+    }
+    @if (errorMessage) {
+      <div class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+    }
   </div>
 
   <!-- Información del usuario -->
   <div class="profile-info">
     <div class="info-card">
       <h2>Información Personal</h2>
-      
-      <div *ngIf="!isEditingProfile" class="view-mode">
-        <div *ngIf="currentUser" class="user-details">
-          <p>
-            <strong>Nombre:</strong> {{ currentUser.firstName }} {{ currentUser.lastName }}
-          </p>
-          <p>
-            <strong>Email:</strong> {{ currentUser.email }}
-          </p>
-          <p *ngIf="currentUser.phone">
-            <strong>Teléfono:</strong> {{ currentUser.phone }}
-          </p>
-          <p>
-            <strong>Rol:</strong> <span class="badge" [ngClass]="{ 'badge-admin': currentUser.role === 'ADMIN', 'badge-user': currentUser.role === 'USER' }">
-              {{ currentUser.role === 'ADMIN' ? 'Administrador' : 'Usuario' }}
-            </span>
-          </p>
-          <p>
-            <strong>Estado:</strong> 
-            <span class="badge" [ngClass]="{ 'badge-success': currentUser.isActive, 'badge-danger': !currentUser.isActive }">
-              {{ currentUser.isActive ? 'Activo' : 'Inactivo' }}
-            </span>
-          </p>
-          <p>
-            <strong>Miembro desde:</strong> {{ currentUser.createdAt | date: 'dd/MM/yyyy' }}
-          </p>
-        </div>
+
+      @if (!isEditingProfile) {
+        <div class="view-mode">
+          @if (currentUser) {
+            <div class="user-details">
+              <p>
+                <strong>Nombre:</strong> {{ currentUser.firstName }} {{ currentUser.lastName }}
+              </p>
+              <p>
+                <strong>Email:</strong> {{ currentUser.email }}
+              </p>
+              @if (currentUser.phone) {
+                <p>
+                  <strong>Teléfono:</strong> {{ currentUser.phone }}
+                </p>
+              }
+              <p>
+                <strong>Rol:</strong> <span class="badge" [ngClass]="{ 'badge-admin': currentUser.role === 'ADMIN', 'badge-user': currentUser.role === 'USER' }">
+                {{ currentUser.role === 'ADMIN' ? 'Administrador' : 'Usuario' }}
+              </span>
+            </p>
+            <p>
+              <strong>Estado:</strong>
+              <span class="badge" [ngClass]="{ 'badge-success': currentUser.isActive, 'badge-danger': !currentUser.isActive }">
+                {{ currentUser.isActive ? 'Activo' : 'Inactivo' }}
+              </span>
+            </p>
+            <p>
+              <strong>Miembro desde:</strong> {{ currentUser.createdAt | date: 'dd/MM/yyyy' }}
+            </p>
+          </div>
+        }
         <button class="btn btn-primary" (click)="toggleEditProfile()" [disabled]="isLoading">
           Editar Perfil
         </button>
       </div>
+    }
 
-      <div *ngIf="isEditingProfile" class="edit-mode">
+    @if (isEditingProfile) {
+      <div class="edit-mode">
         <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
           <div class="form-group">
             <label for="firstName">Nombre</label>
-            <input 
-              type="text" 
-              id="firstName" 
-              class="form-control" 
+            <input
+              type="text"
+              id="firstName"
+              class="form-control"
               formControlName="firstName"
               [class.is-invalid]="profileForm_FirstName?.invalid && profileForm_FirstName?.touched"
-            >
-            <div class="invalid-feedback" *ngIf="profileForm_FirstName?.invalid && profileForm_FirstName?.touched">
-              <span *ngIf="profileForm_FirstName?.errors?.['required']">El nombre es requerido</span>
-              <span *ngIf="profileForm_FirstName?.errors?.['minlength']">Mínimo 2 caracteres</span>
-            </div>
+              >
+            @if (profileForm_FirstName?.invalid && profileForm_FirstName?.touched) {
+              <div class="invalid-feedback">
+                @if (profileForm_FirstName?.errors?.['required']) {
+                  <span>El nombre es requerido</span>
+                }
+                @if (profileForm_FirstName?.errors?.['minlength']) {
+                  <span>Mínimo 2 caracteres</span>
+                }
+              </div>
+            }
           </div>
-
           <div class="form-group">
             <label for="lastName">Apellido</label>
-            <input 
-              type="text" 
-              id="lastName" 
-              class="form-control" 
+            <input
+              type="text"
+              id="lastName"
+              class="form-control"
               formControlName="lastName"
               [class.is-invalid]="profileForm_LastName?.invalid && profileForm_LastName?.touched"
-            >
-            <div class="invalid-feedback" *ngIf="profileForm_LastName?.invalid && profileForm_LastName?.touched">
-              <span *ngIf="profileForm_LastName?.errors?.['required']">El apellido es requerido</span>
-              <span *ngIf="profileForm_LastName?.errors?.['minlength']">Mínimo 2 caracteres</span>
-            </div>
+              >
+            @if (profileForm_LastName?.invalid && profileForm_LastName?.touched) {
+              <div class="invalid-feedback">
+                @if (profileForm_LastName?.errors?.['required']) {
+                  <span>El apellido es requerido</span>
+                }
+                @if (profileForm_LastName?.errors?.['minlength']) {
+                  <span>Mínimo 2 caracteres</span>
+                }
+              </div>
+            }
           </div>
-
           <div class="form-group">
             <label for="phone">Teléfono</label>
-            <input 
-              type="tel" 
-              id="phone" 
-              class="form-control" 
+            <input
+              type="tel"
+              id="phone"
+              class="form-control"
               formControlName="phone"
               [class.is-invalid]="profileForm_Phone?.invalid && profileForm_Phone?.touched"
-            >
-            <div class="invalid-feedback" *ngIf="profileForm_Phone?.invalid && profileForm_Phone?.touched">
-              <span *ngIf="profileForm_Phone?.errors?.['pattern']">Teléfono inválido</span>
-            </div>
+              >
+            @if (profileForm_Phone?.invalid && profileForm_Phone?.touched) {
+              <div class="invalid-feedback">
+                @if (profileForm_Phone?.errors?.['pattern']) {
+                  <span>Teléfono inválido</span>
+                }
+              </div>
+            }
           </div>
-
           <div class="form-actions">
             <button type="submit" class="btn btn-success" [disabled]="!profileForm.valid || isLoading">
               {{ isLoading ? 'Guardando...' : 'Guardar Cambios' }}
@@ -105,66 +129,79 @@
           </div>
         </form>
       </div>
-    </div>
+    }
   </div>
+</div>
 
-  <!-- Cambiar contraseña -->
-  <div class="password-section">
-    <div class="info-card">
-      <h2>Seguridad</h2>
+<!-- Cambiar contraseña -->
+<div class="password-section">
+  <div class="info-card">
+    <h2>Seguridad</h2>
 
-      <div *ngIf="!isChangingPassword" class="view-mode">
+    @if (!isChangingPassword) {
+      <div class="view-mode">
         <p>Protege tu cuenta cambiando tu contraseña regularmente</p>
         <button class="btn btn-warning" (click)="toggleChangePassword()" [disabled]="isLoading">
           Cambiar Contraseña
         </button>
       </div>
+    }
 
-      <div *ngIf="isChangingPassword" class="edit-mode">
+    @if (isChangingPassword) {
+      <div class="edit-mode">
         <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
           <div class="form-group">
             <label for="currentPassword">Contraseña Actual</label>
-            <input 
-              type="password" 
-              id="currentPassword" 
-              class="form-control" 
+            <input
+              type="password"
+              id="currentPassword"
+              class="form-control"
               formControlName="currentPassword"
               [class.is-invalid]="passwordForm_CurrentPassword?.invalid && passwordForm_CurrentPassword?.touched"
-            >
-            <div class="invalid-feedback" *ngIf="passwordForm_CurrentPassword?.invalid && passwordForm_CurrentPassword?.touched">
-              <span *ngIf="passwordForm_CurrentPassword?.errors?.['required']">Requerido</span>
-            </div>
+              >
+            @if (passwordForm_CurrentPassword?.invalid && passwordForm_CurrentPassword?.touched) {
+              <div class="invalid-feedback">
+                @if (passwordForm_CurrentPassword?.errors?.['required']) {
+                  <span>Requerido</span>
+                }
+              </div>
+            }
           </div>
-
           <div class="form-group">
             <label for="newPassword">Nueva Contraseña</label>
-            <input 
-              type="password" 
-              id="newPassword" 
-              class="form-control" 
+            <input
+              type="password"
+              id="newPassword"
+              class="form-control"
               formControlName="newPassword"
               [class.is-invalid]="passwordForm_NewPassword?.invalid && passwordForm_NewPassword?.touched"
-            >
-            <div class="invalid-feedback" *ngIf="passwordForm_NewPassword?.invalid && passwordForm_NewPassword?.touched">
-              <span *ngIf="passwordForm_NewPassword?.errors?.['required']">Requerido</span>
-              <span *ngIf="passwordForm_NewPassword?.errors?.['minlength']">Mínimo 6 caracteres</span>
-            </div>
+              >
+            @if (passwordForm_NewPassword?.invalid && passwordForm_NewPassword?.touched) {
+              <div class="invalid-feedback">
+                @if (passwordForm_NewPassword?.errors?.['required']) {
+                  <span>Requerido</span>
+                }
+                @if (passwordForm_NewPassword?.errors?.['minlength']) {
+                  <span>Mínimo 6 caracteres</span>
+                }
+              </div>
+            }
           </div>
-
           <div class="form-group">
             <label for="confirmPassword">Confirmar Contraseña</label>
-            <input 
-              type="password" 
-              id="confirmPassword" 
-              class="form-control" 
+            <input
+              type="password"
+              id="confirmPassword"
+              class="form-control"
               formControlName="confirmPassword"
               [class.is-invalid]="passwordForm.errors?.['passwordMismatch'] || (passwordForm_ConfirmPassword?.invalid && passwordForm_ConfirmPassword?.touched)"
-            >
-            <div class="invalid-feedback" *ngIf="passwordForm.errors?.['passwordMismatch']">
-              <span>Las contraseñas no coinciden</span>
-            </div>
+              >
+            @if (passwordForm.errors?.['passwordMismatch']) {
+              <div class="invalid-feedback">
+                <span>Las contraseñas no coinciden</span>
+              </div>
+            }
           </div>
-
           <div class="form-actions">
             <button type="submit" class="btn btn-success" [disabled]="!passwordForm.valid || isLoading">
               {{ isLoading ? 'Cambiando...' : 'Cambiar Contraseña' }}
@@ -175,6 +212,7 @@
           </div>
         </form>
       </div>
-    </div>
+    }
   </div>
+</div>
 </div>

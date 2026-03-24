@@ -33,30 +33,34 @@ INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address,
 INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address, oauth2_id, oauth2_provider) VALUES ('Antonio', 'Moreno Ruiz', 'antonio.moreno@email.com', '678999000', 'Plaza Nueva 802, Granada', 'client9', 'keycloak');
 INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address, oauth2_id, oauth2_provider) VALUES ('Marta', 'Jiménez Navarro', 'marta.jimenez@email.com', '679000111', 'Calle Paz 573, Córdoba', 'client10', 'keycloak');
 
--- 4. PRODUCTOS (23 registros)
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té Verde Sencha', 'Té verde japonés de alta calidad, suave y refrescante', 'DRINK', 3.50, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té Negro Earl Grey', 'Té negro aromático con bergamota', 'DRINK', 3.00, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té Oolong Premium', 'Té semifermentado con notas florales', 'DRINK', 4.50, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té Blanco Silver Needle', 'Té blanco delicado y exclusivo', 'DRINK', 5.00, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té Rooibos', 'Infusión sudafricana sin cafeína', 'DRINK', 3.20, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té Chai Masala', 'Té negro especiado con leche', 'DRINK', 3.80, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té Matcha Latte', 'Bebida cremosa de té verde en polvo', 'DRINK', 4.80, 'vaso', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té de Manzanilla', 'Infusión relajante de manzanilla', 'DRINK', 2.50, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Té de Jengibre', 'Bebida caliente estimulante', 'DRINK', 3.00, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Café Espresso', 'Café fuerte e intenso', 'DRINK', 2.00, 'taza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Brownie de Chocolate', 'Brownie casero con chocolate 70%', 'DESSERT', 4.50, 'pieza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Tarta de Manzana', 'Tarta casera de manzana con canela', 'DESSERT', 5.00, 'porción', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Magdalena Clásica', 'Magdalena tradicional esponjosa', 'DESSERT', 2.50, 'pieza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Galletas de Té', 'Galletas artesanales de mantequilla', 'DESSERT', 3.20, 'paquete', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Tiramisú Italiano', 'Tiramisú casero auténtico', 'DESSERT', 6.50, 'porción', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Cheesecake', 'Cheesecake de queso Philadelphia', 'DESSERT', 6.00, 'porción', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Éclair de Vainilla', 'Éclair relleno de crema de vainilla', 'DESSERT', 4.00, 'pieza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Profiteroles', 'Profiteroles rellenas de crema', 'DESSERT', 5.50, 'porción', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Lemon Cake', 'Pastel de limón con glaseado', 'DESSERT', 4.80, 'porción', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Donuts', 'Donuts glaseados variados', 'DESSERT', 3.00, 'pieza', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Frutos Secos', 'Mezcla de almendras, avellanas y nueces', 'DESSERT', 8.00, 'ración', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Tarta de Chocolate', 'Tarta de chocolate belga premium', 'DESSERT', 7.00, 'porción', 1);
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES ('Pavlova', 'Pavlova con frutos rojos', 'DESSERT', 5.50, 'pieza', 1);
+-- 4. CATEGORÍAS (2 registros)
+INSERT IGNORE INTO categories (name, description, active) VALUES ('DRINK', 'Bebidas - Tés e infusiones', 1);
+INSERT IGNORE INTO categories (name, description, active) VALUES ('DESSERT', 'Postres y dulces', 1);
+
+-- 5. PRODUCTOS (23 registros) - Usando category_id: 1=DRINK, 2=DESSERT
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té Verde Sencha', 'Té verde japonés de alta calidad, suave y refrescante', 1, 3.50, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té Negro Earl Grey', 'Té negro aromático con bergamota', 1, 3.00, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té Oolong Premium', 'Té semifermentado con notas florales', 1, 4.50, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té Blanco Silver Needle', 'Té blanco delicado y exclusivo', 1, 5.00, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té Rooibos', 'Infusión sudafricana sin cafeína', 1, 3.20, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té Chai Masala', 'Té negro especiado con leche', 1, 3.80, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té Matcha Latte', 'Bebida cremosa de té verde en polvo', 1, 4.80, 'vaso', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té de Manzanilla', 'Infusión relajante de manzanilla', 1, 2.50, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Té de Jengibre', 'Bebida caliente estimulante', 1, 3.00, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Café Espresso', 'Café fuerte e intenso', 1, 2.00, 'taza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Brownie de Chocolate', 'Brownie casero con chocolate 70%', 2, 4.50, 'pieza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Tarta de Manzana', 'Tarta casera de manzana con canela', 2, 5.00, 'porción', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Magdalena Clásica', 'Magdalena tradicional esponjosa', 2, 2.50, 'pieza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Galletas de Té', 'Galletas artesanales de mantequilla', 2, 3.20, 'paquete', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Tiramisú Italiano', 'Tiramisú casero auténtico', 2, 6.50, 'porción', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Cheesecake', 'Cheesecake de queso Philadelphia', 2, 6.00, 'porción', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Éclair de Vainilla', 'Éclair relleno de crema de vainilla', 2, 4.00, 'pieza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Profiteroles', 'Profiteroles rellenas de crema', 2, 5.50, 'porción', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Lemon Cake', 'Pastel de limón con glaseado', 2, 4.80, 'porción', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Donuts', 'Donuts glaseados variados', 2, 3.00, 'pieza', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Frutos Secos', 'Mezcla de almendras, avellanas y nueces', 2, 8.00, 'ración', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Tarta de Chocolate', 'Tarta de chocolate belga premium', 2, 7.00, 'porción', 1);
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES ('Pavlova', 'Pavlova con frutos rojos', 2, 5.50, 'pieza', 1);
 
 -- 5. INVENTARIO (10 registros)
 INSERT IGNORE INTO inventory (id_product, current_quantity, minimum_quantity) VALUES (1, 50, 5);

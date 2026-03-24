@@ -5,298 +5,565 @@
 
   <!-- Mensajes de estado -->
   <div class="alerts">
-    <div *ngIf="successMessage" class="alert alert-success">
-      {{ successMessage }}
-    </div>
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
-    </div>
+    @if (successMessage) {
+      <div class="alert alert-success">
+        {{ successMessage }}
+      </div>
+    }
+    @if (errorMessage) {
+      <div class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+    }
   </div>
 
   <!-- Tabs de navegación -->
   <div class="admin-tabs">
-    <button 
+    <button
       class="tab-button"
       [class.active]="activeTab === 'products'"
       (click)="activeTab = 'products'; loadProducts()"
-    >
+      >
       Productos
     </button>
-    <button 
+    <button
       class="tab-button"
       [class.active]="activeTab === 'orders'"
       (click)="switchToOrders()"
-    >
+      >
       Órdenes
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'clients'"
+      (click)="switchToClients()"
+      >
+      Clientes
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'employees'"
+      (click)="switchToEmployees()"
+      >
+      Empleados
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'providers'"
+      (click)="switchToProviders()"
+      >
+      Proveedores
     </button>
   </div>
 
   <!-- ======================== TAB PRODUCTOS ======================== -->
-  <div *ngIf="activeTab === 'products'" class="admin-tab-content">
-    <div class="products-header">
-      <h2>Gestión de Productos</h2>
-      <button class="btn btn-success" (click)="addProductForm()" *ngIf="!isEditingProduct">
-        + Nuevo Producto
-      </button>
-    </div>
-
-    <!-- Formulario de producto -->
-    <div *ngIf="isEditingProduct" class="product-form-section">
-      <h3>{{ selectedProduct ? 'Editar Producto' : 'Nuevo Producto' }}</h3>
-      <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Nombre</label>
-            <input 
-              type="text" 
-              id="name" 
-              class="form-control" 
-              formControlName="name"
-              [class.is-invalid]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
-            >
-          </div>
-          <div class="form-group">
-            <label for="price">Precio</label>
-            <input 
-              type="number" 
-              id="price" 
-              class="form-control" 
-              formControlName="price"
-              step="0.01"
-              [class.is-invalid]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
-            >
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="stock">Stock</label>
-            <input 
-              type="number" 
-              id="stock" 
-              class="form-control" 
-              formControlName="stock"
-              [class.is-invalid]="productForm.get('stock')?.invalid && productForm.get('stock')?.touched"
-            >
-          </div>
-          <div class="form-group">
-            <label for="categoryId">Categoría</label>
-            <select 
-              id="categoryId" 
-              class="form-control" 
-              formControlName="categoryId"
-              [class.is-invalid]="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched"
-            >
-              <option value="">Selecciona una categoría</option>
-              <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="description">Descripción</label>
-          <textarea 
-            id="description" 
-            class="form-control" 
-            formControlName="description"
-            rows="4"
-            [class.is-invalid]="productForm.get('description')?.invalid && productForm.get('description')?.touched"
-          ></textarea>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="imageUrl">URL de Imagen</label>
-            <input 
-              type="url" 
-              id="imageUrl" 
-              class="form-control" 
-              formControlName="imageUrl"
-              [class.is-invalid]="productForm.get('imageUrl')?.invalid && productForm.get('imageUrl')?.touched"
-            >
-          </div>
-          <div class="form-group">
-            <label for="thumbnailUrl">URL de Miniatura</label>
-            <input 
-              type="url" 
-              id="thumbnailUrl" 
-              class="form-control" 
-              formControlName="thumbnailUrl"
-            >
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="origin">Origen</label>
-            <input 
-              type="text" 
-              id="origin" 
-              class="form-control" 
-              formControlName="origin"
-              [class.is-invalid]="productForm.get('origin')?.invalid && productForm.get('origin')?.touched"
-            >
-          </div>
-          <div class="form-group">
-            <label for="weight">Peso</label>
-            <input 
-              type="number" 
-              id="weight" 
-              class="form-control" 
-              formControlName="weight"
-              step="0.1"
-              [class.is-invalid]="productForm.get('weight')?.invalid && productForm.get('weight')?.touched"
-            >
-          </div>
-          <div class="form-group">
-            <label for="unit">Unidad</label>
-            <select id="unit" class="form-control" formControlName="unit">
-              <option value="g">Gramos (g)</option>
-              <option value="kg">Kilogramos (kg)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-success" [disabled]="!productForm.valid || isSubmittingProduct">
-            {{ isSubmittingProduct ? 'Guardando...' : 'Guardar Producto' }}
+  @if (activeTab === 'products') {
+    <div class="admin-tab-content">
+      <div class="products-header">
+        <h2>Gestión de Productos</h2>
+        @if (!isEditingProduct) {
+          <button class="btn btn-success" (click)="addProductForm()">
+            + Nuevo Producto
           </button>
-          <button type="button" class="btn btn-secondary" (click)="cancelEditProduct()" [disabled]="isSubmittingProduct">
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Lista de productos -->
-    <div *ngIf="!isLoadingProducts && !isEditingProduct" class="products-table-section">
-      <table class="products-table">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Categoría</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Origen</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of products">
-            <td>{{ product.name }}</td>
-            <td>{{ product.category.name }}</td>
-            <td>{{ product.price | currency }}</td>
-            <td [ngClass]="{ 'text-danger': product.stock === 0 }">{{ product.stock }}</td>
-            <td>{{ product.origin }}</td>
-            <td>
-              <button class="btn btn-sm btn-primary" (click)="editProduct(product)">Editar</button>
-              <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)">Eliminar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Paginación -->
-      <div class="pagination-controls" *ngIf="totalProductPages > 1">
-        <button class="btn btn-sm" (click)="previousProductPage()" [disabled]="currentProductPage === 0">
-          Anterior
-        </button>
-        <span class="page-info">
-          Página {{ currentProductPage + 1 }} de {{ totalProductPages }}
-        </span>
-        <button class="btn btn-sm" (click)="nextProductPage()" [disabled]="currentProductPage >= totalProductPages - 1">
-          Siguiente
-        </button>
+        }
       </div>
+      <!-- Formulario de producto -->
+      @if (isEditingProduct) {
+        <div class="product-form-section">
+          <h3>{{ selectedProduct ? 'Editar Producto' : 'Nuevo Producto' }}</h3>
+          <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input
+                  type="text"
+                  id="name"
+                  class="form-control"
+                  formControlName="name"
+                  [class.is-invalid]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+                  >
+              </div>
+              <div class="form-group">
+                <label for="price">Precio</label>
+                <input
+                  type="number"
+                  id="price"
+                  class="form-control"
+                  formControlName="price"
+                  step="0.01"
+                  [class.is-invalid]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+                  >
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="stock">Stock</label>
+                <input
+                  type="number"
+                  id="stock"
+                  class="form-control"
+                  formControlName="stock"
+                  [class.is-invalid]="productForm.get('stock')?.invalid && productForm.get('stock')?.touched"
+                  >
+              </div>
+              <div class="form-group">
+                <label for="categoryId">Categoría</label>
+                <select
+                  id="categoryId"
+                  class="form-control"
+                  formControlName="categoryId"
+                  [class.is-invalid]="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched"
+                  >
+                  <option value="">Selecciona una categoría</option>
+                  @for (cat of categories; track cat) {
+                    <option [value]="cat.id">{{ cat.name }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Descripción</label>
+              <textarea
+                id="description"
+                class="form-control"
+                formControlName="description"
+                rows="4"
+                [class.is-invalid]="productForm.get('description')?.invalid && productForm.get('description')?.touched"
+              ></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="imageUrl">URL de Imagen</label>
+                <input
+                  type="url"
+                  id="imageUrl"
+                  class="form-control"
+                  formControlName="imageUrl"
+                  [class.is-invalid]="productForm.get('imageUrl')?.invalid && productForm.get('imageUrl')?.touched"
+                  >
+              </div>
+              <div class="form-group">
+                <label for="thumbnailUrl">URL de Miniatura</label>
+                <input
+                  type="url"
+                  id="thumbnailUrl"
+                  class="form-control"
+                  formControlName="thumbnailUrl"
+                  >
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="origin">Origen</label>
+                <input
+                  type="text"
+                  id="origin"
+                  class="form-control"
+                  formControlName="origin"
+                  [class.is-invalid]="productForm.get('origin')?.invalid && productForm.get('origin')?.touched"
+                  >
+              </div>
+              <div class="form-group">
+                <label for="weight">Peso</label>
+                <input
+                  type="number"
+                  id="weight"
+                  class="form-control"
+                  formControlName="weight"
+                  step="0.1"
+                  [class.is-invalid]="productForm.get('weight')?.invalid && productForm.get('weight')?.touched"
+                  >
+              </div>
+              <div class="form-group">
+                <label for="unit">Unidad</label>
+                <select id="unit" class="form-control" formControlName="unit">
+                  <option value="g">Gramos (g)</option>
+                  <option value="kg">Kilogramos (kg)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" [disabled]="!productForm.valid || isSubmittingProduct">
+                {{ isSubmittingProduct ? 'Guardando...' : 'Guardar Producto' }}
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="cancelEditProduct()" [disabled]="isSubmittingProduct">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      }
+      <!-- Lista de productos -->
+      @if (!isLoadingProducts && !isEditingProduct) {
+        <div class="products-table-section">
+          <table class="products-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Origen</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (product of products; track product) {
+                <tr>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.category.name }}</td>
+                  <td>{{ product.price | currency:'EUR':'symbol':'1.2-2' }}</td>
+                  <td [ngClass]="{ 'text-danger': product.stock === 0 }">{{ product.stock }}</td>
+                  <td>{{ product.origin }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="editProduct(product)">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)">Eliminar</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <!-- Paginación -->
+          @if (totalProductPages > 1) {
+            <div class="pagination-controls">
+              <button class="btn btn-sm" (click)="previousProductPage()" [disabled]="currentProductPage === 0">
+                Anterior
+              </button>
+              <span class="page-info">
+                Página {{ currentProductPage + 1 }} de {{ totalProductPages }}
+              </span>
+              <button class="btn btn-sm" (click)="nextProductPage()" [disabled]="currentProductPage >= totalProductPages - 1">
+                Siguiente
+              </button>
+            </div>
+          }
+        </div>
+      }
+      @if (isLoadingProducts) {
+        <div class="loading">
+          <p>Cargando productos...</p>
+        </div>
+      }
     </div>
-
-    <div *ngIf="isLoadingProducts" class="loading">
-      <p>Cargando productos...</p>
-    </div>
-  </div>
+  }
 
   <!-- ======================== TAB ÓRDENES ======================== -->
-  <div *ngIf="activeTab === 'orders'" class="admin-tab-content">
-    <div class="orders-header">
-      <h2>Gestión de Órdenes</h2>
-      <div class="filter-group">
-        <label for="orderStatusFilter">Filtrar por estado:</label>
-        <select id="orderStatusFilter" [(ngModel)]="orderStatusFilter" (change)="filterOrdersByStatus()" class="form-control">
-          <option value="">Todas las órdenes</option>
-          <option value="PENDING">Pendiente</option>
-          <option value="CONFIRMED">Confirmada</option>
-          <option value="PROCESSING">En Proceso</option>
-          <option value="SHIPPED">Enviada</option>
-          <option value="DELIVERED">Entregada</option>
-          <option value="CANCELLED">Cancelada</option>
-          <option value="REFUNDED">Reembolsada</option>
-        </select>
+  @if (activeTab === 'orders') {
+    <div class="admin-tab-content">
+      <div class="orders-header">
+        <h2>Gestión de Órdenes</h2>
+        <div class="filter-group">
+          <label for="orderStatusFilter">Filtrar por estado:</label>
+          <select id="orderStatusFilter" [(ngModel)]="orderStatusFilter" (change)="filterOrdersByStatus()" class="form-control">
+            <option value="">Todas las órdenes</option>
+            <option value="PENDING">Pendiente</option>
+            <option value="CONFIRMED">Confirmada</option>
+            <option value="PROCESSING">En Proceso</option>
+            <option value="SHIPPED">Enviada</option>
+            <option value="DELIVERED">Entregada</option>
+            <option value="CANCELLED">Cancelada</option>
+            <option value="REFUNDED">Reembolsada</option>
+          </select>
+        </div>
       </div>
-    </div>
-
-    <!-- Lista de órdenes -->
-    <div *ngIf="!isLoadingOrders" class="orders-table-section">
-      <table class="orders-table">
-        <thead>
-          <tr>
-            <th>#Orden</th>
-            <th>Cliente</th>
-            <th>Total</th>
-            <th>Estado</th>
-            <th>Pago</th>
-            <th>Fecha</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let order of orders">
-            <td><strong>#{{ order.orderNumber }}</strong></td>
-            <td>{{ order.user.firstName }} {{ order.user.lastName }}</td>
-            <td>{{ order.total | currency }}</td>
-            <td>
-              <select [value]="order.status" (change)="updateOrderStatus(order, $any($event.target).value)" class="form-control form-control-sm">
-                <option value="PENDING">Pendiente</option>
-                <option value="CONFIRMED">Confirmada</option>
-                <option value="PROCESSING">En Proceso</option>
-                <option value="SHIPPED">Enviada</option>
-                <option value="DELIVERED">Entregada</option>
-                <option value="CANCELLED">Cancelada</option>
-                <option value="REFUNDED">Reembolsada</option>
-              </select>
-            </td>
-            <td>
+      <!-- Lista de órdenes -->
+      @if (!isLoadingOrders) {
+        <div class="orders-table-section">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>#Orden</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Pago</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (order of orders; track order) {
+                <tr>
+                  <td><strong>#{{ order.orderNumber }}</strong></td>
+                  <td>{{ order.user.firstName }} {{ order.user.lastName }}</td>
+                  <td>{{ order.total | currency:'EUR':'symbol':'1.2-2' }}</td>
+                  <td>
+                    <select [value]="order.status" (change)="updateOrderStatus(order, $any($event.target).value)" class="form-control form-control-sm">
+                      <option value="PENDING">Pendiente</option>
+                      <option value="CONFIRMED">Confirmada</option>
+                      <option value="PROCESSING">En Proceso</option>
+                      <option value="SHIPPED">Enviada</option>
+                      <option value="DELIVERED">Entregada</option>
+                      <option value="CANCELLED">Cancelada</option>
+                      <option value="REFUNDED">Reembolsada</option>
+                    </select>
+                  </td>
+                  <td>
               <span class="badge" [ngClass]="{
                 'badge-success': order.paymentStatus === 'PAID',
                 'badge-warning': order.paymentStatus === 'PENDING',
                 'badge-danger': order.paymentStatus === 'FAILED' || order.paymentStatus === 'REFUNDED'
               }">
-                {{ order.paymentStatus === 'PAID' ? 'Pagado' : order.paymentStatus === 'PENDING' ? 'Pendiente' : order.paymentStatus === 'FAILED' ? 'Fallido' : 'Reembolsado' }}
+                      {{ order.paymentStatus === 'PAID' ? 'Pagado' : order.paymentStatus === 'PENDING' ? 'Pendiente' : order.paymentStatus === 'FAILED' ? 'Fallido' : 'Reembolsado' }}
+                    </span>
+                  </td>
+                  <td>{{ order.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" (click)="viewOrderDetails(order)">Ver</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <!-- Paginación -->
+          @if (totalOrderPages > 1) {
+            <div class="pagination-controls">
+              <button class="btn btn-sm" (click)="previousOrderPage()" [disabled]="currentOrderPage === 0">
+                Anterior
+              </button>
+              <span class="page-info">
+                Página {{ currentOrderPage + 1 }} de {{ totalOrderPages }}
               </span>
-            </td>
-            <td>{{ order.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
-            <td>
-              <button class="btn btn-sm btn-info" (click)="viewOrderDetails(order)">Ver</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <button class="btn btn-sm" (click)="nextOrderPage()" [disabled]="currentOrderPage >= totalOrderPages - 1">
+                Siguiente
+              </button>
+            </div>
+          }
+        </div>
+      }
+      @if (isLoadingOrders) {
+        <div class="loading">
+          <p>Cargando órdenes...</p>
+        </div>
+      }
+    </div>
+  }
 
-      <!-- Paginación -->
-      <div class="pagination-controls" *ngIf="totalOrderPages > 1">
-        <button class="btn btn-sm" (click)="previousOrderPage()" [disabled]="currentOrderPage === 0">
-          Anterior
-        </button>
-        <span class="page-info">
-          Página {{ currentOrderPage + 1 }} de {{ totalOrderPages }}
-        </span>
-        <button class="btn btn-sm" (click)="nextOrderPage()" [disabled]="currentOrderPage >= totalOrderPages - 1">
-          Siguiente
-        </button>
+  <!-- ======================== TAB CLIENTES ======================== -->
+  @if (activeTab === 'clients') {
+    <div class="admin-tab-content">
+      <div class="clients-header">
+        <h2>Gestión de Clientes</h2>
       </div>
-    </div>
+      @if (!isLoadingClients) {
+        <div class="clients-table-section">
+          <table class="clients-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (client of clients; track client) {
+                <tr>
+                  <td>{{ client.firstName }} {{ client.lastName }}</td>
+                  <td>{{ client.email }}</td>
+                  <td>{{ client.phoneNumber || '-' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="editClient(client)">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteClient(client)">Eliminar</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
 
-    <div *ngIf="isLoadingOrders" class="loading">
-      <p>Cargando órdenes...</p>
+          <!-- Paginación clientes -->
+          @if (totalClientPages > 1) {
+            <div class="pagination-controls">
+              <button class="btn btn-sm" (click)="previousClientPage()" [disabled]="currentClientPage === 0">Anterior</button>
+              <span class="page-info">Página {{ currentClientPage + 1 }} de {{ totalClientPages }}</span>
+              <button class="btn btn-sm" (click)="nextClientPage()" [disabled]="currentClientPage >= totalClientPages - 1">Siguiente</button>
+            </div>
+          }
+        </div>
+      }
+      @if (isLoadingClients) {
+        <div class="loading"><p>Cargando clientes...</p></div>
+      }
     </div>
-  </div>
+  }
+
+  <!-- ======================== TAB EMPLEADOS ======================== -->
+  @if (activeTab === 'employees') {
+    <div class="admin-tab-content">
+      <div class="employees-header">
+        <h2>Gestión de Empleados</h2>
+        @if (!isEditingEmployee) {
+          <button class="btn btn-success" (click)="addEmployeeForm()">+ Nuevo Empleado</button>
+        }
+      </div>
+      @if (isEditingEmployee) {
+        <div class="employee-form-section">
+          <h3>{{ selectedEmployee ? 'Editar Empleado' : 'Nuevo Empleado' }}</h3>
+          <form [formGroup]="employeeForm" (ngSubmit)="submitEmployee()">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">Nombre</label>
+                <input id="firstName" type="text" class="form-control" formControlName="firstName" />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Apellido</label>
+                <input id="lastName" type="text" class="form-control" formControlName="lastName" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" class="form-control" formControlName="email" />
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Teléfono</label>
+                <input id="phoneNumber" type="tel" class="form-control" formControlName="phoneNumber" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="salary">Salario</label>
+                <input id="salary" type="number" class="form-control" formControlName="salary" />
+              </div>
+              <div class="form-group">
+                <label for="position">Cargo</label>
+                <input id="position" type="text" class="form-control" formControlName="position" />
+              </div>
+              <div class="form-group">
+                <label for="department">Departamento</label>
+                <input id="department" type="text" class="form-control" formControlName="department" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" [disabled]="isSubmittingEmployee">{{ isSubmittingEmployee ? 'Guardando...' : 'Guardar' }}</button>
+              <button type="button" class="btn btn-secondary" (click)="cancelEditEmployee()" [disabled]="isSubmittingEmployee">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      }
+      @if (!isLoadingEmployees && !isEditingEmployee) {
+        <div class="employees-table-section">
+          <table class="employees-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (emp of employees; track emp) {
+                <tr>
+                  <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+                  <td>{{ emp.email }}</td>
+                  <td>{{ emp.phoneNumber || '-' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="editEmployee(emp)">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp)">Eliminar</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          @if (totalEmployeePages > 1) {
+            <div class="pagination-controls">
+              <button class="btn btn-sm" (click)="previousEmployeePage()" [disabled]="currentEmployeePage === 0">Anterior</button>
+              <span class="page-info">Página {{ currentEmployeePage + 1 }} de {{ totalEmployeePages }}</span>
+              <button class="btn btn-sm" (click)="nextEmployeePage()" [disabled]="currentEmployeePage >= totalEmployeePages - 1">Siguiente</button>
+            </div>
+          }
+        </div>
+      }
+      @if (isLoadingEmployees) {
+        <div class="loading"><p>Cargando empleados...</p></div>
+      }
+    </div>
+  }
+
+  <!-- ======================== TAB PROVEEDORES ======================== -->
+  @if (activeTab === 'providers') {
+    <div class="admin-tab-content">
+      <div class="providers-header">
+        <h2>Gestión de Proveedores</h2>
+        @if (!isEditingProvider) {
+          <button class="btn btn-success" (click)="addProviderForm()">+ Nuevo Proveedor</button>
+        }
+      </div>
+      @if (isEditingProvider) {
+        <div class="provider-form-section">
+          <h3>{{ selectedProvider ? 'Editar Proveedor' : 'Nuevo Proveedor' }}</h3>
+          <form [formGroup]="providerForm" (ngSubmit)="submitProvider()">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input id="name" type="text" class="form-control" formControlName="name" />
+              </div>
+              <div class="form-group">
+                <label for="contact">Contacto</label>
+                <input id="contact" type="text" class="form-control" formControlName="contact" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" class="form-control" formControlName="email" />
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Teléfono</label>
+                <input id="phoneNumber" type="tel" class="form-control" formControlName="phoneNumber" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="address">Dirección</label>
+                <input id="address" type="text" class="form-control" formControlName="address" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" [disabled]="isSubmittingProvider">{{ isSubmittingProvider ? 'Guardando...' : 'Guardar' }}</button>
+              <button type="button" class="btn btn-secondary" (click)="cancelEditProvider()" [disabled]="isSubmittingProvider">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      }
+      @if (!isLoadingProviders && !isEditingProvider) {
+        <div class="providers-table-section">
+          <table class="providers-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Contacto</th>
+                <th>Email</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (prov of providers; track prov) {
+                <tr>
+                  <td>{{ prov.name }}</td>
+                  <td>{{ prov.contact }}</td>
+                  <td>{{ prov.email }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="editProvider(prov)">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteProvider(prov)">Eliminar</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          @if (totalProviderPages > 1) {
+            <div class="pagination-controls">
+              <button class="btn btn-sm" (click)="previousProviderPage()" [disabled]="currentProviderPage === 0">Anterior</button>
+              <span class="page-info">Página {{ currentProviderPage + 1 }} de {{ totalProviderPages }}</span>
+              <button class="btn btn-sm" (click)="nextProviderPage()" [disabled]="currentProviderPage >= totalProviderPages - 1">Siguiente</button>
+            </div>
+          }
+        </div>
+      }
+      @if (isLoadingProviders) {
+        <div class="loading"><p>Cargando proveedores...</p></div>
+      }
+    </div>
+  }
 </div>

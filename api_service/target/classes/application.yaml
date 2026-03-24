@@ -13,7 +13,7 @@ spring:
     password: asas1234
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect 
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: create # ✅ Crea tablas + schema.sql + data.sql
     properties:
@@ -23,3 +23,11 @@ spring:
           batch_size: 20
         order_inserts: true
         order_updates: true
+        
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate: DEBUG
+    org.hibernate.SQL: DEBUG

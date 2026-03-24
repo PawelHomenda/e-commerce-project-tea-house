@@ -8,7 +8,15 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- =====================================================================
--- 1. EMPLEADOS (5 registros)
+-- 1. CATEGORÍAS (2 registros)
+-- =====================================================================
+
+INSERT IGNORE INTO categories (name, description, active) VALUES
+('DRINK', 'Bebidas - Tés e infusiones', 1),
+('DESSERT', 'Postres y dulces', 1);
+
+-- =====================================================================
+-- 2. EMPLEADOS (5 registros)
 -- =====================================================================
 
 INSERT IGNORE INTO employees (first_name, last_name, salary, phone_number, email, oauth2_id, oauth2_provider) VALUES
@@ -49,32 +57,32 @@ INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address,
 -- 4. PRODUCTOS (23 registros - 10 bebidas, 13 postres)
 -- =====================================================================
 
-INSERT IGNORE INTO products (name, description, category, price, measure_unit, active) VALUES
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES
 -- BEBIDAS (Tés)
-('Té Verde Sencha', 'Té verde japonés de alta calidad, suave y refrescante', 'DRINK', 3.50, 'taza', 1),
-('Té Negro Earl Grey', 'Té negro aromático con bergamota', 'DRINK', 3.00, 'taza', 1),
-('Té Oolong Premium', 'Té semifermentado con notas florales', 'DRINK', 4.50, 'taza', 1),
-('Té Blanco Silver Needle', 'Té blanco delicado y exclusivo', 'DRINK', 5.00, 'taza', 1),
-('Té Rooibos', 'Infusión sudafricana sin cafeína', 'DRINK', 3.20, 'taza', 1),
-('Té Chai Masala', 'Té negro especiado con leche', 'DRINK', 3.80, 'taza', 1),
-('Té Matcha Latte', 'Bebida cremosa de té verde en polvo', 'DRINK', 4.80, 'vaso', 1),
-('Té Helado de Melocotón', 'Refrescante té frío con frutas', 'DRINK', 3.50, 'vaso', 1),
-('Infusión de Menta', 'Menta fresca natural', 'DRINK', 2.80, 'taza', 1),
-('Infusión de Manzanilla', 'Relajante infusión de flores', 'DRINK', 2.50, 'taza', 1),
+('Té Verde Sencha', 'Té verde japonés de alta calidad, suave y refrescante', 1, 3.50, 'taza', 1),
+('Té Negro Earl Grey', 'Té negro aromático con bergamota', 1, 3.00, 'taza', 1),
+('Té Oolong Premium', 'Té semifermentado con notas florales', 1, 4.50, 'taza', 1),
+('Té Blanco Silver Needle', 'Té blanco delicado y exclusivo', 1, 5.00, 'taza', 1),
+('Té Rooibos', 'Infusión sudafricana sin cafeína', 1, 3.20, 'taza', 1),
+('Té Chai Masala', 'Té negro especiado con leche', 1, 3.80, 'taza', 1),
+('Té Matcha Latte', 'Bebida cremosa de té verde en polvo', 1, 4.80, 'vaso', 1),
+('Té Helado de Melocotón', 'Refrescante té frío con frutas', 1, 3.50, 'vaso', 1),
+('Infusión de Menta', 'Menta fresca natural', 1, 2.80, 'taza', 1),
+('Infusión de Manzanilla', 'Relajante infusión de flores', 1, 2.50, 'taza', 1),
 -- POSTRES
-('Pastel de Chocolate', 'Delicioso pastel de chocolate casero con ganache', 'DESSERT', 12.00, 'porción', 1),
-('Cheesecake de Fresa', 'Tarta de queso con topping de fresas frescas', 'DESSERT', 14.00, 'porción', 1),
-('Cheesecake de Matcha', 'Tarta de queso con sabor a te matcha', 'DESSERT', 14.00, 'porción', 1),
-('Tarta de Zanahoria', 'Tarta especiada con frosting de queso crema', 'DESSERT', 11.50, 'porción', 1),
-('Brownie con Nueces', 'Brownie intenso de chocolate con nueces', 'DESSERT', 8.00, 'porción', 1),
-('Galletas de Mantequilla', 'Galletas artesanales crujientes', 'DESSERT', 2.00, 'unidad', 1),
-('Scones con Mermelada', 'Bollos ingleses con mermelada y nata', 'DESSERT', 6.50, 'porción', 1),
-('Macarons Surtidos', 'Delicados macarons franceses de varios sabores', 'DESSERT', 3.50, 'unidad', 1),
-('Tarta de Limón', 'Tarta refrescante de limón con merengue', 'DESSERT', 13.00, 'porción', 1),
-('Croissant de Almendra', 'Croissant relleno de crema de almendras', 'DESSERT', 4.50, 'unidad', 1),
-('Dorayaki', 'Dulce japonés de 2 tortillas con pasta anko', 'DESSERT', 2.50, 'unidad', 1),
-('Mochi', 'Pastel de arroz con relleno de frutas en su interior', 'DESSERT', 3.50, 'unidad', 1),
-('Tiramisú', 'Postre italiano clásico con café y mascarpone', 'DESSERT', 10.00, 'porción', 1);
+('Pastel de Chocolate', 'Delicioso pastel de chocolate casero con ganache', 2, 12.00, 'porción', 1),
+('Cheesecake de Fresa', 'Tarta de queso con topping de fresas frescas', 2, 14.00, 'porción', 1),
+('Cheesecake de Matcha', 'Tarta de queso con sabor a te matcha', 2, 14.00, 'porción', 1),
+('Tarta de Zanahoria', 'Tarta especiada con frosting de queso crema', 2, 11.50, 'porción', 1),
+('Brownie con Nueces', 'Brownie intenso de chocolate con nueces', 2, 8.00, 'porción', 1),
+('Galletas de Mantequilla', 'Galletas artesanales crujientes', 2, 2.00, 'unidad', 1),
+('Scones con Mermelada', 'Bollos ingleses con mermelada y nata', 2, 6.50, 'porción', 1),
+('Macarons Surtidos', 'Delicados macarons franceses de varios sabores', 2, 3.50, 'unidad', 1),
+('Tarta de Limón', 'Tarta refrescante de limón con merengue', 2, 13.00, 'porción', 1),
+('Croissant de Almendra', 'Croissant relleno de crema de almendras', 2, 4.50, 'unidad', 1),
+('Dorayaki', 'Dulce japonés de 2 tortillas con pasta anko', 2, 2.50, 'unidad', 1),
+('Mochi', 'Pastel de arroz con relleno de frutas en su interior', 2, 3.50, 'unidad', 1),
+('Tiramisú', 'Postre italiano clásico con café y mascarpone', 2, 10.00, 'porción', 1);
 
 -- =====================================================================
 -- 5. INVENTARIO (23 registros - 1 por cada producto)

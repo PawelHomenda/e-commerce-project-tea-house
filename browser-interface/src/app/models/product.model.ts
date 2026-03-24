@@ -3,6 +3,7 @@
  * Equivalente a la entidad Product en Spring Boot
  */
 export interface Product {
+  active: boolean;
   id: number;
   name: string;
   description: string;
@@ -82,4 +83,109 @@ export interface PagedResponse<T> {
   first: boolean;
   last: boolean;
   empty: boolean;
+}
+
+/**
+ * Interfaz Client - Cliente/Usuario de la plataforma
+ */
+export interface Client {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+  oauth2Id?: string;
+  oauth2Provider?: string;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/**
+ * DTO para actualizar cliente
+ */
+export interface ClientUpdateDTO {
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+}
+
+/**
+ * Interfaz Employee - Empleado/Personal de la tienda
+ */
+export interface Employee {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber?: string;
+  address?: string;
+  salary: number;
+  position?: string;
+  department?: string;
+  oauth2Id?: string;
+  oauth2Provider?: string;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/**
+ * DTO para crear/actualizar empleado
+ */
+export interface EmployeeUpdateDTO {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phoneNumber?: string;
+  address?: string;
+  salary?: number;
+  position?: string;
+  department?: string;
+}
+
+/**
+ * Interfaz Provider - Proveedor/Distribuidor de té
+ */
+export interface Provider {
+  id: number;
+  name: string;
+  contact: string;
+  email: string;
+  phoneNumber?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+  oauth2Id?: string;
+  oauth2Provider?: string;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/**
+ * DTO para crear/actualizar proveedor
+ */
+export interface ProviderUpdateDTO {
+  name?: string;
+  contact?: string;
+  email?: string;
+  phoneNumber?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
 }

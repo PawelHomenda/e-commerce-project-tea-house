@@ -1,7 +1,7 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.repository;
 
+import es.kohchiku_bayashi.e_commerce_teahouse.model.Category;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
-import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ProductCategory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,14 +29,26 @@ class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     private Product testProduct;
+    private Category testCategory;
 
     @BeforeEach
     void setUp() {
+        testCategory = Category.builder()
+                .name("Bebidas")
+                .description("Categoría de bebidas")
+                .imageUrl("https://example.com/drinks.jpg")
+                .active(true)
+                .build();
+        Category savedCategory = categoryRepository.save(testCategory);
+
         testProduct = Product.builder()
                 .name("Té Bebida Premium")
                 .description("Bebida de té de alta calidad, 100% orgánico")
-                .category(ProductCategory.DRINK)
+                .category(savedCategory)
                 .price(12.50)
                 .measureUnit("g")
                 .active(true)
@@ -68,7 +80,7 @@ class ProductRepositoryTest {
         // Assert
         assertTrue(foundProduct.isPresent());
         assertEquals("Té Bebida Premium", foundProduct.get().getName());
-        assertEquals(ProductCategory.DRINK, foundProduct.get().getCategory());
+        assertEquals("Bebidas", foundProduct.get().getCategory().getName());
     }
 
     @Test
@@ -121,10 +133,17 @@ class ProductRepositoryTest {
     void testCountAllProducts() {
         // Arrange
         productRepository.save(testProduct);
+        Category dessertCategory = Category.builder()
+                .name("Postres")
+                .description("Categoría de postres")
+                .imageUrl("https://example.com/desserts.jpg")
+                .active(true)
+                .build();
+        Category savedDessertCategory = categoryRepository.save(dessertCategory);
         Product product2 = Product.builder()
                 .name("Postre Delicado")
                 .description("Postre artesanal")
-                .category(ProductCategory.DESSERT)
+                .category(savedDessertCategory)
                 .price(10.00)
                 .measureUnit("ud")
                 .active(true)
@@ -166,10 +185,17 @@ class ProductRepositoryTest {
     void testFindAllProducts() {
         // Arrange
         productRepository.save(testProduct);
+        Category dessertCategory = Category.builder()
+                .name("Postres")
+                .description("Categoría de postres")
+                .imageUrl("https://example.com/desserts.jpg")
+                .active(true)
+                .build();
+        Category savedDessertCategory = categoryRepository.save(dessertCategory);
         Product product2 = Product.builder()
                 .name("Postre Premium")
                 .description("Postre premium")
-                .category(ProductCategory.DESSERT)
+                .category(savedDessertCategory)
                 .price(18.50)
                 .build();
         productRepository.save(product2);

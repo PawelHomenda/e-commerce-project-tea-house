@@ -2,7 +2,6 @@ package es.kohchiku_bayashi.e_commerce_teahouse.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ProductCategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -29,10 +28,9 @@ public class Product {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
     
-    @NotNull(message = "La categoría es obligatoria")
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ProductCategory category;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
     
     @NotNull(message = "El precio es obligatorio")
     @DecimalMin(value = "0.0", inclusive = false)

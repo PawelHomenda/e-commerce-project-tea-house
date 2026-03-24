@@ -2,7 +2,7 @@ package es.kohchiku_bayashi.e_commerce_teahouse.service;
 
 import es.kohchiku_bayashi.e_commerce_teahouse.exception.ResourceNotFoundException;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
-import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ProductCategory;
+import es.kohchiku_bayashi.e_commerce_teahouse.model.Category;
 import es.kohchiku_bayashi.e_commerce_teahouse.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -50,7 +50,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
     
-    public List<Product> findByCategory(ProductCategory category) {
+    public List<Product> findByCategory(Category category) {
         return productRepository.findByCategory(category);
     }
     

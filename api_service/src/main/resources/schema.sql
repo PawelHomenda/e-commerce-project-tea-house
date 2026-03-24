@@ -17,16 +17,26 @@ create table if not exists employees(
     index idx_oauth2_id (oauth2_id)
 );
 
--- 2. Tabla de productos
+-- 2. Tabla de categorías
+create table if not exists categories(
+    id bigint not null auto_increment,
+    name varchar(50) not null unique,
+    description text,
+    active boolean default 1,
+    primary key(id)
+);
+
+-- 2b. Tabla de productos
 create table if not exists products(
     id bigint not null auto_increment,
     name varchar(50) not null,
     description text not null,
-    category varchar(10) not null,
+    category_id bigint not null,
 	price decimal(5,2) not null,
     measure_unit varchar(10),
     active boolean default 1,
-	primary key(id)
+	primary key(id),
+	foreign key(category_id) references categories(id)
 );
 
 -- 3. Tabla de proveedores con OAuth2

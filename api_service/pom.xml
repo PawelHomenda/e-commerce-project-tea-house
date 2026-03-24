@@ -148,6 +148,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
+					<mainClass>es.kohchiku_bayashi.e_commerce_teahouse.ECommerceTeahouseApplication</mainClass>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>

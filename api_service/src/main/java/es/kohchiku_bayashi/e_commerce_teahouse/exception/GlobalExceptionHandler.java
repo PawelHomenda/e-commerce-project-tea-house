@@ -11,6 +11,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.ConstraintViolationException;
@@ -28,6 +30,7 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
      * Maneja excepciones de autenticación, incluyendo token expirado.
@@ -272,6 +275,11 @@ public class GlobalExceptionHandler {
 
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         String message = "Error interno del servidor. Por favor, intenta más tarde.";
+
+        // Log the actual exception for debugging
+        logger.error("❌ UNHANDLED EXCEPTION in endpoint: {}", request.getDescription(false), ex);
+        logger.error("Exception type: {}", ex.getClass().getName());
+        logger.error("Exception message: {}", ex.getMessage());
 
         // Verifica si es un error de token
         if (ex.getMessage() != null && ex.getMessage().toLowerCase().contains("token")) {

@@ -1,8 +1,8 @@
 package es.kohchiku_bayashi.e_commerce_teahouse.repository;
 
+import es.kohchiku_bayashi.e_commerce_teahouse.model.Category;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Inventory;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.Product;
-import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ProductCategory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,15 +33,27 @@ class InventoryRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     private Product testProduct;
     private Inventory testInventory;
+    private Category testCategory;
 
     @BeforeEach
     void setUp() {
+        testCategory = Category.builder()
+                .name("Bebidas")
+                .description("Categoría de bebidas")
+                .imageUrl("https://example.com/drinks.jpg")
+                .active(true)
+                .build();
+        Category savedCategory = categoryRepository.save(testCategory);
+
         testProduct = Product.builder()
                 .name("Té Oolong Premium")
                 .description("Té oolong de la mejor calidad")
-                .category(ProductCategory.DRINK)
+                .category(savedCategory)
                 .price(25.00)
                 .measureUnit("g")
                 .active(true)
@@ -177,10 +189,18 @@ class InventoryRepositoryTest {
         testInventory.setProduct(savedProduct1);
         inventoryRepository.save(testInventory);
 
+        Category dessertCategory = Category.builder()
+                .name("Postres")
+                .description("Categoría de postres")
+                .imageUrl("https://example.com/desserts.jpg")
+                .active(true)
+                .build();
+        Category savedDessertCategory = categoryRepository.save(dessertCategory);
+
         Product product2 = Product.builder()
                 .name("Postre de Té Matcha")
                 .description("Delicioso postre con té matcha")
-                .category(ProductCategory.DESSERT)
+                .category(savedDessertCategory)
                 .price(30.00)
                 .build();
         Product savedProduct2 = productRepository.save(product2);
@@ -235,7 +255,7 @@ class InventoryRepositoryTest {
         Product product2 = Product.builder()
                 .name("Té Rojo Tradicional")
                 .description("Té rojo de alta fermentación")
-                .category(ProductCategory.DRINK)
+                .category(testCategory)
                 .price(15.00)
                 .build();
         Product savedProduct2 = productRepository.save(product2);
