@@ -100,11 +100,3 @@ Actualizar existencias.
   "path": "/api/products"
 }
 ```
-```
-
-### ¿Qué aporta esto a tu perfil?
-1.  **Claridad:** Elimina la adivinación. Cualquiera puede importar estos JSON en Postman y empezar a probar.
-2.  **Profesionalismo:** Estás siguiendo el estándar de las grandes APIs (como la de Stripe o GitHub).
-3.  **Habilidad técnica:** El ejemplo del error 403 demuestra que has configurado correctamente el manejo de excepciones en Spring Boot (`ControllerAdvice`).
-
-¿Te gustaría que añadamos también el ejemplo de cómo se vería el **Header de Autorización** en las peticiones de la API de negocios?
