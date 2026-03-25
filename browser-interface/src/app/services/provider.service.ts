@@ -8,15 +8,12 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class ProviderService {
-  private readonly apiUrl = `${environment.apiUrl}/api/providers`;
+  private readonly apiUrl = `${environment.apiUrl}/providers`;
 
   constructor(private http: HttpClient) {}
 
-  getAll(page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-    return this.http.get<any>(this.apiUrl, { params });
+  getAll(): Observable<Provider[]> {
+    return this.http.get<Provider[]>(this.apiUrl);
   }
 
   getById(id: number): Observable<Provider> {

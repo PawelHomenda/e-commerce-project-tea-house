@@ -8,18 +8,15 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class AdminService {
-  private readonly apiUrl = `${environment.apiUrl}/api`;
+  private readonly apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   /**
    * CLIENTES
    */
-  getClients(page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-    return this.http.get<any>(`${this.apiUrl}/clients`, { params });
+  getClients(): Observable<Client[]> {
+    return this.http.get<Client[]>(`${this.apiUrl}/clients`);
   }
 
   getClientById(id: number): Observable<Client> {
@@ -37,11 +34,8 @@ export class AdminService {
   /**
    * EMPLEADOS
    */
-  getEmployees(page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-    return this.http.get<any>(`${this.apiUrl}/employees`, { params });
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.apiUrl}/employees`);
   }
 
   getEmployeeById(id: number): Observable<Employee> {
@@ -63,11 +57,8 @@ export class AdminService {
   /**
    * PROVEEDORES
    */
-  getProviders(page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-    return this.http.get<any>(`${this.apiUrl}/providers`, { params });
+  getProviders(): Observable<Provider[]> {
+    return this.http.get<Provider[]>(`${this.apiUrl}/providers`);
   }
 
   getProviderById(id: number): Observable<Provider> {
@@ -89,11 +80,8 @@ export class AdminService {
   /**
    * ÓRDENES (Admin)
    */
-  getAllOrders(page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-    return this.http.get<any>(`${this.apiUrl}/orders`, { params });
+  getAllOrders(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/orders/clients`);
   }
 
   updateOrderStatus(orderId: number, status: string): Observable<any> {

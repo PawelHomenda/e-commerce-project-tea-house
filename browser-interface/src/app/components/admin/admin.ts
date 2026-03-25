@@ -306,13 +306,12 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.isLoadingOrders = true;
     
     let request = this.orderStatusFilter
-      ? this.orderService.getOrdersByStatus(this.orderStatusFilter, this.currentOrderPage, 10)
-      : this.orderService.getAllOrders(this.currentOrderPage, 10);
+      ? this.orderService.getOrdersByStatus(this.orderStatusFilter)
+      : this.orderService.getAllOrders();
 
     request.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response: PagedResponse<Order>) => {
-        this.orders = response.content;
-        this.totalOrderPages = response.totalPages;
+      next: (orders: Order[]) => {
+        this.orders = orders;
         this.isLoadingOrders = false;
       },
       error: (error) => {
@@ -410,12 +409,11 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   loadClients(): void {
     this.isLoadingClients = true;
-    this.adminService.getClients(this.currentClientPage, 10)
+    this.adminService.getClients()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response: PagedResponse<Client>) => {
-          this.clients = response.content;
-          this.totalClientPages = response.totalPages;
+        next: (clients: Client[]) => {
+          this.clients = clients;
           this.isLoadingClients = false;
         },
         error: (error) => {
@@ -508,12 +506,11 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   loadEmployees(): void {
     this.isLoadingEmployees = true;
-    this.employeeService.getAll(this.currentEmployeePage, 10)
+    this.employeeService.getAll()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response: PagedResponse<Employee>) => {
-          this.employees = response.content;
-          this.totalEmployeePages = response.totalPages;
+        next: (employees: Employee[]) => {
+          this.employees = employees;
           this.isLoadingEmployees = false;
         },
         error: (error) => {
@@ -609,12 +606,11 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   loadProviders(): void {
     this.isLoadingProviders = true;
-    this.providerService.getAll(this.currentProviderPage, 10)
+    this.providerService.getAll()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response: PagedResponse<Provider>) => {
-          this.providers = response.content;
-          this.totalProviderPages = response.totalPages;
+        next: (providers: Provider[]) => {
+          this.providers = providers;
           this.isLoadingProviders = false;
         },
         error: (error) => {

@@ -145,24 +145,15 @@ export class OrderService {
   /**
    * Obtener todas las órdenes (solo admin)
    */
-  getAllOrders(page: number = 0, size: number = 20): Observable<PagedResponse<Order>> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-
-    return this.http.get<PagedResponse<Order>>(`${this.apiUrl}/all`, { params });
+  getAllOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.apiUrl}/clients`);
   }
 
   /**
    * Obtener órdenes filtradas por estado (solo admin)
    */
-  getOrdersByStatus(status: OrderStatus, page: number = 0, size: number = 20): Observable<PagedResponse<Order>> {
-    const params = new HttpParams()
-      .set('status', status)
-      .set('page', page.toString())
-      .set('size', size.toString());
-
-    return this.http.get<PagedResponse<Order>>(`${this.apiUrl}/filter`, { params });
+  getOrdersByStatus(status: OrderStatus): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.apiUrl}/clients/state/${status}`);
   }
 
   /**

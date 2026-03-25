@@ -1,49 +1,76 @@
-version: '3.8'
-
 services:
+
+  # ─────────────────────────────────────────────
+  # Base de datos MySQL
+  # ─────────────────────────────────────────────
   db:
     image: mysql:8.0
     container_name: teahouse-db
     restart: always
     environment:
-      MYSQL_DATABASE: teahouse_db
+      MYSQL_DATABASE: casa_te          # ← debe coincidir con application.yaml
       MYSQL_ROOT_PASSWORD: asas1234
     ports:
-      - "3306:3306"
+      - "3307:3306"
     networks:
       - teahouse-network
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pasas1234"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
+  # ─────────────────────────────────────────────
+  # Servidor de Autenticación OAuth2 (puerto 9000)
+  # auth_server NO usa base de datos
+  # ─────────────────────────────────────────────
   auth-server:
-    build: ./auth_server
+    build:
+      context: ./auth_server
     container_name: teahouse-auth
     ports:
-      - "9000:9000" # Sincronizado con server.port=9000
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/teahouse_db
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=asas1234
-    depends_on:
-      - db
+      - "9000:9000"
     networks:
       - teahouse-network
 
+  # ─────────────────────────────────────────────
+  # API REST (puerto 8080)
+  # ─────────────────────────────────────────────
   business-server:
-    build: ./api_service
+    build:
+      context: ./api_service
     container_name: teahouse-business
     ports:
       - "8080:8080"
     environment:
-      # Sobrescribimos localhost por el nombre del servicio 'db'
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/teahouse_db?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
+      # MySQL: apunta al servicio 'db' dentro de la red Docker
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/casa_te?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=asas1234
-      # Sobrescribimos el issuer para que apunte al servicio 'auth-server'
-      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=http://auth-server:9000
+      # JWT: usa jwk-set-uri en vez de issuer-uri para evitar el mismatch de issuer
+      # (los tokens tienen iss=http://localhost:9000 pero la red interna usa auth-server:9000)
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI=http://auth-server:9000/oauth2/jwks
     depends_on:
-      - db
-      - auth-server
+      db:
+        condition: service_healthy
+      auth-server:
+        condition: service_started
+    networks:
+      - teahouse-network
+
+  # ─────────────────────────────────────────────
+  # Frontend Angular (puerto 4200 → nginx:80)
+  # ─────────────────────────────────────────────
+  browser-interface:
+    build:
+      context: ./browser-interface
+    container_name: teahouse-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - business-server
     networks:
       - teahouse-network
 

@@ -1,11 +1,11 @@
 spring:
   profiles:
-    active: dev
+    active:
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: "http://127.0.0.1:9000"
+          issuer-uri: "http://localhost:9000"
     
   datasource:
     url: jdbc:mysql://localhost:3306/casa_te

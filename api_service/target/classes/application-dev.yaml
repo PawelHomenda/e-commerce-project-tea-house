@@ -1,14 +1,11 @@
 spring:
   security:
     oauth2:
-      client:
-        provider:
-          client-app:
-            # IMPORTANTE: Cambiamos 127.0.0.1 por el nombre del servicio en Docker
-            authorization-uri: "http://auth-server:9000/oauth2/authorize"
-            token-uri: "http://auth-server:9000/oauth2/token"
-            user-info-uri: "http://auth-server:9000/userinfo"
-            jwk-set-uri: "http://auth-server:9000/oauth2/jwks"
       resourceserver:
         jwt:
-          issuer-uri: "http://auth-server:9000"
+          # En Docker usamos jwk-set-uri (red interna) en vez de issuer-uri.
+          # Razón: los tokens tienen iss=http://localhost:9000 (URL del navegador)
+          # pero internamente el auth-server se llama 'auth-server'.
+          # Con issuer-uri Spring valida que iss==issuer-uri → falla el match.
+          # Con jwk-set-uri solo valida la firma (suficiente para dev).
+          jwk-set-uri: "http://auth-server:9000/oauth2/jwks"

@@ -317,7 +317,11 @@ public class SecurityConfig {
 
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
-		return AuthorizationServerSettings.builder().build();
+		// Issuer fijo para que los tokens siempre tengan iss=http://localhost:9000
+		// independientemente de la URL desde la que se acceda (importante en Docker)
+		return AuthorizationServerSettings.builder()
+				.issuer("http://localhost:9000")
+				.build();
 	}
 
 	// Añadir este bean dentro de la clase, al final, junto a los demás @Bean

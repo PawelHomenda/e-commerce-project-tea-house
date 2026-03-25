@@ -30,6 +30,15 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  private normalizeToken(rawToken: string | null | undefined): string | null {
+    if (!rawToken) return null;
+    const trimmed = rawToken.trim();
+    if (!trimmed) return null;
+    return trimmed.toLowerCase().startsWith('bearer ')
+      ? trimmed.substring(7).trim()
+      : trimmed;
+  }
+
   register(registerDTO: RegisterDTO): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/register`, registerDTO).pipe(
       tap(response => this.handleAuthentication(response))
@@ -68,8 +77,12 @@ export class AuthService {
   }
 
   setToken(token: string): void {
-    localStorage.setItem('token', token);
-    this.isAuthenticatedSubject.next(true);
+    const normalizedToken = this.normalizeToken(token);
+    if (!normalizedToken) {
+      return;
+    }
+    localStorage.setItem('token', normalizedToken);
+    this.isAuthenticatedSubject.next(!this.isTokenExpired());
   }
 
   logout(): void {
@@ -151,14 +164,15 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return this.normalizeToken(localStorage.getItem('token'));
   }
 
   // ← CORREGIDO: soporta tanto {token, user} (modelo viejo) como {token, username, roles} (nuevo)
   private handleAuthentication(response: any): void {
-    if (!response?.token) return;
+    const token = this.normalizeToken(response?.token ?? response?.access_token);
+    if (!token) return;
 
-    localStorage.setItem('token', response.token);
+    localStorage.setItem('token', token);
 
     if (response.refreshToken) {
       localStorage.setItem('refreshToken', response.refreshToken);
@@ -202,7 +216,10 @@ export class AuthService {
     const token = this.getToken();
     if (!token) return true;
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+      const payloadPart = token.split('.')[1];
+      const base64 = payloadPart.replace(/-/g, '+').replace(/_/g, '/');
+      const paddedBase64 = base64 + '='.repeat((4 - (base64.length % 4)) % 4);
+      const payload = JSON.parse(atob(paddedBase64));
       return Date.now() >= payload.exp * 1000;
     } catch { return true; }
   }
