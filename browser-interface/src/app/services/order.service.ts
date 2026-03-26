@@ -92,7 +92,7 @@ export class OrderService {
    * Actualizar estado de orden (solo admin)
    */
   updateOrderStatus(id: number, status: OrderStatus): Observable<Order> {
-    return this.http.patch<Order>(`${this.apiUrl}/${id}/status`, { status }).pipe(
+    return this.http.patch<Order>(`${this.apiUrl}/clients/${id}/state?newState=${status}`, {}).pipe(
       tap(order => {
         const orders = this.ordersSubject.value;
         const index = orders.findIndex(o => o.id === id);
@@ -145,15 +145,15 @@ export class OrderService {
   /**
    * Obtener todas las órdenes (solo admin)
    */
-  getAllOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}/clients`);
+  getAllOrders(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/clients`);
   }
 
   /**
    * Obtener órdenes filtradas por estado (solo admin)
    */
-  getOrdersByStatus(status: OrderStatus): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}/clients/state/${status}`);
+  getOrdersByStatus(status: OrderStatus): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/clients/state/${status}`);
   }
 
   /**

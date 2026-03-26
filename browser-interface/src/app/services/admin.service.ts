@@ -85,7 +85,7 @@ export class AdminService {
   }
 
   updateOrderStatus(orderId: number, status: string): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/orders/${orderId}/status`, { status });
+    return this.http.patch<any>(`${this.apiUrl}/orders/clients/${orderId}/state?newState=${status}`, {});
   }
 
   /**

@@ -256,13 +256,10 @@
           <label for="orderStatusFilter">Filtrar por estado:</label>
           <select id="orderStatusFilter" [(ngModel)]="orderStatusFilter" (change)="filterOrdersByStatus()" class="form-control">
             <option value="">Todas las órdenes</option>
-            <option value="PENDING">Pendiente</option>
-            <option value="CONFIRMED">Confirmada</option>
-            <option value="PROCESSING">En Proceso</option>
-            <option value="SHIPPED">Enviada</option>
+            <option value="PENDENT">Pendiente</option>
+            <option value="PREPARING">En Preparación</option>
             <option value="DELIVERED">Entregada</option>
-            <option value="CANCELLED">Cancelada</option>
-            <option value="REFUNDED">Reembolsada</option>
+            <option value="CANCELED">Cancelada</option>
           </select>
         </div>
       </div>
@@ -276,7 +273,7 @@
                 <th>Cliente</th>
                 <th>Total</th>
                 <th>Estado</th>
-                <th>Pago</th>
+                <th>Servicio</th>
                 <th>Fecha</th>
                 <th>Acciones</th>
               </tr>
@@ -284,30 +281,27 @@
             <tbody>
               @for (order of orders; track order) {
                 <tr>
-                  <td><strong>#{{ order.orderNumber }}</strong></td>
-                  <td>{{ order.user.firstName }} {{ order.user.lastName }}</td>
+                  <td><strong>#{{ order.id }}</strong></td>
+                  <td>{{ order.client?.firstName }} {{ order.client?.lastName }}</td>
                   <td>{{ order.total | currency:'EUR':'symbol':'1.2-2' }}</td>
                   <td>
-                    <select [value]="order.status" (change)="updateOrderStatus(order, $any($event.target).value)" class="form-control form-control-sm">
-                      <option value="PENDING">Pendiente</option>
-                      <option value="CONFIRMED">Confirmada</option>
-                      <option value="PROCESSING">En Proceso</option>
-                      <option value="SHIPPED">Enviada</option>
+                    <select [value]="order.orderState" (change)="updateOrderStatus(order, $any($event.target).value)" class="form-control form-control-sm">
+                      <option value="PENDENT">Pendiente</option>
+                      <option value="PREPARING">En Preparación</option>
                       <option value="DELIVERED">Entregada</option>
-                      <option value="CANCELLED">Cancelada</option>
-                      <option value="REFUNDED">Reembolsada</option>
+                      <option value="CANCELED">Cancelada</option>
                     </select>
                   </td>
                   <td>
-              <span class="badge" [ngClass]="{
-                'badge-success': order.paymentStatus === 'PAID',
-                'badge-warning': order.paymentStatus === 'PENDING',
-                'badge-danger': order.paymentStatus === 'FAILED' || order.paymentStatus === 'REFUNDED'
-              }">
-                      {{ order.paymentStatus === 'PAID' ? 'Pagado' : order.paymentStatus === 'PENDING' ? 'Pendiente' : order.paymentStatus === 'FAILED' ? 'Fallido' : 'Reembolsado' }}
+                    <span class="badge" [ngClass]="{
+                      'badge-info': order.serviceType === 'TABLE',
+                      'badge-warning': order.serviceType === 'TAKEAWAY',
+                      'badge-success': order.serviceType === 'DELIVERY'
+                    }">
+                      {{ order.serviceType === 'TABLE' ? 'Mesa' : order.serviceType === 'TAKEAWAY' ? 'Para llevar' : 'Envío' }}
                     </span>
                   </td>
-                  <td>{{ order.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+                  <td>{{ order.orderDate | date: 'dd/MM/yyyy' }}</td>
                   <td>
                     <button class="btn btn-sm btn-info" (click)="viewOrderDetails(order)">Ver</button>
                   </td>

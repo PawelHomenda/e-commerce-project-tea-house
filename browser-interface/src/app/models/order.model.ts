@@ -5,13 +5,10 @@ import { User } from './user.model';
  * Estados posibles de un pedido
  */
 export enum OrderStatus {
-  PENDING = 'PENDING',
-  CONFIRMED = 'CONFIRMED',
-  PROCESSING = 'PROCESSING',
-  SHIPPED = 'SHIPPED',
+  PENDENT = 'PENDENT',
+  PREPARING = 'PREPARING',
   DELIVERED = 'DELIVERED',
-  CANCELLED = 'CANCELLED',
-  REFUNDED = 'REFUNDED'
+  CANCELED = 'CANCELED'
 }
 
 /**

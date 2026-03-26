@@ -106,6 +106,15 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasAuthority("SCOPE_admin")
 
                         // ============================================
+                        // CLIENTES - Cliente ve sus datos, ADMIN gestiona todos
+                        // ============================================
+                        .requestMatchers(HttpMethod.GET, "/api/clients").hasAnyAuthority("SCOPE_user:client", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/clients/**").hasAnyAuthority("SCOPE_user:client", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/clients/admin/all").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.PUT, "/api/clients/**").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.DELETE, "/api/clients/**").hasAuthority("SCOPE_admin")
+
+                        // ============================================
                         // PEDIDOS DE CLIENTES - Clientes ven/crean solo los suyos, ADMIN ve todos
                         // ============================================
                         .requestMatchers(HttpMethod.GET, "/api/orders/clients").hasAnyAuthority("SCOPE_user:client","SCOPE_user:employee", "SCOPE_admin")

@@ -35,23 +35,17 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   // Mapeo de estados
   statusLabels: { [key in OrderStatus]: string } = {
-    [OrderStatus.PENDING]: 'Pendiente',
-    [OrderStatus.CONFIRMED]: 'Confirmada',
-    [OrderStatus.PROCESSING]: 'En Proceso',
-    [OrderStatus.SHIPPED]: 'Enviada',
+    [OrderStatus.PENDENT]: 'Pendiente',
+    [OrderStatus.PREPARING]: 'En Preparación',
     [OrderStatus.DELIVERED]: 'Entregada',
-    [OrderStatus.CANCELLED]: 'Cancelada',
-    [OrderStatus.REFUNDED]: 'Reembolsada'
+    [OrderStatus.CANCELED]: 'Cancelada'
   };
 
   statusColors: { [key in OrderStatus]: string } = {
-    [OrderStatus.PENDING]: 'warning',
-    [OrderStatus.CONFIRMED]: 'info',
-    [OrderStatus.PROCESSING]: 'info',
-    [OrderStatus.SHIPPED]: 'primary',
+    [OrderStatus.PENDENT]: 'warning',
+    [OrderStatus.PREPARING]: 'info',
     [OrderStatus.DELIVERED]: 'success',
-    [OrderStatus.CANCELLED]: 'danger',
-    [OrderStatus.REFUNDED]: 'secondary'
+    [OrderStatus.CANCELED]: 'danger'
   };
 
   constructor(
@@ -204,29 +198,23 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   canCancelOrder(order: Order): boolean {
-    return order.status === OrderStatus.PENDING || order.status === OrderStatus.CONFIRMED;
+    return order.status === OrderStatus.PENDENT;
   }
 
   canReorder(order: Order): boolean {
-    return order.status === OrderStatus.DELIVERED || order.status === OrderStatus.CANCELLED;
+    return order.status === OrderStatus.DELIVERED || order.status === OrderStatus.CANCELED;
   }
 
   getOrderStatusIcon(status: OrderStatus): string {
     switch (status) {
-      case OrderStatus.PENDING:
+      case OrderStatus.PENDENT:
         return '⏳';
-      case OrderStatus.CONFIRMED:
-        return '✓';
-      case OrderStatus.PROCESSING:
+      case OrderStatus.PREPARING:
         return '⚙️';
-      case OrderStatus.SHIPPED:
-        return '📦';
       case OrderStatus.DELIVERED:
         return '✓✓';
-      case OrderStatus.CANCELLED:
+      case OrderStatus.CANCELED:
         return '✗';
-      case OrderStatus.REFUNDED:
-        return '💰';
       default:
         return '?';
     }

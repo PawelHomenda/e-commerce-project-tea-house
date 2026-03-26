@@ -1,25 +1,22 @@
 /**
  * Roles de usuario
  */
-export enum UserRole {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-  MODERATOR = 'MODERATOR'
-}
+export type UserRole = 'USER' | 'ADMIN' | 'CLIENT' | 'EMPLOYEE' | 'PROVIDER' | 'MODERATOR';
 
 /**
  * Interfaz User - Usuario
  */
 export interface User {
-  id: number;
+  id?: number;
   email: string;
   firstName: string;
   lastName: string;
   phone?: string;
+  username?: string;
   role: UserRole;
   isActive: boolean;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
 }
 
 /**

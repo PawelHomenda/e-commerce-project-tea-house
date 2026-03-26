@@ -1,24 +1,60 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-AuthServerApplication<auth-server>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "es.springbootcourse.auth_server.AuthServerApplication",
-            "projectName": "auth-server",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "name": "Docker: Attach Business Server (8080)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5005,
+            "projectName": "tea_house_e_commerce",
+            "sourcePaths": ["${workspaceFolder}/api_service/src/main/java"]
         },
         {
             "type": "java",
-            "name": "Spring Boot-ECommerceTeahouseApplication<tea_house_e_commerce>",
+            "name": "Docker: Attach Auth Server (9000)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5006,
+            "projectName": "auth-server",
+            "sourcePaths": ["${workspaceFolder}/auth_server/src/main/java"]
+        },
+        {
+            "name": "Docker: Chrome Frontend (4200)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}/browser-interface/src"
+        },
+        {
+            "type": "java",
+            "name": "Local: Spring Boot Business Server",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "es.kohchiku_bayashi.e_commerce_teahouse.ECommerceTeahouseApplication",
             "projectName": "tea_house_e_commerce",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Local: Spring Boot Auth Server",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "es.springbootcourse.auth_server.AuthServerApplication",
+            "projectName": "auth-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Docker: Attach All (Business + Auth + Chrome)",
+            "configurations": [
+                "Docker: Attach Business Server (8080)",
+                "Docker: Attach Auth Server (9000)",
+                "Docker: Chrome Frontend (4200)"
+            ]
         }
     ]
 }

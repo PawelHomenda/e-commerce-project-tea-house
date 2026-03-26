@@ -8,4 +8,7 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
+
+# Debug: JDWP agent habilitado via variable de entorno (se activa si DEBUG=true)
+ENV JAVA_TOOL_OPTIONS=""
 ENTRYPOINT ["java", "-jar", "app.jar"]

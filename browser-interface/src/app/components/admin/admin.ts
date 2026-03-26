@@ -8,8 +8,8 @@ import { AuthService } from '../../services/auth.service';
 import { AdminService } from '../../services/admin.service';
 import { EmployeeService } from '../../services/employee.service';
 import { ProviderService } from '../../services/provider.service';
-import { Product, ProductDTO, Category, PagedResponse, Client, Employee, Provider } from '../../models/product.model';
-import { Order, OrderStatus } from '../../models/order.model';
+import { Product, ProductDTO, Category, PagedResponse, Client, Employee, Provider, OrderClient } from '../../models/product.model';
+import { OrderStatus } from '../../models/order.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -38,7 +38,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   totalProductPages = 0;
 
   // Órdenes
-  orders: Order[] = [];
+  orders: OrderClient[] = [];
   orderStatusFilter: OrderStatus | '' = '';
   isLoadingOrders = true;
   currentOrderPage = 0;
@@ -310,8 +310,8 @@ export class AdminComponent implements OnInit, OnDestroy {
       : this.orderService.getAllOrders();
 
     request.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (orders: Order[]) => {
-        this.orders = orders;
+      next: (orders: any[]) => {
+        this.orders = orders as OrderClient[];
         this.isLoadingOrders = false;
       },
       error: (error) => {
@@ -326,14 +326,14 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.loadOrders();
   }
 
-  updateOrderStatus(order: Order, newStatus: OrderStatus): void {
+  updateOrderStatus(order: OrderClient, newStatus: OrderStatus): void {
     this.orderService.updateOrderStatus(order.id, newStatus)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (updatedOrder) => {
+        next: (updatedOrder: any) => {
           const index = this.orders.findIndex(o => o.id === order.id);
           if (index !== -1) {
-            this.orders[index] = updatedOrder;
+            this.orders[index] = updatedOrder as OrderClient;
           }
           this.successMessage = 'Estado de orden actualizado';
           setTimeout(() => this.successMessage = '', 3000);
@@ -358,7 +358,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
   }
 
-  viewOrderDetails(order: Order): void {
+  viewOrderDetails(order: OrderClient): void {
     // Placeholder para ver detalles de orden
     console.log('Detalles de orden:', order);
   }
@@ -376,26 +376,20 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   getStatusLabel(status: OrderStatus): string {
     const labels: { [key in OrderStatus]: string } = {
-      [OrderStatus.PENDING]: 'Pendiente',
-      [OrderStatus.CONFIRMED]: 'Confirmada',
-      [OrderStatus.PROCESSING]: 'En Proceso',
-      [OrderStatus.SHIPPED]: 'Enviada',
+      [OrderStatus.PENDENT]: 'Pendiente',
+      [OrderStatus.PREPARING]: 'En Preparación',
       [OrderStatus.DELIVERED]: 'Entregada',
-      [OrderStatus.CANCELLED]: 'Cancelada',
-      [OrderStatus.REFUNDED]: 'Reembolsada'
+      [OrderStatus.CANCELED]: 'Cancelada'
     };
     return labels[status] || status;
   }
 
   getStatusColor(status: OrderStatus): string {
     const colors: { [key in OrderStatus]: string } = {
-      [OrderStatus.PENDING]: 'warning',
-      [OrderStatus.CONFIRMED]: 'info',
-      [OrderStatus.PROCESSING]: 'info',
-      [OrderStatus.SHIPPED]: 'primary',
+      [OrderStatus.PENDENT]: 'warning',
+      [OrderStatus.PREPARING]: 'info',
       [OrderStatus.DELIVERED]: 'success',
-      [OrderStatus.CANCELLED]: 'danger',
-      [OrderStatus.REFUNDED]: 'secondary'
+      [OrderStatus.CANCELED]: 'danger'
     };
     return colors[status] || 'secondary';
   }

@@ -38,8 +38,8 @@
                 </p>
               }
               <p>
-                <strong>Rol:</strong> <span class="badge" [ngClass]="{ 'badge-admin': currentUser.role === 'ADMIN', 'badge-user': currentUser.role === 'USER' }">
-                {{ currentUser.role === 'ADMIN' ? 'Administrador' : 'Usuario' }}
+                <strong>Rol:</strong> <span class="badge" [ngClass]="{ 'badge-admin': currentUser.role === 'ADMIN', 'badge-user': currentUser.role !== 'ADMIN' }">
+                {{ currentUser.role === 'ADMIN' ? 'Administrador' : currentUser.role === 'CLIENT' ? 'Cliente' : currentUser.role === 'EMPLOYEE' ? 'Empleado' : currentUser.role === 'PROVIDER' ? 'Proveedor' : 'Usuario' }}
               </span>
             </p>
             <p>

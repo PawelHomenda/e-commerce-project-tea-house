@@ -189,3 +189,20 @@ export interface ProviderUpdateDTO {
   postalCode?: string;
   country?: string;
 }
+
+/**
+ * Interfaz OrderClient - Pedido de cliente (modelo del backend)
+ */
+export interface OrderClient {
+  id: number;
+  client: Client;
+  employee?: Employee;
+  orderDate: string;
+  orderState: string;
+  serviceType: string;
+  discountPercentage: number;
+  invoiceClient?: any;
+  detailOrderClients?: any[];
+  subtotal: number;
+  total: number;
+}

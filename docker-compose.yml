@@ -32,6 +32,9 @@ services:
     container_name: teahouse-auth
     ports:
       - "9000:9000"
+      - "5006:5005"       # ← Puerto debug JDWP (auth-server)
+    environment:
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     networks:
       - teahouse-network
 
@@ -44,7 +47,9 @@ services:
     container_name: teahouse-business
     ports:
       - "8080:8080"
+      - "5005:5005"       # ← Puerto debug JDWP (business-server)
     environment:
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
       # MySQL: apunta al servicio 'db' dentro de la red Docker
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/casa_te?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
