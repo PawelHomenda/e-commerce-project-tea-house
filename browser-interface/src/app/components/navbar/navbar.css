@@ -1,0 +1,165 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border, hsl(30, 20%, 85%));
+  background: hsla(30, 33%, 96%, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-brand .emoji {
+  font-size: 1.5rem;
+}
+
+.navbar-brand h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--fg, hsl(20, 10%, 15%));
+  margin: 0;
+}
+
+.navbar-brand span {
+  font-size: 0.875rem;
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.875rem;
+}
+
+.navbar-nav a {
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.navbar-nav a:hover {
+  color: var(--fg, hsl(20, 10%, 15%));
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.navbar-actions .btn {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  background: var(--card, hsl(30, 30%, 98%));
+  color: var(--fg, hsl(20, 10%, 15%));
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar-actions .btn:hover {
+  background: var(--muted, hsl(30, 20%, 90%));
+}
+
+.user-menu {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.admin-badge {
+  display: inline-block;
+  background: hsl(350, 50%, 60%);
+  color: #fff;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.btn-user, .btn-admin, .btn-logout {
+  font-size: 0.8rem !important;
+  padding: 0.3rem 0.6rem !important;
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  background: var(--card, hsl(30, 30%, 98%));
+  color: var(--fg, hsl(20, 10%, 15%));
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-user:hover, .btn-admin:hover {
+  background: var(--primary, hsl(150, 30%, 30%));
+  color: var(--primary-fg, hsl(30, 33%, 96%));
+  border-color: var(--primary, hsl(150, 30%, 30%));
+}
+
+.btn-logout:hover {
+  background: hsl(350, 50%, 60%);
+  color: #fff;
+}
+
+.cart-btn {
+  position: relative;
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  background: var(--card, hsl(30, 30%, 98%));
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: hsl(350, 50%, 60%);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    display: none;
+  }
+  .user-menu {
+    flex-wrap: wrap;
+  }
+}

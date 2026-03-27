@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Cart, CartItem, AddToCartDTO, UpdateCartItemDTO } from '../models/cart.model';
+import { Product } from '../models/product.model';
 
 /**
  * Servicio de Carrito de Compras
@@ -75,7 +76,7 @@ export class CartService {
     };
   }
 
-  addToCart(addToCartDTO: AddToCartDTO): Observable<Cart> {
+  addToCart(addToCartDTO: AddToCartDTO, product?: Product): Observable<Cart> {
     const cart = this.cartSubject.value || this.createEmptyCart();
     
     const existingItem = cart.items.find(item => item.product.id === addToCartDTO.productId);
@@ -85,9 +86,9 @@ export class CartService {
     } else {
       const newItem: CartItem = {
         id: Date.now(),
-        product: { id: addToCartDTO.productId } as any,
+        product: product || { id: addToCartDTO.productId } as any,
         quantity: addToCartDTO.quantity,
-        price: 0
+        price: addToCartDTO.price || 0
       };
       cart.items.push(newItem);
     }
@@ -100,8 +101,8 @@ export class CartService {
     return of(cart);
   }
 
-  addProduct(productId: number, quantity: number = 1): Observable<Cart> {
-    return this.addToCart({ productId, quantity });
+  addProduct(productId: number, quantity: number = 1, product?: Product): Observable<Cart> {
+    return this.addToCart({ productId, quantity, price: product?.price }, product);
   }
 
   updateItemQuantity(updateDTO: UpdateCartItemDTO): Observable<Cart> {

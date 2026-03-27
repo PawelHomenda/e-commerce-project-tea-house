@@ -1,38 +1,3 @@
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="navbar-brand">
-    <span class="emoji">🫖</span>
-    <h1>Casa del Té</h1>
-    <span>Kouchiku Bayashi</span>
-  </div>
-  <div class="navbar-nav">
-    <a routerLink="/">Inicio</a>
-    <a (click)="scrollToSection('categorias')">Categorías</a>
-    <a (click)="scrollToSection('productos')">Productos</a>
-    <a (click)="scrollToSection('nosotros')">Nosotros</a>
-  </div>
-  <div class="navbar-actions">
-    @if (!authService.isAuthenticated()) {
-      <button class="btn btn-outline-primary btn-sm" routerLink="/login">Login</button>
-    } @else {
-      <div class="user-menu">
-        <div class="user-info">
-          <span class="user-name">{{ (authService.currentUser$ | async)?.firstName }}</span>
-          @if ((authService.currentUser$ | async)?.role === 'ADMIN') {
-            <span class="admin-badge">Admin</span>
-          }
-        </div>
-        <button class="btn btn-user" (click)="router.navigate(['/profile'])">👤 Perfil</button>
-        @if ((authService.currentUser$ | async)?.role === 'ADMIN') {
-          <button class="btn btn-admin" (click)="router.navigate(['/admin'])">⚙️ Admin</button>
-        }
-        <button class="btn btn-logout" (click)="authService.logout()">🚪 Salir</button>
-      </div>
-    }
-  </div>
-  <button class="cart-btn">🛒 Carrito</button>
-</nav>
-
 <!-- Hero Section -->
 <section class="hero-section">
   <div class="hero-overlay"></div>
@@ -107,8 +72,30 @@
     }
   </div>
 
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Buscar té..." [value]="searchTerm" (input)="onSearchInput($event)" class="search-input" />
+    </div>
+    <div class="filter-controls">
+      <select class="filter-select" (change)="onCategoryFilter($event)">
+        <option value="">Todas las categorías</option>
+        @for (cat of categories; track cat.id) {
+          <option [value]="cat.id">{{ cat.name }}</option>
+        }
+      </select>
+      <select class="filter-select" (change)="onSortChange($event)">
+        <option value="">Ordenar por</option>
+        <option value="price-asc">Precio: Menor a Mayor</option>
+        <option value="price-desc">Precio: Mayor a Menor</option>
+        <option value="name">Nombre A-Z</option>
+      </select>
+    </div>
+  </div>
+
   <div class="products-grid">
-    @for (p of featuredProducts; track p.id) {
+    @for (p of filteredProducts; track p.id) {
       <div class="product-card">
         <div class="product-image">
           <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8B7355 0%, #5C4033 100%);"></div>
@@ -131,12 +118,27 @@
     }
 
     <!-- Si no hay productos, mostrar placeholder -->
-    @if (!loadingProducts && featuredProducts.length === 0) {
+    @if (!loadingProducts && filteredProducts.length === 0) {
       <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">
-        No se cargaron productos del API. Utilizando datos de ejemplo.
+        @if (searchTerm || filterCategoryId) {
+          No se encontraron productos con los filtros seleccionados.
+        } @else {
+          No se cargaron productos del API. Utilizando datos de ejemplo.
+        }
       </div>
     }
   </div>
+
+  @if (allProducts.length > 8 && !showAllProducts && !searchTerm && !filterCategoryId) {
+    <div class="show-all-container">
+      <button class="btn-show-all" (click)="toggleShowAll()">Ver todos los productos ({{ allProducts.length }})</button>
+    </div>
+  }
+  @if (showAllProducts && !searchTerm && !filterCategoryId) {
+    <div class="show-all-container">
+      <button class="btn-show-all" (click)="toggleShowAll()">Mostrar menos</button>
+    </div>
+  }
 </section>
 <!-- About Section -->
 <section class="about-section" id="nosotros">

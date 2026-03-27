@@ -108,8 +108,8 @@ public class SecurityConfig {
                         // ============================================
                         // CLIENTES - Cliente ve sus datos, ADMIN gestiona todos
                         // ============================================
-                        .requestMatchers(HttpMethod.GET, "/api/clients").hasAnyAuthority("SCOPE_user:client", "SCOPE_admin")
-                        .requestMatchers(HttpMethod.GET, "/api/clients/**").hasAnyAuthority("SCOPE_user:client", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/clients").hasAnyAuthority("SCOPE_client", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/clients/**").hasAnyAuthority("SCOPE_client", "SCOPE_admin")
                         .requestMatchers(HttpMethod.GET, "/api/clients/admin/all").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/clients/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/clients/**").hasAuthority("SCOPE_admin")
@@ -117,19 +117,20 @@ public class SecurityConfig {
                         // ============================================
                         // PEDIDOS DE CLIENTES - Clientes ven/crean solo los suyos, ADMIN ve todos
                         // ============================================
-                        .requestMatchers(HttpMethod.GET, "/api/orders/clients").hasAnyAuthority("SCOPE_user:client","SCOPE_user:employee", "SCOPE_admin")
-                        .requestMatchers(HttpMethod.GET, "/api/orders/clients/**").hasAnyAuthority("SCOPE_user:client","SCOPE_user:employee", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/orders/clients").hasAnyAuthority("SCOPE_client","SCOPE_employee", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/orders/clients/**").hasAnyAuthority("SCOPE_client","SCOPE_employee", "SCOPE_admin")
                         .requestMatchers(HttpMethod.GET, "/api/orders/clients/admin/all").hasAuthority("SCOPE_admin")
-                        .requestMatchers(HttpMethod.POST, "/api/orders/clients/**").hasAnyAuthority("SCOPE_user:client", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.POST, "/api/orders/clients").hasAnyAuthority("SCOPE_client", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.POST, "/api/orders/clients/**").hasAnyAuthority("SCOPE_client", "SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/orders/clients/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/orders/clients/**").hasAuthority("SCOPE_admin")
 
                         // ============================================
                         // PEDIDOS DE PROVEEDORES - Proveedores ven/crean solo los suyos, ADMIN/EMPLOYEE ve todos
                         // ============================================
-                        .requestMatchers(HttpMethod.GET, "/api/orders/providers").hasAnyAuthority("SCOPE_user:provider", "SCOPE_user:employee", "SCOPE_admin")
-                        .requestMatchers(HttpMethod.GET, "/api/orders/providers/**").hasAnyAuthority("SCOPE_user:provider", "SCOPE_user:employee", "SCOPE_admin")
-                        .requestMatchers(HttpMethod.POST, "/api/orders/providers/**").hasAnyAuthority("SCOPE_user:employee", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/orders/providers").hasAnyAuthority("SCOPE_provider", "SCOPE_employee", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.GET, "/api/orders/providers/**").hasAnyAuthority("SCOPE_provider", "SCOPE_employee", "SCOPE_admin")
+                        .requestMatchers(HttpMethod.POST, "/api/orders/providers/**").hasAnyAuthority("SCOPE_employee", "SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/orders/providers/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/orders/providers/**").hasAuthority("SCOPE_admin")
 
@@ -141,18 +142,18 @@ public class SecurityConfig {
                         // ============================================
                         // INVENTARIO - Solo ADMIN y EMPLOYEE
                         // ============================================
-                        .requestMatchers("/api/inventory/**").hasAnyAuthority("SCOPE_user:employee", "SCOPE_admin")
+                        .requestMatchers("/api/inventory/**").hasAnyAuthority("SCOPE_employee", "SCOPE_admin")
                         
                         // ============================================
                         // EMPLEADOS - Solo ADMIN y EMPLOYEE
                         // ============================================
-                        .requestMatchers("/api/employees/**").hasAnyAuthority("SCOPE_user:employee", "SCOPE_admin")
+                        .requestMatchers("/api/employees/**").hasAnyAuthority("SCOPE_employee", "SCOPE_admin")
                         
                         // ============================================
                         // FACTURAS DE CLIENTES - Cliente ve la suya, ADMIN/EMPLOYEE ve todo
                         // ============================================
                         .requestMatchers(HttpMethod.GET, "/api/invoices/clients/**")
-                        .hasAnyAuthority("SCOPE_user:client", "SCOPE_user:employee", "SCOPE_admin")
+                        .hasAnyAuthority("SCOPE_client", "SCOPE_employee", "SCOPE_admin")
                         .requestMatchers(HttpMethod.POST, "/api/invoices/clients/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/invoices/clients/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/invoices/clients/**").hasAuthority("SCOPE_admin")
@@ -161,7 +162,7 @@ public class SecurityConfig {
                         // FACTURAS DE PROVEEDORES - Proveedor ve la suya, ADMIN/EMPLOYEE ve todo
                         // ============================================
                         .requestMatchers(HttpMethod.GET, "/api/invoices/providers/**")
-                        .hasAnyAuthority("SCOPE_user:provider", "SCOPE_user:employee", "SCOPE_admin")
+                        .hasAnyAuthority("SCOPE_provider", "SCOPE_employee", "SCOPE_admin")
                         .requestMatchers(HttpMethod.POST, "/api/invoices/providers/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/invoices/providers/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/invoices/providers/**").hasAuthority("SCOPE_admin")

@@ -25,6 +25,12 @@ signup() {
 
   // Productos destacados (cargados desde el backend)
   featuredProducts: Product[] = [];
+  allProducts: Product[] = [];
+  filteredProducts: Product[] = [];
+  searchTerm = '';
+  filterCategoryId: number | null = null;
+  sortMode = '';
+  showAllProducts = false;
 
   // Estado del componente
   isScrolled = false;
@@ -91,8 +97,10 @@ signup() {
     this.productService.getActiveProducts().subscribe({
       next: (products) => {
         if (products && products.length > 0) {
+          this.allProducts = products;
           // Limitar a 8 productos
           this.featuredProducts = products.slice(0, 8);
+          this.filteredProducts = this.featuredProducts;
           this.productsLoadTime = new Date().toLocaleTimeString('es-ES');
           this.loadingProducts = false;
           this.loading = false;
@@ -102,6 +110,8 @@ signup() {
           this.loadingProducts = false;
           this.loading = false;
           this.featuredProducts = this.getExampleProducts();
+          this.allProducts = this.featuredProducts;
+          this.filteredProducts = this.featuredProducts;
         }
       },
       error: (err) => {
@@ -109,6 +119,8 @@ signup() {
         this.loadingProducts = false;
         this.loading = false;
         this.featuredProducts = this.getExampleProducts();
+        this.allProducts = this.featuredProducts;
+        this.filteredProducts = this.featuredProducts;
       }
     });
   }
@@ -199,7 +211,7 @@ signup() {
   addToCart(product: Product): void {
     console.log('Añadiendo al carrito:', product);
     
-    this.cartService.addProduct(product.id, 1).subscribe({
+    this.cartService.addProduct(product.id, 1, product).subscribe({
       next: (cart) => {
         this.showNotification(`${product.name} añadido al carrito`, 'success');
         console.log('Carrito actualizado:', cart);
@@ -350,5 +362,53 @@ signup() {
         updatedAt: new Date()
       }
     ];
+  }
+
+  // ---- Filter/Search methods ----
+
+  onSearchInput(event: Event): void {
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.applyFilters();
+  }
+
+  onCategoryFilter(event: Event): void {
+    const val = (event.target as HTMLSelectElement).value;
+    this.filterCategoryId = val ? +val : null;
+    this.applyFilters();
+  }
+
+  onSortChange(event: Event): void {
+    this.sortMode = (event.target as HTMLSelectElement).value;
+    this.applyFilters();
+  }
+
+  toggleShowAll(): void {
+    this.showAllProducts = !this.showAllProducts;
+    this.applyFilters();
+  }
+
+  private applyFilters(): void {
+    let source = this.showAllProducts || this.searchTerm || this.filterCategoryId
+      ? this.allProducts
+      : this.featuredProducts;
+
+    if (this.searchTerm) {
+      const term = this.searchTerm.toLowerCase();
+      source = source.filter(p => p.name.toLowerCase().includes(term) || p.description?.toLowerCase().includes(term));
+    }
+
+    if (this.filterCategoryId) {
+      source = source.filter(p => p.category?.id === this.filterCategoryId);
+    }
+
+    if (this.sortMode === 'price-asc') {
+      source = [...source].sort((a, b) => a.price - b.price);
+    } else if (this.sortMode === 'price-desc') {
+      source = [...source].sort((a, b) => b.price - a.price);
+    } else if (this.sortMode === 'name') {
+      source = [...source].sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    this.filteredProducts = source;
   }
 }

@@ -1,0 +1,243 @@
+.confirmation-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 4rem;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border, hsl(30, 20%, 85%));
+  border-top-color: var(--primary, hsl(150, 30%, 30%));
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading p {
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+}
+
+/* Error state */
+.error-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.error-state h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 0.5rem;
+}
+
+.error-state p {
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+  margin-bottom: 1.5rem;
+}
+
+.btn-link {
+  color: var(--primary, hsl(150, 30%, 30%));
+  text-decoration: underline;
+}
+
+/* Success */
+.success-banner {
+  text-align: center;
+  padding: 2rem 0 1.5rem;
+}
+
+.check-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.success-banner h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+  color: hsl(150, 40%, 30%);
+}
+
+.success-banner p {
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+}
+
+/* Confirmation card */
+.confirmation-card {
+  background: var(--card, hsl(30, 30%, 98%));
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border, hsl(30, 20%, 85%));
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+  margin-bottom: 0.2rem;
+}
+
+.value {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.badge-state {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: hsl(45, 80%, 90%);
+  color: hsl(45, 80%, 30%);
+}
+
+/* Items */
+.order-items {
+  margin-bottom: 1rem;
+}
+
+.order-items h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+  margin-bottom: 0.5rem;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border, hsl(30, 20%, 85%));
+  font-size: 0.9rem;
+}
+
+.item-name {
+  flex: 1;
+}
+
+.item-qty {
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+  margin: 0 1rem;
+}
+
+.item-price {
+  font-weight: 600;
+  min-width: 70px;
+  text-align: right;
+}
+
+/* Totals */
+.order-totals {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.total-row.discount {
+  color: hsl(150, 40%, 35%);
+}
+
+.total-row.grand-total {
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-top: 2px solid var(--border, hsl(30, 20%, 85%));
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Payment simulation */
+.payment-simulation {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.sim-badge {
+  display: inline-block;
+  background: hsl(150, 40%, 92%);
+  color: hsl(150, 40%, 30%);
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-orders, .btn-home {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.btn-orders {
+  background: var(--primary, hsl(150, 30%, 30%));
+  color: #fff;
+}
+
+.btn-orders:hover {
+  background: hsl(150, 30%, 25%);
+}
+
+.btn-home {
+  background: var(--card, hsl(30, 30%, 98%));
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  color: var(--fg, hsl(20, 10%, 15%));
+}
+
+.btn-home:hover {
+  background: var(--muted, hsl(30, 20%, 90%));
+}
+
+@media (max-width: 768px) {
+  .order-header {
+    grid-template-columns: 1fr 1fr;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .btn-orders, .btn-home {
+    text-align: center;
+  }
+}

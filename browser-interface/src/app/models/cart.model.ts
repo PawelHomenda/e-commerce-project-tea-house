@@ -27,6 +27,7 @@ export interface Cart {
 export interface AddToCartDTO {
   productId: number;
   quantity: number;
+  price?: number;
 }
 
 /**

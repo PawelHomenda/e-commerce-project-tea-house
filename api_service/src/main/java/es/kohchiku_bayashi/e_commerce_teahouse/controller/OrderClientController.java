@@ -39,7 +39,7 @@ public class OrderClientController {
         List<String> scopes = jwt.getClaimAsStringList("scope");
         
         // Si es admin o employee, devuelve todos los pedidos
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(orderClientService.findAll());
         }
         
@@ -57,7 +57,7 @@ public class OrderClientController {
         OrderClient order = orderClientService.findById(id);
         
         // ADMIN/EMPLOYEE ven todo
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(order);
         }
         

@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <a class="navbar-brand" routerLink="/">
+    <span class="emoji">🫖</span>
+    <h1>Casa del Té</h1>
+    <span>Kouchiku Bayashi</span>
+  </a>
+  <div class="navbar-nav">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/" fragment="categorias">Categorías</a>
+    <a routerLink="/" fragment="productos">Productos</a>
+    <a routerLink="/" fragment="nosotros">Nosotros</a>
+  </div>
+  <div class="navbar-actions">
+    @if (!authService.isAuthenticated()) {
+      <button class="btn btn-outline-primary btn-sm" routerLink="/login">Login</button>
+    } @else {
+      <div class="user-menu">
+        <div class="user-info">
+          <span class="user-name">{{ (authService.currentUser$ | async)?.firstName }}</span>
+          @if ((authService.currentUser$ | async)?.role === 'ADMIN') {
+            <span class="admin-badge">Admin</span>
+          }
+        </div>
+        <button class="btn btn-user" routerLink="/profile">👤 Perfil</button>
+        @if ((authService.currentUser$ | async)?.role === 'ADMIN') {
+          <button class="btn btn-admin" routerLink="/admin">⚙️ Admin</button>
+        }
+        <button class="btn btn-user" routerLink="/orders">📦 Pedidos</button>
+        <button class="btn btn-logout" (click)="authService.logout()">🚪 Salir</button>
+      </div>
+    }
+    <button class="cart-btn" routerLink="/cart">
+      🛒
+      @if ((cartService.itemCount$ | async)! > 0) {
+        <span class="cart-badge">{{ cartService.itemCount$ | async }}</span>
+      }
+    </button>
+  </div>
+</nav>

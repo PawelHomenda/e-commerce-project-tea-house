@@ -568,6 +568,84 @@ footer {
    RESPONSIVE
    ========================================== */
 
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--card, hsl(30, 30%, 98%));
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  flex: 1;
+  min-width: 180px;
+}
+
+.search-icon {
+  font-size: 0.9rem;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  color: var(--fg, hsl(20, 10%, 15%));
+}
+
+.filter-controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.filter-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  background: var(--card, hsl(30, 30%, 98%));
+  color: var(--fg, hsl(20, 10%, 15%));
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary, hsl(150, 30%, 30%));
+}
+
+.show-all-container {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.btn-show-all {
+  background: none;
+  border: 2px solid var(--primary, hsl(150, 30%, 30%));
+  color: var(--primary, hsl(150, 30%, 30%));
+  padding: 0.65rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-show-all:hover {
+  background: var(--primary, hsl(150, 30%, 30%));
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 1.75rem;
@@ -590,8 +668,17 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .navbar-nav {
-    display: none;
+  .filter-bar {
+    flex-direction: column;
+  }
+
+  .filter-controls {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
   }
 
   .hero-actions {

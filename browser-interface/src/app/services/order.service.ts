@@ -21,6 +21,7 @@ import {
 })
 export class OrderService {
   private apiUrl = `${environment.apiUrl}/orders`;
+  private clientsApiUrl = `${environment.apiUrl}/orders/clients`;
 
   // Estado de órdenes
   private ordersSubject = new BehaviorSubject<Order[]>([]);
@@ -31,6 +32,13 @@ export class OrderService {
   public currentOrder$ = this.currentOrderSubject.asObservable();
 
   constructor(private http: HttpClient) { }
+
+  /**
+   * Obtener las órdenes del usuario actual (desde /api/orders/clients)
+   */
+  getMyOrders(): Observable<any[]> {
+    return this.http.get<any[]>(this.clientsApiUrl);
+  }
 
   /**
    * Obtener todas las órdenes del usuario actual con paginación
@@ -195,5 +203,19 @@ export class OrderService {
   clearCache(): void {
     this.ordersSubject.next([]);
     this.currentOrderSubject.next(null);
+  }
+
+  /**
+   * Crear pedido enviando el formato que espera el backend (OrderClient entity)
+   */
+  createOrderBackend(orderPayload: any): Observable<any> {
+    return this.http.post<any>(this.clientsApiUrl, orderPayload);
+  }
+
+  /**
+   * Obtener pedido por ID desde el endpoint de clients
+   */
+  getOrderByIdBackend(id: number): Observable<any> {
+    return this.http.get<any>(`${this.clientsApiUrl}/${id}`);
   }
 }

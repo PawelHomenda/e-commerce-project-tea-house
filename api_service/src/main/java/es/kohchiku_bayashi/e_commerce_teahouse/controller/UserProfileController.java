@@ -47,7 +47,7 @@ public class UserProfileController {
             return ResponseEntity.ok(profile);
         }
 
-        if (scopes != null && scopes.contains("user:client")) {
+        if (scopes != null && scopes.contains("client")) {
             try {
                 Client client = clientService.findByOauth2Id(sub);
                 profile.put("role", "CLIENT");
@@ -67,7 +67,7 @@ public class UserProfileController {
             }
         }
 
-        if (scopes != null && scopes.contains("user:employee")) {
+        if (scopes != null && scopes.contains("employee")) {
             try {
                 Employee employee = employeeService.findByOauth2Id(sub);
                 profile.put("role", "EMPLOYEE");
@@ -87,7 +87,7 @@ public class UserProfileController {
             }
         }
 
-        if (scopes != null && scopes.contains("user:provider")) {
+        if (scopes != null && scopes.contains("provider")) {
             try {
                 Provider provider = providerService.findByOauth2Id(sub);
                 profile.put("role", "PROVIDER");

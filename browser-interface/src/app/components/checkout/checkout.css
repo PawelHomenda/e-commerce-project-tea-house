@@ -1,0 +1,397 @@
+.checkout-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+/* Steps */
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 2.5rem;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--border, hsl(30, 20%, 85%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.step.active .step-num {
+  background: var(--primary, hsl(150, 30%, 30%));
+  color: #fff;
+  border-color: var(--primary, hsl(150, 30%, 30%));
+}
+
+.step.done .step-num {
+  background: hsl(150, 40%, 45%);
+  border-color: hsl(150, 40%, 45%);
+  color: #fff;
+}
+
+.step-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.step-line {
+  width: 60px;
+  height: 2px;
+  background: var(--border, hsl(30, 20%, 85%));
+  margin: 0 0.5rem;
+  margin-bottom: 1.2rem;
+  transition: background 0.3s;
+}
+
+.step-line.active {
+  background: var(--primary, hsl(150, 30%, 30%));
+}
+
+/* Step content */
+.step-content {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Service options */
+.service-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--border, hsl(30, 20%, 85%));
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--card, hsl(30, 30%, 98%));
+}
+
+.service-option:hover {
+  border-color: var(--primary, hsl(150, 30%, 30%));
+}
+
+.service-option.selected {
+  border-color: var(--primary, hsl(150, 30%, 30%));
+  background: hsl(150, 30%, 95%);
+}
+
+.service-option input[type="radio"] {
+  display: none;
+}
+
+.option-icon {
+  font-size: 1.75rem;
+}
+
+.option-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-text strong {
+  font-size: 1rem;
+}
+
+.option-text span {
+  font-size: 0.8rem;
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+}
+
+/* Extra fields */
+.extra-field {
+  margin-bottom: 1.5rem;
+}
+
+.extra-field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  background: var(--card, hsl(30, 30%, 98%));
+  transition: border-color 0.3s;
+  font-family: inherit;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary, hsl(150, 30%, 30%));
+}
+
+.address-display {
+  padding: 0.75rem 1rem;
+  background: hsl(30, 20%, 94%);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--fg, hsl(20, 10%, 15%));
+}
+
+/* Payment options */
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1rem;
+  border: 2px solid var(--border, hsl(30, 20%, 85%));
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--card, hsl(30, 30%, 98%));
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.payment-option:hover {
+  border-color: var(--primary, hsl(150, 30%, 30%));
+}
+
+.payment-option.selected {
+  border-color: var(--primary, hsl(150, 30%, 30%));
+  background: hsl(150, 30%, 95%);
+}
+
+.payment-option input[type="radio"] {
+  display: none;
+}
+
+.pm-icon {
+  font-size: 1.5rem;
+}
+
+/* Card form */
+.card-form {
+  background: var(--card, hsl(30, 30%, 98%));
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-form-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.card-disclaimer {
+  font-size: 0.75rem;
+  color: hsl(45, 80%, 40%);
+  background: hsl(45, 80%, 95%);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+/* Confirm layout */
+.confirm-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.confirm-section {
+  margin-bottom: 1.25rem;
+}
+
+.confirm-section h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.confirm-section p {
+  font-size: 0.9rem;
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+}
+
+.confirm-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border, hsl(30, 20%, 85%));
+}
+
+.confirm-total-box {
+  background: var(--card, hsl(30, 30%, 98%));
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  align-self: start;
+}
+
+.confirm-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.confirm-row.total {
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-top: 1px solid var(--border, hsl(30, 20%, 85%));
+  padding-top: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.error-msg {
+  background: hsl(350, 60%, 95%);
+  color: hsl(350, 60%, 40%);
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.4rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.btn-confirm {
+  display: block;
+  width: 100%;
+  background: var(--primary, hsl(150, 30%, 30%));
+  color: #fff;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 0.75rem;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  background: hsl(150, 30%, 25%);
+}
+
+.btn-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Step actions */
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border, hsl(30, 20%, 85%));
+}
+
+.btn-back, .btn-next {
+  padding: 0.65rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-back {
+  background: none;
+  color: var(--muted-fg, hsl(20, 10%, 40%));
+}
+
+.btn-back:hover {
+  color: var(--fg, hsl(20, 10%, 15%));
+}
+
+.btn-next {
+  background: var(--primary, hsl(150, 30%, 30%));
+  color: #fff;
+}
+
+.btn-next:hover {
+  background: hsl(150, 30%, 25%);
+}
+
+@media (max-width: 768px) {
+  .confirm-layout {
+    grid-template-columns: 1fr;
+  }
+  .payment-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}

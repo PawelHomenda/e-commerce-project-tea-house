@@ -94,7 +94,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     }
 
     this.isAddingToCart = true;
-    this.cartService.addProduct(this.product.id, this.quantity)
+    this.cartService.addProduct(this.product.id, this.quantity, this.product)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
@@ -113,7 +113,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   buyNow(): void {
     if (this.product && this.quantity > 0 && this.quantity <= this.product.stock) {
       // Primero añadir al carrito
-      this.cartService.addProduct(this.product.id, this.quantity)
+      this.cartService.addProduct(this.product.id, this.quantity, this.product)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: () => {
