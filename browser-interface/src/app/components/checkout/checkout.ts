@@ -39,6 +39,9 @@ export class CheckoutComponent implements OnInit {
   cardCvv = '';
   cardName = '';
 
+  // i18n template property
+  get noAddressMessage(): string { return $localize`:checkout.noAddress@@checkout.noAddress:No se encontr\u00f3 direcci\u00f3n del cliente`; }
+
   constructor(
     private cartService: CartService,
     private authService: AuthService,
@@ -89,20 +92,20 @@ export class CheckoutComponent implements OnInit {
 
   getPaymentLabel(): string {
     switch (this.paymentMethod) {
-      case PaymentMethod.CREDIT_CARD: return 'Tarjeta de Crédito';
-      case PaymentMethod.DEBIT_CARD: return 'Tarjeta de Débito';
+      case PaymentMethod.CREDIT_CARD: return $localize`:checkout.creditCard@@checkout.creditCard:Tarjeta de Crédito`;
+      case PaymentMethod.DEBIT_CARD: return $localize`:checkout.debitCard@@checkout.debitCard:Tarjeta de Débito`;
       case PaymentMethod.PAYPAL: return 'PayPal';
-      case PaymentMethod.BANK_TRANSFER: return 'Transferencia Bancaria';
-      case PaymentMethod.CASH_ON_DELIVERY: return 'Pago Contra Entrega';
+      case PaymentMethod.BANK_TRANSFER: return $localize`:checkout.bankTransfer@@checkout.bankTransfer:Transferencia Bancaria`;
+      case PaymentMethod.CASH_ON_DELIVERY: return $localize`:checkout.cashOnDelivery@@checkout.cashOnDelivery:Pago Contra Entrega`;
       default: return '';
     }
   }
 
   getServiceLabel(): string {
     switch (this.serviceType) {
-      case 'TAKEAWAY': return 'Recoger en tienda';
-      case 'TABLE': return `Mesa ${this.tableNumber || '—'}`;
-      case 'DELIVERY': return 'Envío a domicilio';
+      case 'TAKEAWAY': return $localize`:checkout.takeaway@@checkout.takeaway:Recoger en tienda`;
+      case 'TABLE': return $localize`:checkout.table@@checkout.table:Mesa ${this.tableNumber || '—'}:tableNumber:`;
+      case 'DELIVERY': return $localize`:checkout.delivery@@checkout.delivery:Envío a domicilio`;
     }
   }
 
@@ -147,7 +150,7 @@ export class CheckoutComponent implements OnInit {
       },
       error: (err: any) => {
         this.isSubmitting = false;
-        this.errorMessage = err.error?.message || 'Error al confirmar el pedido. Inténtalo de nuevo.';
+        this.errorMessage = err.error?.message || $localize`:checkout.confirmError@@checkout.confirmError:Error al confirmar el pedido. Inténtalo de nuevo.`;
       }
     });
   }

@@ -12,11 +12,22 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "es",
+        "locales": {
+          "en": "src/locale/messages.en.xlf",
+          "pl": "src/locale/messages.pl.xlf",
+          "ja": "src/locale/messages.ja.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "polyfills": [
+              "@angular/localize/init"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -30,6 +41,7 @@
           },
           "configurations": {
             "production": {
+              "localize": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -45,6 +57,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "localize": ["es"],
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true

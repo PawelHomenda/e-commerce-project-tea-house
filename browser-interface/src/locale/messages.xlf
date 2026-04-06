@@ -1,0 +1,3359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="admin.title" datatype="html">
+        <source>Panel de Administración</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">3,6</context>
+        </context-group>
+        <note priority="1" from="description">admin.title</note>
+      </trans-unit>
+      <trans-unit id="admin.tabProducts" datatype="html">
+        <source> Productos </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">28,31</context>
+        </context-group>
+        <note priority="1" from="description">admin.tabProducts</note>
+      </trans-unit>
+      <trans-unit id="admin.tabOrders" datatype="html">
+        <source> Órdenes </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">36,39</context>
+        </context-group>
+        <note priority="1" from="description">admin.tabOrders</note>
+      </trans-unit>
+      <trans-unit id="admin.tabClients" datatype="html">
+        <source> Clientes </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">44,47</context>
+        </context-group>
+        <note priority="1" from="description">admin.tabClients</note>
+      </trans-unit>
+      <trans-unit id="admin.tabEmployees" datatype="html">
+        <source> Empleados </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">52,55</context>
+        </context-group>
+        <note priority="1" from="description">admin.tabEmployees</note>
+      </trans-unit>
+      <trans-unit id="admin.tabProviders" datatype="html">
+        <source> Proveedores </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">60,64</context>
+        </context-group>
+        <note priority="1" from="description">admin.tabProviders</note>
+      </trans-unit>
+      <trans-unit id="admin.productManagement" datatype="html">
+        <source>Gestión de Productos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">68,70</context>
+        </context-group>
+        <note priority="1" from="description">admin.productManagement</note>
+      </trans-unit>
+      <trans-unit id="admin.newProductBtn" datatype="html">
+        <source> + Nuevo Producto </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">71,74</context>
+        </context-group>
+        <note priority="1" from="description">admin.newProductBtn</note>
+      </trans-unit>
+      <trans-unit id="admin.productName" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">82,83</context>
+        </context-group>
+        <note priority="1" from="description">admin.productName</note>
+      </trans-unit>
+      <trans-unit id="admin.price" datatype="html">
+        <source>Precio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+        <note priority="1" from="description">admin.price</note>
+      </trans-unit>
+      <trans-unit id="admin.stock" datatype="html">
+        <source>Stock</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+        <note priority="1" from="description">admin.stock</note>
+      </trans-unit>
+      <trans-unit id="admin.category" datatype="html">
+        <source>Categoría</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">100,102</context>
+        </context-group>
+        <note priority="1" from="description">admin.category</note>
+      </trans-unit>
+      <trans-unit id="admin.selectCategory" datatype="html">
+        <source>Selecciona una categoría</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">107,108</context>
+        </context-group>
+        <note priority="1" from="description">admin.selectCategory</note>
+      </trans-unit>
+      <trans-unit id="admin.description" datatype="html">
+        <source>Descripción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">115,117</context>
+        </context-group>
+        <note priority="1" from="description">admin.description</note>
+      </trans-unit>
+      <trans-unit id="admin.imageUrl" datatype="html">
+        <source>URL de Imagen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">126,128</context>
+        </context-group>
+        <note priority="1" from="description">admin.imageUrl</note>
+      </trans-unit>
+      <trans-unit id="admin.thumbnailUrl" datatype="html">
+        <source>URL de Miniatura</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">136,138</context>
+        </context-group>
+        <note priority="1" from="description">admin.thumbnailUrl</note>
+      </trans-unit>
+      <trans-unit id="admin.origin" datatype="html">
+        <source>Origen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">147,148</context>
+        </context-group>
+        <note priority="1" from="description">admin.origin</note>
+      </trans-unit>
+      <trans-unit id="admin.weight" datatype="html">
+        <source>Peso</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">152,154</context>
+        </context-group>
+        <note priority="1" from="description">admin.weight</note>
+      </trans-unit>
+      <trans-unit id="admin.unit" datatype="html">
+        <source>Unidad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">158,159</context>
+        </context-group>
+        <note priority="1" from="description">admin.unit</note>
+      </trans-unit>
+      <trans-unit id="admin.grams" datatype="html">
+        <source>Gramos (g)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">160,161</context>
+        </context-group>
+        <note priority="1" from="description">admin.grams</note>
+      </trans-unit>
+      <trans-unit id="admin.kilograms" datatype="html">
+        <source>Kilogramos (kg)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">161,163</context>
+        </context-group>
+        <note priority="1" from="description">admin.kilograms</note>
+      </trans-unit>
+      <trans-unit id="admin.cancelProductBtn" datatype="html">
+        <source> Cancelar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">170,172</context>
+        </context-group>
+        <note priority="1" from="description">admin.cancelBtn</note>
+      </trans-unit>
+      <trans-unit id="admin.thProductName" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">182,183</context>
+        </context-group>
+        <note priority="1" from="description">admin.thName</note>
+      </trans-unit>
+      <trans-unit id="admin.thCategory" datatype="html">
+        <source>Categoría</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">183,184</context>
+        </context-group>
+        <note priority="1" from="description">admin.thCategory</note>
+      </trans-unit>
+      <trans-unit id="admin.thPrice" datatype="html">
+        <source>Precio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">184,185</context>
+        </context-group>
+        <note priority="1" from="description">admin.thPrice</note>
+      </trans-unit>
+      <trans-unit id="admin.thStock" datatype="html">
+        <source>Stock</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">185,186</context>
+        </context-group>
+        <note priority="1" from="description">admin.thStock</note>
+      </trans-unit>
+      <trans-unit id="admin.thOrigin" datatype="html">
+        <source>Origen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">186,187</context>
+        </context-group>
+        <note priority="1" from="description">admin.thOrigin</note>
+      </trans-unit>
+      <trans-unit id="admin.thProductActions" datatype="html">
+        <source>Acciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">187,190</context>
+        </context-group>
+        <note priority="1" from="description">admin.thActions</note>
+      </trans-unit>
+      <trans-unit id="admin.editProductBtn" datatype="html">
+        <source>Editar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">199,200</context>
+        </context-group>
+        <note priority="1" from="description">admin.editBtn</note>
+      </trans-unit>
+      <trans-unit id="admin.deleteProductBtn" datatype="html">
+        <source>Eliminar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">200,202</context>
+        </context-group>
+        <note priority="1" from="description">admin.deleteBtn</note>
+      </trans-unit>
+      <trans-unit id="admin.previousProduct" datatype="html">
+        <source> Anterior </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">210,212</context>
+        </context-group>
+        <note priority="1" from="description">admin.previous</note>
+      </trans-unit>
+      <trans-unit id="admin.pageInfoProduct" datatype="html">
+        <source> Página <x id="INTERPOLATION" equiv-text="{{ currentProductPage + 1 }}"/> de <x id="INTERPOLATION_1" equiv-text="{{ totalProductPages }}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">213,214</context>
+        </context-group>
+        <note priority="1" from="description">admin.pageInfo</note>
+      </trans-unit>
+      <trans-unit id="admin.nextProduct" datatype="html">
+        <source> Siguiente </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">216,218</context>
+        </context-group>
+        <note priority="1" from="description">admin.next</note>
+      </trans-unit>
+      <trans-unit id="admin.loadingProducts" datatype="html">
+        <source>Cargando productos...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">224,230</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadingProducts</note>
+      </trans-unit>
+      <trans-unit id="admin.orderManagement" datatype="html">
+        <source>Gestión de Órdenes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">234,236</context>
+        </context-group>
+        <note priority="1" from="description">admin.orderManagement</note>
+      </trans-unit>
+      <trans-unit id="admin.filterByStatus" datatype="html">
+        <source>Filtrar por estado:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">236,237</context>
+        </context-group>
+        <note priority="1" from="description">admin.filterByStatus</note>
+      </trans-unit>
+      <trans-unit id="admin.allOrders" datatype="html">
+        <source>Todas las órdenes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">238,239</context>
+        </context-group>
+        <note priority="1" from="description">admin.allOrders</note>
+      </trans-unit>
+      <trans-unit id="admin.pending" datatype="html">
+        <source>Pendiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">239,240</context>
+        </context-group>
+        <note priority="1" from="description">admin.pending</note>
+      </trans-unit>
+      <trans-unit id="admin.preparing" datatype="html">
+        <source>En Preparación</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">240,241</context>
+        </context-group>
+        <note priority="1" from="description">admin.preparing</note>
+      </trans-unit>
+      <trans-unit id="admin.delivered" datatype="html">
+        <source>Entregada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">241,242</context>
+        </context-group>
+        <note priority="1" from="description">admin.delivered</note>
+      </trans-unit>
+      <trans-unit id="admin.canceled" datatype="html">
+        <source>Cancelada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">242,244</context>
+        </context-group>
+        <note priority="1" from="description">admin.canceled</note>
+      </trans-unit>
+      <trans-unit id="admin.thOrderId" datatype="html">
+        <source>#Orden</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">252,253</context>
+        </context-group>
+        <note priority="1" from="description">admin.thOrderId</note>
+      </trans-unit>
+      <trans-unit id="admin.thClient" datatype="html">
+        <source>Cliente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">253,254</context>
+        </context-group>
+        <note priority="1" from="description">admin.thClient</note>
+      </trans-unit>
+      <trans-unit id="admin.thTotal" datatype="html">
+        <source>Total</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">254,255</context>
+        </context-group>
+        <note priority="1" from="description">admin.thTotal</note>
+      </trans-unit>
+      <trans-unit id="admin.thStatus" datatype="html">
+        <source>Estado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">255,256</context>
+        </context-group>
+        <note priority="1" from="description">admin.thStatus</note>
+      </trans-unit>
+      <trans-unit id="admin.thService" datatype="html">
+        <source>Servicio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">256,257</context>
+        </context-group>
+        <note priority="1" from="description">admin.thService</note>
+      </trans-unit>
+      <trans-unit id="admin.thDate" datatype="html">
+        <source>Fecha</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">257,258</context>
+        </context-group>
+        <note priority="1" from="description">admin.thDate</note>
+      </trans-unit>
+      <trans-unit id="admin.thOrderActions" datatype="html">
+        <source>Acciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">258,261</context>
+        </context-group>
+        <note priority="1" from="description">admin.thOrderActions</note>
+      </trans-unit>
+      <trans-unit id="admin.pendingOpt" datatype="html">
+        <source>Pendiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">269,270</context>
+        </context-group>
+        <note priority="1" from="description">admin.pendingOpt</note>
+      </trans-unit>
+      <trans-unit id="admin.preparingOpt" datatype="html">
+        <source>En Preparación</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">270,271</context>
+        </context-group>
+        <note priority="1" from="description">admin.preparingOpt</note>
+      </trans-unit>
+      <trans-unit id="admin.deliveredOpt" datatype="html">
+        <source>Entregada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">271,272</context>
+        </context-group>
+        <note priority="1" from="description">admin.deliveredOpt</note>
+      </trans-unit>
+      <trans-unit id="admin.canceledOpt" datatype="html">
+        <source>Cancelada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">272,274</context>
+        </context-group>
+        <note priority="1" from="description">admin.canceledOpt</note>
+      </trans-unit>
+      <trans-unit id="admin.viewOrder" datatype="html">
+        <source>Ver</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">286,288</context>
+        </context-group>
+        <note priority="1" from="description">admin.view</note>
+      </trans-unit>
+      <trans-unit id="admin.previousOrders" datatype="html">
+        <source> Anterior </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">296,298</context>
+        </context-group>
+        <note priority="1" from="description">admin.previousOrders</note>
+      </trans-unit>
+      <trans-unit id="admin.pageInfoOrders" datatype="html">
+        <source> Página <x id="INTERPOLATION" equiv-text="{{ currentOrderPage + 1 }}"/> de <x id="INTERPOLATION_1" equiv-text="{{ totalOrderPages }}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">299,300</context>
+        </context-group>
+        <note priority="1" from="description">admin.pageInfoOrders</note>
+      </trans-unit>
+      <trans-unit id="admin.nextOrders" datatype="html">
+        <source> Siguiente </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">302,304</context>
+        </context-group>
+        <note priority="1" from="description">admin.nextOrders</note>
+      </trans-unit>
+      <trans-unit id="admin.loadingOrders" datatype="html">
+        <source>Cargando órdenes...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">310,316</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadingOrders</note>
+      </trans-unit>
+      <trans-unit id="admin.clientManagement" datatype="html">
+        <source>Gestión de Clientes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">320,323</context>
+        </context-group>
+        <note priority="1" from="description">admin.clientManagement</note>
+      </trans-unit>
+      <trans-unit id="admin.thClientName" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">327,328</context>
+        </context-group>
+        <note priority="1" from="description">admin.thClientName</note>
+      </trans-unit>
+      <trans-unit id="admin.thClientEmail" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">328,329</context>
+        </context-group>
+        <note priority="1" from="description">admin.thClientEmail</note>
+      </trans-unit>
+      <trans-unit id="admin.thClientPhone" datatype="html">
+        <source>Teléfono</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">329,330</context>
+        </context-group>
+        <note priority="1" from="description">admin.thClientPhone</note>
+      </trans-unit>
+      <trans-unit id="admin.thClientActions" datatype="html">
+        <source>Acciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">330,333</context>
+        </context-group>
+        <note priority="1" from="description">admin.thClientActions</note>
+      </trans-unit>
+      <trans-unit id="admin.editClient" datatype="html">
+        <source>Editar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">340,341</context>
+        </context-group>
+        <note priority="1" from="description">admin.editClient</note>
+      </trans-unit>
+      <trans-unit id="admin.deleteClient" datatype="html">
+        <source>Eliminar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">341,343</context>
+        </context-group>
+        <note priority="1" from="description">admin.deleteClient</note>
+      </trans-unit>
+      <trans-unit id="admin.previousClients" datatype="html">
+        <source>Anterior</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">351,352</context>
+        </context-group>
+        <note priority="1" from="description">admin.previousClients</note>
+      </trans-unit>
+      <trans-unit id="admin.pageInfoClients" datatype="html">
+        <source>Página <x id="INTERPOLATION" equiv-text="{{ currentClientPage + 1 }}"/> de <x id="INTERPOLATION_1" equiv-text="{{ totalClientPages }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">352,353</context>
+        </context-group>
+        <note priority="1" from="description">admin.pageInfoClients</note>
+      </trans-unit>
+      <trans-unit id="admin.nextClients" datatype="html">
+        <source>Siguiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">353,356</context>
+        </context-group>
+        <note priority="1" from="description">admin.nextClients</note>
+      </trans-unit>
+      <trans-unit id="admin.loadingClients" datatype="html">
+        <source>Cargando clientes...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">359,364</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadingClients</note>
+      </trans-unit>
+      <trans-unit id="admin.employeeManagement" datatype="html">
+        <source>Gestión de Empleados</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">368,370</context>
+        </context-group>
+        <note priority="1" from="description">admin.employeeManagement</note>
+      </trans-unit>
+      <trans-unit id="admin.newEmployeeBtn" datatype="html">
+        <source>+ Nuevo Empleado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">370,373</context>
+        </context-group>
+        <note priority="1" from="description">admin.newEmployeeBtn</note>
+      </trans-unit>
+      <trans-unit id="admin.empFirstName" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">379,380</context>
+        </context-group>
+        <note priority="1" from="description">admin.empFirstName</note>
+      </trans-unit>
+      <trans-unit id="admin.empLastName" datatype="html">
+        <source>Apellido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">383,384</context>
+        </context-group>
+        <note priority="1" from="description">admin.empLastName</note>
+      </trans-unit>
+      <trans-unit id="admin.empEmail" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">389,390</context>
+        </context-group>
+        <note priority="1" from="description">admin.empEmail</note>
+      </trans-unit>
+      <trans-unit id="admin.empPhone" datatype="html">
+        <source>Teléfono</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">393,394</context>
+        </context-group>
+        <note priority="1" from="description">admin.empPhone</note>
+      </trans-unit>
+      <trans-unit id="admin.empSalary" datatype="html">
+        <source>Salario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">399,400</context>
+        </context-group>
+        <note priority="1" from="description">admin.empSalary</note>
+      </trans-unit>
+      <trans-unit id="admin.empPosition" datatype="html">
+        <source>Cargo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">403,404</context>
+        </context-group>
+        <note priority="1" from="description">admin.empPosition</note>
+      </trans-unit>
+      <trans-unit id="admin.empDepartment" datatype="html">
+        <source>Departamento</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">407,408</context>
+        </context-group>
+        <note priority="1" from="description">admin.empDepartment</note>
+      </trans-unit>
+      <trans-unit id="admin.cancelEmployee" datatype="html">
+        <source>Cancelar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">413,416</context>
+        </context-group>
+        <note priority="1" from="description">admin.cancelEmployee</note>
+      </trans-unit>
+      <trans-unit id="admin.thEmpName" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">423,424</context>
+        </context-group>
+        <note priority="1" from="description">admin.thEmpName</note>
+      </trans-unit>
+      <trans-unit id="admin.thEmpEmail" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">424,425</context>
+        </context-group>
+        <note priority="1" from="description">admin.thEmpEmail</note>
+      </trans-unit>
+      <trans-unit id="admin.thEmpPhone" datatype="html">
+        <source>Teléfono</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">425,426</context>
+        </context-group>
+        <note priority="1" from="description">admin.thEmpPhone</note>
+      </trans-unit>
+      <trans-unit id="admin.thEmpActions" datatype="html">
+        <source>Acciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">426,429</context>
+        </context-group>
+        <note priority="1" from="description">admin.thEmpActions</note>
+      </trans-unit>
+      <trans-unit id="admin.editEmp" datatype="html">
+        <source>Editar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">436,437</context>
+        </context-group>
+        <note priority="1" from="description">admin.editEmp</note>
+      </trans-unit>
+      <trans-unit id="admin.deleteEmp" datatype="html">
+        <source>Eliminar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">437,439</context>
+        </context-group>
+        <note priority="1" from="description">admin.deleteEmp</note>
+      </trans-unit>
+      <trans-unit id="admin.previousEmp" datatype="html">
+        <source>Anterior</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">445,446</context>
+        </context-group>
+        <note priority="1" from="description">admin.previousEmp</note>
+      </trans-unit>
+      <trans-unit id="admin.pageInfoEmp" datatype="html">
+        <source>Página <x id="INTERPOLATION" equiv-text="{{ currentEmployeePage + 1 }}"/> de <x id="INTERPOLATION_1" equiv-text="{{ totalEmployeePages }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">446,447</context>
+        </context-group>
+        <note priority="1" from="description">admin.pageInfoEmp</note>
+      </trans-unit>
+      <trans-unit id="admin.nextEmp" datatype="html">
+        <source>Siguiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">447,450</context>
+        </context-group>
+        <note priority="1" from="description">admin.nextEmp</note>
+      </trans-unit>
+      <trans-unit id="admin.loadingEmployees" datatype="html">
+        <source>Cargando empleados...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">453,458</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadingEmployees</note>
+      </trans-unit>
+      <trans-unit id="admin.providerManagement" datatype="html">
+        <source>Gestión de Proveedores</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">462,464</context>
+        </context-group>
+        <note priority="1" from="description">admin.providerManagement</note>
+      </trans-unit>
+      <trans-unit id="admin.newProviderBtn" datatype="html">
+        <source>+ Nuevo Proveedor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">464,467</context>
+        </context-group>
+        <note priority="1" from="description">admin.newProviderBtn</note>
+      </trans-unit>
+      <trans-unit id="admin.provName" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">473,474</context>
+        </context-group>
+        <note priority="1" from="description">admin.provName</note>
+      </trans-unit>
+      <trans-unit id="admin.provContact" datatype="html">
+        <source>Contacto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">477,478</context>
+        </context-group>
+        <note priority="1" from="description">admin.provContact</note>
+      </trans-unit>
+      <trans-unit id="admin.provEmail" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">483,484</context>
+        </context-group>
+        <note priority="1" from="description">admin.provEmail</note>
+      </trans-unit>
+      <trans-unit id="admin.provPhone" datatype="html">
+        <source>Teléfono</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">487,488</context>
+        </context-group>
+        <note priority="1" from="description">admin.provPhone</note>
+      </trans-unit>
+      <trans-unit id="admin.provAddress" datatype="html">
+        <source>Dirección</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">493,494</context>
+        </context-group>
+        <note priority="1" from="description">admin.provAddress</note>
+      </trans-unit>
+      <trans-unit id="admin.cancelProvider" datatype="html">
+        <source>Cancelar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">499,502</context>
+        </context-group>
+        <note priority="1" from="description">admin.cancelProvider</note>
+      </trans-unit>
+      <trans-unit id="admin.thProvName" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">509,510</context>
+        </context-group>
+        <note priority="1" from="description">admin.thProvName</note>
+      </trans-unit>
+      <trans-unit id="admin.thProvContact" datatype="html">
+        <source>Contacto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">510,511</context>
+        </context-group>
+        <note priority="1" from="description">admin.thProvContact</note>
+      </trans-unit>
+      <trans-unit id="admin.thProvEmail" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">511,512</context>
+        </context-group>
+        <note priority="1" from="description">admin.thProvEmail</note>
+      </trans-unit>
+      <trans-unit id="admin.thProvActions" datatype="html">
+        <source>Acciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">512,515</context>
+        </context-group>
+        <note priority="1" from="description">admin.thProvActions</note>
+      </trans-unit>
+      <trans-unit id="admin.editProv" datatype="html">
+        <source>Editar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">522,523</context>
+        </context-group>
+        <note priority="1" from="description">admin.editProv</note>
+      </trans-unit>
+      <trans-unit id="admin.deleteProv" datatype="html">
+        <source>Eliminar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">523,525</context>
+        </context-group>
+        <note priority="1" from="description">admin.deleteProv</note>
+      </trans-unit>
+      <trans-unit id="admin.previousProv" datatype="html">
+        <source>Anterior</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">531,532</context>
+        </context-group>
+        <note priority="1" from="description">admin.previousProv</note>
+      </trans-unit>
+      <trans-unit id="admin.pageInfoProv" datatype="html">
+        <source>Página <x id="INTERPOLATION" equiv-text="{{ currentProviderPage + 1 }}"/> de <x id="INTERPOLATION_1" equiv-text="{{ totalProviderPages }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">532,533</context>
+        </context-group>
+        <note priority="1" from="description">admin.pageInfoProv</note>
+      </trans-unit>
+      <trans-unit id="admin.nextProv" datatype="html">
+        <source>Siguiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">533,536</context>
+        </context-group>
+        <note priority="1" from="description">admin.nextProv</note>
+      </trans-unit>
+      <trans-unit id="admin.loadingProviders" datatype="html">
+        <source>Cargando proveedores...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.html</context>
+          <context context-type="linenumber">539,544</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadingProviders</note>
+      </trans-unit>
+      <trans-unit id="admin.editProduct" datatype="html">
+        <source>Editar Producto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <note priority="1" from="description">admin.editProduct</note>
+      </trans-unit>
+      <trans-unit id="admin.newProduct" datatype="html">
+        <source>Nuevo Producto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+        <note priority="1" from="description">admin.newProduct</note>
+      </trans-unit>
+      <trans-unit id="admin.savingProduct" datatype="html">
+        <source>Guardando...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+        <note priority="1" from="description">admin.savingProduct</note>
+      </trans-unit>
+      <trans-unit id="admin.saveProduct" datatype="html">
+        <source>Guardar Producto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+        <note priority="1" from="description">admin.saveProduct</note>
+      </trans-unit>
+      <trans-unit id="admin.editEmployee" datatype="html">
+        <source>Editar Empleado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+        <note priority="1" from="description">admin.editEmployee</note>
+      </trans-unit>
+      <trans-unit id="admin.newEmployee" datatype="html">
+        <source>Nuevo Empleado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+        <note priority="1" from="description">admin.newEmployee</note>
+      </trans-unit>
+      <trans-unit id="admin.editProvider" datatype="html">
+        <source>Editar Proveedor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+        <note priority="1" from="description">admin.editProvider</note>
+      </trans-unit>
+      <trans-unit id="admin.newProvider" datatype="html">
+        <source>Nuevo Proveedor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+        <note priority="1" from="description">admin.newProvider</note>
+      </trans-unit>
+      <trans-unit id="admin.saving" datatype="html">
+        <source>Guardando...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <note priority="1" from="description">admin.saving</note>
+      </trans-unit>
+      <trans-unit id="admin.save" datatype="html">
+        <source>Guardar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+        <note priority="1" from="description">admin.save</note>
+      </trans-unit>
+      <trans-unit id="admin.serviceTable" datatype="html">
+        <source>En Mesa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+        <note priority="1" from="description">admin.serviceTable</note>
+      </trans-unit>
+      <trans-unit id="admin.serviceTakeaway" datatype="html">
+        <source>Para Llevar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+        <note priority="1" from="description">admin.serviceTakeaway</note>
+      </trans-unit>
+      <trans-unit id="admin.serviceDelivery" datatype="html">
+        <source>A Domicilio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+        <note priority="1" from="description">admin.serviceDelivery</note>
+      </trans-unit>
+      <trans-unit id="admin.noAdminPermission" datatype="html">
+        <source>No tienes permisos de administrador</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <note priority="1" from="description">admin.noAdminPermission</note>
+      </trans-unit>
+      <trans-unit id="admin.loadProductsError" datatype="html">
+        <source>Error al cargar productos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">212</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadProductsError</note>
+      </trans-unit>
+      <trans-unit id="admin.fieldsRequired" datatype="html">
+        <source>Por favor completa todos los campos requeridos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">243</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">443</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">546</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">646</context>
+        </context-group>
+        <note priority="1" from="description">admin.fieldsRequired</note>
+      </trans-unit>
+      <trans-unit id="admin.productUpdated" datatype="html">
+        <source>Producto actualizado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">265</context>
+        </context-group>
+        <note priority="1" from="description">admin.productUpdated</note>
+      </trans-unit>
+      <trans-unit id="admin.productCreated" datatype="html">
+        <source>Producto creado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">265</context>
+        </context-group>
+        <note priority="1" from="description">admin.productCreated</note>
+      </trans-unit>
+      <trans-unit id="admin.saveProductError" datatype="html">
+        <source>Error al guardar el producto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">270</context>
+        </context-group>
+        <note priority="1" from="description">admin.saveProductError</note>
+      </trans-unit>
+      <trans-unit id="admin.confirmDeleteProduct" datatype="html">
+        <source>¿Estás seguro de que deseas eliminar &quot;<x id="name" equiv-text="product.name"/>&quot;?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">277</context>
+        </context-group>
+        <note priority="1" from="description">admin.confirmDeleteProduct</note>
+      </trans-unit>
+      <trans-unit id="admin.productDeleted" datatype="html">
+        <source>Producto eliminado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">283</context>
+        </context-group>
+        <note priority="1" from="description">admin.productDeleted</note>
+      </trans-unit>
+      <trans-unit id="admin.deleteProductError" datatype="html">
+        <source>Error al eliminar el producto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">287</context>
+        </context-group>
+        <note priority="1" from="description">admin.deleteProductError</note>
+      </trans-unit>
+      <trans-unit id="admin.loadOrdersError" datatype="html">
+        <source>Error al cargar órdenes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">333</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadOrdersError</note>
+      </trans-unit>
+      <trans-unit id="admin.orderStatusUpdated" datatype="html">
+        <source>Estado de orden actualizado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">353</context>
+        </context-group>
+        <note priority="1" from="description">admin.orderStatusUpdated</note>
+      </trans-unit>
+      <trans-unit id="admin.updateStatusError" datatype="html">
+        <source>Error al actualizar el estado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">357</context>
+        </context-group>
+        <note priority="1" from="description">admin.updateStatusError</note>
+      </trans-unit>
+      <trans-unit id="admin.unknownCategory" datatype="html">
+        <source>Desconocida</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">389</context>
+        </context-group>
+        <note priority="1" from="description">admin.unknownCategory</note>
+      </trans-unit>
+      <trans-unit id="admin.statusPendent" datatype="html">
+        <source>Pendiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">394</context>
+        </context-group>
+        <note priority="1" from="description">admin.statusPendent</note>
+      </trans-unit>
+      <trans-unit id="admin.statusPreparing" datatype="html">
+        <source>En Preparación</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">395</context>
+        </context-group>
+        <note priority="1" from="description">admin.statusPreparing</note>
+      </trans-unit>
+      <trans-unit id="admin.statusDelivered" datatype="html">
+        <source>Entregada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">396</context>
+        </context-group>
+        <note priority="1" from="description">admin.statusDelivered</note>
+      </trans-unit>
+      <trans-unit id="admin.statusCanceled" datatype="html">
+        <source>Cancelada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">397</context>
+        </context-group>
+        <note priority="1" from="description">admin.statusCanceled</note>
+      </trans-unit>
+      <trans-unit id="admin.loadClientsError" datatype="html">
+        <source>Error al cargar clientes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">429</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadClientsError</note>
+      </trans-unit>
+      <trans-unit id="admin.selectClient" datatype="html">
+        <source>Selecciona un cliente para actualizar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">448</context>
+        </context-group>
+        <note priority="1" from="description">admin.selectClient</note>
+      </trans-unit>
+      <trans-unit id="admin.clientUpdated" datatype="html">
+        <source>Cliente actualizado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">461</context>
+        </context-group>
+        <note priority="1" from="description">admin.clientUpdated</note>
+      </trans-unit>
+      <trans-unit id="admin.saveClientError" datatype="html">
+        <source>Error al guardar cliente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">466</context>
+        </context-group>
+        <note priority="1" from="description">admin.saveClientError</note>
+      </trans-unit>
+      <trans-unit id="admin.confirmDeleteClient" datatype="html">
+        <source>¿Estás seguro de que deseas eliminar a &quot;<x id="firstName" equiv-text="client.firstName"/> <x id="lastName" equiv-text="client.lastName"/>&quot;?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">473</context>
+        </context-group>
+        <note priority="1" from="description">admin.confirmDeleteClient</note>
+      </trans-unit>
+      <trans-unit id="admin.clientDeleted" datatype="html">
+        <source>Cliente eliminado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">479</context>
+        </context-group>
+        <note priority="1" from="description">admin.clientDeleted</note>
+      </trans-unit>
+      <trans-unit id="admin.deleteClientError" datatype="html">
+        <source>Error al eliminar cliente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">483</context>
+        </context-group>
+        <note priority="1" from="description">admin.deleteClientError</note>
+      </trans-unit>
+      <trans-unit id="admin.loadEmployeesError" datatype="html">
+        <source>Error al cargar empleados</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">526</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadEmployeesError</note>
+      </trans-unit>
+      <trans-unit id="admin.employeeUpdated" datatype="html">
+        <source>Empleado actualizado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">561</context>
+        </context-group>
+        <note priority="1" from="description">admin.employeeUpdated</note>
+      </trans-unit>
+      <trans-unit id="admin.employeeCreated" datatype="html">
+        <source>Empleado creado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">561</context>
+        </context-group>
+        <note priority="1" from="description">admin.employeeCreated</note>
+      </trans-unit>
+      <trans-unit id="admin.saveEmployeeError" datatype="html">
+        <source>Error al guardar empleado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">566</context>
+        </context-group>
+        <note priority="1" from="description">admin.saveEmployeeError</note>
+      </trans-unit>
+      <trans-unit id="admin.confirmDeleteEmployee" datatype="html">
+        <source>¿Estás seguro de que deseas eliminar a &quot;<x id="firstName" equiv-text="employee.firstName"/> <x id="lastName" equiv-text="employee.lastName"/>&quot;?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">573</context>
+        </context-group>
+        <note priority="1" from="description">admin.confirmDeleteEmployee</note>
+      </trans-unit>
+      <trans-unit id="admin.employeeDeleted" datatype="html">
+        <source>Empleado eliminado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">579</context>
+        </context-group>
+        <note priority="1" from="description">admin.employeeDeleted</note>
+      </trans-unit>
+      <trans-unit id="admin.deleteEmployeeError" datatype="html">
+        <source>Error al eliminar empleado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">583</context>
+        </context-group>
+        <note priority="1" from="description">admin.deleteEmployeeError</note>
+      </trans-unit>
+      <trans-unit id="admin.loadProvidersError" datatype="html">
+        <source>Error al cargar proveedores</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">626</context>
+        </context-group>
+        <note priority="1" from="description">admin.loadProvidersError</note>
+      </trans-unit>
+      <trans-unit id="admin.providerUpdated" datatype="html">
+        <source>Proveedor actualizado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">661</context>
+        </context-group>
+        <note priority="1" from="description">admin.providerUpdated</note>
+      </trans-unit>
+      <trans-unit id="admin.providerCreated" datatype="html">
+        <source>Proveedor creado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">661</context>
+        </context-group>
+        <note priority="1" from="description">admin.providerCreated</note>
+      </trans-unit>
+      <trans-unit id="admin.saveProviderError" datatype="html">
+        <source>Error al guardar proveedor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">666</context>
+        </context-group>
+        <note priority="1" from="description">admin.saveProviderError</note>
+      </trans-unit>
+      <trans-unit id="admin.confirmDeleteProvider" datatype="html">
+        <source>¿Estás seguro de que deseas eliminar a &quot;<x id="name" equiv-text="provider.name"/>&quot;?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">673</context>
+        </context-group>
+        <note priority="1" from="description">admin.confirmDeleteProvider</note>
+      </trans-unit>
+      <trans-unit id="admin.providerDeleted" datatype="html">
+        <source>Proveedor eliminado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">679</context>
+        </context-group>
+        <note priority="1" from="description">admin.providerDeleted</note>
+      </trans-unit>
+      <trans-unit id="admin.deleteProviderError" datatype="html">
+        <source>Error al eliminar proveedor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/admin/admin.ts</context>
+          <context context-type="linenumber">683</context>
+        </context-group>
+        <note priority="1" from="description">admin.deleteProviderError</note>
+      </trans-unit>
+      <trans-unit id="authorized.processing" datatype="html">
+        <source>Procesando inicio de sesión...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/authorized/authorized.component.ts</context>
+          <context context-type="linenumber">12,14</context>
+        </context-group>
+        <note priority="1" from="description">authorized.processing</note>
+      </trans-unit>
+      <trans-unit id="authorized.authComplete" datatype="html">
+        <source>Autenticación completada. Redirigiendo...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/authorized/authorized.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">authorized.authComplete</note>
+      </trans-unit>
+      <trans-unit id="authorized.exchangingCode" datatype="html">
+        <source>Intercambiando código por token...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/authorized/authorized.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <note priority="1" from="description">authorized.exchangingCode</note>
+      </trans-unit>
+      <trans-unit id="authorized.loginFailed" datatype="html">
+        <source>No se pudo completar el inicio de sesión. Intenta de nuevo.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/authorized/authorized.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <note priority="1" from="description">authorized.loginFailed</note>
+      </trans-unit>
+      <trans-unit id="authorized.noCodeOrToken" datatype="html">
+        <source>No se recibió código ni token en la URL.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/authorized/authorized.component.ts</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <note priority="1" from="description">authorized.noCodeOrToken</note>
+      </trans-unit>
+      <trans-unit id="cart.title" datatype="html">
+        <source>🛒 Tu Carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+        <note priority="1" from="description">cart.title</note>
+      </trans-unit>
+      <trans-unit id="cart.empty" datatype="html">
+        <source>Tu carrito está vacío</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <note priority="1" from="description">cart.empty</note>
+      </trans-unit>
+      <trans-unit id="cart.emptyMessage" datatype="html">
+        <source>Explora nuestra colección y añade tus tés favoritos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+        <note priority="1" from="description">cart.emptyMessage</note>
+      </trans-unit>
+      <trans-unit id="cart.viewProducts" datatype="html">
+        <source>Ver Productos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">9,12</context>
+        </context-group>
+        <note priority="1" from="description">cart.viewProducts</note>
+      </trans-unit>
+      <trans-unit id="cart.perUnit" datatype="html">
+        <source>/ ud.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+        <note priority="1" from="description">cart.perUnit</note>
+      </trans-unit>
+      <trans-unit id="cart.removeTitle" datatype="html">
+        <source>Eliminar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">31,34</context>
+        </context-group>
+        <note priority="1" from="description">cart.removeTitle</note>
+      </trans-unit>
+      <trans-unit id="cart.summary" datatype="html">
+        <source>Resumen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <note priority="1" from="description">cart.summary</note>
+      </trans-unit>
+      <trans-unit id="cart.items" datatype="html">
+        <source>Artículos (<x id="INTERPOLATION" equiv-text="{{ cart.itemCount }}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+        <note priority="1" from="description">cart.items</note>
+      </trans-unit>
+      <trans-unit id="cart.total" datatype="html">
+        <source>Total</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+        <note priority="1" from="description">cart.total</note>
+      </trans-unit>
+      <trans-unit id="cart.checkout" datatype="html">
+        <source>Proceder al Pago</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+        <note priority="1" from="description">cart.checkout</note>
+      </trans-unit>
+      <trans-unit id="cart.clear" datatype="html">
+        <source>Vaciar carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+        <note priority="1" from="description">cart.clear</note>
+      </trans-unit>
+      <trans-unit id="cart.continueShopping" datatype="html">
+        <source>← Seguir comprando</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart/cart.html</context>
+          <context context-type="linenumber">49,54</context>
+        </context-group>
+        <note priority="1" from="description">cart.continueShopping</note>
+      </trans-unit>
+      <trans-unit id="checkout.title" datatype="html">
+        <source>🧾 Finalizar Compra</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <note priority="1" from="description">checkout.title</note>
+      </trans-unit>
+      <trans-unit id="checkout.stepService" datatype="html">
+        <source>Servicio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+        <note priority="1" from="description">checkout.stepService</note>
+      </trans-unit>
+      <trans-unit id="checkout.stepPayment" datatype="html">
+        <source>Pago</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">13,15</context>
+        </context-group>
+        <note priority="1" from="description">checkout.stepPayment</note>
+      </trans-unit>
+      <trans-unit id="checkout.stepConfirm" datatype="html">
+        <source>Confirmar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">18,22</context>
+        </context-group>
+        <note priority="1" from="description">checkout.stepConfirm</note>
+      </trans-unit>
+      <trans-unit id="checkout.howReceive" datatype="html">
+        <source>¿Cómo quieres recibir tu pedido?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">25,28</context>
+        </context-group>
+        <note priority="1" from="description">checkout.howReceive</note>
+      </trans-unit>
+      <trans-unit id="checkout.takeaway" datatype="html">
+        <source>Recoger en tienda</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+        <note priority="1" from="description">checkout.takeaway</note>
+      </trans-unit>
+      <trans-unit id="checkout.takeawayDesc" datatype="html">
+        <source>Recoge tu pedido en nuestra tienda</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">33,37</context>
+        </context-group>
+        <note priority="1" from="description">checkout.takeawayDesc</note>
+      </trans-unit>
+      <trans-unit id="checkout.tableOption" datatype="html">
+        <source>En mesa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+        <note priority="1" from="description">checkout.tableOption</note>
+      </trans-unit>
+      <trans-unit id="checkout.tableDesc" datatype="html">
+        <source>Servicio en mesa dentro del local</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">42,46</context>
+        </context-group>
+        <note priority="1" from="description">checkout.tableDesc</note>
+      </trans-unit>
+      <trans-unit id="checkout.delivery" datatype="html">
+        <source>Envío a domicilio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+        <note priority="1" from="description">checkout.delivery</note>
+      </trans-unit>
+      <trans-unit id="checkout.deliveryDesc" datatype="html">
+        <source>Te lo llevamos a tu dirección</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">51,56</context>
+        </context-group>
+        <note priority="1" from="description">checkout.deliveryDesc</note>
+      </trans-unit>
+      <trans-unit id="checkout.tableNumber" datatype="html">
+        <source>Número de mesa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+        <note priority="1" from="description">checkout.tableNumber</note>
+      </trans-unit>
+      <trans-unit id="checkout.tableNumberPlaceholder" datatype="html">
+        <source>Ej: 5</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">59,63</context>
+        </context-group>
+        <note priority="1" from="description">checkout.tableNumberPlaceholder</note>
+      </trans-unit>
+      <trans-unit id="checkout.deliveryAddress" datatype="html">
+        <source>Dirección de envío (desde tu perfil)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">65,67</context>
+        </context-group>
+        <note priority="1" from="description">checkout.deliveryAddress</note>
+      </trans-unit>
+      <trans-unit id="checkout.backToCart" datatype="html">
+        <source>← Volver al carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+        <note priority="1" from="description">checkout.backToCart</note>
+      </trans-unit>
+      <trans-unit id="checkout.next" datatype="html">
+        <source>Siguiente →</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">74,79</context>
+        </context-group>
+        <note priority="1" from="description">checkout.next</note>
+      </trans-unit>
+      <trans-unit id="checkout.paymentMethod" datatype="html">
+        <source>Método de pago</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">82,85</context>
+        </context-group>
+        <note priority="1" from="description">checkout.paymentMethod</note>
+      </trans-unit>
+      <trans-unit id="checkout.creditCard" datatype="html">
+        <source>Tarjeta de Crédito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">88,90</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+        <note priority="1" from="description">checkout.creditCard</note>
+      </trans-unit>
+      <trans-unit id="checkout.debitCard" datatype="html">
+        <source>Tarjeta de Débito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">93,95</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <note priority="1" from="description">checkout.debitCard</note>
+      </trans-unit>
+      <trans-unit id="checkout.bankTransferLabel" datatype="html">
+        <source>Transferencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">103,105</context>
+        </context-group>
+        <note priority="1" from="description">checkout.bankTransferLabel</note>
+      </trans-unit>
+      <trans-unit id="checkout.cashOnDeliveryLabel" datatype="html">
+        <source>Contra Entrega</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">108,113</context>
+        </context-group>
+        <note priority="1" from="description">checkout.cashOnDeliveryLabel</note>
+      </trans-unit>
+      <trans-unit id="checkout.cardDataSimulation" datatype="html">
+        <source>Datos de tarjeta (simulación)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">116,119</context>
+        </context-group>
+        <note priority="1" from="description">checkout.cardDataSimulation</note>
+      </trans-unit>
+      <trans-unit id="checkout.cardHolder" datatype="html">
+        <source>Titular de la tarjeta</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">119,120</context>
+        </context-group>
+        <note priority="1" from="description">checkout.cardHolder</note>
+      </trans-unit>
+      <trans-unit id="checkout.cardHolderPlaceholder" datatype="html">
+        <source>Nombre en la tarjeta</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">120,122</context>
+        </context-group>
+        <note priority="1" from="description">checkout.cardHolderPlaceholder</note>
+      </trans-unit>
+      <trans-unit id="checkout.cardNumber" datatype="html">
+        <source>Número de tarjeta</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">123,124</context>
+        </context-group>
+        <note priority="1" from="description">checkout.cardNumber</note>
+      </trans-unit>
+      <trans-unit id="checkout.cardExpiry" datatype="html">
+        <source>Fecha expiración</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">128,129</context>
+        </context-group>
+        <note priority="1" from="description">checkout.cardExpiry</note>
+      </trans-unit>
+      <trans-unit id="checkout.cardDisclaimer" datatype="html">
+        <source>⚠️ Esto es una simulación. No se procesa ningún pago real.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">136,140</context>
+        </context-group>
+        <note priority="1" from="description">checkout.cardDisclaimer</note>
+      </trans-unit>
+      <trans-unit id="checkout.back" datatype="html">
+        <source>← Atrás</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">141,142</context>
+        </context-group>
+        <note priority="1" from="description">checkout.back</note>
+      </trans-unit>
+      <trans-unit id="checkout.next2" datatype="html">
+        <source>Siguiente →</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">142,147</context>
+        </context-group>
+        <note priority="1" from="description">checkout.next2</note>
+      </trans-unit>
+      <trans-unit id="checkout.orderSummary" datatype="html">
+        <source>Resumen del pedido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">150,153</context>
+        </context-group>
+        <note priority="1" from="description">checkout.orderSummary</note>
+      </trans-unit>
+      <trans-unit id="checkout.serviceSection" datatype="html">
+        <source>📦 Servicio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">155,157</context>
+        </context-group>
+        <note priority="1" from="description">checkout.serviceSection</note>
+      </trans-unit>
+      <trans-unit id="checkout.paymentSection" datatype="html">
+        <source>💳 Pago</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">159,161</context>
+        </context-group>
+        <note priority="1" from="description">checkout.paymentSection</note>
+      </trans-unit>
+      <trans-unit id="checkout.itemsSection" datatype="html">
+        <source>🛒 Artículos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">163,165</context>
+        </context-group>
+        <note priority="1" from="description">checkout.itemsSection</note>
+      </trans-unit>
+      <trans-unit id="checkout.subtotal" datatype="html">
+        <source>Subtotal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">177,178</context>
+        </context-group>
+        <note priority="1" from="description">checkout.subtotal</note>
+      </trans-unit>
+      <trans-unit id="checkout.total" datatype="html">
+        <source>Total</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">181,182</context>
+        </context-group>
+        <note priority="1" from="description">checkout.total</note>
+      </trans-unit>
+      <trans-unit id="checkout.processing" datatype="html">
+        <source>Procesando...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">190,191</context>
+        </context-group>
+        <note priority="1" from="description">checkout.processing</note>
+      </trans-unit>
+      <trans-unit id="checkout.confirmOrder" datatype="html">
+        <source>✅ Confirmar Pedido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">191,194</context>
+        </context-group>
+        <note priority="1" from="description">checkout.confirmOrder</note>
+      </trans-unit>
+      <trans-unit id="checkout.back2" datatype="html">
+        <source>← Atrás</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.html</context>
+          <context context-type="linenumber">197,201</context>
+        </context-group>
+        <note priority="1" from="description">checkout.back2</note>
+      </trans-unit>
+      <trans-unit id="checkout.noAddress" datatype="html">
+        <source>No se encontró dirección del cliente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <note priority="1" from="description">checkout.noAddress</note>
+      </trans-unit>
+      <trans-unit id="checkout.bankTransfer" datatype="html">
+        <source>Transferencia Bancaria</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+        <note priority="1" from="description">checkout.bankTransfer</note>
+      </trans-unit>
+      <trans-unit id="checkout.cashOnDelivery" datatype="html">
+        <source>Pago Contra Entrega</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+        <note priority="1" from="description">checkout.cashOnDelivery</note>
+      </trans-unit>
+      <trans-unit id="checkout.table" datatype="html">
+        <source>Mesa <x id="tableNumber" equiv-text="this.tableNumber || &apos;—&apos;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+        <note priority="1" from="description">checkout.table</note>
+      </trans-unit>
+      <trans-unit id="checkout.confirmError" datatype="html">
+        <source>Error al confirmar el pedido. Inténtalo de nuevo.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkout/checkout.ts</context>
+          <context context-type="linenumber">153</context>
+        </context-group>
+        <note priority="1" from="description">checkout.confirmError</note>
+      </trans-unit>
+      <trans-unit id="home.heroBadge" datatype="html">
+        <source>Bienvenido a Casa del Té</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+        <note priority="1" from="description">home.heroBadge</note>
+      </trans-unit>
+      <trans-unit id="home.heroLine1" datatype="html">
+        <source>El Arte del</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <note priority="1" from="description">home.heroLine1</note>
+      </trans-unit>
+      <trans-unit id="home.heroLine2" datatype="html">
+        <source>Té Perfecto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+        <note priority="1" from="description">home.heroLine2</note>
+      </trans-unit>
+      <trans-unit id="home.heroSubtitle" datatype="html">
+        <source> Descubre una selección curada de los tés más exquisitos del mundo, cultivados con tradición y pasión </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">11,14</context>
+        </context-group>
+        <note priority="1" from="description">home.heroSubtitle</note>
+      </trans-unit>
+      <trans-unit id="home.explore" datatype="html">
+        <source>Explorar Colección</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+        <note priority="1" from="description">home.explore</note>
+      </trans-unit>
+      <trans-unit id="home.ourHistory" datatype="html">
+        <source>Nuestra Historia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">16,19</context>
+        </context-group>
+        <note priority="1" from="description">home.ourHistory</note>
+      </trans-unit>
+      <trans-unit id="home.discoverMore" datatype="html">
+        <source>Descubre más</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">20,22</context>
+        </context-group>
+        <note priority="1" from="description">home.discoverMore</note>
+      </trans-unit>
+      <trans-unit id="home.discoveries" datatype="html">
+        <source>Descubrimientos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+        <note priority="1" from="description">home.discoveries</note>
+      </trans-unit>
+      <trans-unit id="home.exploreByCategory" datatype="html">
+        <source>Explora por Categoría</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+        <note priority="1" from="description">home.exploreByCategory</note>
+      </trans-unit>
+      <trans-unit id="home.categorySubtitle" datatype="html">
+        <source>Cada tipo de té cuenta una historia única</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">30,32</context>
+        </context-group>
+        <note priority="1" from="description">home.categorySubtitle</note>
+      </trans-unit>
+      <trans-unit id="home.loadingCategories" datatype="html">
+        <source>Cargando categorías desde el API...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">34,39</context>
+        </context-group>
+        <note priority="1" from="description">home.loadingCategories</note>
+      </trans-unit>
+      <trans-unit id="home.noCategoriesLoaded" datatype="html">
+        <source> No se cargaron categorías del API. Utilizando datos de ejemplo. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">57,61</context>
+        </context-group>
+        <note priority="1" from="description">home.noCategoriesLoaded</note>
+      </trans-unit>
+      <trans-unit id="home.favorites" datatype="html">
+        <source>Favoritos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+        <note priority="1" from="description">home.favorites</note>
+      </trans-unit>
+      <trans-unit id="home.masterSelection" datatype="html">
+        <source>Selección del Maestro</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">65,66</context>
+        </context-group>
+        <note priority="1" from="description">home.masterSelection</note>
+      </trans-unit>
+      <trans-unit id="home.masterSubtitle" datatype="html">
+        <source>Nuestros tés más apreciados, elegidos personalmente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">66,68</context>
+        </context-group>
+        <note priority="1" from="description">home.masterSubtitle</note>
+      </trans-unit>
+      <trans-unit id="home.loadingProducts" datatype="html">
+        <source>Cargando productos desde el API...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">70,75</context>
+        </context-group>
+        <note priority="1" from="description">home.loadingProducts</note>
+      </trans-unit>
+      <trans-unit id="home.searchPlaceholder" datatype="html">
+        <source>Buscar té...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+        <note priority="1" from="description">home.searchPlaceholder</note>
+      </trans-unit>
+      <trans-unit id="home.allCategories" datatype="html">
+        <source>Todas las categorías</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">83,84</context>
+        </context-group>
+        <note priority="1" from="description">home.allCategories</note>
+      </trans-unit>
+      <trans-unit id="home.sortBy" datatype="html">
+        <source>Ordenar por</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">89,90</context>
+        </context-group>
+        <note priority="1" from="description">home.sortBy</note>
+      </trans-unit>
+      <trans-unit id="home.sortPriceAsc" datatype="html">
+        <source>Precio: Menor a Mayor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">90,91</context>
+        </context-group>
+        <note priority="1" from="description">home.sortPriceAsc</note>
+      </trans-unit>
+      <trans-unit id="home.sortPriceDesc" datatype="html">
+        <source>Precio: Mayor a Menor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">91,92</context>
+        </context-group>
+        <note priority="1" from="description">home.sortPriceDesc</note>
+      </trans-unit>
+      <trans-unit id="home.sortName" datatype="html">
+        <source>Nombre A-Z</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">92,95</context>
+        </context-group>
+        <note priority="1" from="description">home.sortName</note>
+      </trans-unit>
+      <trans-unit id="home.addToCart" datatype="html">
+        <source>Añadir</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">114,117</context>
+        </context-group>
+        <note priority="1" from="description">home.addToCart</note>
+      </trans-unit>
+      <trans-unit id="home.noProductsFilter" datatype="html">
+        <source>No se encontraron productos con los filtros seleccionados.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">124,126</context>
+        </context-group>
+        <note priority="1" from="description">home.noProductsFilter</note>
+      </trans-unit>
+      <trans-unit id="home.noProductsLoaded" datatype="html">
+        <source>No se cargaron productos del API. Utilizando datos de ejemplo.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">126,132</context>
+        </context-group>
+        <note priority="1" from="description">home.noProductsLoaded</note>
+      </trans-unit>
+      <trans-unit id="home.viewAllProducts" datatype="html">
+        <source>Ver todos los productos (<x id="INTERPOLATION" equiv-text="{{ allProducts.length }}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">134,135</context>
+        </context-group>
+        <note priority="1" from="description">home.viewAllProducts</note>
+      </trans-unit>
+      <trans-unit id="home.showLess" datatype="html">
+        <source>Mostrar menos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">139,143</context>
+        </context-group>
+        <note priority="1" from="description">home.showLess</note>
+      </trans-unit>
+      <trans-unit id="home.aboutTitle" datatype="html">
+        <source>Nuestra Pasión por el Té</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">147,148</context>
+        </context-group>
+        <note priority="1" from="description">home.aboutTitle</note>
+      </trans-unit>
+      <trans-unit id="home.aboutText" datatype="html">
+        <source> Desde 1952, nuestra familia ha recorrido el mundo en busca de los tés más extraordinarios. Trabajamos directamente con maestros cultivadores que honran tradiciones centenarias. Para nosotros, el té no es solo una bebida: es un ritual, un momento de pausa, una conexión con culturas milenarias. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">149,155</context>
+        </context-group>
+        <note priority="1" from="description">home.aboutText</note>
+      </trans-unit>
+      <trans-unit id="home.footer" datatype="html">
+        <source>© 2024 Casa del Té • Kouchiku Bayashi | Hecho con 🍃 y 💚</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">159,162</context>
+        </context-group>
+        <note priority="1" from="description">home.footer</note>
+      </trans-unit>
+      <trans-unit id="home.newsletterTitle" datatype="html">
+        <source>Únete a Nuestra Comunidad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">167,168</context>
+        </context-group>
+        <note priority="1" from="description">home.newsletterTitle</note>
+      </trans-unit>
+      <trans-unit id="home.newsletterSubtitle" datatype="html">
+        <source>Recibe consejos exclusivos, recetas y ofertas especiales</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">168,171</context>
+        </context-group>
+        <note priority="1" from="description">home.newsletterSubtitle</note>
+      </trans-unit>
+      <trans-unit id="home.subscribe" datatype="html">
+        <source>Suscribirse</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.html</context>
+          <context context-type="linenumber">177,180</context>
+        </context-group>
+        <note priority="1" from="description">home.subscribe</note>
+      </trans-unit>
+      <trans-unit id="home.available" datatype="html">
+        <source>Disponible</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <note priority="1" from="description">home.available</note>
+      </trans-unit>
+      <trans-unit id="home.soldOut" datatype="html">
+        <source>Agotado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <note priority="1" from="description">home.soldOut</note>
+      </trans-unit>
+      <trans-unit id="home.describeVariety" datatype="html">
+        <source>Descubre esta variedad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <note priority="1" from="description">home.describeVariety</note>
+      </trans-unit>
+      <trans-unit id="home.addedToCart" datatype="html">
+        <source><x id="name" equiv-text="product.name"/> añadido al carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">221</context>
+        </context-group>
+        <note priority="1" from="description">home.addedToCart</note>
+      </trans-unit>
+      <trans-unit id="home.addToCartError" datatype="html">
+        <source>Error al añadir al carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">226</context>
+        </context-group>
+        <note priority="1" from="description">home.addToCartError</note>
+      </trans-unit>
+      <trans-unit id="home.invalidEmail" datatype="html">
+        <source>Por favor, introduce un email válido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">247</context>
+        </context-group>
+        <note priority="1" from="description">home.invalidEmail</note>
+      </trans-unit>
+      <trans-unit id="home.newsletterThanks" datatype="html">
+        <source>¡Gracias por suscribirte!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">256</context>
+        </context-group>
+        <note priority="1" from="description">home.newsletterThanks</note>
+      </trans-unit>
+      <trans-unit id="home.badgeNew" datatype="html">
+        <source>Nuevo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">316</context>
+        </context-group>
+        <note priority="1" from="description">home.badgeNew</note>
+      </trans-unit>
+      <trans-unit id="home.badgeBestseller" datatype="html">
+        <source>Bestseller</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">317</context>
+        </context-group>
+        <note priority="1" from="description">home.badgeBestseller</note>
+      </trans-unit>
+      <trans-unit id="home.badgeLimited" datatype="html">
+        <source>Edición Limitada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.ts</context>
+          <context context-type="linenumber">318</context>
+        </context-group>
+        <note priority="1" from="description">home.badgeLimited</note>
+      </trans-unit>
+      <trans-unit id="login.title" datatype="html">
+        <source>Iniciar Sesión</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+        <note priority="1" from="description">login.title</note>
+      </trans-unit>
+      <trans-unit id="login.username" datatype="html">
+        <source>Usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+        <note priority="1" from="description">login.username</note>
+      </trans-unit>
+      <trans-unit id="login.password" datatype="html">
+        <source>Contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+        <note priority="1" from="description">login.password</note>
+      </trans-unit>
+      <trans-unit id="login.submitting" datatype="html">
+        <source>Entrando...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+        <note priority="1" from="description">login.submitting</note>
+      </trans-unit>
+      <trans-unit id="login.submit" datatype="html">
+        <source>Entrar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+        <note priority="1" from="description">login.submit</note>
+      </trans-unit>
+      <trans-unit id="login.fieldsRequired" datatype="html">
+        <source>Por favor completa todos los campos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <note priority="1" from="description">login.fieldsRequired</note>
+      </trans-unit>
+      <trans-unit id="login.invalidCredentials" datatype="html">
+        <source>Usuario o contraseña incorrectos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">login.invalidCredentials</note>
+      </trans-unit>
+      <trans-unit id="login.serverError" datatype="html">
+        <source>Error al conectar con el servidor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <note priority="1" from="description">login.serverError</note>
+      </trans-unit>
+      <trans-unit id="navbar.brand" datatype="html">
+        <source>Casa del Té</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+        <note priority="1" from="description">navbar.brand</note>
+      </trans-unit>
+      <trans-unit id="navbar.subtitle" datatype="html">
+        <source>Kouchiku Bayashi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">5,8</context>
+        </context-group>
+        <note priority="1" from="description">navbar.subtitle</note>
+      </trans-unit>
+      <trans-unit id="navbar.home" datatype="html">
+        <source>Inicio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+        <note priority="1" from="description">navbar.home</note>
+      </trans-unit>
+      <trans-unit id="navbar.categories" datatype="html">
+        <source>Categorías</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <note priority="1" from="description">navbar.categories</note>
+      </trans-unit>
+      <trans-unit id="navbar.products" datatype="html">
+        <source>Productos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+        <note priority="1" from="description">navbar.products</note>
+      </trans-unit>
+      <trans-unit id="navbar.about" datatype="html">
+        <source>Nosotros</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+        <note priority="1" from="description">navbar.about</note>
+      </trans-unit>
+      <trans-unit id="navbar.login" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">22,24</context>
+        </context-group>
+        <note priority="1" from="description">navbar.login</note>
+      </trans-unit>
+      <trans-unit id="navbar.adminBadge" datatype="html">
+        <source>Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">28,31</context>
+        </context-group>
+        <note priority="1" from="description">navbar.adminBadge</note>
+      </trans-unit>
+      <trans-unit id="navbar.profile" datatype="html">
+        <source>👤 Perfil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+        <note priority="1" from="description">navbar.profile</note>
+      </trans-unit>
+      <trans-unit id="navbar.admin" datatype="html">
+        <source>⚙️ Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">33,35</context>
+        </context-group>
+        <note priority="1" from="description">navbar.admin</note>
+      </trans-unit>
+      <trans-unit id="navbar.orders" datatype="html">
+        <source>📦 Pedidos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+        <note priority="1" from="description">navbar.orders</note>
+      </trans-unit>
+      <trans-unit id="navbar.logout" datatype="html">
+        <source>🚪 Salir</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.html</context>
+          <context context-type="linenumber">36,39</context>
+        </context-group>
+        <note priority="1" from="description">navbar.logout</note>
+      </trans-unit>
+      <trans-unit id="confirmation.loading" datatype="html">
+        <source>Cargando pedido...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">5,8</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.loading</note>
+      </trans-unit>
+      <trans-unit id="confirmation.errorTitle" datatype="html">
+        <source>No se pudo cargar el pedido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.errorTitle</note>
+      </trans-unit>
+      <trans-unit id="confirmation.errorMessage" datatype="html">
+        <source>Comprueba tu conexión e inténtalo de nuevo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.errorMessage</note>
+      </trans-unit>
+      <trans-unit id="confirmation.viewOrders" datatype="html">
+        <source>Ver mis pedidos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">12,16</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.viewOrders</note>
+      </trans-unit>
+      <trans-unit id="confirmation.successTitle" datatype="html">
+        <source>¡Pedido Confirmado!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.successTitle</note>
+      </trans-unit>
+      <trans-unit id="confirmation.successMessage" datatype="html">
+        <source>Tu pedido se ha realizado correctamente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">18,22</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.successMessage</note>
+      </trans-unit>
+      <trans-unit id="confirmation.orderNumber" datatype="html">
+        <source>Pedido Nº</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">24,26</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.orderNumber</note>
+      </trans-unit>
+      <trans-unit id="confirmation.date" datatype="html">
+        <source>Fecha</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.date</note>
+      </trans-unit>
+      <trans-unit id="confirmation.state" datatype="html">
+        <source>Estado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.state</note>
+      </trans-unit>
+      <trans-unit id="confirmation.service" datatype="html">
+        <source>Servicio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.service</note>
+      </trans-unit>
+      <trans-unit id="confirmation.items" datatype="html">
+        <source>Artículos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.items</note>
+      </trans-unit>
+      <trans-unit id="confirmation.subtotal" datatype="html">
+        <source>Subtotal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.subtotal</note>
+      </trans-unit>
+      <trans-unit id="confirmation.discount" datatype="html">
+        <source>Descuento (<x id="INTERPOLATION" equiv-text="{{ order.discountPercentage }}"/>%)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">59,60</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.discount</note>
+      </trans-unit>
+      <trans-unit id="confirmation.total" datatype="html">
+        <source>Total</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.total</note>
+      </trans-unit>
+      <trans-unit id="confirmation.paymentSimulated" datatype="html">
+        <source>💳 Pago simulado — Aprobado ✓</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">70,75</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.paymentSimulated</note>
+      </trans-unit>
+      <trans-unit id="confirmation.viewMyOrders" datatype="html">
+        <source>📦 Ver mis pedidos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">75,76</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.viewMyOrders</note>
+      </trans-unit>
+      <trans-unit id="confirmation.backHome" datatype="html">
+        <source>🏠 Volver al inicio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.html</context>
+          <context context-type="linenumber">76,80</context>
+        </context-group>
+        <note priority="1" from="description">confirmation.backHome</note>
+      </trans-unit>
+      <trans-unit id="orderConfirm.takeaway" datatype="html">
+        <source>Recoger en tienda</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <note priority="1" from="description">orderConfirm.takeaway</note>
+      </trans-unit>
+      <trans-unit id="orderConfirm.table" datatype="html">
+        <source>En mesa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">orderConfirm.table</note>
+      </trans-unit>
+      <trans-unit id="orderConfirm.delivery" datatype="html">
+        <source>Envío a domicilio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <note priority="1" from="description">orderConfirm.delivery</note>
+      </trans-unit>
+      <trans-unit id="orderConfirm.pendent" datatype="html">
+        <source>Pendiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <note priority="1" from="description">orderConfirm.pendent</note>
+      </trans-unit>
+      <trans-unit id="orderConfirm.preparing" datatype="html">
+        <source>Preparando</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <note priority="1" from="description">orderConfirm.preparing</note>
+      </trans-unit>
+      <trans-unit id="orderConfirm.delivered" datatype="html">
+        <source>Entregado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <note priority="1" from="description">orderConfirm.delivered</note>
+      </trans-unit>
+      <trans-unit id="orderConfirm.canceled" datatype="html">
+        <source>Cancelado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-confirmation/order-confirmation.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <note priority="1" from="description">orderConfirm.canceled</note>
+      </trans-unit>
+      <trans-unit id="orders.title" datatype="html">
+        <source>Mis Órdenes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+        <note priority="1" from="description">orders.title</note>
+      </trans-unit>
+      <trans-unit id="orders.subtitle" datatype="html">
+        <source>Historial y estado de tus compras</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">4,8</context>
+        </context-group>
+        <note priority="1" from="description">orders.subtitle</note>
+      </trans-unit>
+      <trans-unit id="orders.filterByStatus" datatype="html">
+        <source>Filtrar por estado:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+        <note priority="1" from="description">orders.filterByStatus</note>
+      </trans-unit>
+      <trans-unit id="orders.allOrders" datatype="html">
+        <source>Todas las órdenes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+        <note priority="1" from="description">orders.allOrders</note>
+      </trans-unit>
+      <trans-unit id="orders.pending" datatype="html">
+        <source>Pendiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+        <note priority="1" from="description">orders.pending</note>
+      </trans-unit>
+      <trans-unit id="orders.preparing" datatype="html">
+        <source>En Preparación</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+        <note priority="1" from="description">orders.preparing</note>
+      </trans-unit>
+      <trans-unit id="orders.delivered" datatype="html">
+        <source>Entregada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+        <note priority="1" from="description">orders.delivered</note>
+      </trans-unit>
+      <trans-unit id="orders.canceled" datatype="html">
+        <source>Cancelada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">30,33</context>
+        </context-group>
+        <note priority="1" from="description">orders.canceled</note>
+      </trans-unit>
+      <trans-unit id="orders.loading" datatype="html">
+        <source>Cargando órdenes...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">38,42</context>
+        </context-group>
+        <note priority="1" from="description">orders.loading</note>
+      </trans-unit>
+      <trans-unit id="orders.orderNumber" datatype="html">
+        <source>Pedido #<x id="INTERPOLATION" equiv-text="{{ order.id }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+        <note priority="1" from="description">orders.orderNumber</note>
+      </trans-unit>
+      <trans-unit id="orders.itemsLabel" datatype="html">
+        <source>Artículos:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+        <note priority="1" from="description">orders.itemsLabel</note>
+      </trans-unit>
+      <trans-unit id="orders.serviceTypeLabel" datatype="html">
+        <source>Tipo de servicio:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+        <note priority="1" from="description">orders.serviceTypeLabel</note>
+      </trans-unit>
+      <trans-unit id="orders.totalLabel" datatype="html">
+        <source>Total:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <note priority="1" from="description">orders.totalLabel</note>
+      </trans-unit>
+      <trans-unit id="orders.discountLabel" datatype="html">
+        <source>Descuento:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+        <note priority="1" from="description">orders.discountLabel</note>
+      </trans-unit>
+      <trans-unit id="orders.viewDetails" datatype="html">
+        <source> Ver Detalles </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">76,78</context>
+        </context-group>
+        <note priority="1" from="description">orders.viewDetails</note>
+      </trans-unit>
+      <trans-unit id="orders.cancel" datatype="html">
+        <source> Cancelar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">84,86</context>
+        </context-group>
+        <note priority="1" from="description">orders.cancel</note>
+      </trans-unit>
+      <trans-unit id="orders.noOrders" datatype="html">
+        <source>No tienes órdenes aún</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">96,97</context>
+        </context-group>
+        <note priority="1" from="description">orders.noOrders</note>
+      </trans-unit>
+      <trans-unit id="orders.exploreProducts" datatype="html">
+        <source> Explorar Productos </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">98,103</context>
+        </context-group>
+        <note priority="1" from="description">orders.exploreProducts</note>
+      </trans-unit>
+      <trans-unit id="orders.modalTitle" datatype="html">
+        <source>Detalles del Pedido #<x id="INTERPOLATION" equiv-text="{{ selectedOrder.id }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+        <note priority="1" from="description">orders.modalTitle</note>
+      </trans-unit>
+      <trans-unit id="orders.statusSectionTitle" datatype="html">
+        <source>Estado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">114,116</context>
+        </context-group>
+        <note priority="1" from="description">orders.statusSectionTitle</note>
+      </trans-unit>
+      <trans-unit id="orders.currentStatus" datatype="html">
+        <source>Estado actual:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">116,117</context>
+        </context-group>
+        <note priority="1" from="description">orders.currentStatus</note>
+      </trans-unit>
+      <trans-unit id="orders.dateLabel" datatype="html">
+        <source>Fecha:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">121,122</context>
+        </context-group>
+        <note priority="1" from="description">orders.dateLabel</note>
+      </trans-unit>
+      <trans-unit id="orders.serviceTypeDetail" datatype="html">
+        <source>Tipo de servicio:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+        <note priority="1" from="description">orders.serviceTypeDetail</note>
+      </trans-unit>
+      <trans-unit id="orders.itemsSectionTitle" datatype="html">
+        <source>Artículos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">127,129</context>
+        </context-group>
+        <note priority="1" from="description">orders.itemsSectionTitle</note>
+      </trans-unit>
+      <trans-unit id="orders.thProduct" datatype="html">
+        <source>Producto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">131,132</context>
+        </context-group>
+        <note priority="1" from="description">orders.thProduct</note>
+      </trans-unit>
+      <trans-unit id="orders.thQuantity" datatype="html">
+        <source>Cantidad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">132,133</context>
+        </context-group>
+        <note priority="1" from="description">orders.thQuantity</note>
+      </trans-unit>
+      <trans-unit id="orders.thUnitPrice" datatype="html">
+        <source>Precio Unitario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">133,134</context>
+        </context-group>
+        <note priority="1" from="description">orders.thUnitPrice</note>
+      </trans-unit>
+      <trans-unit id="orders.thSubtotal" datatype="html">
+        <source>Subtotal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">134,136</context>
+        </context-group>
+        <note priority="1" from="description">orders.thSubtotal</note>
+      </trans-unit>
+      <trans-unit id="orders.subtotalLabel" datatype="html">
+        <source>Subtotal:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">153,154</context>
+        </context-group>
+        <note priority="1" from="description">orders.subtotalLabel</note>
+      </trans-unit>
+      <trans-unit id="orders.discountRow" datatype="html">
+        <source>Descuento:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">158,159</context>
+        </context-group>
+        <note priority="1" from="description">orders.discountRow</note>
+      </trans-unit>
+      <trans-unit id="orders.totalRow" datatype="html">
+        <source>Total:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">163,164</context>
+        </context-group>
+        <note priority="1" from="description">orders.totalRow</note>
+      </trans-unit>
+      <trans-unit id="orders.close" datatype="html">
+        <source> Cerrar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.html</context>
+          <context context-type="linenumber">170,172</context>
+        </context-group>
+        <note priority="1" from="description">orders.close</note>
+      </trans-unit>
+      <trans-unit id="orders.statusPendent" datatype="html">
+        <source>Pendiente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">orders.statusPendent</note>
+      </trans-unit>
+      <trans-unit id="orders.statusPreparing" datatype="html">
+        <source>En Preparación</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <note priority="1" from="description">orders.statusPreparing</note>
+      </trans-unit>
+      <trans-unit id="orders.statusDelivered" datatype="html">
+        <source>Entregada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <note priority="1" from="description">orders.statusDelivered</note>
+      </trans-unit>
+      <trans-unit id="orders.statusCanceled" datatype="html">
+        <source>Cancelada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">orders.statusCanceled</note>
+      </trans-unit>
+      <trans-unit id="orders.serviceTakeaway" datatype="html">
+        <source>Para Llevar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <note priority="1" from="description">orders.serviceTakeaway</note>
+      </trans-unit>
+      <trans-unit id="orders.serviceTable" datatype="html">
+        <source>En Mesa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <note priority="1" from="description">orders.serviceTable</note>
+      </trans-unit>
+      <trans-unit id="orders.serviceDelivery" datatype="html">
+        <source>A Domicilio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <note priority="1" from="description">orders.serviceDelivery</note>
+      </trans-unit>
+      <trans-unit id="orders.loadError" datatype="html">
+        <source>Error al cargar las órdenes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+        <note priority="1" from="description">orders.loadError</note>
+      </trans-unit>
+      <trans-unit id="orders.confirmCancel" datatype="html">
+        <source>¿Estás seguro de que deseas cancelar el pedido #<x id="orderId" equiv-text="order.id"/>?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+        <note priority="1" from="description">orders.confirmCancel</note>
+      </trans-unit>
+      <trans-unit id="orders.cancelSuccess" datatype="html">
+        <source>Pedido cancelado exitosamente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <note priority="1" from="description">orders.cancelSuccess</note>
+      </trans-unit>
+      <trans-unit id="orders.cancelError" datatype="html">
+        <source>Error al cancelar el pedido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.ts</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+        <note priority="1" from="description">orders.cancelError</note>
+      </trans-unit>
+      <trans-unit id="product.loading" datatype="html">
+        <source>Cargando producto...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">19,23</context>
+        </context-group>
+        <note priority="1" from="description">product.loading</note>
+      </trans-unit>
+      <trans-unit id="product.new" datatype="html">
+        <source>Nuevo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">32,34</context>
+        </context-group>
+        <note priority="1" from="description">product.new</note>
+      </trans-unit>
+      <trans-unit id="product.bestseller" datatype="html">
+        <source>Bestseller</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">35,37</context>
+        </context-group>
+        <note priority="1" from="description">product.bestseller</note>
+      </trans-unit>
+      <trans-unit id="product.limitedEdition" datatype="html">
+        <source>Edición Limitada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">38,42</context>
+        </context-group>
+        <note priority="1" from="description">product.limitedEdition</note>
+      </trans-unit>
+      <trans-unit id="product.categoryLabel" datatype="html">
+        <source>Categoría:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+        <note priority="1" from="description">product.categoryLabel</note>
+      </trans-unit>
+      <trans-unit id="product.reviews" datatype="html">
+        <source>comentarios</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">59,61</context>
+        </context-group>
+        <note priority="1" from="description">product.reviews</note>
+      </trans-unit>
+      <trans-unit id="product.origin" datatype="html">
+        <source>Origen:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+        <note priority="1" from="description">product.origin</note>
+      </trans-unit>
+      <trans-unit id="product.weight" datatype="html">
+        <source>Peso:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <note priority="1" from="description">product.weight</note>
+      </trans-unit>
+      <trans-unit id="product.stock" datatype="html">
+        <source>Stock:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+        <note priority="1" from="description">product.stock</note>
+      </trans-unit>
+      <trans-unit id="product.notAvailable" datatype="html">
+        <source>No disponible</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">75,77</context>
+        </context-group>
+        <note priority="1" from="description">product.notAvailable</note>
+      </trans-unit>
+      <trans-unit id="product.unitsAvailable" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ product.stock }}"/> unidades disponibles</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+        <note priority="1" from="description">product.unitsAvailable</note>
+      </trans-unit>
+      <trans-unit id="product.quantity" datatype="html">
+        <source>Cantidad:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">89,90</context>
+        </context-group>
+        <note priority="1" from="description">product.quantity</note>
+      </trans-unit>
+      <trans-unit id="product.buyNow" datatype="html">
+        <source> Comprar Ahora </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">134,136</context>
+        </context-group>
+        <note priority="1" from="description">product.buyNow</note>
+      </trans-unit>
+      <trans-unit id="product.relatedProducts" datatype="html">
+        <source>Productos Relacionados</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.html</context>
+          <context context-type="linenumber">146,148</context>
+        </context-group>
+        <note priority="1" from="description">product.relatedProducts</note>
+      </trans-unit>
+      <trans-unit id="product.adding" datatype="html">
+        <source>Añadiendo...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">product.adding</note>
+      </trans-unit>
+      <trans-unit id="product.addToCart" datatype="html">
+        <source>Añadir al Carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">product.addToCart</note>
+      </trans-unit>
+      <trans-unit id="product.loadError" datatype="html">
+        <source>Error al cargar el producto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.ts</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+        <note priority="1" from="description">product.loadError</note>
+      </trans-unit>
+      <trans-unit id="product.invalidQuantity" datatype="html">
+        <source>Cantidad inválida</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <note priority="1" from="description">product.invalidQuantity</note>
+      </trans-unit>
+      <trans-unit id="product.insufficientStock" datatype="html">
+        <source>Stock insuficiente. Disponibles: <x id="stock" equiv-text="this.product.stock"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <note priority="1" from="description">product.insufficientStock</note>
+      </trans-unit>
+      <trans-unit id="product.addedToCart" datatype="html">
+        <source><x id="qty" equiv-text="this.quantity"/> <x id="name" equiv-text="this.product!.name"/> añadido(s) al carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <note priority="1" from="description">product.addedToCart</note>
+      </trans-unit>
+      <trans-unit id="product.addToCartError" datatype="html">
+        <source>Error al añadir al carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.ts</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+        <note priority="1" from="description">product.addToCartError</note>
+      </trans-unit>
+      <trans-unit id="product.purchaseError" datatype="html">
+        <source>Error al procesar la compra</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product/product.ts</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+        <note priority="1" from="description">product.purchaseError</note>
+      </trans-unit>
+      <trans-unit id="profile.title" datatype="html">
+        <source>Mi Perfil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">3,6</context>
+        </context-group>
+        <note priority="1" from="description">profile.title</note>
+      </trans-unit>
+      <trans-unit id="profile.personalInfo" datatype="html">
+        <source>Información Personal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">23,26</context>
+        </context-group>
+        <note priority="1" from="description">profile.personalInfo</note>
+      </trans-unit>
+      <trans-unit id="profile.nameLabel" datatype="html">
+        <source>Nombre:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">profile.nameLabel</note>
+      </trans-unit>
+      <trans-unit id="profile.emailLabel" datatype="html">
+        <source>Email:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+        <note priority="1" from="description">profile.emailLabel</note>
+      </trans-unit>
+      <trans-unit id="profile.phoneLabel" datatype="html">
+        <source>Teléfono:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <note priority="1" from="description">profile.phoneLabel</note>
+      </trans-unit>
+      <trans-unit id="profile.roleLabel" datatype="html">
+        <source>Rol:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <note priority="1" from="description">profile.roleLabel</note>
+      </trans-unit>
+      <trans-unit id="profile.statusLabel" datatype="html">
+        <source>Estado:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+        <note priority="1" from="description">profile.statusLabel</note>
+      </trans-unit>
+      <trans-unit id="profile.memberSince" datatype="html">
+        <source>Miembro desde:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <note priority="1" from="description">profile.memberSince</note>
+      </trans-unit>
+      <trans-unit id="profile.editProfile" datatype="html">
+        <source> Editar Perfil </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">57,62</context>
+        </context-group>
+        <note priority="1" from="description">profile.editProfile</note>
+      </trans-unit>
+      <trans-unit id="profile.firstName" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">66,68</context>
+        </context-group>
+        <note priority="1" from="description">profile.firstName</note>
+      </trans-unit>
+      <trans-unit id="profile.nameRequired" datatype="html">
+        <source>El nombre es requerido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">77,79</context>
+        </context-group>
+        <note priority="1" from="description">profile.nameRequired</note>
+      </trans-unit>
+      <trans-unit id="profile.nameMinLength" datatype="html">
+        <source>Mínimo 2 caracteres</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">80,83</context>
+        </context-group>
+        <note priority="1" from="description">profile.nameMinLength</note>
+      </trans-unit>
+      <trans-unit id="profile.lastName" datatype="html">
+        <source>Apellido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">86,88</context>
+        </context-group>
+        <note priority="1" from="description">profile.lastName</note>
+      </trans-unit>
+      <trans-unit id="profile.lastNameRequired" datatype="html">
+        <source>El apellido es requerido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">97,99</context>
+        </context-group>
+        <note priority="1" from="description">profile.lastNameRequired</note>
+      </trans-unit>
+      <trans-unit id="profile.lastNameMinLength" datatype="html">
+        <source>Mínimo 2 caracteres</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">100,104</context>
+        </context-group>
+        <note priority="1" from="description">profile.lastNameMinLength</note>
+      </trans-unit>
+      <trans-unit id="profile.phone" datatype="html">
+        <source>Teléfono</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">106,108</context>
+        </context-group>
+        <note priority="1" from="description">profile.phone</note>
+      </trans-unit>
+      <trans-unit id="profile.phoneInvalid" datatype="html">
+        <source>Teléfono inválido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">117,120</context>
+        </context-group>
+        <note priority="1" from="description">profile.phoneInvalid</note>
+      </trans-unit>
+      <trans-unit id="profile.cancel" datatype="html">
+        <source> Cancelar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">127,129</context>
+        </context-group>
+        <note priority="1" from="description">profile.cancel</note>
+      </trans-unit>
+      <trans-unit id="profile.security" datatype="html">
+        <source>Seguridad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">139,142</context>
+        </context-group>
+        <note priority="1" from="description">profile.security</note>
+      </trans-unit>
+      <trans-unit id="profile.securityDesc" datatype="html">
+        <source>Protege tu cuenta cambiando tu contraseña regularmente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">143,144</context>
+        </context-group>
+        <note priority="1" from="description">profile.securityDesc</note>
+      </trans-unit>
+      <trans-unit id="profile.changePasswordBtn" datatype="html">
+        <source> Cambiar Contraseña </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">145,150</context>
+        </context-group>
+        <note priority="1" from="description">profile.changePasswordBtn</note>
+      </trans-unit>
+      <trans-unit id="profile.currentPassword" datatype="html">
+        <source>Contraseña Actual</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">154,157</context>
+        </context-group>
+        <note priority="1" from="description">profile.currentPassword</note>
+      </trans-unit>
+      <trans-unit id="profile.required" datatype="html">
+        <source>Requerido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">165,168</context>
+        </context-group>
+        <note priority="1" from="description">profile.required</note>
+      </trans-unit>
+      <trans-unit id="profile.newPassword" datatype="html">
+        <source>Nueva Contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">171,173</context>
+        </context-group>
+        <note priority="1" from="description">profile.newPassword</note>
+      </trans-unit>
+      <trans-unit id="profile.newPasswordRequired" datatype="html">
+        <source>Requerido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">182,184</context>
+        </context-group>
+        <note priority="1" from="description">profile.newPasswordRequired</note>
+      </trans-unit>
+      <trans-unit id="profile.newPasswordMinLength" datatype="html">
+        <source>Mínimo 6 caracteres</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">185,189</context>
+        </context-group>
+        <note priority="1" from="description">profile.newPasswordMinLength</note>
+      </trans-unit>
+      <trans-unit id="profile.confirmPassword" datatype="html">
+        <source>Confirmar Contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">191,194</context>
+        </context-group>
+        <note priority="1" from="description">profile.confirmPassword</note>
+      </trans-unit>
+      <trans-unit id="profile.passwordMismatch" datatype="html">
+        <source>Las contraseñas no coinciden</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">201,205</context>
+        </context-group>
+        <note priority="1" from="description">profile.passwordMismatch</note>
+      </trans-unit>
+      <trans-unit id="profile.cancelPassword" datatype="html">
+        <source> Cancelar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.html</context>
+          <context context-type="linenumber">210,213</context>
+        </context-group>
+        <note priority="1" from="description">profile.cancelPassword</note>
+      </trans-unit>
+      <trans-unit id="profile.saving" datatype="html">
+        <source>Guardando...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">profile.saving</note>
+      </trans-unit>
+      <trans-unit id="profile.saveChanges" datatype="html">
+        <source>Guardar Cambios</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">profile.saveChanges</note>
+      </trans-unit>
+      <trans-unit id="profile.changing" datatype="html">
+        <source>Cambiando...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <note priority="1" from="description">profile.changing</note>
+      </trans-unit>
+      <trans-unit id="profile.changePassword" datatype="html">
+        <source>Cambiar Contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">profile.changePassword</note>
+      </trans-unit>
+      <trans-unit id="profile.roleAdmin" datatype="html">
+        <source>Administrador</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <note priority="1" from="description">profile.roleAdmin</note>
+      </trans-unit>
+      <trans-unit id="profile.roleClient" datatype="html">
+        <source>Cliente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">profile.roleClient</note>
+      </trans-unit>
+      <trans-unit id="profile.roleEmployee" datatype="html">
+        <source>Empleado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <note priority="1" from="description">profile.roleEmployee</note>
+      </trans-unit>
+      <trans-unit id="profile.roleProvider" datatype="html">
+        <source>Proveedor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <note priority="1" from="description">profile.roleProvider</note>
+      </trans-unit>
+      <trans-unit id="profile.roleUser" datatype="html">
+        <source>Usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">profile.roleUser</note>
+      </trans-unit>
+      <trans-unit id="profile.active" datatype="html">
+        <source>Activo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="description">profile.active</note>
+      </trans-unit>
+      <trans-unit id="profile.inactive" datatype="html">
+        <source>Inactivo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">profile.inactive</note>
+      </trans-unit>
+      <trans-unit id="profile.loadError" datatype="html">
+        <source>Error al cargar el perfil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+        <note priority="1" from="description">profile.loadError</note>
+      </trans-unit>
+      <trans-unit id="profile.fieldsError" datatype="html">
+        <source>Por favor completa todos los campos correctamente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">152</context>
+        </context-group>
+        <note priority="1" from="description">profile.fieldsError</note>
+      </trans-unit>
+      <trans-unit id="profile.updateSuccess" datatype="html">
+        <source>Perfil actualizado exitosamente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+        <note priority="1" from="description">profile.updateSuccess</note>
+      </trans-unit>
+      <trans-unit id="profile.updateError" datatype="html">
+        <source>Error al actualizar el perfil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">144</context>
+        </context-group>
+        <note priority="1" from="description">profile.updateError</note>
+      </trans-unit>
+      <trans-unit id="profile.passwordSuccess" datatype="html">
+        <source>Contraseña cambiada exitosamente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+        <note priority="1" from="description">profile.passwordSuccess</note>
+      </trans-unit>
+      <trans-unit id="profile.passwordError" datatype="html">
+        <source>Error al cambiar la contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile/profile.ts</context>
+          <context context-type="linenumber">173</context>
+        </context-group>
+        <note priority="1" from="description">profile.passwordError</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

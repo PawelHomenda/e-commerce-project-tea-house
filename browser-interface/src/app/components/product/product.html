@@ -16,7 +16,7 @@
 <!-- Indicador de carga -->
 @if (isLoading) {
   <div class="loading">
-    <p>Cargando producto...</p>
+    <p i18n="product.loading@@product.loading">Cargando producto...</p>
   </div>
 }
 
@@ -29,13 +29,13 @@
         <div class="product-image">
           <img [src]="product.imageUrl" [alt]="product.name" />
           @if (product.isNew) {
-            <div class="badge-new">Nuevo</div>
+            <div class="badge-new" i18n="product.new@@product.new">Nuevo</div>
           }
           @if (product.isBestseller) {
-            <div class="badge-bestseller">Bestseller</div>
+            <div class="badge-bestseller" i18n="product.bestseller@@product.bestseller">Bestseller</div>
           }
           @if (product.isLimitedEdition) {
-            <div class="badge-limited">Edición Limitada</div>
+            <div class="badge-limited" i18n="product.limitedEdition@@product.limitedEdition">Edición Limitada</div>
           }
         </div>
       </div>
@@ -44,7 +44,7 @@
         <h1>{{ product.name }}</h1>
         <!-- Categoría -->
         <p class="category">
-          <strong>Categoría:</strong>
+          <strong i18n="product.categoryLabel@@product.categoryLabel">Categoría:</strong>
           <span class="category-name">{{ product.category.name }}</span>
         </p>
         <!-- Calificación -->
@@ -56,7 +56,7 @@
               }
             </div>
             <span class="rating-value">{{ product.rating.toFixed(1) }}/5</span>
-            <span class="review-count">({{ product.reviewCount }} comentarios)</span>
+            <span class="review-count">({{ product.reviewCount }} <span i18n="product.reviews@@product.reviews">comentarios</span>)</span>
           </div>
         </div>
         <!-- Descripción -->
@@ -64,18 +64,18 @@
         <!-- Detalles del producto -->
         <div class="product-details">
           <div class="detail-item">
-            <strong>Origen:</strong> {{ product.origin }}
+            <strong i18n="product.origin@@product.origin">Origen:</strong> {{ product.origin }}
           </div>
           <div class="detail-item">
-            <strong>Peso:</strong> {{ product.weight }}{{ product.unit === 'kg' ? ' kg' : ' g' }}
+            <strong i18n="product.weight@@product.weight">Peso:</strong> {{ product.weight }}{{ product.unit === 'kg' ? ' kg' : ' g' }}
           </div>
           <div class="detail-item" [class.out-of-stock]="isOutOfStock()">
-            <strong>Stock:</strong>
+            <strong i18n="product.stock@@product.stock">Stock:</strong>
             @if (isOutOfStock()) {
-              <span class="text-danger">No disponible</span>
+              <span class="text-danger" i18n="product.notAvailable@@product.notAvailable">No disponible</span>
             }
             @if (!isOutOfStock()) {
-              <span>{{ product.stock }} unidades disponibles</span>
+              <span i18n="product.unitsAvailable@@product.unitsAvailable">{{ product.stock }} unidades disponibles</span>
             }
           </div>
         </div>
@@ -86,7 +86,7 @@
         <!-- Cantidad y botones -->
         <div class="purchase-section">
           <div class="quantity-selector">
-            <label for="quantity">Cantidad:</label>
+            <label for="quantity" i18n="product.quantity@@product.quantity">Cantidad:</label>
             <div class="quantity-controls">
               <button
                 type="button"
@@ -122,13 +122,14 @@
               (click)="addToCart()"
               [disabled]="isOutOfStock() || isAddingToCart"
               >
-              {{ isAddingToCart ? 'Añadiendo...' : 'Añadir al Carrito' }}
+              {{ isAddingToCart ? addingLabel : addToCartLabel }}
             </button>
             <button
               type="button"
               class="btn btn-success btn-buy-now"
               (click)="buyNow()"
               [disabled]="isOutOfStock() || isAddingToCart"
+              i18n="product.buyNow@@product.buyNow"
               >
               Comprar Ahora
             </button>
@@ -142,7 +143,7 @@
 <!-- Productos relacionados -->
 @if (relatedProducts.length > 0 && !isLoading) {
   <div class="related-products">
-    <h2>Productos Relacionados</h2>
+    <h2 i18n="product.relatedProducts@@product.relatedProducts">Productos Relacionados</h2>
     <div class="products-grid">
       @for (relatedProduct of relatedProducts; track relatedProduct) {
         <div class="product-card" (click)="viewProduct(relatedProduct.id)">

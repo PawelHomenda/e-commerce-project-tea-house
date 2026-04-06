@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   imports: [CommonModule],
   template: `
     <div class="authorized-screen">
-      <h2>Procesando inicio de sesión...</h2>
+      <h2 i18n="authorized.processing@@authorized.processing">Procesando inicio de sesión...</h2>
       <p *ngIf="message">{{ message }}</p>
     </div>
   `,
@@ -34,27 +34,27 @@ export class AuthorizedComponent implements OnInit {
       const token = params.get('token');
 
       if (token) {
-        this.message = 'Autenticación completada. Redirigiendo...';
+        this.message = $localize`:authorized.authComplete@@authorized.authComplete:Autenticación completada. Redirigiendo...`;
         this.authService.setToken(token);
         this.router.navigate(['/']);
         return;
       }
 
       if (code) {
-        this.message = 'Intercambiando código por token...';
+        this.message = $localize`:authorized.exchangingCode@@authorized.exchangingCode:Intercambiando código por token...`;
         this.authService.exchangeCode(code).subscribe({
           next: () => {
             this.router.navigate(['/']);
           },
           error: (err) => {
             console.error('Error intercambiando código:', err);
-            this.message = 'No se pudo completar el inicio de sesión. Intenta de nuevo.';
+            this.message = $localize`:authorized.loginFailed@@authorized.loginFailed:No se pudo completar el inicio de sesión. Intenta de nuevo.`;
           }
         });
         return;
       }
 
-      this.message = 'No se recibió código ni token en la URL.';
+      this.message = $localize`:authorized.noCodeOrToken@@authorized.noCodeOrToken:No se recibió código ni token en la URL.`;
     });
   }
 }

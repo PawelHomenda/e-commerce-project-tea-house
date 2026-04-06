@@ -41,19 +41,19 @@ export class OrderConfirmationComponent implements OnInit {
 
   getServiceLabel(type: string): string {
     switch (type) {
-      case 'TAKEAWAY': return 'Recoger en tienda';
-      case 'TABLE': return 'En mesa';
-      case 'DELIVERY': return 'Envío a domicilio';
+      case 'TAKEAWAY': return $localize`:orderConfirm.takeaway@@orderConfirm.takeaway:Recoger en tienda`;
+      case 'TABLE': return $localize`:orderConfirm.table@@orderConfirm.table:En mesa`;
+      case 'DELIVERY': return $localize`:orderConfirm.delivery@@orderConfirm.delivery:Envío a domicilio`;
       default: return type;
     }
   }
 
   getStateLabel(state: string): string {
     switch (state) {
-      case 'PENDENT': return 'Pendiente';
-      case 'PREPARING': return 'Preparando';
-      case 'DELIVERED': return 'Entregado';
-      case 'CANCELED': return 'Cancelado';
+      case 'PENDENT': return $localize`:orderConfirm.pendent@@orderConfirm.pendent:Pendiente`;
+      case 'PREPARING': return $localize`:orderConfirm.preparing@@orderConfirm.preparing:Preparando`;
+      case 'DELIVERED': return $localize`:orderConfirm.delivered@@orderConfirm.delivered:Entregado`;
+      case 'CANCELED': return $localize`:orderConfirm.canceled@@orderConfirm.canceled:Cancelado`;
       default: return state;
     }
   }

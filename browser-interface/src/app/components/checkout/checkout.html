@@ -1,36 +1,36 @@
 <div class="checkout-page">
-  <h1 class="page-title">🧾 Finalizar Compra</h1>
+  <h1 class="page-title" i18n="checkout.title@@checkout.title">🧾 Finalizar Compra</h1>
 
   <!-- Steps indicator -->
   <div class="steps">
     <div class="step" [class.active]="currentStep >= 1" [class.done]="currentStep > 1" (click)="goToStep(1)">
       <span class="step-num">1</span>
-      <span class="step-label">Servicio</span>
+      <span class="step-label" i18n="checkout.stepService@@checkout.stepService">Servicio</span>
     </div>
     <div class="step-line" [class.active]="currentStep > 1"></div>
     <div class="step" [class.active]="currentStep >= 2" [class.done]="currentStep > 2" (click)="goToStep(2)">
       <span class="step-num">2</span>
-      <span class="step-label">Pago</span>
+      <span class="step-label" i18n="checkout.stepPayment@@checkout.stepPayment">Pago</span>
     </div>
     <div class="step-line" [class.active]="currentStep > 2"></div>
     <div class="step" [class.active]="currentStep >= 3">
       <span class="step-num">3</span>
-      <span class="step-label">Confirmar</span>
+      <span class="step-label" i18n="checkout.stepConfirm@@checkout.stepConfirm">Confirmar</span>
     </div>
   </div>
 
   <!-- Step 1: Service Type -->
   @if (currentStep === 1) {
     <div class="step-content">
-      <h2>¿Cómo quieres recibir tu pedido?</h2>
+      <h2 i18n="checkout.howReceive@@checkout.howReceive">¿Cómo quieres recibir tu pedido?</h2>
 
       <div class="service-options">
         <label class="service-option" [class.selected]="serviceType === 'TAKEAWAY'">
           <input type="radio" name="serviceType" value="TAKEAWAY" [(ngModel)]="serviceType" />
           <div class="option-icon">🥡</div>
           <div class="option-text">
-            <strong>Recoger en tienda</strong>
-            <span>Recoge tu pedido en nuestra tienda</span>
+            <strong i18n="checkout.takeaway@@checkout.takeaway">Recoger en tienda</strong>
+            <span i18n="checkout.takeawayDesc@@checkout.takeawayDesc">Recoge tu pedido en nuestra tienda</span>
           </div>
         </label>
 
@@ -38,8 +38,8 @@
           <input type="radio" name="serviceType" value="TABLE" [(ngModel)]="serviceType" />
           <div class="option-icon">🪑</div>
           <div class="option-text">
-            <strong>En mesa</strong>
-            <span>Servicio en mesa dentro del local</span>
+            <strong i18n="checkout.tableOption@@checkout.tableOption">En mesa</strong>
+            <span i18n="checkout.tableDesc@@checkout.tableDesc">Servicio en mesa dentro del local</span>
           </div>
         </label>
 
@@ -47,31 +47,31 @@
           <input type="radio" name="serviceType" value="DELIVERY" [(ngModel)]="serviceType" />
           <div class="option-icon">🚚</div>
           <div class="option-text">
-            <strong>Envío a domicilio</strong>
-            <span>Te lo llevamos a tu dirección</span>
+            <strong i18n="checkout.delivery@@checkout.delivery">Envío a domicilio</strong>
+            <span i18n="checkout.deliveryDesc@@checkout.deliveryDesc">Te lo llevamos a tu dirección</span>
           </div>
         </label>
       </div>
 
       @if (serviceType === 'TABLE') {
         <div class="extra-field">
-          <label>Número de mesa</label>
-          <input type="text" [(ngModel)]="tableNumber" placeholder="Ej: 5" class="input-field" />
+          <label i18n="checkout.tableNumber@@checkout.tableNumber">Número de mesa</label>
+          <input type="text" [(ngModel)]="tableNumber" i18n-placeholder="checkout.tableNumberPlaceholder@@checkout.tableNumberPlaceholder" placeholder="Ej: 5" class="input-field" />
         </div>
       }
 
       @if (serviceType === 'DELIVERY') {
         <div class="extra-field">
-          <label>Dirección de envío (desde tu perfil)</label>
+          <label i18n="checkout.deliveryAddress@@checkout.deliveryAddress">Dirección de envío (desde tu perfil)</label>
           <div class="address-display">
-            {{ clientAddress || 'No se encontró dirección. Actualiza tu perfil.' }}
+            {{ clientAddress || noAddressMessage }}
           </div>
         </div>
       }
 
       <div class="step-actions">
-        <a routerLink="/cart" class="btn-back">← Volver al carrito</a>
-        <button class="btn-next" (click)="nextStep()">Siguiente →</button>
+        <a routerLink="/cart" class="btn-back" i18n="checkout.backToCart@@checkout.backToCart">← Volver al carrito</a>
+        <button class="btn-next" (click)="nextStep()" i18n="checkout.next@@checkout.next">Siguiente →</button>
       </div>
     </div>
   }
@@ -79,18 +79,18 @@
   <!-- Step 2: Payment -->
   @if (currentStep === 2) {
     <div class="step-content">
-      <h2>Método de pago</h2>
+      <h2 i18n="checkout.paymentMethod@@checkout.paymentMethod">Método de pago</h2>
 
       <div class="payment-options">
         <label class="payment-option" [class.selected]="paymentMethod === PaymentMethod.CREDIT_CARD">
           <input type="radio" name="paymentMethod" [value]="PaymentMethod.CREDIT_CARD" [(ngModel)]="paymentMethod" />
           <span class="pm-icon">💳</span>
-          <span>Tarjeta de Crédito</span>
+          <span i18n="checkout.creditCard@@checkout.creditCard">Tarjeta de Crédito</span>
         </label>
         <label class="payment-option" [class.selected]="paymentMethod === PaymentMethod.DEBIT_CARD">
           <input type="radio" name="paymentMethod" [value]="PaymentMethod.DEBIT_CARD" [(ngModel)]="paymentMethod" />
           <span class="pm-icon">💳</span>
-          <span>Tarjeta de Débito</span>
+          <span i18n="checkout.debitCard@@checkout.debitCard">Tarjeta de Débito</span>
         </label>
         <label class="payment-option" [class.selected]="paymentMethod === PaymentMethod.PAYPAL">
           <input type="radio" name="paymentMethod" [value]="PaymentMethod.PAYPAL" [(ngModel)]="paymentMethod" />
@@ -100,12 +100,12 @@
         <label class="payment-option" [class.selected]="paymentMethod === PaymentMethod.BANK_TRANSFER">
           <input type="radio" name="paymentMethod" [value]="PaymentMethod.BANK_TRANSFER" [(ngModel)]="paymentMethod" />
           <span class="pm-icon">🏦</span>
-          <span>Transferencia</span>
+          <span i18n="checkout.bankTransferLabel@@checkout.bankTransferLabel">Transferencia</span>
         </label>
         <label class="payment-option" [class.selected]="paymentMethod === PaymentMethod.CASH_ON_DELIVERY">
           <input type="radio" name="paymentMethod" [value]="PaymentMethod.CASH_ON_DELIVERY" [(ngModel)]="paymentMethod" />
           <span class="pm-icon">💵</span>
-          <span>Contra Entrega</span>
+          <span i18n="checkout.cashOnDeliveryLabel@@checkout.cashOnDeliveryLabel">Contra Entrega</span>
         </label>
       </div>
 
@@ -113,19 +113,19 @@
         <div class="card-form">
           <div class="card-form-header">
             <span>💳</span>
-            <span>Datos de tarjeta (simulación)</span>
+            <span i18n="checkout.cardDataSimulation@@checkout.cardDataSimulation">Datos de tarjeta (simulación)</span>
           </div>
           <div class="form-group">
-            <label>Titular de la tarjeta</label>
-            <input type="text" [(ngModel)]="cardName" placeholder="Nombre en la tarjeta" class="input-field" />
+            <label i18n="checkout.cardHolder@@checkout.cardHolder">Titular de la tarjeta</label>
+            <input type="text" [(ngModel)]="cardName" i18n-placeholder="checkout.cardHolderPlaceholder@@checkout.cardHolderPlaceholder" placeholder="Nombre en la tarjeta" class="input-field" />
           </div>
           <div class="form-group">
-            <label>Número de tarjeta</label>
+            <label i18n="checkout.cardNumber@@checkout.cardNumber">Número de tarjeta</label>
             <input type="text" [(ngModel)]="cardNumber" (input)="formatCardNumber()" placeholder="1234 5678 9012 3456" class="input-field" maxlength="19" />
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Fecha expiración</label>
+              <label i18n="checkout.cardExpiry@@checkout.cardExpiry">Fecha expiración</label>
               <input type="text" [(ngModel)]="cardExpiry" (input)="formatExpiry()" placeholder="MM/AA" class="input-field" maxlength="5" />
             </div>
             <div class="form-group">
@@ -133,13 +133,13 @@
               <input type="password" [(ngModel)]="cardCvv" placeholder="•••" class="input-field" maxlength="4" />
             </div>
           </div>
-          <p class="card-disclaimer">⚠️ Esto es una simulación. No se procesa ningún pago real.</p>
+          <p class="card-disclaimer" i18n="checkout.cardDisclaimer@@checkout.cardDisclaimer">⚠️ Esto es una simulación. No se procesa ningún pago real.</p>
         </div>
       }
 
       <div class="step-actions">
-        <button class="btn-back" (click)="prevStep()">← Atrás</button>
-        <button class="btn-next" (click)="nextStep()">Siguiente →</button>
+        <button class="btn-back" (click)="prevStep()" i18n="checkout.back@@checkout.back">← Atrás</button>
+        <button class="btn-next" (click)="nextStep()" i18n="checkout.next2@@checkout.next2">Siguiente →</button>
       </div>
     </div>
   }
@@ -147,20 +147,20 @@
   <!-- Step 3: Confirm -->
   @if (currentStep === 3) {
     <div class="step-content">
-      <h2>Resumen del pedido</h2>
+      <h2 i18n="checkout.orderSummary@@checkout.orderSummary">Resumen del pedido</h2>
 
       <div class="confirm-layout">
         <div class="confirm-details">
           <div class="confirm-section">
-            <h3>📦 Servicio</h3>
+            <h3 i18n="checkout.serviceSection@@checkout.serviceSection">📦 Servicio</h3>
             <p>{{ getServiceLabel() }}</p>
           </div>
           <div class="confirm-section">
-            <h3>💳 Pago</h3>
+            <h3 i18n="checkout.paymentSection@@checkout.paymentSection">💳 Pago</h3>
             <p>{{ getPaymentLabel() }}</p>
           </div>
           <div class="confirm-section">
-            <h3>🛒 Artículos</h3>
+            <h3 i18n="checkout.itemsSection@@checkout.itemsSection">🛒 Artículos</h3>
             @if (cart) {
               @for (item of cart.items; track item.id) {
                 <div class="confirm-item">
@@ -174,11 +174,11 @@
 
         <div class="confirm-total-box">
           <div class="confirm-row">
-            <span>Subtotal</span>
+            <span i18n="checkout.subtotal@@checkout.subtotal">Subtotal</span>
             <span>{{ cart?.total | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
           </div>
           <div class="confirm-row total">
-            <span>Total</span>
+            <span i18n="checkout.total@@checkout.total">Total</span>
             <span>{{ cart?.total | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
           </div>
 
@@ -187,17 +187,14 @@
           }
 
           <button class="btn-confirm" (click)="confirmOrder()" [disabled]="isSubmitting">
-            @if (isSubmitting) {
-              Procesando...
-            } @else {
-              ✅ Confirmar Pedido
-            }
+            <ng-container *ngIf="isSubmitting" i18n="checkout.processing@@checkout.processing">Procesando...</ng-container>
+            <ng-container *ngIf="!isSubmitting" i18n="checkout.confirmOrder@@checkout.confirmOrder">✅ Confirmar Pedido</ng-container>
           </button>
         </div>
       </div>
 
       <div class="step-actions">
-        <button class="btn-back" (click)="prevStep()">← Atrás</button>
+        <button class="btn-back" (click)="prevStep()" i18n="checkout.back2@@checkout.back2">← Atrás</button>
       </div>
     </div>
   }

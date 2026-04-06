@@ -42,6 +42,11 @@ signup() {
   loadingProducts = true;
   error: string | null = null;
   
+  // i18n template properties
+  get availableLabel(): string { return $localize`:home.available@@home.available:Disponible`; }
+  get soldOutLabel(): string { return $localize`:home.soldOut@@home.soldOut:Agotado`; }
+  get describeVariety(): string { return $localize`:home.describeVariety@@home.describeVariety:Descubre esta variedad`; }
+  
   // Timestamps para mostrar cuando se obtuvieron los datos
   categoriesLoadTime: string | null = null;
   productsLoadTime: string | null = null;
@@ -213,12 +218,12 @@ signup() {
     
     this.cartService.addProduct(product.id, 1, product).subscribe({
       next: (cart) => {
-        this.showNotification(`${product.name} añadido al carrito`, 'success');
+        this.showNotification($localize`:home.addedToCart@@home.addedToCart:${product.name}:name: añadido al carrito`, 'success');
         console.log('Carrito actualizado:', cart);
       },
       error: (err) => {
         console.error('Error añadiendo al carrito:', err);
-        this.showNotification('Error al añadir al carrito', 'error');
+        this.showNotification($localize`:home.addToCartError@@home.addToCartError:Error al añadir al carrito`, 'error');
       }
     });
   }
@@ -239,7 +244,7 @@ signup() {
    */
   subscribeNewsletter(): void {
     if (!this.newsletterEmail || !this.isValidEmail(this.newsletterEmail)) {
-      this.showNotification('Por favor, introduce un email válido', 'error');
+      this.showNotification($localize`:home.invalidEmail@@home.invalidEmail:Por favor, introduce un email válido`, 'error');
       return;
     }
 
@@ -248,7 +253,7 @@ signup() {
     // this.newsletterService.subscribe(this.newsletterEmail);
 
     this.newsletterSubmitted = true;
-    this.showNotification('¡Gracias por suscribirte!', 'success');
+    this.showNotification($localize`:home.newsletterThanks@@home.newsletterThanks:¡Gracias por suscribirte!`, 'success');
     this.newsletterEmail = '';
 
     setTimeout(() => {
@@ -308,9 +313,9 @@ signup() {
    * Obtener badge del producto
    */
   getProductBadge(product: Product): string | null {
-    if (product.isNew) return 'Nuevo';
-    if (product.isBestseller) return 'Bestseller';
-    if (product.isLimitedEdition) return 'Edición Limitada';
+    if (product.isNew) return $localize`:home.badgeNew@@home.badgeNew:Nuevo`;
+    if (product.isBestseller) return $localize`:home.badgeBestseller@@home.badgeBestseller:Bestseller`;
+    if (product.isLimitedEdition) return $localize`:home.badgeLimited@@home.badgeLimited:Edición Limitada`;
     return null;
   }
 

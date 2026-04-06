@@ -1,6 +1,6 @@
 <div class="admin-container">
   <div class="admin-header">
-    <h1>Panel de Administración</h1>
+    <h1 i18n="admin.title@@admin.title">Panel de Administración</h1>
   </div>
 
   <!-- Mensajes de estado -->
@@ -23,6 +23,7 @@
       class="tab-button"
       [class.active]="activeTab === 'products'"
       (click)="activeTab = 'products'; loadProducts()"
+      i18n="admin.tabProducts@@admin.tabProducts"
       >
       Productos
     </button>
@@ -30,6 +31,7 @@
       class="tab-button"
       [class.active]="activeTab === 'orders'"
       (click)="switchToOrders()"
+      i18n="admin.tabOrders@@admin.tabOrders"
       >
       Órdenes
     </button>
@@ -37,6 +39,7 @@
       class="tab-button"
       [class.active]="activeTab === 'clients'"
       (click)="switchToClients()"
+      i18n="admin.tabClients@@admin.tabClients"
       >
       Clientes
     </button>
@@ -44,6 +47,7 @@
       class="tab-button"
       [class.active]="activeTab === 'employees'"
       (click)="switchToEmployees()"
+      i18n="admin.tabEmployees@@admin.tabEmployees"
       >
       Empleados
     </button>
@@ -51,6 +55,7 @@
       class="tab-button"
       [class.active]="activeTab === 'providers'"
       (click)="switchToProviders()"
+      i18n="admin.tabProviders@@admin.tabProviders"
       >
       Proveedores
     </button>
@@ -60,9 +65,9 @@
   @if (activeTab === 'products') {
     <div class="admin-tab-content">
       <div class="products-header">
-        <h2>Gestión de Productos</h2>
+        <h2 i18n="admin.productManagement@@admin.productManagement">Gestión de Productos</h2>
         @if (!isEditingProduct) {
-          <button class="btn btn-success" (click)="addProductForm()">
+          <button class="btn btn-success" (click)="addProductForm()" i18n="admin.newProductBtn@@admin.newProductBtn">
             + Nuevo Producto
           </button>
         }
@@ -70,26 +75,16 @@
       <!-- Formulario de producto -->
       @if (isEditingProduct) {
         <div class="product-form-section">
-          <h3>{{ selectedProduct ? 'Editar Producto' : 'Nuevo Producto' }}</h3>
+          <h3>{{ selectedProduct ? editProductLabel : newProductLabel }}</h3>
           <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
             <div class="form-row">
               <div class="form-group">
-                <label for="name">Nombre</label>
-                <input
-                  type="text"
-                  id="name"
-                  class="form-control"
-                  formControlName="name"
+                <label for="name" i18n="admin.productName@@admin.productName">Nombre</label>
                   [class.is-invalid]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
                   >
               </div>
               <div class="form-group">
-                <label for="price">Precio</label>
-                <input
-                  type="number"
-                  id="price"
-                  class="form-control"
-                  formControlName="price"
+                <label for="price" i18n="admin.price@@admin.price">Precio</label>
                   step="0.01"
                   [class.is-invalid]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
                   >
@@ -97,24 +92,19 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="stock">Stock</label>
-                <input
-                  type="number"
-                  id="stock"
-                  class="form-control"
-                  formControlName="stock"
+                <label for="stock" i18n="admin.stock@@admin.stock">Stock</label>
                   [class.is-invalid]="productForm.get('stock')?.invalid && productForm.get('stock')?.touched"
                   >
               </div>
               <div class="form-group">
-                <label for="categoryId">Categoría</label>
+                <label for="categoryId" i18n="admin.category@@admin.category">Categoría</label>
                 <select
                   id="categoryId"
                   class="form-control"
                   formControlName="categoryId"
                   [class.is-invalid]="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched"
                   >
-                  <option value="">Selecciona una categoría</option>
+                  <option value="" i18n="admin.selectCategory@@admin.selectCategory">Selecciona una categoría</option>
                   @for (cat of categories; track cat) {
                     <option [value]="cat.id">{{ cat.name }}</option>
                   }
@@ -122,7 +112,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="description">Descripción</label>
+              <label for="description" i18n="admin.description@@admin.description">Descripción</label>
               <textarea
                 id="description"
                 class="form-control"
@@ -133,7 +123,7 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="imageUrl">URL de Imagen</label>
+                <label for="imageUrl" i18n="admin.imageUrl@@admin.imageUrl">URL de Imagen</label>
                 <input
                   type="url"
                   id="imageUrl"
@@ -143,7 +133,7 @@
                   >
               </div>
               <div class="form-group">
-                <label for="thumbnailUrl">URL de Miniatura</label>
+                <label for="thumbnailUrl" i18n="admin.thumbnailUrl@@admin.thumbnailUrl">URL de Miniatura</label>
                 <input
                   type="url"
                   id="thumbnailUrl"
@@ -154,39 +144,29 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="origin">Origen</label>
-                <input
-                  type="text"
-                  id="origin"
-                  class="form-control"
-                  formControlName="origin"
+                <label for="origin" i18n="admin.origin@@admin.origin">Origen</label>
                   [class.is-invalid]="productForm.get('origin')?.invalid && productForm.get('origin')?.touched"
                   >
               </div>
               <div class="form-group">
-                <label for="weight">Peso</label>
-                <input
-                  type="number"
-                  id="weight"
-                  class="form-control"
-                  formControlName="weight"
+                <label for="weight" i18n="admin.weight@@admin.weight">Peso</label>
                   step="0.1"
                   [class.is-invalid]="productForm.get('weight')?.invalid && productForm.get('weight')?.touched"
                   >
               </div>
               <div class="form-group">
-                <label for="unit">Unidad</label>
+                <label for="unit" i18n="admin.unit@@admin.unit">Unidad</label>
                 <select id="unit" class="form-control" formControlName="unit">
-                  <option value="g">Gramos (g)</option>
-                  <option value="kg">Kilogramos (kg)</option>
+                  <option value="g" i18n="admin.grams@@admin.grams">Gramos (g)</option>
+                  <option value="kg" i18n="admin.kilograms@@admin.kilograms">Kilogramos (kg)</option>
                 </select>
               </div>
             </div>
             <div class="form-actions">
               <button type="submit" class="btn btn-success" [disabled]="!productForm.valid || isSubmittingProduct">
-                {{ isSubmittingProduct ? 'Guardando...' : 'Guardar Producto' }}
+                {{ isSubmittingProduct ? savingProductLabel : saveProductLabel }}
               </button>
-              <button type="button" class="btn btn-secondary" (click)="cancelEditProduct()" [disabled]="isSubmittingProduct">
+              <button type="button" class="btn btn-secondary" (click)="cancelEditProduct()" [disabled]="isSubmittingProduct" i18n="admin.cancelBtn@@admin.cancelProductBtn">
                 Cancelar
               </button>
             </div>
@@ -199,12 +179,12 @@
           <table class="products-table">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Categoría</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Origen</th>
-                <th>Acciones</th>
+                <th i18n="admin.thName@@admin.thProductName">Nombre</th>
+                <th i18n="admin.thCategory@@admin.thCategory">Categoría</th>
+                <th i18n="admin.thPrice@@admin.thPrice">Precio</th>
+                <th i18n="admin.thStock@@admin.thStock">Stock</th>
+                <th i18n="admin.thOrigin@@admin.thOrigin">Origen</th>
+                <th i18n="admin.thActions@@admin.thProductActions">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -216,8 +196,8 @@
                   <td [ngClass]="{ 'text-danger': product.stock === 0 }">{{ product.stock }}</td>
                   <td>{{ product.origin }}</td>
                   <td>
-                    <button class="btn btn-sm btn-primary" (click)="editProduct(product)">Editar</button>
-                    <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)">Eliminar</button>
+                    <button class="btn btn-sm btn-primary" (click)="editProduct(product)" i18n="admin.editBtn@@admin.editProductBtn">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)" i18n="admin.deleteBtn@@admin.deleteProductBtn">Eliminar</button>
                   </td>
                 </tr>
               }
@@ -226,13 +206,13 @@
           <!-- Paginación -->
           @if (totalProductPages > 1) {
             <div class="pagination-controls">
-              <button class="btn btn-sm" (click)="previousProductPage()" [disabled]="currentProductPage === 0">
+              <button class="btn btn-sm" (click)="previousProductPage()" [disabled]="currentProductPage === 0" i18n="admin.previous@@admin.previousProduct">
                 Anterior
               </button>
-              <span class="page-info">
+              <span class="page-info" i18n="admin.pageInfo@@admin.pageInfoProduct">
                 Página {{ currentProductPage + 1 }} de {{ totalProductPages }}
               </span>
-              <button class="btn btn-sm" (click)="nextProductPage()" [disabled]="currentProductPage >= totalProductPages - 1">
+              <button class="btn btn-sm" (click)="nextProductPage()" [disabled]="currentProductPage >= totalProductPages - 1" i18n="admin.next@@admin.nextProduct">
                 Siguiente
               </button>
             </div>
@@ -241,7 +221,7 @@
       }
       @if (isLoadingProducts) {
         <div class="loading">
-          <p>Cargando productos...</p>
+          <p i18n="admin.loadingProducts@@admin.loadingProducts">Cargando productos...</p>
         </div>
       }
     </div>
@@ -251,15 +231,15 @@
   @if (activeTab === 'orders') {
     <div class="admin-tab-content">
       <div class="orders-header">
-        <h2>Gestión de Órdenes</h2>
+        <h2 i18n="admin.orderManagement@@admin.orderManagement">Gestión de Órdenes</h2>
         <div class="filter-group">
-          <label for="orderStatusFilter">Filtrar por estado:</label>
+          <label for="orderStatusFilter" i18n="admin.filterByStatus@@admin.filterByStatus">Filtrar por estado:</label>
           <select id="orderStatusFilter" [(ngModel)]="orderStatusFilter" (change)="filterOrdersByStatus()" class="form-control">
-            <option value="">Todas las órdenes</option>
-            <option value="PENDENT">Pendiente</option>
-            <option value="PREPARING">En Preparación</option>
-            <option value="DELIVERED">Entregada</option>
-            <option value="CANCELED">Cancelada</option>
+            <option value="" i18n="admin.allOrders@@admin.allOrders">Todas las órdenes</option>
+            <option value="PENDENT" i18n="admin.pending@@admin.pending">Pendiente</option>
+            <option value="PREPARING" i18n="admin.preparing@@admin.preparing">En Preparación</option>
+            <option value="DELIVERED" i18n="admin.delivered@@admin.delivered">Entregada</option>
+            <option value="CANCELED" i18n="admin.canceled@@admin.canceled">Cancelada</option>
           </select>
         </div>
       </div>
@@ -269,13 +249,13 @@
           <table class="orders-table">
             <thead>
               <tr>
-                <th>#Orden</th>
-                <th>Cliente</th>
-                <th>Total</th>
-                <th>Estado</th>
-                <th>Servicio</th>
-                <th>Fecha</th>
-                <th>Acciones</th>
+                <th i18n="admin.thOrderId@@admin.thOrderId">#Orden</th>
+                <th i18n="admin.thClient@@admin.thClient">Cliente</th>
+                <th i18n="admin.thTotal@@admin.thTotal">Total</th>
+                <th i18n="admin.thStatus@@admin.thStatus">Estado</th>
+                <th i18n="admin.thService@@admin.thService">Servicio</th>
+                <th i18n="admin.thDate@@admin.thDate">Fecha</th>
+                <th i18n="admin.thOrderActions@@admin.thOrderActions">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -286,10 +266,10 @@
                   <td>{{ order.total | currency:'EUR':'symbol':'1.2-2' }}</td>
                   <td>
                     <select [value]="order.orderState" (change)="updateOrderStatus(order, $any($event.target).value)" class="form-control form-control-sm">
-                      <option value="PENDENT">Pendiente</option>
-                      <option value="PREPARING">En Preparación</option>
-                      <option value="DELIVERED">Entregada</option>
-                      <option value="CANCELED">Cancelada</option>
+                      <option value="PENDENT" i18n="admin.pendingOpt@@admin.pendingOpt">Pendiente</option>
+                      <option value="PREPARING" i18n="admin.preparingOpt@@admin.preparingOpt">En Preparación</option>
+                      <option value="DELIVERED" i18n="admin.deliveredOpt@@admin.deliveredOpt">Entregada</option>
+                      <option value="CANCELED" i18n="admin.canceledOpt@@admin.canceledOpt">Cancelada</option>
                     </select>
                   </td>
                   <td>
@@ -298,12 +278,12 @@
                       'badge-warning': order.serviceType === 'TAKEAWAY',
                       'badge-success': order.serviceType === 'DELIVERY'
                     }">
-                      {{ order.serviceType === 'TABLE' ? 'Mesa' : order.serviceType === 'TAKEAWAY' ? 'Para llevar' : 'Envío' }}
+                      {{ order.serviceType === 'TABLE' ? tableLabel : order.serviceType === 'TAKEAWAY' ? takeawayLabel : deliveryLabel }}
                     </span>
                   </td>
                   <td>{{ order.orderDate | date: 'dd/MM/yyyy' }}</td>
                   <td>
-                    <button class="btn btn-sm btn-info" (click)="viewOrderDetails(order)">Ver</button>
+                    <button class="btn btn-sm btn-info" (click)="viewOrderDetails(order)" i18n="admin.view@@admin.viewOrder">Ver</button>
                   </td>
                 </tr>
               }
@@ -312,13 +292,13 @@
           <!-- Paginación -->
           @if (totalOrderPages > 1) {
             <div class="pagination-controls">
-              <button class="btn btn-sm" (click)="previousOrderPage()" [disabled]="currentOrderPage === 0">
+              <button class="btn btn-sm" (click)="previousOrderPage()" [disabled]="currentOrderPage === 0" i18n="admin.previousOrders@@admin.previousOrders">
                 Anterior
               </button>
-              <span class="page-info">
+              <span class="page-info" i18n="admin.pageInfoOrders@@admin.pageInfoOrders">
                 Página {{ currentOrderPage + 1 }} de {{ totalOrderPages }}
               </span>
-              <button class="btn btn-sm" (click)="nextOrderPage()" [disabled]="currentOrderPage >= totalOrderPages - 1">
+              <button class="btn btn-sm" (click)="nextOrderPage()" [disabled]="currentOrderPage >= totalOrderPages - 1" i18n="admin.nextOrders@@admin.nextOrders">
                 Siguiente
               </button>
             </div>
@@ -327,7 +307,7 @@
       }
       @if (isLoadingOrders) {
         <div class="loading">
-          <p>Cargando órdenes...</p>
+          <p i18n="admin.loadingOrders@@admin.loadingOrders">Cargando órdenes...</p>
         </div>
       }
     </div>
@@ -337,17 +317,17 @@
   @if (activeTab === 'clients') {
     <div class="admin-tab-content">
       <div class="clients-header">
-        <h2>Gestión de Clientes</h2>
+        <h2 i18n="admin.clientManagement@@admin.clientManagement">Gestión de Clientes</h2>
       </div>
       @if (!isLoadingClients) {
         <div class="clients-table-section">
           <table class="clients-table">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Acciones</th>
+                <th i18n="admin.thClientName@@admin.thClientName">Nombre</th>
+                <th i18n="admin.thClientEmail@@admin.thClientEmail">Email</th>
+                <th i18n="admin.thClientPhone@@admin.thClientPhone">Teléfono</th>
+                <th i18n="admin.thClientActions@@admin.thClientActions">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -357,8 +337,8 @@
                   <td>{{ client.email }}</td>
                   <td>{{ client.phoneNumber || '-' }}</td>
                   <td>
-                    <button class="btn btn-sm btn-primary" (click)="editClient(client)">Editar</button>
-                    <button class="btn btn-sm btn-danger" (click)="deleteClient(client)">Eliminar</button>
+                    <button class="btn btn-sm btn-primary" (click)="editClient(client)" i18n="admin.editClient@@admin.editClient">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteClient(client)" i18n="admin.deleteClient@@admin.deleteClient">Eliminar</button>
                   </td>
                 </tr>
               }
@@ -368,15 +348,15 @@
           <!-- Paginación clientes -->
           @if (totalClientPages > 1) {
             <div class="pagination-controls">
-              <button class="btn btn-sm" (click)="previousClientPage()" [disabled]="currentClientPage === 0">Anterior</button>
-              <span class="page-info">Página {{ currentClientPage + 1 }} de {{ totalClientPages }}</span>
-              <button class="btn btn-sm" (click)="nextClientPage()" [disabled]="currentClientPage >= totalClientPages - 1">Siguiente</button>
+              <button class="btn btn-sm" (click)="previousClientPage()" [disabled]="currentClientPage === 0" i18n="admin.previousClients@@admin.previousClients">Anterior</button>
+              <span class="page-info" i18n="admin.pageInfoClients@@admin.pageInfoClients">Página {{ currentClientPage + 1 }} de {{ totalClientPages }}</span>
+              <button class="btn btn-sm" (click)="nextClientPage()" [disabled]="currentClientPage >= totalClientPages - 1" i18n="admin.nextClients@@admin.nextClients">Siguiente</button>
             </div>
           }
         </div>
       }
       @if (isLoadingClients) {
-        <div class="loading"><p>Cargando clientes...</p></div>
+        <div class="loading"><p i18n="admin.loadingClients@@admin.loadingClients">Cargando clientes...</p></div>
       }
     </div>
   }
@@ -385,52 +365,52 @@
   @if (activeTab === 'employees') {
     <div class="admin-tab-content">
       <div class="employees-header">
-        <h2>Gestión de Empleados</h2>
+        <h2 i18n="admin.employeeManagement@@admin.employeeManagement">Gestión de Empleados</h2>
         @if (!isEditingEmployee) {
-          <button class="btn btn-success" (click)="addEmployeeForm()">+ Nuevo Empleado</button>
+          <button class="btn btn-success" (click)="addEmployeeForm()" i18n="admin.newEmployeeBtn@@admin.newEmployeeBtn">+ Nuevo Empleado</button>
         }
       </div>
       @if (isEditingEmployee) {
         <div class="employee-form-section">
-          <h3>{{ selectedEmployee ? 'Editar Empleado' : 'Nuevo Empleado' }}</h3>
+          <h3>{{ selectedEmployee ? editEmployeeLabel : newEmployeeLabel }}</h3>
           <form [formGroup]="employeeForm" (ngSubmit)="submitEmployee()">
             <div class="form-row">
               <div class="form-group">
-                <label for="firstName">Nombre</label>
+                <label for="firstName" i18n="admin.empFirstName@@admin.empFirstName">Nombre</label>
                 <input id="firstName" type="text" class="form-control" formControlName="firstName" />
               </div>
               <div class="form-group">
-                <label for="lastName">Apellido</label>
+                <label for="lastName" i18n="admin.empLastName@@admin.empLastName">Apellido</label>
                 <input id="lastName" type="text" class="form-control" formControlName="lastName" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email" i18n="admin.empEmail@@admin.empEmail">Email</label>
                 <input id="email" type="email" class="form-control" formControlName="email" />
               </div>
               <div class="form-group">
-                <label for="phoneNumber">Teléfono</label>
+                <label for="phoneNumber" i18n="admin.empPhone@@admin.empPhone">Teléfono</label>
                 <input id="phoneNumber" type="tel" class="form-control" formControlName="phoneNumber" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="salary">Salario</label>
+                <label for="salary" i18n="admin.empSalary@@admin.empSalary">Salario</label>
                 <input id="salary" type="number" class="form-control" formControlName="salary" />
               </div>
               <div class="form-group">
-                <label for="position">Cargo</label>
+                <label for="position" i18n="admin.empPosition@@admin.empPosition">Cargo</label>
                 <input id="position" type="text" class="form-control" formControlName="position" />
               </div>
               <div class="form-group">
-                <label for="department">Departamento</label>
+                <label for="department" i18n="admin.empDepartment@@admin.empDepartment">Departamento</label>
                 <input id="department" type="text" class="form-control" formControlName="department" />
               </div>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-success" [disabled]="isSubmittingEmployee">{{ isSubmittingEmployee ? 'Guardando...' : 'Guardar' }}</button>
-              <button type="button" class="btn btn-secondary" (click)="cancelEditEmployee()" [disabled]="isSubmittingEmployee">Cancelar</button>
+              <button type="submit" class="btn btn-success" [disabled]="isSubmittingEmployee">{{ isSubmittingEmployee ? savingLabel : saveLabel }}</button>
+              <button type="button" class="btn btn-secondary" (click)="cancelEditEmployee()" [disabled]="isSubmittingEmployee" i18n="admin.cancelEmployee@@admin.cancelEmployee">Cancelar</button>
             </div>
           </form>
         </div>
@@ -440,10 +420,10 @@
           <table class="employees-table">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Acciones</th>
+                <th i18n="admin.thEmpName@@admin.thEmpName">Nombre</th>
+                <th i18n="admin.thEmpEmail@@admin.thEmpEmail">Email</th>
+                <th i18n="admin.thEmpPhone@@admin.thEmpPhone">Teléfono</th>
+                <th i18n="admin.thEmpActions@@admin.thEmpActions">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -453,8 +433,8 @@
                   <td>{{ emp.email }}</td>
                   <td>{{ emp.phoneNumber || '-' }}</td>
                   <td>
-                    <button class="btn btn-sm btn-primary" (click)="editEmployee(emp)">Editar</button>
-                    <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp)">Eliminar</button>
+                    <button class="btn btn-sm btn-primary" (click)="editEmployee(emp)" i18n="admin.editEmp@@admin.editEmp">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp)" i18n="admin.deleteEmp@@admin.deleteEmp">Eliminar</button>
                   </td>
                 </tr>
               }
@@ -462,15 +442,15 @@
           </table>
           @if (totalEmployeePages > 1) {
             <div class="pagination-controls">
-              <button class="btn btn-sm" (click)="previousEmployeePage()" [disabled]="currentEmployeePage === 0">Anterior</button>
-              <span class="page-info">Página {{ currentEmployeePage + 1 }} de {{ totalEmployeePages }}</span>
-              <button class="btn btn-sm" (click)="nextEmployeePage()" [disabled]="currentEmployeePage >= totalEmployeePages - 1">Siguiente</button>
+              <button class="btn btn-sm" (click)="previousEmployeePage()" [disabled]="currentEmployeePage === 0" i18n="admin.previousEmp@@admin.previousEmp">Anterior</button>
+              <span class="page-info" i18n="admin.pageInfoEmp@@admin.pageInfoEmp">Página {{ currentEmployeePage + 1 }} de {{ totalEmployeePages }}</span>
+              <button class="btn btn-sm" (click)="nextEmployeePage()" [disabled]="currentEmployeePage >= totalEmployeePages - 1" i18n="admin.nextEmp@@admin.nextEmp">Siguiente</button>
             </div>
           }
         </div>
       }
       @if (isLoadingEmployees) {
-        <div class="loading"><p>Cargando empleados...</p></div>
+        <div class="loading"><p i18n="admin.loadingEmployees@@admin.loadingEmployees">Cargando empleados...</p></div>
       }
     </div>
   }
@@ -479,44 +459,44 @@
   @if (activeTab === 'providers') {
     <div class="admin-tab-content">
       <div class="providers-header">
-        <h2>Gestión de Proveedores</h2>
+        <h2 i18n="admin.providerManagement@@admin.providerManagement">Gestión de Proveedores</h2>
         @if (!isEditingProvider) {
-          <button class="btn btn-success" (click)="addProviderForm()">+ Nuevo Proveedor</button>
+          <button class="btn btn-success" (click)="addProviderForm()" i18n="admin.newProviderBtn@@admin.newProviderBtn">+ Nuevo Proveedor</button>
         }
       </div>
       @if (isEditingProvider) {
         <div class="provider-form-section">
-          <h3>{{ selectedProvider ? 'Editar Proveedor' : 'Nuevo Proveedor' }}</h3>
+          <h3>{{ selectedProvider ? editProviderLabel : newProviderLabel }}</h3>
           <form [formGroup]="providerForm" (ngSubmit)="submitProvider()">
             <div class="form-row">
               <div class="form-group">
-                <label for="name">Nombre</label>
+                <label for="name" i18n="admin.provName@@admin.provName">Nombre</label>
                 <input id="name" type="text" class="form-control" formControlName="name" />
               </div>
               <div class="form-group">
-                <label for="contact">Contacto</label>
+                <label for="contact" i18n="admin.provContact@@admin.provContact">Contacto</label>
                 <input id="contact" type="text" class="form-control" formControlName="contact" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email" i18n="admin.provEmail@@admin.provEmail">Email</label>
                 <input id="email" type="email" class="form-control" formControlName="email" />
               </div>
               <div class="form-group">
-                <label for="phoneNumber">Teléfono</label>
+                <label for="phoneNumber" i18n="admin.provPhone@@admin.provPhone">Teléfono</label>
                 <input id="phoneNumber" type="tel" class="form-control" formControlName="phoneNumber" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="address">Dirección</label>
+                <label for="address" i18n="admin.provAddress@@admin.provAddress">Dirección</label>
                 <input id="address" type="text" class="form-control" formControlName="address" />
               </div>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-success" [disabled]="isSubmittingProvider">{{ isSubmittingProvider ? 'Guardando...' : 'Guardar' }}</button>
-              <button type="button" class="btn btn-secondary" (click)="cancelEditProvider()" [disabled]="isSubmittingProvider">Cancelar</button>
+              <button type="submit" class="btn btn-success" [disabled]="isSubmittingProvider">{{ isSubmittingProvider ? savingLabel : saveLabel }}</button>
+              <button type="button" class="btn btn-secondary" (click)="cancelEditProvider()" [disabled]="isSubmittingProvider" i18n="admin.cancelProvider@@admin.cancelProvider">Cancelar</button>
             </div>
           </form>
         </div>
@@ -526,10 +506,10 @@
           <table class="providers-table">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Contacto</th>
-                <th>Email</th>
-                <th>Acciones</th>
+                <th i18n="admin.thProvName@@admin.thProvName">Nombre</th>
+                <th i18n="admin.thProvContact@@admin.thProvContact">Contacto</th>
+                <th i18n="admin.thProvEmail@@admin.thProvEmail">Email</th>
+                <th i18n="admin.thProvActions@@admin.thProvActions">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -539,8 +519,8 @@
                   <td>{{ prov.contact }}</td>
                   <td>{{ prov.email }}</td>
                   <td>
-                    <button class="btn btn-sm btn-primary" (click)="editProvider(prov)">Editar</button>
-                    <button class="btn btn-sm btn-danger" (click)="deleteProvider(prov)">Eliminar</button>
+                    <button class="btn btn-sm btn-primary" (click)="editProvider(prov)" i18n="admin.editProv@@admin.editProv">Editar</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteProvider(prov)" i18n="admin.deleteProv@@admin.deleteProv">Eliminar</button>
                   </td>
                 </tr>
               }
@@ -548,15 +528,15 @@
           </table>
           @if (totalProviderPages > 1) {
             <div class="pagination-controls">
-              <button class="btn btn-sm" (click)="previousProviderPage()" [disabled]="currentProviderPage === 0">Anterior</button>
-              <span class="page-info">Página {{ currentProviderPage + 1 }} de {{ totalProviderPages }}</span>
-              <button class="btn btn-sm" (click)="nextProviderPage()" [disabled]="currentProviderPage >= totalProviderPages - 1">Siguiente</button>
+              <button class="btn btn-sm" (click)="previousProviderPage()" [disabled]="currentProviderPage === 0" i18n="admin.previousProv@@admin.previousProv">Anterior</button>
+              <span class="page-info" i18n="admin.pageInfoProv@@admin.pageInfoProv">Página {{ currentProviderPage + 1 }} de {{ totalProviderPages }}</span>
+              <button class="btn btn-sm" (click)="nextProviderPage()" [disabled]="currentProviderPage >= totalProviderPages - 1" i18n="admin.nextProv@@admin.nextProv">Siguiente</button>
             </div>
           }
         </div>
       }
       @if (isLoadingProviders) {
-        <div class="loading"><p>Cargando proveedores...</p></div>
+        <div class="loading"><p i18n="admin.loadingProviders@@admin.loadingProviders">Cargando proveedores...</p></div>
       }
     </div>
   }

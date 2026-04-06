@@ -23,6 +23,10 @@ export class ProductComponent implements OnInit, OnDestroy {
   successMessage = '';
   errorMessage = '';
   
+  // i18n template properties
+  get addingLabel(): string { return $localize`:product.adding@@product.adding:Añadiendo...`; }
+  get addToCartLabel(): string { return $localize`:product.addToCart@@product.addToCart:Añadir al Carrito`; }
+  
   private destroy$ = new Subject<void>();
   private productId: number | null = null;
 
@@ -61,7 +65,7 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         },
         error: (error) => {
-          this.errorMessage = 'Error al cargar el producto';
+          this.errorMessage = $localize`:product.loadError@@product.loadError:Error al cargar el producto`;
           this.isLoading = false;
           console.error('Error loading product:', error);
         }
@@ -83,13 +87,13 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   addToCart(): void {
     if (!this.product || this.quantity <= 0) {
-      this.errorMessage = 'Cantidad inválida';
+      this.errorMessage = $localize`:product.invalidQuantity@@product.invalidQuantity:Cantidad inválida`;
       return;
     }
 
     // Verificar stock
     if (this.quantity > this.product.stock) {
-      this.errorMessage = `Stock insuficiente. Disponibles: ${this.product.stock}`;
+      this.errorMessage = $localize`:product.insufficientStock@@product.insufficientStock:Stock insuficiente. Disponibles: ${this.product.stock}:stock:`;
       return;
     }
 
@@ -98,13 +102,13 @@ export class ProductComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
-          this.successMessage = `${this.quantity} ${this.product!.name} añadido(s) al carrito`;
+          this.successMessage = $localize`:product.addedToCart@@product.addedToCart:${this.quantity}:qty: ${this.product!.name}:name: añadido(s) al carrito`;
           this.quantity = 1;
           this.isAddingToCart = false;
           setTimeout(() => this.successMessage = '', 3000);
         },
         error: (error) => {
-          this.errorMessage = error.error?.message || 'Error al añadir al carrito';
+          this.errorMessage = error.error?.message || $localize`:product.addToCartError@@product.addToCartError:Error al añadir al carrito`;
           this.isAddingToCart = false;
         }
       });
@@ -121,7 +125,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             this.router.navigate(['/cart']);
           },
           error: (error) => {
-            this.errorMessage = 'Error al procesar la compra';
+            this.errorMessage = $localize`:product.purchaseError@@product.purchaseError:Error al procesar la compra`;
           }
         });
     }

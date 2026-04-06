@@ -2,44 +2,44 @@
   @if (loading) {
     <div class="loading">
       <div class="spinner"></div>
-      <p>Cargando pedido...</p>
+      <p i18n="confirmation.loading@@confirmation.loading">Cargando pedido...</p>
     </div>
   } @else if (error) {
     <div class="error-state">
       <div class="error-icon">❌</div>
-      <h2>No se pudo cargar el pedido</h2>
-      <p>Comprueba tu conexión e inténtalo de nuevo</p>
-      <a routerLink="/orders" class="btn-link">Ver mis pedidos</a>
+      <h2 i18n="confirmation.errorTitle@@confirmation.errorTitle">No se pudo cargar el pedido</h2>
+      <p i18n="confirmation.errorMessage@@confirmation.errorMessage">Comprueba tu conexión e inténtalo de nuevo</p>
+      <a routerLink="/orders" class="btn-link" i18n="confirmation.viewOrders@@confirmation.viewOrders">Ver mis pedidos</a>
     </div>
   } @else {
     <div class="success-banner">
       <div class="check-icon">✅</div>
-      <h1>¡Pedido Confirmado!</h1>
-      <p>Tu pedido se ha realizado correctamente</p>
+      <h1 i18n="confirmation.successTitle@@confirmation.successTitle">¡Pedido Confirmado!</h1>
+      <p i18n="confirmation.successMessage@@confirmation.successMessage">Tu pedido se ha realizado correctamente</p>
     </div>
 
     <div class="confirmation-card">
       <div class="order-header">
         <div>
-          <span class="label">Pedido Nº</span>
+          <span class="label" i18n="confirmation.orderNumber@@confirmation.orderNumber">Pedido Nº</span>
           <span class="value">#{{ order.id }}</span>
         </div>
         <div>
-          <span class="label">Fecha</span>
+          <span class="label" i18n="confirmation.date@@confirmation.date">Fecha</span>
           <span class="value">{{ order.orderDate }}</span>
         </div>
         <div>
-          <span class="label">Estado</span>
+          <span class="label" i18n="confirmation.state@@confirmation.state">Estado</span>
           <span class="badge badge-state">{{ getStateLabel(order.orderState) }}</span>
         </div>
         <div>
-          <span class="label">Servicio</span>
+          <span class="label" i18n="confirmation.service@@confirmation.service">Servicio</span>
           <span class="value">{{ getServiceLabel(order.serviceType) }}</span>
         </div>
       </div>
 
       <div class="order-items">
-        <h3>Artículos</h3>
+        <h3 i18n="confirmation.items@@confirmation.items">Artículos</h3>
         @for (detail of order.detailOrderClients; track detail.id) {
           <div class="item-row">
             <span class="item-name">{{ detail.product?.name || 'Producto' }}</span>
@@ -51,29 +51,29 @@
 
       <div class="order-totals">
         <div class="total-row">
-          <span>Subtotal</span>
+          <span i18n="confirmation.subtotal@@confirmation.subtotal">Subtotal</span>
           <span>{{ order.subtotal | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
         </div>
         @if (order.discountPercentage && order.discountPercentage > 0) {
           <div class="total-row discount">
-            <span>Descuento ({{ order.discountPercentage }}%)</span>
+            <span i18n="confirmation.discount@@confirmation.discount">Descuento ({{ order.discountPercentage }}%)</span>
             <span>-{{ (order.subtotal * order.discountPercentage / 100) | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
           </div>
         }
         <div class="total-row grand-total">
-          <span>Total</span>
+          <span i18n="confirmation.total@@confirmation.total">Total</span>
           <span>{{ order.total | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
         </div>
       </div>
 
       <div class="payment-simulation">
-        <span class="sim-badge">💳 Pago simulado — Aprobado ✓</span>
+        <span class="sim-badge" i18n="confirmation.paymentSimulated@@confirmation.paymentSimulated">💳 Pago simulado — Aprobado ✓</span>
       </div>
     </div>
 
     <div class="actions">
-      <a routerLink="/orders" class="btn-orders">📦 Ver mis pedidos</a>
-      <a routerLink="/" class="btn-home">🏠 Volver al inicio</a>
+      <a routerLink="/orders" class="btn-orders" i18n="confirmation.viewMyOrders@@confirmation.viewMyOrders">📦 Ver mis pedidos</a>
+      <a routerLink="/" class="btn-home" i18n="confirmation.backHome@@confirmation.backHome">🏠 Volver al inicio</a>
     </div>
   }
 </div>

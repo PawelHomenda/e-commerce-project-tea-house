@@ -78,6 +78,21 @@ export class AdminComponent implements OnInit, OnDestroy {
   successMessage = '';
   errorMessage = '';
 
+  // i18n template properties
+  get editProductLabel(): string { return $localize`:admin.editProduct@@admin.editProduct:Editar Producto`; }
+  get newProductLabel(): string { return $localize`:admin.newProduct@@admin.newProduct:Nuevo Producto`; }
+  get savingProductLabel(): string { return $localize`:admin.savingProduct@@admin.savingProduct:Guardando...`; }
+  get saveProductLabel(): string { return $localize`:admin.saveProduct@@admin.saveProduct:Guardar Producto`; }
+  get editEmployeeLabel(): string { return $localize`:admin.editEmployee@@admin.editEmployee:Editar Empleado`; }
+  get newEmployeeLabel(): string { return $localize`:admin.newEmployee@@admin.newEmployee:Nuevo Empleado`; }
+  get editProviderLabel(): string { return $localize`:admin.editProvider@@admin.editProvider:Editar Proveedor`; }
+  get newProviderLabel(): string { return $localize`:admin.newProvider@@admin.newProvider:Nuevo Proveedor`; }
+  get savingLabel(): string { return $localize`:admin.saving@@admin.saving:Guardando...`; }
+  get saveLabel(): string { return $localize`:admin.save@@admin.save:Guardar`; }
+  get tableLabel(): string { return $localize`:admin.serviceTable@@admin.serviceTable:En Mesa`; }
+  get takeawayLabel(): string { return $localize`:admin.serviceTakeaway@@admin.serviceTakeaway:Para Llevar`; }
+  get deliveryLabel(): string { return $localize`:admin.serviceDelivery@@admin.serviceDelivery:A Domicilio`; }
+
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -99,7 +114,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Verificar si es admin
     if (!this.authService.isAdmin()) {
-      this.errorMessage = 'No tienes permisos de administrador';
+      this.errorMessage = $localize`:admin.noAdminPermission@@admin.noAdminPermission:No tienes permisos de administrador`;
       return;
     }
 
@@ -194,7 +209,7 @@ export class AdminComponent implements OnInit, OnDestroy {
           this.isLoadingProducts = false;
         },
         error: (error: any) => {
-          this.errorMessage = 'Error al cargar productos';
+          this.errorMessage = $localize`:admin.loadProductsError@@admin.loadProductsError:Error al cargar productos`;
           this.isLoadingProducts = false;
         }
       });
@@ -225,7 +240,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   submitProduct(): void {
     if (this.productForm.invalid) {
-      this.errorMessage = 'Por favor completa todos los campos requeridos';
+      this.errorMessage = $localize`:admin.fieldsRequired@@admin.fieldsRequired:Por favor completa todos los campos requeridos`;
       return;
     }
 
@@ -247,29 +262,29 @@ export class AdminComponent implements OnInit, OnDestroy {
           this.products.unshift(product);
         }
         this.cancelEditProduct();
-        this.successMessage = this.selectedProduct ? 'Producto actualizado' : 'Producto creado';
+        this.successMessage = this.selectedProduct ? $localize`:admin.productUpdated@@admin.productUpdated:Producto actualizado` : $localize`:admin.productCreated@@admin.productCreated:Producto creado`;
         this.isSubmittingProduct = false;
         setTimeout(() => this.successMessage = '', 3000);
       },
       error: (error: any) => {
-        this.errorMessage = error.error?.message || 'Error al guardar el producto';
+          this.errorMessage = error.error?.message || $localize`:admin.saveProductError@@admin.saveProductError:Error al guardar el producto`;
         this.isSubmittingProduct = false;
       }
     });
   }
 
   deleteProduct(product: Product): void {
-    if (confirm(`¿Estás seguro de que deseas eliminar "${product.name}"?`)) {
+    if (confirm($localize`:admin.confirmDeleteProduct@@admin.confirmDeleteProduct:¿Estás seguro de que deseas eliminar "${product.name}:name:"?`)) {
       this.productService.deleteProduct(product.id)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: () => {
             this.products = this.products.filter(p => p.id !== product.id);
-            this.successMessage = 'Producto eliminado';
+            this.successMessage = $localize`:admin.productDeleted@@admin.productDeleted:Producto eliminado`;
             setTimeout(() => this.successMessage = '', 3000);
           },
           error: (error) => {
-            this.errorMessage = error.error?.message || 'Error al eliminar el producto';
+            this.errorMessage = error.error?.message || $localize`:admin.deleteProductError@@admin.deleteProductError:Error al eliminar el producto`;
           }
         });
     }
@@ -315,7 +330,7 @@ export class AdminComponent implements OnInit, OnDestroy {
         this.isLoadingOrders = false;
       },
       error: (error) => {
-        this.errorMessage = 'Error al cargar órdenes';
+          this.errorMessage = $localize`:admin.loadOrdersError@@admin.loadOrdersError:Error al cargar órdenes`;
         this.isLoadingOrders = false;
       }
     });
@@ -335,11 +350,11 @@ export class AdminComponent implements OnInit, OnDestroy {
           if (index !== -1) {
             this.orders[index] = updatedOrder as OrderClient;
           }
-          this.successMessage = 'Estado de orden actualizado';
+          this.successMessage = $localize`:admin.orderStatusUpdated@@admin.orderStatusUpdated:Estado de orden actualizado`;
           setTimeout(() => this.successMessage = '', 3000);
         },
         error: (error) => {
-          this.errorMessage = error.error?.message || 'Error al actualizar el estado';
+          this.errorMessage = error.error?.message || $localize`:admin.updateStatusError@@admin.updateStatusError:Error al actualizar el estado`;
         }
       });
   }
@@ -371,15 +386,15 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   getCategoryName(categoryId: number): string {
     const category = this.categories.find(c => c.id === categoryId);
-    return category ? category.name : 'Desconocida';
+    return category ? category.name : $localize`:admin.unknownCategory@@admin.unknownCategory:Desconocida`;
   }
 
   getStatusLabel(status: OrderStatus): string {
     const labels: { [key in OrderStatus]: string } = {
-      [OrderStatus.PENDENT]: 'Pendiente',
-      [OrderStatus.PREPARING]: 'En Preparación',
-      [OrderStatus.DELIVERED]: 'Entregada',
-      [OrderStatus.CANCELED]: 'Cancelada'
+      [OrderStatus.PENDENT]: $localize`:admin.statusPendent@@admin.statusPendent:Pendiente`,
+      [OrderStatus.PREPARING]: $localize`:admin.statusPreparing@@admin.statusPreparing:En Preparación`,
+      [OrderStatus.DELIVERED]: $localize`:admin.statusDelivered@@admin.statusDelivered:Entregada`,
+      [OrderStatus.CANCELED]: $localize`:admin.statusCanceled@@admin.statusCanceled:Cancelada`
     };
     return labels[status] || status;
   }
@@ -411,7 +426,7 @@ export class AdminComponent implements OnInit, OnDestroy {
           this.isLoadingClients = false;
         },
         error: (error) => {
-          this.errorMessage = 'Error al cargar clientes';
+          this.errorMessage = $localize`:admin.loadClientsError@@admin.loadClientsError:Error al cargar clientes`;
           this.isLoadingClients = false;
         }
       });
@@ -425,12 +440,12 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   submitClient(): void {
     if (this.clientForm.invalid) {
-      this.errorMessage = 'Por favor completa todos los campos requeridos';
+      this.errorMessage = $localize`:admin.fieldsRequired@@admin.fieldsRequired:Por favor completa todos los campos requeridos`;
       return;
     }
 
     if (!this.selectedClient) {
-      this.errorMessage = 'Selecciona un cliente para actualizar';
+      this.errorMessage = $localize`:admin.selectClient@@admin.selectClient:Selecciona un cliente para actualizar`;
       return;
     }
 
@@ -443,29 +458,29 @@ export class AdminComponent implements OnInit, OnDestroy {
         next: () => {
           this.cancelEditClient();
           this.loadClients();
-          this.successMessage = 'Cliente actualizado';
+          this.successMessage = $localize`:admin.clientUpdated@@admin.clientUpdated:Cliente actualizado`;
           this.isSubmittingClient = false;
           setTimeout(() => this.successMessage = '', 3000);
         },
         error: (error: any) => {
-          this.errorMessage = error.error?.message || 'Error al guardar cliente';
+          this.errorMessage = error.error?.message || $localize`:admin.saveClientError@@admin.saveClientError:Error al guardar cliente`;
           this.isSubmittingClient = false;
         }
       });
   }
 
   deleteClient(client: Client): void {
-    if (confirm(`¿Estás seguro de que deseas eliminar a "${client.firstName} ${client.lastName}"?`)) {
+    if (confirm($localize`:admin.confirmDeleteClient@@admin.confirmDeleteClient:¿Estás seguro de que deseas eliminar a "${client.firstName}:firstName: ${client.lastName}:lastName:"?`)) {
       this.adminService.deleteClient(client.id)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: () => {
             this.clients = this.clients.filter(c => c.id !== client.id);
-            this.successMessage = 'Cliente eliminado';
+            this.successMessage = $localize`:admin.clientDeleted@@admin.clientDeleted:Cliente eliminado`;
             setTimeout(() => this.successMessage = '', 3000);
           },
           error: (error) => {
-            this.errorMessage = 'Error al eliminar cliente';
+            this.errorMessage = $localize`:admin.deleteClientError@@admin.deleteClientError:Error al eliminar cliente`;
           }
         });
     }
@@ -508,7 +523,7 @@ export class AdminComponent implements OnInit, OnDestroy {
           this.isLoadingEmployees = false;
         },
         error: (error) => {
-          this.errorMessage = 'Error al cargar empleados';
+          this.errorMessage = $localize`:admin.loadEmployeesError@@admin.loadEmployeesError:Error al cargar empleados`;
           this.isLoadingEmployees = false;
         }
       });
@@ -528,7 +543,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   submitEmployee(): void {
     if (this.employeeForm.invalid) {
-      this.errorMessage = 'Por favor completa todos los campos requeridos';
+      this.errorMessage = $localize`:admin.fieldsRequired@@admin.fieldsRequired:Por favor completa todos los campos requeridos`;
       return;
     }
 
@@ -543,29 +558,29 @@ export class AdminComponent implements OnInit, OnDestroy {
       next: (_: Employee) => {
         this.cancelEditEmployee();
         this.loadEmployees();
-        this.successMessage = this.selectedEmployee ? 'Empleado actualizado' : 'Empleado creado';
+        this.successMessage = this.selectedEmployee ? $localize`:admin.employeeUpdated@@admin.employeeUpdated:Empleado actualizado` : $localize`:admin.employeeCreated@@admin.employeeCreated:Empleado creado`;
         this.isSubmittingEmployee = false;
         setTimeout(() => this.successMessage = '', 3000);
       },
       error: (error: any) => {
-        this.errorMessage = error.error?.message || 'Error al guardar empleado';
+          this.errorMessage = error.error?.message || $localize`:admin.saveEmployeeError@@admin.saveEmployeeError:Error al guardar empleado`;
         this.isSubmittingEmployee = false;
       }
     });
   }
 
   deleteEmployee(employee: Employee): void {
-    if (confirm(`¿Estás seguro de que deseas eliminar a "${employee.firstName} ${employee.lastName}"?`)) {
+    if (confirm($localize`:admin.confirmDeleteEmployee@@admin.confirmDeleteEmployee:¿Estás seguro de que deseas eliminar a "${employee.firstName}:firstName: ${employee.lastName}:lastName:"?`)) {
       this.employeeService.delete(employee.id)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: () => {
             this.employees = this.employees.filter(e => e.id !== employee.id);
-            this.successMessage = 'Empleado eliminado';
+            this.successMessage = $localize`:admin.employeeDeleted@@admin.employeeDeleted:Empleado eliminado`;
             setTimeout(() => this.successMessage = '', 3000);
           },
           error: (error) => {
-            this.errorMessage = 'Error al eliminar empleado';
+            this.errorMessage = $localize`:admin.deleteEmployeeError@@admin.deleteEmployeeError:Error al eliminar empleado`;
           }
         });
     }
@@ -608,7 +623,7 @@ export class AdminComponent implements OnInit, OnDestroy {
           this.isLoadingProviders = false;
         },
         error: (error) => {
-          this.errorMessage = 'Error al cargar proveedores';
+          this.errorMessage = $localize`:admin.loadProvidersError@@admin.loadProvidersError:Error al cargar proveedores`;
           this.isLoadingProviders = false;
         }
       });
@@ -628,7 +643,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   submitProvider(): void {
     if (this.providerForm.invalid) {
-      this.errorMessage = 'Por favor completa todos los campos requeridos';
+      this.errorMessage = $localize`:admin.fieldsRequired@@admin.fieldsRequired:Por favor completa todos los campos requeridos`;
       return;
     }
 
@@ -643,29 +658,29 @@ export class AdminComponent implements OnInit, OnDestroy {
       next: (_: Provider) => {
         this.cancelEditProvider();
         this.loadProviders();
-        this.successMessage = this.selectedProvider ? 'Proveedor actualizado' : 'Proveedor creado';
+        this.successMessage = this.selectedProvider ? $localize`:admin.providerUpdated@@admin.providerUpdated:Proveedor actualizado` : $localize`:admin.providerCreated@@admin.providerCreated:Proveedor creado`;
         this.isSubmittingProvider = false;
         setTimeout(() => this.successMessage = '', 3000);
       },
       error: (error: any) => {
-        this.errorMessage = error.error?.message || 'Error al guardar proveedor';
+          this.errorMessage = error.error?.message || $localize`:admin.saveProviderError@@admin.saveProviderError:Error al guardar proveedor`;
         this.isSubmittingProvider = false;
       }
     });
   }
 
   deleteProvider(provider: Provider): void {
-    if (confirm(`¿Estás seguro de que deseas eliminar a "${provider.name}"?`)) {
+    if (confirm($localize`:admin.confirmDeleteProvider@@admin.confirmDeleteProvider:¿Estás seguro de que deseas eliminar a "${provider.name}:name:"?`)) {
       this.providerService.delete(provider.id)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: () => {
             this.providers = this.providers.filter(p => p.id !== provider.id);
-            this.successMessage = 'Proveedor eliminado';
+            this.successMessage = $localize`:admin.providerDeleted@@admin.providerDeleted:Proveedor eliminado`;
             setTimeout(() => this.successMessage = '', 3000);
           },
           error: (error) => {
-            this.errorMessage = 'Error al eliminar proveedor';
+            this.errorMessage = $localize`:admin.deleteProviderError@@admin.deleteProviderError:Error al eliminar proveedor`;
           }
         });
     }

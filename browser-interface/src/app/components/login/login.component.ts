@@ -30,7 +30,7 @@ export class LoginComponent {
 
   submit(): void {
     if (this.loginForm.invalid) {
-      this.errorMessage = 'Por favor completa todos los campos';
+      this.errorMessage = $localize`:login.fieldsRequired@@login.fieldsRequired:Por favor completa todos los campos`;
       return;
     }
 
@@ -42,8 +42,8 @@ export class LoginComponent {
       next: () => this.router.navigate(['/']),
       error: (err) => {
         this.errorMessage = err.status === 401
-          ? 'Usuario o contraseña incorrectos'
-          : 'Error al conectar con el servidor';
+          ? $localize`:login.invalidCredentials@@login.invalidCredentials:Usuario o contraseña incorrectos`
+          : $localize`:login.serverError@@login.serverError:Error al conectar con el servidor`;
         this.isSubmitting = false;
       }
     });

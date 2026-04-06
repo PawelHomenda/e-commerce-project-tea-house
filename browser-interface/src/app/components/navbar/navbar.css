@@ -155,6 +155,27 @@
   line-height: 1;
 }
 
+.lang-selector {
+  display: flex;
+  gap: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.lang-selector a {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--fg, hsl(20, 10%, 15%));
+  border: 1px solid var(--border, hsl(30, 20%, 85%));
+  transition: background 0.2s;
+}
+
+.lang-selector a:hover {
+  background: var(--accent, hsl(30, 30%, 50%));
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .navbar-nav {
     display: none;

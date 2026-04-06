@@ -1,7 +1,7 @@
 <div class="orders-container">
   <div class="orders-header">
-    <h1>Mis Órdenes</h1>
-    <p>Historial y estado de tus compras</p>
+    <h1 i18n="orders.title@@orders.title">Mis Órdenes</h1>
+    <p i18n="orders.subtitle@@orders.subtitle">Historial y estado de tus compras</p>
   </div>
 
   <!-- Mensajes de estado -->
@@ -21,13 +21,13 @@
   <!-- Filtro de estado -->
   <div class="filter-section">
     <div class="filter-group">
-      <label for="statusFilter">Filtrar por estado:</label>
+      <label for="statusFilter" i18n="orders.filterByStatus@@orders.filterByStatus">Filtrar por estado:</label>
       <select id="statusFilter" [(ngModel)]="statusFilter" (change)="onStatusFilterChange()" class="form-control">
-        <option value="">Todas las órdenes</option>
-        <option value="PENDENT">Pendiente</option>
-        <option value="PREPARING">En Preparación</option>
-        <option value="DELIVERED">Entregada</option>
-        <option value="CANCELED">Cancelada</option>
+        <option value="" i18n="orders.allOrders@@orders.allOrders">Todas las órdenes</option>
+        <option value="PENDENT" i18n="orders.pending@@orders.pending">Pendiente</option>
+        <option value="PREPARING" i18n="orders.preparing@@orders.preparing">En Preparación</option>
+        <option value="DELIVERED" i18n="orders.delivered@@orders.delivered">Entregada</option>
+        <option value="CANCELED" i18n="orders.canceled@@orders.canceled">Cancelada</option>
       </select>
     </div>
   </div>
@@ -35,7 +35,7 @@
   <!-- Indicador de carga -->
   @if (isLoading) {
     <div class="loading">
-      <p>Cargando órdenes...</p>
+      <p i18n="orders.loading@@orders.loading">Cargando órdenes...</p>
     </div>
   }
 
@@ -46,7 +46,7 @@
         <div class="order-card">
           <div class="order-header">
             <div class="order-number">
-              <strong>Pedido #{{ order.id }}</strong>
+              <strong i18n="orders.orderNumber@@orders.orderNumber">Pedido #{{ order.id }}</strong>
               <span class="badge" [ngClass]="'badge-' + getStatusColor(order.orderState)">
                 {{ getOrderStatusIcon(order.orderState) }} {{ getStatusLabel(order.orderState) }}
               </span>
@@ -57,29 +57,30 @@
           </div>
           <div class="order-summary">
             <div class="summary-item">
-              <strong>Artículos:</strong> {{ getItemCount(order) }}
+              <strong i18n="orders.itemsLabel@@orders.itemsLabel">Artículos:</strong> {{ getItemCount(order) }}
             </div>
             <div class="summary-item">
-              <strong>Tipo de servicio:</strong> {{ getServiceTypeLabel(order.serviceType) }}
+              <strong i18n="orders.serviceTypeLabel@@orders.serviceTypeLabel">Tipo de servicio:</strong> {{ getServiceTypeLabel(order.serviceType) }}
             </div>
             <div class="summary-item">
-              <strong>Total:</strong> <span class="total">{{ order.total | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
+              <strong i18n="orders.totalLabel@@orders.totalLabel">Total:</strong> <span class="total">{{ order.total | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
             </div>
             @if (order.discountPercentage > 0) {
               <div class="summary-item">
-                <strong>Descuento:</strong> {{ order.discountPercentage }}%
+                <strong i18n="orders.discountLabel@@orders.discountLabel">Descuento:</strong> {{ order.discountPercentage }}%
               </div>
             }
           </div>
           <div class="order-actions">
-            <button type="button" class="btn btn-info btn-sm" (click)="viewOrderDetails(order)">
+            <button type="button" class="btn btn-info btn-sm" (click)="viewOrderDetails(order)" i18n="orders.viewDetails@@orders.viewDetails">
               Ver Detalles
             </button>
             @if (canCancelOrder(order)) {
               <button
                 type="button"
                 class="btn btn-danger btn-sm"
-                (click)="cancelOrder(order)">
+                (click)="cancelOrder(order)"
+                i18n="orders.cancel@@orders.cancel">
                 Cancelar
               </button>
             }
@@ -92,8 +93,8 @@
   <!-- Sin órdenes -->
   @if (!isLoading && orders.length === 0) {
     <div class="no-orders">
-      <p>No tienes órdenes aún</p>
-      <a routerLink="/home" class="btn btn-primary">
+      <p i18n="orders.noOrders@@orders.noOrders">No tienes órdenes aún</p>
+      <a routerLink="/home" class="btn btn-primary" i18n="orders.exploreProducts@@orders.exploreProducts">
         Explorar Productos
       </a>
     </div>
@@ -104,33 +105,33 @@
     <div class="order-modal-overlay" (click)="closeOrderDetails()">
       <div class="order-modal" (click)="$event.stopPropagation()">
         <div class="modal-header">
-          <h2>Detalles del Pedido #{{ selectedOrder.id }}</h2>
+          <h2 i18n="orders.modalTitle@@orders.modalTitle">Detalles del Pedido #{{ selectedOrder.id }}</h2>
           <button type="button" class="btn-close" (click)="closeOrderDetails()">✕</button>
         </div>
         <div class="modal-content">
           <!-- Estado de la orden -->
           <div class="order-status-section">
-            <h3>Estado</h3>
+            <h3 i18n="orders.statusSectionTitle@@orders.statusSectionTitle">Estado</h3>
             <p>
-              <strong>Estado actual:</strong>
+              <strong i18n="orders.currentStatus@@orders.currentStatus">Estado actual:</strong>
               <span class="badge" [ngClass]="'badge-' + getStatusColor(selectedOrder.orderState)">
                 {{ getOrderStatusIcon(selectedOrder.orderState) }} {{ getStatusLabel(selectedOrder.orderState) }}
               </span>
             </p>
-            <p><strong>Fecha:</strong> {{ selectedOrder.orderDate }}</p>
-            <p><strong>Tipo de servicio:</strong> {{ getServiceTypeLabel(selectedOrder.serviceType) }}</p>
+            <p><strong i18n="orders.dateLabel@@orders.dateLabel">Fecha:</strong> {{ selectedOrder.orderDate }}</p>
+            <p><strong i18n="orders.serviceTypeDetail@@orders.serviceTypeDetail">Tipo de servicio:</strong> {{ getServiceTypeLabel(selectedOrder.serviceType) }}</p>
           </div>
           <!-- Artículos de la orden -->
           @if (selectedOrder.detailOrderClients && selectedOrder.detailOrderClients.length > 0) {
             <div class="order-items-section">
-              <h3>Artículos</h3>
+              <h3 i18n="orders.itemsSectionTitle@@orders.itemsSectionTitle">Artículos</h3>
               <table class="items-table">
                 <thead>
                   <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Subtotal</th>
+                    <th i18n="orders.thProduct@@orders.thProduct">Producto</th>
+                    <th i18n="orders.thQuantity@@orders.thQuantity">Cantidad</th>
+                    <th i18n="orders.thUnitPrice@@orders.thUnitPrice">Precio Unitario</th>
+                    <th i18n="orders.thSubtotal@@orders.thSubtotal">Subtotal</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -149,23 +150,23 @@
           <!-- Totales -->
           <div class="order-totals-section">
             <div class="total-row">
-              <span>Subtotal:</span>
+              <span i18n="orders.subtotalLabel@@orders.subtotalLabel">Subtotal:</span>
               <span>{{ selectedOrder.subtotal | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
             </div>
             @if (selectedOrder.discountPercentage > 0) {
               <div class="total-row">
-                <span>Descuento:</span>
+                <span i18n="orders.discountRow@@orders.discountRow">Descuento:</span>
                 <span>-{{ selectedOrder.discountPercentage }}%</span>
               </div>
             }
             <div class="total-row total">
-              <span>Total:</span>
+              <span i18n="orders.totalRow@@orders.totalRow">Total:</span>
               <span>{{ selectedOrder.total | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeOrderDetails()">
+          <button type="button" class="btn btn-secondary" (click)="closeOrderDetails()" i18n="orders.close@@orders.close">
             Cerrar
           </button>
         </div>

@@ -2,22 +2,22 @@
 <section class="hero-section">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">Bienvenido a Casa del Té</div>
+    <div class="hero-badge" i18n="home.heroBadge@@home.heroBadge">Bienvenido a Casa del Té</div>
     <h1 class="hero-title">
-      <span class="title-line">El Arte del</span>
-      <span class="title-emphasis">Té Perfecto</span>
+      <span class="title-line" i18n="home.heroLine1@@home.heroLine1">El Arte del</span>
+      <span class="title-emphasis" i18n="home.heroLine2@@home.heroLine2">Té Perfecto</span>
     </h1>
-    <p class="hero-subtitle">
+    <p class="hero-subtitle" i18n="home.heroSubtitle@@home.heroSubtitle">
       Descubre una selección curada de los tés más exquisitos del mundo,
       cultivados con tradición y pasión
     </p>
     <div class="hero-actions">
-      <button class="btn-primary" (click)="exploreCollection()">Explorar Colección</button>
-      <button class="btn-secondary" (click)="learnMore()">Nuestra Historia</button>
+      <button class="btn-primary" (click)="exploreCollection()" i18n="home.explore@@home.explore">Explorar Colección</button>
+      <button class="btn-secondary" (click)="learnMore()" i18n="home.ourHistory@@home.ourHistory">Nuestra Historia</button>
     </div>
   </div>
   <div class="scroll-indicator">
-    <span>Descubre más</span>
+    <span i18n="home.discoverMore@@home.discoverMore">Descubre más</span>
     <div class="scroll-arrow"></div>
   </div>
 </section>
@@ -25,13 +25,13 @@
 <!-- Categorías Section -->
 <section class="section categories-section" id="categorias">
   <div class="section-header">
-    <p>Descubrimientos</p>
-    <h2 class="section-title">Explora por Categoría</h2>
-    <p class="section-subtitle">Cada tipo de té cuenta una historia única</p>
+    <p i18n="home.discoveries@@home.discoveries">Descubrimientos</p>
+    <h2 class="section-title" i18n="home.exploreByCategory@@home.exploreByCategory">Explora por Categoría</h2>
+    <p class="section-subtitle" i18n="home.categorySubtitle@@home.categorySubtitle">Cada tipo de té cuenta una historia única</p>
     @if (loadingCategories) {
       <div style="margin-top: 12px; text-align: center;">
         <div style="display: inline-block; width: 20px; height: 20px; border: 3px solid #ddd; border-top: 3px solid #8B7355; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle;"></div>
-        <span style="color: #666; font-size: 0.9rem;">Cargando categorías desde el API...</span>
+        <span style="color: #666; font-size: 0.9rem;" i18n="home.loadingCategories@@home.loadingCategories">Cargando categorías desde el API...</span>
       </div>
     }
   </div>
@@ -45,7 +45,7 @@
         </div>
         <div class="category-content">
           <h3>{{ category.name }}</h3>
-          <p>{{ category.description || 'Descubre esta variedad' }}</p>
+          <p>{{ category.description || describeVariety }}</p>
           <span class="category-count">Categoría ID: {{ category.id }}</span>
         </div>
       </div>
@@ -53,7 +53,7 @@
 
     <!-- Si no hay categorías, mostrar placeholder -->
     @if (!loadingCategories && categories.length === 0) {
-      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;" i18n="home.noCategoriesLoaded@@home.noCategoriesLoaded">
         No se cargaron categorías del API. Utilizando datos de ejemplo.
       </div>
     }
@@ -61,13 +61,13 @@
 </section><!-- Productos Section -->
 <section class="section products-section" id="productos">
   <div class="section-header">
-    <p>Favoritos</p>
-    <h2 class="section-title">Selección del Maestro</h2>
-    <p class="section-subtitle">Nuestros tés más apreciados, elegidos personalmente</p>
+    <p i18n="home.favorites@@home.favorites">Favoritos</p>
+    <h2 class="section-title" i18n="home.masterSelection@@home.masterSelection">Selección del Maestro</h2>
+    <p class="section-subtitle" i18n="home.masterSubtitle@@home.masterSubtitle">Nuestros tés más apreciados, elegidos personalmente</p>
     @if (loadingProducts) {
       <div style="margin-top: 12px; text-align: center;">
         <div style="display: inline-block; width: 20px; height: 20px; border: 3px solid #ddd; border-top: 3px solid #8B7355; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle;"></div>
-        <span style="color: #666; font-size: 0.9rem;">Cargando productos desde el API...</span>
+        <span style="color: #666; font-size: 0.9rem;" i18n="home.loadingProducts@@home.loadingProducts">Cargando productos desde el API...</span>
       </div>
     }
   </div>
@@ -76,20 +76,20 @@
   <div class="filter-bar">
     <div class="search-box">
       <span class="search-icon">🔍</span>
-      <input type="text" placeholder="Buscar té..." [value]="searchTerm" (input)="onSearchInput($event)" class="search-input" />
+      <input type="text" i18n-placeholder="home.searchPlaceholder@@home.searchPlaceholder" placeholder="Buscar té..." [value]="searchTerm" (input)="onSearchInput($event)" class="search-input" />
     </div>
     <div class="filter-controls">
       <select class="filter-select" (change)="onCategoryFilter($event)">
-        <option value="">Todas las categorías</option>
+        <option value="" i18n="home.allCategories@@home.allCategories">Todas las categorías</option>
         @for (cat of categories; track cat.id) {
           <option [value]="cat.id">{{ cat.name }}</option>
         }
       </select>
       <select class="filter-select" (change)="onSortChange($event)">
-        <option value="">Ordenar por</option>
-        <option value="price-asc">Precio: Menor a Mayor</option>
-        <option value="price-desc">Precio: Mayor a Menor</option>
-        <option value="name">Nombre A-Z</option>
+        <option value="" i18n="home.sortBy@@home.sortBy">Ordenar por</option>
+        <option value="price-asc" i18n="home.sortPriceAsc@@home.sortPriceAsc">Precio: Menor a Mayor</option>
+        <option value="price-desc" i18n="home.sortPriceDesc@@home.sortPriceDesc">Precio: Mayor a Menor</option>
+        <option value="name" i18n="home.sortName@@home.sortName">Nombre A-Z</option>
       </select>
     </div>
   </div>
@@ -99,7 +99,7 @@
       <div class="product-card">
         <div class="product-image">
           <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8B7355 0%, #5C4033 100%);"></div>
-          <span class="category-tag">{{ p.active ? 'Disponible' : 'Agotado' }}</span>
+          <span class="category-tag">{{ p.active ? availableLabel : soldOutLabel }}</span>
         </div>
         <div class="product-body">
           <div class="card-top">
@@ -111,7 +111,7 @@
           </div>
           <div class="card-footer">
             <span class="price">{{ p.price | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
-            <button class="btn-add" (click)="addToCart(p)">Añadir</button>
+            <button class="btn-add" (click)="addToCart(p)" i18n="home.addToCart@@home.addToCart">Añadir</button>
           </div>
         </div>
       </div>
@@ -121,9 +121,9 @@
     @if (!loadingProducts && filteredProducts.length === 0) {
       <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">
         @if (searchTerm || filterCategoryId) {
-          No se encontraron productos con los filtros seleccionados.
+          <span i18n="home.noProductsFilter@@home.noProductsFilter">No se encontraron productos con los filtros seleccionados.</span>
         } @else {
-          No se cargaron productos del API. Utilizando datos de ejemplo.
+          <span i18n="home.noProductsLoaded@@home.noProductsLoaded">No se cargaron productos del API. Utilizando datos de ejemplo.</span>
         }
       </div>
     }
@@ -131,12 +131,12 @@
 
   @if (allProducts.length > 8 && !showAllProducts && !searchTerm && !filterCategoryId) {
     <div class="show-all-container">
-      <button class="btn-show-all" (click)="toggleShowAll()">Ver todos los productos ({{ allProducts.length }})</button>
+      <button class="btn-show-all" (click)="toggleShowAll()" i18n="home.viewAllProducts@@home.viewAllProducts">Ver todos los productos ({{ allProducts.length }})</button>
     </div>
   }
   @if (showAllProducts && !searchTerm && !filterCategoryId) {
     <div class="show-all-container">
-      <button class="btn-show-all" (click)="toggleShowAll()">Mostrar menos</button>
+      <button class="btn-show-all" (click)="toggleShowAll()" i18n="home.showLess@@home.showLess">Mostrar menos</button>
     </div>
   }
 </section>
@@ -144,8 +144,8 @@
 <section class="about-section" id="nosotros">
   <div class="about-inner">
     <div class="about-emoji">🫖</div>
-    <h2>Nuestra Pasión por el Té</h2>
-    <p>
+    <h2 i18n="home.aboutTitle@@home.aboutTitle">Nuestra Pasión por el Té</h2>
+    <p i18n="home.aboutText@@home.aboutText">
       Desde 1952, nuestra familia ha recorrido el mundo en busca de los tés más extraordinarios.
       Trabajamos directamente con maestros cultivadores que honran tradiciones centenarias.
       Para nosotros, el té no es solo una bebida: es un ritual, un momento de pausa,
@@ -156,7 +156,7 @@
 
 <!-- Footer -->
 <footer>
-  <p>&copy; 2024 Casa del Té • Kouchiku Bayashi | Hecho con 🍃 y 💚</p>
+  <p i18n="home.footer@@home.footer">&copy; 2024 Casa del Té • Kouchiku Bayashi | Hecho con 🍃 y 💚</p>
 </footer>
 
 <!-- Newsletter Section con diseño moderno -->
@@ -164,8 +164,8 @@
   <div class="container">
     <div class="newsletter-content">
       <div class="newsletter-text">
-        <h2>Únete a Nuestra Comunidad</h2>
-        <p>Recibe consejos exclusivos, recetas y ofertas especiales</p>
+        <h2 i18n="home.newsletterTitle@@home.newsletterTitle">Únete a Nuestra Comunidad</h2>
+        <p i18n="home.newsletterSubtitle@@home.newsletterSubtitle">Recibe consejos exclusivos, recetas y ofertas especiales</p>
       </div>
       <form class="newsletter-form">
         <input
@@ -174,7 +174,7 @@
           class="newsletter-input"
           required
         />
-        <button type="submit" class="newsletter-btn">Suscribirse</button>
+        <button type="submit" class="newsletter-btn" i18n="home.subscribe@@home.subscribe">Suscribirse</button>
       </form>
     </div>
   </div>

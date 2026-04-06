@@ -29,10 +29,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   statusLabels: { [key: string]: string } = {
-    'PENDENT': 'Pendiente',
-    'PREPARING': 'En Preparación',
-    'DELIVERED': 'Entregada',
-    'CANCELED': 'Cancelada'
+    'PENDENT': $localize`:orders.statusPendent@@orders.statusPendent:Pendiente`,
+    'PREPARING': $localize`:orders.statusPreparing@@orders.statusPreparing:En Preparación`,
+    'DELIVERED': $localize`:orders.statusDelivered@@orders.statusDelivered:Entregada`,
+    'CANCELED': $localize`:orders.statusCanceled@@orders.statusCanceled:Cancelada`
   };
 
   statusColors: { [key: string]: string } = {
@@ -43,9 +43,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
   };
 
   serviceTypeLabels: { [key: string]: string } = {
-    'TAKEAWAY': 'Para Llevar',
-    'TABLE': 'En Mesa',
-    'DELIVERY': 'A Domicilio'
+    'TAKEAWAY': $localize`:orders.serviceTakeaway@@orders.serviceTakeaway:Para Llevar`,
+    'TABLE': $localize`:orders.serviceTable@@orders.serviceTable:En Mesa`,
+    'DELIVERY': $localize`:orders.serviceDelivery@@orders.serviceDelivery:A Domicilio`
   };
 
   constructor(
@@ -74,7 +74,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
           this.applyFilter();
           this.isLoading = false;
         },
-        error: (error) => this.handleError(error, 'Error al cargar las órdenes')
+        error: (error) => this.handleError(error, $localize`:orders.loadError@@orders.loadError:Error al cargar las órdenes`)
       });
   }
 
@@ -95,17 +95,17 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   cancelOrder(order: any): void {
-    if (confirm(`¿Estás seguro de que deseas cancelar el pedido #${order.id}?`)) {
+    if (confirm($localize`:orders.confirmCancel@@orders.confirmCancel:¿Estás seguro de que deseas cancelar el pedido #${order.id}:orderId:?`)) {
       this.orderService.updateOrderStatus(order.id, OrderStatus.CANCELED)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: () => {
             order.orderState = 'CANCELED';
             this.applyFilter();
-            this.successMessage = 'Pedido cancelado exitosamente';
+            this.successMessage = $localize`:orders.cancelSuccess@@orders.cancelSuccess:Pedido cancelado exitosamente`;
             setTimeout(() => this.successMessage = '', 3000);
           },
-          error: (error) => this.handleError(error, 'Error al cancelar el pedido')
+          error: (error) => this.handleError(error, $localize`:orders.cancelError@@orders.cancelError:Error al cancelar el pedido`)
         });
     }
   }

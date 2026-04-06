@@ -1,32 +1,39 @@
 <nav class="navbar">
   <a class="navbar-brand" routerLink="/">
     <span class="emoji">🫖</span>
-    <h1>Casa del Té</h1>
-    <span>Kouchiku Bayashi</span>
+    <h1 i18n="navbar.brand@@navbar.brand">Casa del Té</h1>
+    <span i18n="navbar.subtitle@@navbar.subtitle">Kouchiku Bayashi</span>
   </a>
   <div class="navbar-nav">
-    <a routerLink="/">Inicio</a>
-    <a routerLink="/" fragment="categorias">Categorías</a>
-    <a routerLink="/" fragment="productos">Productos</a>
-    <a routerLink="/" fragment="nosotros">Nosotros</a>
+    <a routerLink="/" i18n="navbar.home@@navbar.home">Inicio</a>
+    <a routerLink="/" fragment="categorias" i18n="navbar.categories@@navbar.categories">Categorías</a>
+    <a routerLink="/" fragment="productos" i18n="navbar.products@@navbar.products">Productos</a>
+    <a routerLink="/" fragment="nosotros" i18n="navbar.about@@navbar.about">Nosotros</a>
   </div>
   <div class="navbar-actions">
+    <!-- Language selector -->
+    <div class="lang-selector">
+      <a href="/es/" title="Español">ES</a>
+      <a href="/en/" title="English">EN</a>
+      <a href="/pl/" title="Polski">PL</a>
+      <a href="/ja/" title="日本語">JA</a>
+    </div>
     @if (!authService.isAuthenticated()) {
-      <button class="btn btn-outline-primary btn-sm" routerLink="/login">Login</button>
+      <button class="btn btn-outline-primary btn-sm" routerLink="/login" i18n="navbar.login@@navbar.login">Login</button>
     } @else {
       <div class="user-menu">
         <div class="user-info">
           <span class="user-name">{{ (authService.currentUser$ | async)?.firstName }}</span>
           @if ((authService.currentUser$ | async)?.role === 'ADMIN') {
-            <span class="admin-badge">Admin</span>
+            <span class="admin-badge" i18n="navbar.adminBadge@@navbar.adminBadge">Admin</span>
           }
         </div>
-        <button class="btn btn-user" routerLink="/profile">👤 Perfil</button>
+        <button class="btn btn-user" routerLink="/profile" i18n="navbar.profile@@navbar.profile">👤 Perfil</button>
         @if ((authService.currentUser$ | async)?.role === 'ADMIN') {
-          <button class="btn btn-admin" routerLink="/admin">⚙️ Admin</button>
+          <button class="btn btn-admin" routerLink="/admin" i18n="navbar.admin@@navbar.admin">⚙️ Admin</button>
         }
-        <button class="btn btn-user" routerLink="/orders">📦 Pedidos</button>
-        <button class="btn btn-logout" (click)="authService.logout()">🚪 Salir</button>
+        <button class="btn btn-user" routerLink="/orders" i18n="navbar.orders@@navbar.orders">📦 Pedidos</button>
+        <button class="btn btn-logout" (click)="authService.logout()" i18n="navbar.logout@@navbar.logout">🚪 Salir</button>
       </div>
     }
     <button class="cart-btn" routerLink="/cart">

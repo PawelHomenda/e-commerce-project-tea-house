@@ -23,6 +23,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   successMessage = '';
   errorMessage = '';
   
+  // i18n template properties
+  get savingLabel(): string { return $localize`:profile.saving@@profile.saving:Guardando...`; }
+  get saveChangesLabel(): string { return $localize`:profile.saveChanges@@profile.saveChanges:Guardar Cambios`; }
+  get changingLabel(): string { return $localize`:profile.changing@@profile.changing:Cambiando...`; }
+  get changePasswordLabel(): string { return $localize`:profile.changePassword@@profile.changePassword:Cambiar Contraseña`; }
+  get adminLabel(): string { return $localize`:profile.roleAdmin@@profile.roleAdmin:Administrador`; }
+  get clientLabel(): string { return $localize`:profile.roleClient@@profile.roleClient:Cliente`; }
+  get employeeLabel(): string { return $localize`:profile.roleEmployee@@profile.roleEmployee:Empleado`; }
+  get providerLabel(): string { return $localize`:profile.roleProvider@@profile.roleProvider:Proveedor`; }
+  get userLabel(): string { return $localize`:profile.roleUser@@profile.roleUser:Usuario`; }
+  get activeLabel(): string { return $localize`:profile.active@@profile.active:Activo`; }
+  get inactiveLabel(): string { return $localize`:profile.inactive@@profile.inactive:Inactivo`; }
+  
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -83,7 +96,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         },
         error: (error) => {
-          this.errorMessage = 'Error al cargar el perfil';
+          this.errorMessage = $localize`:profile.loadError@@profile.loadError:Error al cargar el perfil`;
           this.isLoading = false;
         }
       });
@@ -109,7 +122,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   updateProfile(): void {
     if (this.profileForm.invalid) {
-      this.errorMessage = 'Por favor completa todos los campos correctamente';
+      this.errorMessage = $localize`:profile.fieldsError@@profile.fieldsError:Por favor completa todos los campos correctamente`;
       return;
     }
 
@@ -122,13 +135,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
         next: (user) => {
           this.currentUser = user;
           this.isEditingProfile = false;
-          this.successMessage = 'Perfil actualizado exitosamente';
+          this.successMessage = $localize`:profile.updateSuccess@@profile.updateSuccess:Perfil actualizado exitosamente`;
           this.profileForm.reset();
           this.isLoading = false;
           setTimeout(() => this.successMessage = '', 3000);
         },
         error: (error) => {
-          this.errorMessage = error.error?.message || 'Error al actualizar el perfil';
+          this.errorMessage = error.error?.message || $localize`:profile.updateError@@profile.updateError:Error al actualizar el perfil`;
           this.isLoading = false;
         }
       });
@@ -136,7 +149,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   changePassword(): void {
     if (this.passwordForm.invalid) {
-      this.errorMessage = 'Por favor completa todos los campos correctamente';
+      this.errorMessage = $localize`:profile.fieldsError@@profile.fieldsError:Por favor completa todos los campos correctamente`;
       return;
     }
 
@@ -151,13 +164,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.isChangingPassword = false;
-          this.successMessage = 'Contraseña cambiada exitosamente';
+          this.successMessage = $localize`:profile.passwordSuccess@@profile.passwordSuccess:Contraseña cambiada exitosamente`;
           this.passwordForm.reset();
           this.isLoading = false;
           setTimeout(() => this.successMessage = '', 3000);
         },
         error: (error) => {
-          this.errorMessage = error.error?.message || 'Error al cambiar la contraseña';
+          this.errorMessage = error.error?.message || $localize`:profile.passwordError@@profile.passwordError:Error al cambiar la contraseña`;
           this.isLoading = false;
         }
       });
