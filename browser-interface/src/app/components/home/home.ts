@@ -195,14 +195,14 @@ signup() {
    * Navega a la página de inicio (scroll al hero)
    */
   exploreCollection(): void {
-    // this.router.navigate(['/products']);
+    this.scrollToSection('productos');
   }
 
   /**
    * Navega a la página "Acerca de"
    */
   learnMore(): void {
-    // this.router.navigate(['/about']);
+    this.scrollToSection('nosotros');
   }
 
   /**

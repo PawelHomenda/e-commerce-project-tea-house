@@ -6,9 +6,9 @@
   </a>
   <div class="navbar-nav">
     <a routerLink="/" i18n="navbar.home@@navbar.home">Inicio</a>
-    <a routerLink="/" fragment="categorias" i18n="navbar.categories@@navbar.categories">Categorías</a>
-    <a routerLink="/" fragment="productos" i18n="navbar.products@@navbar.products">Productos</a>
-    <a routerLink="/" fragment="nosotros" i18n="navbar.about@@navbar.about">Nosotros</a>
+    <a (click)="scrollTo('categorias')" i18n="navbar.categories@@navbar.categories">Categorías</a>
+    <a (click)="scrollTo('productos')" i18n="navbar.products@@navbar.products">Productos</a>
+    <a (click)="scrollTo('nosotros')" i18n="navbar.about@@navbar.about">Nosotros</a>
   </div>
   <div class="navbar-actions">
     <!-- Language selector -->
