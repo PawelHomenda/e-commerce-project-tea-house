@@ -118,7 +118,7 @@ create table invoices_clients(
     invoice_number varchar(20)unique,
     invoice_date date,
     total float(6,2),
-    payment_method enum("METALIC","CREDIT") default "METALIC",
+    payment_method enum("CREDIT_CARD","DEBIT_CARD","PAYPAL","BANK_TRANSFER","CASH_ON_DELIVERY") default "CASH_ON_DELIVERY",
     payment_date date,
     primary key(id),
     foreign key(id_order_client) references orders_clients(id)

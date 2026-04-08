@@ -50,6 +50,7 @@ services:
       - "5005:5005"       # ← Puerto debug JDWP (business-server)
     environment:
       - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - SPRING_PROFILES_ACTIVE=dev
       # MySQL: apunta al servicio 'db' dentro de la red Docker
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/casa_te?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
@@ -62,6 +63,12 @@ services:
         condition: service_healthy
       auth-server:
         condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/api/products || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 120s
     networks:
       - teahouse-network
 
@@ -75,7 +82,8 @@ services:
     ports:
       - "4200:80"
     depends_on:
-      - business-server
+      business-server:
+        condition: service_healthy
     networks:
       - teahouse-network
 

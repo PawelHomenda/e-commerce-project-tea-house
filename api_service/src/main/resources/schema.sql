@@ -134,7 +134,7 @@ create table if not exists invoices_clients(
     invoice_number varchar(20) unique,
     invoice_date date,
     total decimal(6,2),
-    payment_method varchar(20) default "METALIC",
+    payment_method varchar(20) default "CASH_ON_DELIVERY",
     payment_date date,
     primary key(id),
     foreign key(id_order_client) references orders_clients(id),

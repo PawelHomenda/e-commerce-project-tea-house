@@ -193,14 +193,14 @@ INSERT INTO details_order_client (id_order_client, id_product, quantity, unit_pr
 -- =====================================================================
 
 INSERT INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES
-(1, 'FC-0001', '2025-10-01', 25.50, 'CREDIT', '2025-10-01'),
-(2, 'FC-0002', '2025-10-01', 15.50, 'METALIC', '2025-10-01'),
-(3, 'FC-0003', '2025-10-02', 32.00, 'CREDIT', '2025-10-02'),
-(4, 'FC-0004', '2025-10-02', 28.50, 'METALIC', '2025-10-03'),
-(5, 'FC-0005', '2025-10-03', 41.00, 'METALIC', '2025-10-03'),
-(6, 'FC-0006', '2025-10-13', 18.80, 'CREDIT', NULL),          -- PENDENT de pago
-(7, 'FC-0007', '2025-10-13', 35.50, 'CREDIT', NULL),           -- PENDENT de pago
-(8, 'FC-0008', '2025-10-13', 22.00, 'METALIC', NULL);     -- PENDENT de pago
+(1, 'FC-0001', '2025-10-01', 25.50, 'CREDIT_CARD', '2025-10-01'),
+(2, 'FC-0002', '2025-10-01', 15.50, 'CASH_ON_DELIVERY', '2025-10-01'),
+(3, 'FC-0003', '2025-10-02', 32.00, 'CREDIT_CARD', '2025-10-02'),
+(4, 'FC-0004', '2025-10-02', 28.50, 'CASH_ON_DELIVERY', '2025-10-03'),
+(5, 'FC-0005', '2025-10-03', 41.00, 'CASH_ON_DELIVERY', '2025-10-03'),
+(6, 'FC-0006', '2025-10-13', 18.80, 'CREDIT_CARD', NULL),          -- PENDENT de pago
+(7, 'FC-0007', '2025-10-13', 35.50, 'CREDIT_CARD', NULL),           -- PENDENT de pago
+(8, 'FC-0008', '2025-10-13', 22.00, 'CASH_ON_DELIVERY', NULL);     -- PENDENT de pago
 
 -- =====================================================================
 -- 10. PEDIDOS A PROVEEDORES (7 registros)

@@ -7,8 +7,7 @@ import {
   Order, 
   CreateOrderDTO, 
   OrderStatus, 
-  PagedResponse,
-  OrderSummary 
+  PagedResponse 
 } from '../models/order.model';
 
 /**
@@ -95,13 +94,6 @@ export class OrderService {
         this.ordersSubject.next([order, ...currentOrders]);
       })
     );
-  }
-
-  /**
-   * Obtener resumen de orden (útil para confirmación antes de crear)
-   */
-  getOrderSummary(): Observable<OrderSummary> {
-    return this.http.get<OrderSummary>(`${this.apiUrl}/summary`);
   }
 
   /**
