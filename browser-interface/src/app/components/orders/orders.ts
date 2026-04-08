@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { OrderService } from '../../services/order.service';
+import { AuthService } from '../../services/auth.service';
 import { OrderStatus } from '../../models/order.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -18,6 +19,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   orders: any[] = [];
   selectedOrder: any | null = null;
   isLoading = true;
+  isProvider = false;
 
   statusFilter: string = '';
   
@@ -50,6 +52,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   constructor(
     private orderService: OrderService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -65,8 +68,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
   loadOrders(): void {
     this.isLoading = true;
     this.errorMessage = '';
-    
-    this.orderService.getMyOrders()
+
+    const user = this.authService.getCurrentUser();
+    this.isProvider = user?.role === 'PROVIDER';
+    const orders$ = this.isProvider
+      ? this.orderService.getMyProviderOrders()
+      : this.orderService.getMyOrders();
+
+    orders$
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (orders) => {
@@ -147,6 +156,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   getItemCount(order: any): number {
-    return order.detailOrderClients?.length || 0;
+    return order.detailOrderClients?.length || order.detailOrderProviders?.length || 0;
   }
 }

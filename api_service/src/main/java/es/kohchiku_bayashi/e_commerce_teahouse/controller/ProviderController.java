@@ -35,7 +35,7 @@ public class ProviderController {
         List<String> scopes = jwt.getClaimAsStringList("scope");
         
         // Si es admin o employee, devuelve todos los proveedores
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(providerService.findAll());
         }
         
@@ -53,7 +53,7 @@ public class ProviderController {
         List<String> scopes = jwt.getClaimAsStringList("scope");
         
         // Admin y employees ven todo
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(provider);
         }
         

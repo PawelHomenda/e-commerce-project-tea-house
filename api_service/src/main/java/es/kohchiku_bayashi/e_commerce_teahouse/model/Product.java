@@ -41,6 +41,12 @@ public class Product {
     @Column(name = "measure_unit", length = 10)
     private String measureUnit;
     
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+    
+    @Column(name = "thumbnail_url", length = 500)
+    private String thumbnailUrl;
+    
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT true")
     @Builder.Default
     private Boolean active = true;

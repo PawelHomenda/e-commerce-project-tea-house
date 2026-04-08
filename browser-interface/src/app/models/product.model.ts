@@ -10,7 +10,7 @@ export interface Product {
   price: number;
   stock: number;
   category: Category;
-  imageUrl: string;
+  imageUrl?: string;
   thumbnailUrl?: string;
   origin: string;
   weight: number;
@@ -33,7 +33,7 @@ export interface ProductDTO {
   price: number;
   stock: number;
   categoryId: number;
-  imageUrl: string;
+  imageUrl?: string;
   thumbnailUrl?: string;
   origin: string;
   weight: number;

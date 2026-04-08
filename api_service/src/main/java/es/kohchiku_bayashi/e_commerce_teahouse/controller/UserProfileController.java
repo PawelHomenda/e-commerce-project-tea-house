@@ -7,6 +7,7 @@ import es.kohchiku_bayashi.e_commerce_teahouse.service.ClientService;
 import es.kohchiku_bayashi.e_commerce_teahouse.service.EmployeeService;
 import es.kohchiku_bayashi.e_commerce_teahouse.service.ProviderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -113,5 +114,79 @@ public class UserProfileController {
         profile.put("lastName", "");
         profile.put("email", sub);
         return ResponseEntity.ok(profile);
+    }
+
+    @PutMapping("/me")
+    public ResponseEntity<?> updateMyProfile(
+            @AuthenticationPrincipal Jwt jwt,
+            @RequestBody Map<String, Object> updates) {
+
+        String sub = jwt.getClaimAsString("sub");
+        List<String> scopes = jwt.getClaimAsStringList("scope");
+
+        // Admin no tiene entidad en BD, no se puede editar
+        if (scopes != null && scopes.contains("admin")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Map.of("message", "El perfil de administrador no se puede modificar desde aquí"));
+        }
+
+        String firstName = (String) updates.get("firstName");
+        String lastName = (String) updates.get("lastName");
+        String phone = (String) updates.get("phone");
+
+        if (scopes != null && scopes.contains("client")) {
+            Client client = clientService.findByOauth2Id(sub);
+            if (firstName != null) client.setFirstName(firstName);
+            if (lastName != null) client.setLastName(lastName);
+            if (phone != null) client.setPhoneNumber(phone);
+            Client updated = clientService.update(client.getId(), client);
+
+            Map<String, Object> profile = buildProfileMap(sub, "CLIENT", updated.getFirstName(),
+                    updated.getLastName(), updated.getEmail(), updated.getPhoneNumber(), updated.getId());
+            profile.put("address", updated.getAddress());
+            return ResponseEntity.ok(profile);
+        }
+
+        if (scopes != null && scopes.contains("employee")) {
+            Employee employee = employeeService.findByOauth2Id(sub);
+            if (firstName != null) employee.setFirstName(firstName);
+            if (lastName != null) employee.setLastName(lastName);
+            if (phone != null) employee.setPhoneNumber(phone);
+            Employee updated = employeeService.update(employee.getId(), employee);
+
+            Map<String, Object> profile = buildProfileMap(sub, "EMPLOYEE", updated.getFirstName(),
+                    updated.getLastName(), updated.getEmail(), updated.getPhoneNumber(), updated.getId());
+            profile.put("salary", updated.getSalary());
+            return ResponseEntity.ok(profile);
+        }
+
+        if (scopes != null && scopes.contains("provider")) {
+            Provider provider = providerService.findByOauth2Id(sub);
+            if (firstName != null) provider.setName(firstName);
+            if (phone != null) provider.setPhoneNumber(phone);
+            Provider updated = providerService.update(provider.getId(), provider);
+
+            Map<String, Object> profile = buildProfileMap(sub, "PROVIDER", updated.getName(),
+                    "", updated.getEmail(), updated.getPhoneNumber(), updated.getId());
+            profile.put("address", updated.getAddress());
+            return ResponseEntity.ok(profile);
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("message", "No se pudo determinar el tipo de usuario"));
+    }
+
+    private Map<String, Object> buildProfileMap(String username, String role,
+            String firstName, String lastName, String email, String phone, Long id) {
+        Map<String, Object> profile = new HashMap<>();
+        profile.put("username", username);
+        profile.put("role", role);
+        profile.put("firstName", firstName);
+        profile.put("lastName", lastName);
+        profile.put("email", email);
+        profile.put("phone", phone);
+        profile.put("id", id);
+        profile.put("isActive", true);
+        return profile;
     }
 }

@@ -42,6 +42,8 @@ create table if not exists products(
     description text,
     price decimal(10,2) not null,
     stock_quantity integer not null default 0,
+    image_url varchar(500),
+    thumbnail_url varchar(500),
     primary key(id)
 );
 

@@ -31,12 +31,12 @@ public class OrderProviderController {
         String oauth2Id = jwt.getClaimAsString("sub");
         
         // Admin y empleados ven todos
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(orderProviderService.findAll());
         }
         
         // Proveedores ven solo sus pedidos
-        if (scopes.contains("user:provider")) {
+        if (scopes.contains("provider")) {
             return ResponseEntity.ok(orderProviderService.findByProviderOAuth2Id(oauth2Id));
         }
         
@@ -53,7 +53,7 @@ public class OrderProviderController {
         OrderProvider order = orderProviderService.findById(id);
         
         // Admin y empleados ven todo
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(order);
         }
         

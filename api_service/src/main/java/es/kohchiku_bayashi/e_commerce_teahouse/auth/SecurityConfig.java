@@ -69,8 +69,8 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -96,6 +96,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/categories/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/categories/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/categories/**").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.PATCH, "/api/categories/**").hasAuthority("SCOPE_admin")
 
                         // ============================================
                         // PRODUCTOS - Lectura pública, escritura solo ADMIN
@@ -104,6 +105,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/products/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/products/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.PATCH, "/api/products/**").hasAuthority("SCOPE_admin")
 
                         // ============================================
                         // CLIENTES - Cliente ve sus datos, ADMIN gestiona todos
@@ -124,6 +126,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/orders/clients/**").hasAnyAuthority("SCOPE_client", "SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/orders/clients/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/orders/clients/**").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.PATCH, "/api/orders/clients/**").hasAnyAuthority("SCOPE_employee", "SCOPE_admin")
 
                         // ============================================
                         // PEDIDOS DE PROVEEDORES - Proveedores ven/crean solo los suyos, ADMIN/EMPLOYEE ve todos
@@ -157,6 +160,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/invoices/clients/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/invoices/clients/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/invoices/clients/**").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.PATCH, "/api/invoices/clients/**").hasAnyAuthority("SCOPE_employee", "SCOPE_admin")
                         
                         // ============================================
                         // FACTURAS DE PROVEEDORES - Proveedor ve la suya, ADMIN/EMPLOYEE ve todo
@@ -166,6 +170,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/invoices/providers/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.PUT, "/api/invoices/providers/**").hasAuthority("SCOPE_admin")
                         .requestMatchers(HttpMethod.DELETE, "/api/invoices/providers/**").hasAuthority("SCOPE_admin")
+                        .requestMatchers(HttpMethod.PATCH, "/api/invoices/providers/**").hasAnyAuthority("SCOPE_employee", "SCOPE_admin")
                         
                         .anyRequest().authenticated())
                         .csrf(csrf-> csrf.disable())

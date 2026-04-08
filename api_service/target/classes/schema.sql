@@ -34,6 +34,8 @@ create table if not exists products(
     category_id bigint not null,
 	price decimal(5,2) not null,
     measure_unit varchar(10),
+    image_url varchar(500),
+    thumbnail_url varchar(500),
     active boolean default 1,
 	primary key(id),
 	foreign key(category_id) references categories(id)

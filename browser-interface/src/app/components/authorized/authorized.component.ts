@@ -36,7 +36,9 @@ export class AuthorizedComponent implements OnInit {
       if (token) {
         this.message = $localize`:authorized.authComplete@@authorized.authComplete:Autenticación completada. Redirigiendo...`;
         this.authService.setToken(token);
-        this.router.navigate(['/']);
+        const returnUrl = localStorage.getItem('returnUrl') || '/';
+        localStorage.removeItem('returnUrl');
+        this.router.navigateByUrl(returnUrl);
         return;
       }
 
@@ -44,7 +46,9 @@ export class AuthorizedComponent implements OnInit {
         this.message = $localize`:authorized.exchangingCode@@authorized.exchangingCode:Intercambiando código por token...`;
         this.authService.exchangeCode(code).subscribe({
           next: () => {
-            this.router.navigate(['/']);
+            const returnUrl = localStorage.getItem('returnUrl') || '/';
+            localStorage.removeItem('returnUrl');
+            this.router.navigateByUrl(returnUrl);
           },
           error: (err) => {
             console.error('Error intercambiando código:', err);

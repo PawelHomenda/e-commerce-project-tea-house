@@ -33,10 +33,10 @@ public class DetailOrderClientController {
         String OAuth2Id = jwt.getClaimAsString("sub");
         List<String> scopes = jwt.getClaimAsStringList("scope");
 
-        if (scopes.contains("admin") || scopes.contains("user:employee")){
+        if (scopes.contains("admin") || scopes.contains("employee")){
             return ResponseEntity.ok(detailOrderClientService.findAll());
         }
-        else if(scopes.contains("user:client")){
+        else if(scopes.contains("client")){
             return ResponseEntity.ok(detailOrderClientService.findByClientOAuth2Id(OAuth2Id));
         }
         throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");
@@ -52,12 +52,12 @@ public class DetailOrderClientController {
         DetailOrderClient detail = detailOrderClientService.findById(id);
         
         // Admin/Employee ven todo
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(detail);
         }
         
         // Cliente solo ve detalles de sus propias órdenes
-        if (scopes.contains("user:client")) {
+        if (scopes.contains("client")) {
             if (detail.getOrderClient().getClient().getOauth2Id().equals(oauth2Id)) {
                 return ResponseEntity.ok(detail);
             }

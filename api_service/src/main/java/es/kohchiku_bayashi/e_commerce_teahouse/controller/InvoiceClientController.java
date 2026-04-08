@@ -29,10 +29,10 @@ public class InvoiceClientController {
         String OAuth2Id = jwt.getClaimAsString("sub");
         List<String> scopes = jwt.getClaimAsStringList("scope");
 
-        if (scopes.contains("admin") || scopes.contains("user:employee")){
+        if (scopes.contains("admin") || scopes.contains("employee")){
             return ResponseEntity.ok(invoiceClientService.findAll());
         }
-        else if (scopes.contains("user:client")){
+        else if (scopes.contains("client")){
             return ResponseEntity.ok(invoiceClientService.findByClientOAuth2Id(OAuth2Id));
         }
         throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");
@@ -53,12 +53,12 @@ public class InvoiceClientController {
         InvoiceClient invoice = invoiceClientService.findById(id);
         
         // Admin y empleados ven todo
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(invoice);
         }
         
         // Cliente solo ve sus propias facturas
-        if (scopes.contains("user:client")) {
+        if (scopes.contains("client")) {
             if (!invoice.getOrderClient().getClient().getOauth2Id().equals(oauth2Id)) {
                 throw new AccessDeniedException("No tienes acceso a esta factura");
             }

@@ -27,10 +27,10 @@ public class InvoiceProviderController {
     public ResponseEntity<List<InvoiceProvider>> getMyInvoices(@AuthenticationPrincipal Jwt jwt) {
         String OAuth2Id = jwt.getClaimAsString("sub");
         List<String> scopes = jwt.getClaimAsStringList("scope");
-        if (scopes.contains("admin") || scopes.contains("user:employee")){
+        if (scopes.contains("admin") || scopes.contains("employee")){
             return ResponseEntity.ok(invoiceProviderService.findAll());
         }
-        else if (scopes.contains("user:provider")){
+        else if (scopes.contains("provider")){
             return ResponseEntity.ok(invoiceProviderService.findByProviderOAuth2Id(OAuth2Id));
         }
         throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");
@@ -56,7 +56,7 @@ public class InvoiceProviderController {
         }
         
         // Proveedor solo ve sus propias facturas
-        if (scopes.contains("user:provider")) {
+        if (scopes.contains("provider")) {
             if (!invoice.getOrderProvider().getProvider().getOauth2Id().equals(oauth2Id)) {
                 throw new AccessDeniedException("No tienes acceso a esta factura");
             }
@@ -72,7 +72,7 @@ public class InvoiceProviderController {
             @AuthenticationPrincipal Jwt jwt) {
         List<String> scopes = jwt.getClaimAsStringList("scope");
         
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(invoiceProviderService.findPendingInvoices());
         }
         throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");

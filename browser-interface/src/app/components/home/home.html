@@ -40,7 +40,11 @@
     @for (category of categories; track category) {
       <div class="category-card" [attr.data-category]="category.id">
         <div class="category-image">
-          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8B7355 0%, #5C4033 100%);"></div>
+          @if (category.imageUrl) {
+            <img [src]="category.imageUrl" [alt]="category.name" style="width: 100%; height: 100%; object-fit: cover;">
+          } @else {
+            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8B7355 0%, #5C4033 100%);"></div>
+          }
           <span class="category-tag">{{ category.name }}</span>
         </div>
         <div class="category-content">
@@ -98,7 +102,11 @@
     @for (p of filteredProducts; track p.id) {
       <div class="product-card">
         <div class="product-image">
-          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8B7355 0%, #5C4033 100%);"></div>
+          @if (p.imageUrl) {
+            <img [src]="p.imageUrl" [alt]="p.name" style="width: 100%; height: 100%; object-fit: cover;" />
+          } @else {
+            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8B7355 0%, #5C4033 100%);"></div>
+          }
           <span class="category-tag">{{ p.active ? availableLabel : soldOutLabel }}</span>
         </div>
         <div class="product-body">

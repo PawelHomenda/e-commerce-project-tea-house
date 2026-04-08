@@ -53,10 +53,10 @@ export class AuthService {
   }
 
   authorize(): void {
-    const authorizationUrl = new URL('http://localhost:9000/oauth2/authorize');
+    const authorizationUrl = new URL(`${window.location.origin}/auth-server/oauth2/authorize`);
     authorizationUrl.searchParams.set('response_type', 'code');
     authorizationUrl.searchParams.set('client_id', 'client-app');
-    authorizationUrl.searchParams.set('redirect_uri', 'http://localhost:4200/authorized');
+    authorizationUrl.searchParams.set('redirect_uri', `${window.location.origin}/authorized`);
     authorizationUrl.searchParams.set('scope', 'openid profile email user:client');
     window.location.href = authorizationUrl.toString();
   }

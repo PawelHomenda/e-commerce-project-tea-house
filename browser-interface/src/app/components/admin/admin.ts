@@ -134,7 +134,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       price: ['', [Validators.required, Validators.min(0.01)]],
       stock: ['', [Validators.required, Validators.min(0)]],
       categoryId: ['', Validators.required],
-      imageUrl: ['', Validators.required],
+      imageUrl: [''],
       thumbnailUrl: [''],
       origin: ['', Validators.required],
       weight: ['', [Validators.required, Validators.min(0.1)]],

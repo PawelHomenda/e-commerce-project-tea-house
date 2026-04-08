@@ -1,7 +1,11 @@
 <div class="orders-container">
   <div class="orders-header">
     <h1 i18n="orders.title@@orders.title">Mis Órdenes</h1>
-    <p i18n="orders.subtitle@@orders.subtitle">Historial y estado de tus compras</p>
+    @if (isProvider) {
+      <p i18n="orders.subtitleProvider@@orders.subtitleProvider">Historial de tus pedidos como proveedor</p>
+    } @else {
+      <p i18n="orders.subtitle@@orders.subtitle">Historial y estado de tus compras</p>
+    }
   </div>
 
   <!-- Mensajes de estado -->
@@ -18,7 +22,8 @@
     }
   </div>
 
-  <!-- Filtro de estado -->
+  <!-- Filtro de estado (solo para pedidos de clientes) -->
+  @if (!isProvider) {
   <div class="filter-section">
     <div class="filter-group">
       <label for="statusFilter" i18n="orders.filterByStatus@@orders.filterByStatus">Filtrar por estado:</label>
@@ -31,6 +36,7 @@
       </select>
     </div>
   </div>
+  }
 
   <!-- Indicador de carga -->
   @if (isLoading) {
@@ -47,9 +53,11 @@
           <div class="order-header">
             <div class="order-number">
               <strong i18n="orders.orderNumber@@orders.orderNumber">Pedido #{{ order.id }}</strong>
+              @if (!isProvider) {
               <span class="badge" [ngClass]="'badge-' + getStatusColor(order.orderState)">
                 {{ getOrderStatusIcon(order.orderState) }} {{ getStatusLabel(order.orderState) }}
               </span>
+              }
             </div>
             <div class="order-date">
               {{ order.orderDate }}
@@ -59,9 +67,16 @@
             <div class="summary-item">
               <strong i18n="orders.itemsLabel@@orders.itemsLabel">Artículos:</strong> {{ getItemCount(order) }}
             </div>
+            @if (!isProvider) {
             <div class="summary-item">
               <strong i18n="orders.serviceTypeLabel@@orders.serviceTypeLabel">Tipo de servicio:</strong> {{ getServiceTypeLabel(order.serviceType) }}
             </div>
+            }
+            @if (isProvider && order.observations) {
+            <div class="summary-item">
+              <strong i18n="orders.observationsLabel@@orders.observationsLabel">Observaciones:</strong> {{ order.observations }}
+            </div>
+            }
             <div class="summary-item">
               <strong i18n="orders.totalLabel@@orders.totalLabel">Total:</strong> <span class="total">{{ order.total | currency:'EUR':'symbol':'1.2-2':'es' }}</span>
             </div>
@@ -75,7 +90,7 @@
             <button type="button" class="btn btn-info btn-sm" (click)="viewOrderDetails(order)" i18n="orders.viewDetails@@orders.viewDetails">
               Ver Detalles
             </button>
-            @if (canCancelOrder(order)) {
+            @if (!isProvider && canCancelOrder(order)) {
               <button
                 type="button"
                 class="btn btn-danger btn-sm"
@@ -112,17 +127,24 @@
           <!-- Estado de la orden -->
           <div class="order-status-section">
             <h3 i18n="orders.statusSectionTitle@@orders.statusSectionTitle">Estado</h3>
+            @if (!isProvider) {
             <p>
               <strong i18n="orders.currentStatus@@orders.currentStatus">Estado actual:</strong>
               <span class="badge" [ngClass]="'badge-' + getStatusColor(selectedOrder.orderState)">
                 {{ getOrderStatusIcon(selectedOrder.orderState) }} {{ getStatusLabel(selectedOrder.orderState) }}
               </span>
             </p>
+            }
             <p><strong i18n="orders.dateLabel@@orders.dateLabel">Fecha:</strong> {{ selectedOrder.orderDate }}</p>
+            @if (!isProvider) {
             <p><strong i18n="orders.serviceTypeDetail@@orders.serviceTypeDetail">Tipo de servicio:</strong> {{ getServiceTypeLabel(selectedOrder.serviceType) }}</p>
+            }
+            @if (isProvider && selectedOrder.observations) {
+            <p><strong i18n="orders.observationsDetail@@orders.observationsDetail">Observaciones:</strong> {{ selectedOrder.observations }}</p>
+            }
           </div>
-          <!-- Artículos de la orden -->
-          @if (selectedOrder.detailOrderClients && selectedOrder.detailOrderClients.length > 0) {
+          <!-- Artículos de la orden (cliente) -->
+          @if (!isProvider && selectedOrder.detailOrderClients && selectedOrder.detailOrderClients.length > 0) {
             <div class="order-items-section">
               <h3 i18n="orders.itemsSectionTitle@@orders.itemsSectionTitle">Artículos</h3>
               <table class="items-table">
@@ -141,6 +163,32 @@
                       <td>{{ detail.quantity }}</td>
                       <td>{{ detail.unitPrice | currency:'EUR':'symbol':'1.2-2':'es' }}</td>
                       <td>{{ detail.subtotal | currency:'EUR':'symbol':'1.2-2':'es' }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+          <!-- Artículos de la orden (proveedor) -->
+          @if (isProvider && selectedOrder.detailOrderProviders && selectedOrder.detailOrderProviders.length > 0) {
+            <div class="order-items-section">
+              <h3 i18n="orders.itemsSectionTitle@@orders.itemsSectionTitle">Artículos</h3>
+              <table class="items-table">
+                <thead>
+                  <tr>
+                    <th i18n="orders.thProduct@@orders.thProduct">Producto</th>
+                    <th i18n="orders.thQuantity@@orders.thQuantity">Cantidad</th>
+                    <th i18n="orders.thUnitPrice@@orders.thUnitPrice">Precio Unitario</th>
+                    <th i18n="orders.thSubtotal@@orders.thSubtotal">Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (detail of selectedOrder.detailOrderProviders; track detail.id) {
+                    <tr>
+                      <td>{{ detail.product?.name || 'Producto' }}</td>
+                      <td>{{ detail.quantity }}</td>
+                      <td>{{ detail.unitPrice | currency:'EUR':'symbol':'1.2-2':'es' }}</td>
+                      <td>{{ (detail.quantity * detail.unitPrice) | currency:'EUR':'symbol':'1.2-2':'es' }}</td>
                     </tr>
                   }
                 </tbody>

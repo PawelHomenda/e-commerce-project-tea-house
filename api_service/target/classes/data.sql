@@ -57,32 +57,32 @@ INSERT IGNORE INTO clients (first_name, last_name, email, phone_number, address,
 -- 4. PRODUCTOS (23 registros - 10 bebidas, 13 postres)
 -- =====================================================================
 
-INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active) VALUES
+INSERT IGNORE INTO products (name, description, category_id, price, measure_unit, active, image_url, thumbnail_url) VALUES
 -- BEBIDAS (Tés)
-('Té Verde Sencha', 'Té verde japonés de alta calidad, suave y refrescante', 1, 3.50, 'taza', 1),
-('Té Negro Earl Grey', 'Té negro aromático con bergamota', 1, 3.00, 'taza', 1),
-('Té Oolong Premium', 'Té semifermentado con notas florales', 1, 4.50, 'taza', 1),
-('Té Blanco Silver Needle', 'Té blanco delicado y exclusivo', 1, 5.00, 'taza', 1),
-('Té Rooibos', 'Infusión sudafricana sin cafeína', 1, 3.20, 'taza', 1),
-('Té Chai Masala', 'Té negro especiado con leche', 1, 3.80, 'taza', 1),
-('Té Matcha Latte', 'Bebida cremosa de té verde en polvo', 1, 4.80, 'vaso', 1),
-('Té Helado de Melocotón', 'Refrescante té frío con frutas', 1, 3.50, 'vaso', 1),
-('Infusión de Menta', 'Menta fresca natural', 1, 2.80, 'taza', 1),
-('Infusión de Manzanilla', 'Relajante infusión de flores', 1, 2.50, 'taza', 1),
+('Té Verde Sencha', 'Té verde japonés de alta calidad, suave y refrescante', 1, 3.50, 'taza', 1, 'https://images.unsplash.com/photo-1556881286-fc6915169721?w=600', 'https://images.unsplash.com/photo-1556881286-fc6915169721?w=200'),
+('Té Negro Earl Grey', 'Té negro aromático con bergamota', 1, 3.00, 'taza', 1, 'https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=600', 'https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=200'),
+('Té Oolong Premium', 'Té semifermentado con notas florales', 1, 4.50, 'taza', 1, 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=600', 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=200'),
+('Té Blanco Silver Needle', 'Té blanco delicado y exclusivo', 1, 5.00, 'taza', 1, 'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?w=600', 'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?w=200'),
+('Té Rooibos', 'Infusión sudafricana sin cafeína', 1, 3.20, 'taza', 1, 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600', 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=200'),
+('Té Chai Masala', 'Té negro especiado con leche', 1, 3.80, 'taza', 1, 'https://images.unsplash.com/photo-1563911892437-1feda0179e1b?w=600', 'https://images.unsplash.com/photo-1563911892437-1feda0179e1b?w=200'),
+('Té Matcha Latte', 'Bebida cremosa de té verde en polvo', 1, 4.80, 'vaso', 1, 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=600', 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=200'),
+('Té Helado de Melocotón', 'Refrescante té frío con frutas', 1, 3.50, 'vaso', 1, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600', 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200'),
+('Infusión de Menta', 'Menta fresca natural', 1, 2.80, 'taza', 1, 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600', 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=200'),
+('Infusión de Manzanilla', 'Relajante infusión de flores', 1, 2.50, 'taza', 1, 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600', 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=200'),
 -- POSTRES
-('Pastel de Chocolate', 'Delicioso pastel de chocolate casero con ganache', 2, 12.00, 'porción', 1),
-('Cheesecake de Fresa', 'Tarta de queso con topping de fresas frescas', 2, 14.00, 'porción', 1),
-('Cheesecake de Matcha', 'Tarta de queso con sabor a te matcha', 2, 14.00, 'porción', 1),
-('Tarta de Zanahoria', 'Tarta especiada con frosting de queso crema', 2, 11.50, 'porción', 1),
-('Brownie con Nueces', 'Brownie intenso de chocolate con nueces', 2, 8.00, 'porción', 1),
-('Galletas de Mantequilla', 'Galletas artesanales crujientes', 2, 2.00, 'unidad', 1),
-('Scones con Mermelada', 'Bollos ingleses con mermelada y nata', 2, 6.50, 'porción', 1),
-('Macarons Surtidos', 'Delicados macarons franceses de varios sabores', 2, 3.50, 'unidad', 1),
-('Tarta de Limón', 'Tarta refrescante de limón con merengue', 2, 13.00, 'porción', 1),
-('Croissant de Almendra', 'Croissant relleno de crema de almendras', 2, 4.50, 'unidad', 1),
-('Dorayaki', 'Dulce japonés de 2 tortillas con pasta anko', 2, 2.50, 'unidad', 1),
-('Mochi', 'Pastel de arroz con relleno de frutas en su interior', 2, 3.50, 'unidad', 1),
-('Tiramisú', 'Postre italiano clásico con café y mascarpone', 2, 10.00, 'porción', 1);
+('Pastel de Chocolate', 'Delicioso pastel de chocolate casero con ganache', 2, 12.00, 'porción', 1, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600', 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200'),
+('Cheesecake de Fresa', 'Tarta de queso con topping de fresas frescas', 2, 14.00, 'porción', 1, 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600', 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=200'),
+('Cheesecake de Matcha', 'Tarta de queso con sabor a te matcha', 2, 14.00, 'porción', 1, 'https://images.unsplash.com/photo-1570197571499-166b36435e9f?w=600', 'https://images.unsplash.com/photo-1570197571499-166b36435e9f?w=200'),
+('Tarta de Zanahoria', 'Tarta especiada con frosting de queso crema', 2, 11.50, 'porción', 1, 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600', 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=200'),
+('Brownie con Nueces', 'Brownie intenso de chocolate con nueces', 2, 8.00, 'porción', 1, 'https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=600', 'https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=200'),
+('Galletas de Mantequilla', 'Galletas artesanales crujientes', 2, 2.00, 'unidad', 1, 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600', 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=200'),
+('Scones con Mermelada', 'Bollos ingleses con mermelada y nata', 2, 6.50, 'porción', 1, 'https://images.unsplash.com/photo-1586444248879-bc604cbd555a?w=600', 'https://images.unsplash.com/photo-1586444248879-bc604cbd555a?w=200'),
+('Macarons Surtidos', 'Delicados macarons franceses de varios sabores', 2, 3.50, 'unidad', 1, 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=600', 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=200'),
+('Tarta de Limón', 'Tarta refrescante de limón con merengue', 2, 13.00, 'porción', 1, 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=600', 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=200'),
+('Croissant de Almendra', 'Croissant relleno de crema de almendras', 2, 4.50, 'unidad', 1, 'https://images.unsplash.com/photo-1555507036-ab1f4038024a?w=600', 'https://images.unsplash.com/photo-1555507036-ab1f4038024a?w=200'),
+('Dorayaki', 'Dulce japonés de 2 tortillas con pasta anko', 2, 2.50, 'unidad', 1, 'https://images.unsplash.com/photo-1631206616096-60cf95b51e02?w=600', 'https://images.unsplash.com/photo-1631206616096-60cf95b51e02?w=200'),
+('Mochi', 'Pastel de arroz con relleno de frutas en su interior', 2, 3.50, 'unidad', 1, 'https://images.unsplash.com/photo-1631206753348-db44968fd440?w=600', 'https://images.unsplash.com/photo-1631206753348-db44968fd440?w=200'),
+('Tiramisú', 'Postre italiano clásico con café y mascarpone', 2, 10.00, 'porción', 1, 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600', 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=200');
 
 -- =====================================================================
 -- 5. INVENTARIO (23 registros - 1 por cada producto)

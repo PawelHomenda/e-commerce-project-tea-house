@@ -39,7 +39,11 @@ export class LoginComponent {
 
     // ← CORREGIDO: usa las credenciales del formulario en vez de redirigir a OAuth2
     this.authService.login(this.loginForm.value).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => {
+        const returnUrl = localStorage.getItem('returnUrl') || '/';
+        localStorage.removeItem('returnUrl');
+        this.router.navigateByUrl(returnUrl);
+      },
       error: (err) => {
         this.errorMessage = err.status === 401
           ? $localize`:login.invalidCredentials@@login.invalidCredentials:Usuario o contraseña incorrectos`

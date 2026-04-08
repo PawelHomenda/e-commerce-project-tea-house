@@ -53,9 +53,15 @@
             </p>
           </div>
         }
-        <button class="btn btn-primary" (click)="toggleEditProfile()" [disabled]="isLoading" i18n="profile.editProfile@@profile.editProfile">
-          Editar Perfil
-        </button>
+        @if (currentUser?.role !== 'ADMIN') {
+          <button class="btn btn-primary" (click)="toggleEditProfile()" [disabled]="isLoading" i18n="profile.editProfile@@profile.editProfile">
+            Editar Perfil
+          </button>
+        } @else {
+          <p class="admin-notice" i18n="profile.adminNotEditable@@profile.adminNotEditable">
+            El perfil de administrador no se puede modificar desde aquí.
+          </p>
+        }
       </div>
     }
 

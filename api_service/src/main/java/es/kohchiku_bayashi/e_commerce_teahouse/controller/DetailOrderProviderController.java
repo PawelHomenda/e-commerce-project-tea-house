@@ -25,9 +25,9 @@ public class DetailOrderProviderController {
     public ResponseEntity<List<DetailOrderProvider>> getMyDetails(@AuthenticationPrincipal Jwt jwt) {
         String OAuth2Id = jwt.getClaimAsString("sub");
         List<String> scopes = jwt.getClaimAsStringList("scope");
-        if (scopes.contains("admin") || scopes.contains("user:employee")){
+        if (scopes.contains("admin") || scopes.contains("employee")){
             return ResponseEntity.ok(detailOrderProviderService.findAll());
-        }else if(scopes.contains("user:provider")){
+        }else if(scopes.contains("provider")){
             return ResponseEntity.ok(detailOrderProviderService.findByProviderOAuth2Id(OAuth2Id));
         }
         throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");
@@ -53,7 +53,7 @@ public class DetailOrderProviderController {
         }
         
         // Proveedor solo ve detalles de sus propias órdenes
-        if (scopes.contains("user:provider")) {
+        if (scopes.contains("provider")) {
             if (detail.getOrderProvider().getProvider().getOauth2Id().equals(oauth2Id)) {
                 return ResponseEntity.ok(detail);
             }
@@ -69,7 +69,7 @@ public class DetailOrderProviderController {
             @AuthenticationPrincipal Jwt jwt) {
         List<String> scopes = jwt.getClaimAsStringList("scope");
         
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(detailOrderProviderService.getTotalProductsPurchased());
         }
         throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");
@@ -82,7 +82,7 @@ public class DetailOrderProviderController {
             @AuthenticationPrincipal Jwt jwt) {
         List<String> scopes = jwt.getClaimAsStringList("scope");
         
-        if (scopes.contains("admin") || scopes.contains("user:employee")) {
+        if (scopes.contains("admin") || scopes.contains("employee")) {
             return ResponseEntity.ok(detailOrderProviderService.getTotalProductsPurchasedByMonth(month));
         }
         throw new AccessDeniedException("No tienes permisos para acceder a este recurso.");

@@ -22,6 +22,7 @@ import {
 export class OrderService {
   private apiUrl = `${environment.apiUrl}/orders`;
   private clientsApiUrl = `${environment.apiUrl}/orders/clients`;
+  private providersApiUrl = `${environment.apiUrl}/orders/providers`;
 
   // Estado de órdenes
   private ordersSubject = new BehaviorSubject<Order[]>([]);
@@ -38,6 +39,13 @@ export class OrderService {
    */
   getMyOrders(): Observable<any[]> {
     return this.http.get<any[]>(this.clientsApiUrl);
+  }
+
+  /**
+   * Obtener las órdenes del proveedor actual (desde /api/orders/providers)
+   */
+  getMyProviderOrders(): Observable<any[]> {
+    return this.http.get<any[]>(this.providersApiUrl);
   }
 
   /**

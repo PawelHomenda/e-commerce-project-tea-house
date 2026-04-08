@@ -38,6 +38,8 @@ public class ProductService {
         existing.setCategory(product.getCategory());
         existing.setPrice(product.getPrice());
         existing.setMeasureUnit(product.getMeasureUnit());
+        existing.setImageUrl(product.getImageUrl());
+        existing.setThumbnailUrl(product.getThumbnailUrl());
         existing.setActive(product.getActive());
         
         return productRepository.save(existing);
