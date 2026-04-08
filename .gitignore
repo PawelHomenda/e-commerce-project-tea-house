@@ -37,7 +37,6 @@ browser-interface/dist/
 .env
 
 # Internal documentation (not part of the deliverable)
-IMPLEMENTATION_GUIDE.md
 api_service/SECURITY_IMPLEMENTATION.md
 api_service/MIGRATION_NOTES.md
 api_service/PRUEBAS_JUNIT.md
