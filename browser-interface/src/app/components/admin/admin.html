@@ -92,11 +92,6 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="stock" i18n="admin.stock@@admin.stock">Stock</label>
-                  [class.is-invalid]="productForm.get('stock')?.invalid && productForm.get('stock')?.touched"
-                  >
-              </div>
-              <div class="form-group">
                 <label for="categoryId" i18n="admin.category@@admin.category">Categoría</label>
                 <select
                   id="categoryId"
@@ -144,22 +139,14 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="origin" i18n="admin.origin@@admin.origin">Origen</label>
-                  [class.is-invalid]="productForm.get('origin')?.invalid && productForm.get('origin')?.touched"
+                <label for="measureUnit" i18n="admin.measureUnit@@admin.measureUnit">Unidad de Medida</label>
+                <input
+                  type="text"
+                  id="measureUnit"
+                  class="form-control"
+                  formControlName="measureUnit"
+                  placeholder="ej: 100g, 250ml"
                   >
-              </div>
-              <div class="form-group">
-                <label for="weight" i18n="admin.weight@@admin.weight">Peso</label>
-                  step="0.1"
-                  [class.is-invalid]="productForm.get('weight')?.invalid && productForm.get('weight')?.touched"
-                  >
-              </div>
-              <div class="form-group">
-                <label for="unit" i18n="admin.unit@@admin.unit">Unidad</label>
-                <select id="unit" class="form-control" formControlName="unit">
-                  <option value="g" i18n="admin.grams@@admin.grams">Gramos (g)</option>
-                  <option value="kg" i18n="admin.kilograms@@admin.kilograms">Kilogramos (kg)</option>
-                </select>
               </div>
             </div>
             <div class="form-actions">

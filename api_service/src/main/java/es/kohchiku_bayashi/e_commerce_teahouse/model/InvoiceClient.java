@@ -37,9 +37,9 @@ public class InvoiceClient {
     private Double total;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "payment_method", columnDefinition = "VARCHAR(20) DEFAULT 'METALIC'")
+    @Column(name = "payment_method", columnDefinition = "VARCHAR(20) DEFAULT 'CASH_ON_DELIVERY'")
     @Builder.Default
-    private PaymentMethod paymentMethod = PaymentMethod.METALIC;
+    private PaymentMethod paymentMethod = PaymentMethod.CASH_ON_DELIVERY;
     
     @Column(name = "payment_date")
     private LocalDate paymentDate;

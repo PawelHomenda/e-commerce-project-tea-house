@@ -3,25 +3,34 @@
  * Equivalente a la entidad Product en Spring Boot
  */
 export interface Product {
-  active: boolean;
   id: number;
   name: string;
   description: string;
   price: number;
-  stock: number;
   category: Category;
+  measureUnit?: string;
   imageUrl?: string;
   thumbnailUrl?: string;
-  origin: string;
-  weight: number;
-  unit: 'g' | 'kg';
-  rating: number;
-  reviewCount: number;
-  isNew: boolean;
-  isBestseller: boolean;
-  isLimitedEdition: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  active: boolean;
+  inventory?: Inventory;
+  // UI-only fields (not persisted in backend)
+  stock?: number;
+  origin?: string;
+  weight?: number;
+  unit?: 'g' | 'kg';
+  rating?: number;
+  reviewCount?: number;
+  isNew?: boolean;
+  isBestseller?: boolean;
+  isLimitedEdition?: boolean;
+}
+
+/**
+ * Interfaz Inventory - Stock del producto
+ */
+export interface Inventory {
+  id: number;
+  quantity: number;
 }
 
 /**
@@ -31,13 +40,10 @@ export interface ProductDTO {
   name: string;
   description: string;
   price: number;
-  stock: number;
   categoryId: number;
+  measureUnit?: string;
   imageUrl?: string;
   thumbnailUrl?: string;
-  origin: string;
-  weight: number;
-  unit: 'g' | 'kg';
 }
 
 /**
@@ -48,9 +54,10 @@ export interface Category {
   id: number;
   name: string;
   description: string;
-  slug: string;
-  productCount: number;
   imageUrl?: string;
+  active?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 /**

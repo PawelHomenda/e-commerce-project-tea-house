@@ -16,7 +16,6 @@ import { environment } from '../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  // ← CORREGIDO: el login directo va al auth server, no al api service
   private authServerUrl = `${environment.authServerUrl}/auth`;
   private apiUrl        = `${environment.apiUrl}/auth`;
   private userUrl       = `${environment.apiUrl}/users`;
@@ -45,7 +44,6 @@ export class AuthService {
     );
   }
 
-  // ← CORREGIDO: llama al endpoint REST del auth server con usuario/contraseña
   login(loginDTO: LoginDTO): Observable<any> {
     return this.http.post<any>(`${this.authServerUrl}/login`, loginDTO).pipe(
       tap(response => this.handleAuthentication(response))
@@ -148,7 +146,6 @@ export class AuthService {
     return this.isAuthenticatedSubject.value && !this.isTokenExpired();
   }
 
-  // ← CORREGIDO: el backend devuelve roles: ["ROLE_ADMIN"], no user.role
   isAdmin(): boolean {
     const user = this.getCurrentUser();
     if (user?.role) return user.role === 'ADMIN';            // modelo antiguo
@@ -167,7 +164,6 @@ export class AuthService {
     return this.normalizeToken(localStorage.getItem('token'));
   }
 
-  // ← CORREGIDO: soporta tanto {token, user} (modelo viejo) como {token, username, roles} (nuevo)
   private handleAuthentication(response: any): void {
     const token = this.normalizeToken(response?.token ?? response?.access_token);
     if (!token) return;

@@ -1,7 +1,7 @@
 # 🫖 Casa del Té — Kouchiku Bayashi
 
 **E-Commerce Teahouse · Arquitectura Desacoplada**
-*Java 17 · Spring Boot 3.5 · Angular 18 · MySQL 8 · Docker*
+*Java 17 · Spring Boot 3.5 · Angular 21 · MySQL 8 · Docker*
 
 ---
 
@@ -53,7 +53,7 @@ docker-compose up --build
 | **Frontend** | [http://localhost:4200](http://localhost:4200) | SPA Angular (nginx) |
 | **API de Negocio** | [http://localhost:8080/api](http://localhost:8080/api) | Swagger: `/swagger-ui/index.html` |
 | **Auth Server** | [http://localhost:9000](http://localhost:9000) | Login form / API REST |
-| **MySQL** | `localhost:3307` | DB: `casa_te`, user: `root`, pass: `asas1234` |
+| **MySQL** | `localhost:3307` | DB: `casa_te`, user: `root`, pass via `.env` |
 
 ### Puertos de Depuración (JDWP)
 
@@ -303,7 +303,7 @@ cd api_service
 ./mvnw spring-boot:run
 ```
 
-> Requiere que MySQL esté corriendo en `localhost:3306` con usuario `root` y contraseña `asas1234` (configurable en `application.yaml`).
+> Requiere que MySQL esté corriendo en `localhost:3306` con usuario `root` y la contraseña configurada en `application.yaml` (por defecto usa la variable de entorno `SPRING_DATASOURCE_PASSWORD`).
 
 Verificar: [http://localhost:8080/api/products](http://localhost:8080/api/products) → lista de productos.
 

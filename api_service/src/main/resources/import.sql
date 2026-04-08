@@ -114,13 +114,13 @@ INSERT IGNORE INTO details_order_client (id_order_client, id_product, quantity, 
 INSERT IGNORE INTO details_order_client (id_order_client, id_product, quantity, unit_price) VALUES (9, 21, 1, 8.00);
 
 -- 8. FACTURAS DE CLIENTES (7 registros)
-INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (1, 'FC-001', '2025-09-02', 130.00, 'METALIC', '2025-09-02');
-INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (2, 'FC-002', '2025-09-06', 119.00, 'CREDIT', '2025-09-06');
-INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (3, 'FC-003', '2025-09-11', 107.50, 'METALIC', '2025-09-12');
-INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (4, 'FC-004', '2025-09-16', 126.00, 'CREDIT', '2025-09-17');
-INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (5, 'FC-005', '2025-09-21', 125.20, 'METALIC', '2025-09-22');
-INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (6, 'FC-006', '2025-09-26', 122.80, 'CREDIT', '2025-09-27');
-INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (7, 'FC-007', '2025-10-02', 115.30, 'METALIC', '2025-10-02');
+INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (1, 'FC-001', '2025-09-02', 130.00, 'CASH_ON_DELIVERY', '2025-09-02');
+INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (2, 'FC-002', '2025-09-06', 119.00, 'CREDIT_CARD', '2025-09-06');
+INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (3, 'FC-003', '2025-09-11', 107.50, 'CASH_ON_DELIVERY', '2025-09-12');
+INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (4, 'FC-004', '2025-09-16', 126.00, 'CREDIT_CARD', '2025-09-17');
+INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (5, 'FC-005', '2025-09-21', 125.20, 'PAYPAL', '2025-09-22');
+INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (6, 'FC-006', '2025-09-26', 122.80, 'BANK_TRANSFER', '2025-09-27');
+INSERT IGNORE INTO invoices_clients (id_order_client, invoice_number, invoice_date, total, payment_method, payment_date) VALUES (7, 'FC-007', '2025-10-02', 115.30, 'DEBIT_CARD', '2025-10-02');
 
 -- 9. PEDIDOS DE PROVEEDORES (8 registros)
 INSERT IGNORE INTO orders_providers (id_provider, id_employee, order_date, total, observations) VALUES (1, 1, '2025-08-01', 57.00, 'Pedido de té verde y té negro');

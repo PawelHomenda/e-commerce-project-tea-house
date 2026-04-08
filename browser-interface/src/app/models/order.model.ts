@@ -1,8 +1,8 @@
 import { Product } from './product.model';
-import { User } from './user.model';
 
 /**
  * Estados posibles de un pedido
+ * Equivalente a OrderState en Spring Boot
  */
 export enum OrderStatus {
   PENDENT = 'PENDENT',
@@ -13,6 +13,7 @@ export enum OrderStatus {
 
 /**
  * Métodos de pago
+ * Equivalente a PaymentMethod en Spring Boot
  */
 export enum PaymentMethod {
   CREDIT_CARD = 'CREDIT_CARD',
@@ -24,81 +25,61 @@ export enum PaymentMethod {
 
 /**
  * Estados de pago
+ * Equivalente a PaymentState en Spring Boot
  */
 export enum PaymentStatus {
-  PENDING = 'PENDING',
   PAID = 'PAID',
-  FAILED = 'FAILED',
-  REFUNDED = 'REFUNDED'
+  PENDENT = 'PENDENT'
 }
 
 /**
- * Interfaz OrderItem - Item de un pedido
+ * Tipo de servicio
+ * Equivalente a ServiceType en Spring Boot
+ */
+export type ServiceType = 'TAKEAWAY' | 'TABLE' | 'DELIVERY';
+
+/**
+ * Interfaz OrderItem - Detalle de un pedido
  */
 export interface OrderItem {
   id: number;
   product: Product;
   quantity: number;
-  price: number;
-  subtotal: number;
+  unitPrice: number;
+  subtotal?: number;
 }
 
 /**
- * Interfaz ShippingAddress - Dirección de envío
- */
-export interface ShippingAddress {
-  id?: number;
-  fullName: string;
-  address: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  country: string;
-  phone: string;
-}
-
-/**
- * Interfaz Order - Pedido
+ * Interfaz Order - Pedido de cliente
+ * Equivalente a OrderClient en Spring Boot
  */
 export interface Order {
   id: number;
-  orderNumber: string;
-  user: User;
-  items: OrderItem[];
-  subtotal: number;
-  tax: number;
-  shippingCost: number;
-  total: number;
-  status: OrderStatus;
-  paymentMethod: PaymentMethod;
-  paymentStatus: PaymentStatus;
-  shippingAddress: ShippingAddress;
-  notes?: string;
-  createdAt: Date;
-  updatedAt: Date;
-  estimatedDelivery?: Date;
+  client: any;
+  employee?: any;
+  orderDate: string;
+  orderState: OrderStatus;
+  serviceType: ServiceType;
+  discountPercentage?: number;
+  detailOrderClients: OrderItem[];
+  invoiceClient?: any;
+  subtotal?: number;
+  total?: number;
 }
 
 /**
  * DTO para crear un pedido
  */
 export interface CreateOrderDTO {
-  cartId: number;
-  shippingAddress: ShippingAddress;
-  paymentMethod: PaymentMethod;
-  notes?: string;
-}
-
-/**
- * Resumen de pedido para confirmación
- */
-export interface OrderSummary {
-  items: OrderItem[];
-  subtotal: number;
-  tax: number;
-  shippingCost: number;
-  total: number;
-  itemCount: number;
+  client: { id: number };
+  serviceType: ServiceType;
+  orderState?: string;
+  orderDate?: string;
+  detailOrderClients: {
+    product: { id: number };
+    quantity: number;
+    unitPrice: number;
+  }[];
 }
 
 /**

@@ -19,18 +19,27 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# virtual machine crash logs
 hs_err_pid*
 replay_pid*
+
+# Build output
+**/target/
+**/node_modules/
+browser-interface/dist/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Environment
+.env
+
+# Internal documentation (not part of the deliverable)
 IMPLEMENTATION_GUIDE.md
-.gitignore
 api_service/SECURITY_IMPLEMENTATION.md
-.gitignore
 api_service/MIGRATION_NOTES.md
-api_service/src/main/resources/db_sources/README.md
-api_service/target/classes/db_sources/README.md
-api_service/target/surefire-reports/*
-api_service/target/maven-status/maven-compiler-plugin/*
 api_service/PRUEBAS_JUNIT.md
 api_service/README_TESTS.md
 api_service/RESUMEN_FINAL.md
@@ -39,10 +48,5 @@ api_service/EJEMPLOS_USO.md
 api_service/ESTADISTICAS_PRUEBAS.md
 api_service/GUIA_EJECUCION_PRUEBAS.md
 api_service/INDICE_COMPLETO.md
-api_service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
-api_service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
-api_service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
-api_service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 browser-interface/ACTUALIZACION_HOME_DESIGN.md
-.env
-.vscode/launch.json
+browser-interface/COMPONENTES_IMPLEMENTADOS.md

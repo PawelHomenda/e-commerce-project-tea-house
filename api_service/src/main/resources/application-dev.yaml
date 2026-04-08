@@ -1,11 +1,18 @@
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
   security:
     oauth2:
       resourceserver:
         jwt:
           # En Docker usamos jwk-set-uri (red interna) en vez de issuer-uri.
-          # Razón: los tokens tienen iss=http://localhost:9000 (URL del navegador)
+          # Los tokens tienen iss=http://localhost:9000 (URL del navegador)
           # pero internamente el auth-server se llama 'auth-server'.
-          # Con issuer-uri Spring valida que iss==issuer-uri → falla el match.
-          # Con jwk-set-uri solo valida la firma (suficiente para dev).
           jwk-set-uri: "http://auth-server:9000/oauth2/jwks"
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG

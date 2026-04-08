@@ -8,8 +8,8 @@ services:
     container_name: teahouse-db
     restart: always
     environment:
-      MYSQL_DATABASE: casa_te          # ← debe coincidir con application.yaml
-      MYSQL_ROOT_PASSWORD: asas1234
+      MYSQL_DATABASE: casa_te
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - "3307:3306"
     networks:
@@ -17,7 +17,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pasas1234"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -53,7 +53,7 @@ services:
       # MySQL: apunta al servicio 'db' dentro de la red Docker
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/casa_te?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=asas1234
+      - SPRING_DATASOURCE_PASSWORD=${DB_ROOT_PASSWORD}
       # JWT: usa jwk-set-uri en vez de issuer-uri para evitar el mismatch de issuer
       # (los tokens tienen iss=http://localhost:9000 pero la red interna usa auth-server:9000)
       - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI=http://auth-server:9000/oauth2/jwks

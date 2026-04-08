@@ -78,7 +78,6 @@ signup() {
         if (categories && categories.length > 0) {
           this.categories = categories;
           this.categoriesLoadTime = new Date().toLocaleTimeString('es-ES');
-          console.log('✓ Categorías cargadas del API:', categories);
         } else {
           console.warn('⚠️ No se encontraron categorías en el servidor');
           this.categories = this.getExampleCategories();
@@ -109,7 +108,6 @@ signup() {
           this.productsLoadTime = new Date().toLocaleTimeString('es-ES');
           this.loadingProducts = false;
           this.loading = false;
-          console.log('✓ Productos cargados del API:', products);
         } else {
           console.warn('⚠️ No se encontraron productos en el servidor');
           this.loadingProducts = false;
@@ -189,7 +187,6 @@ signup() {
    */
   exploreCategory(categoryId: number): void {
     this.selectedCategory = categoryId.toString();
-    console.log('Explorando categoría:', categoryId);
     // Aquí navegarías a la página de productos filtrados por categoría
     // this.router.navigate(['/products'], { queryParams: { category: categoryId } });
   }
@@ -198,7 +195,6 @@ signup() {
    * Navega a la página de inicio (scroll al hero)
    */
   exploreCollection(): void {
-    console.log('Explorando colección completa');
     // this.router.navigate(['/products']);
   }
 
@@ -206,7 +202,6 @@ signup() {
    * Navega a la página "Acerca de"
    */
   learnMore(): void {
-    console.log('Navegando a "Nuestra Historia"');
     // this.router.navigate(['/about']);
   }
 
@@ -214,12 +209,9 @@ signup() {
    * Añade un producto al carrito usando el servicio
    */
   addToCart(product: Product): void {
-    console.log('Añadiendo al carrito:', product);
-    
     this.cartService.addProduct(product.id, 1, product).subscribe({
-      next: (cart) => {
+      next: () => {
         this.showNotification($localize`:home.addedToCart@@home.addedToCart:${product.name}:name: añadido al carrito`, 'success');
-        console.log('Carrito actualizado:', cart);
       },
       error: (err) => {
         console.error('Error añadiendo al carrito:', err);
@@ -248,7 +240,6 @@ signup() {
       return;
     }
 
-    console.log('Suscripción a newsletter:', this.newsletterEmail);
     // Aquí integrarías con tu servicio de newsletter
     // this.newsletterService.subscribe(this.newsletterEmail);
 
@@ -273,8 +264,7 @@ signup() {
    * Muestra una notificación (implementar con servicio de notificaciones)
    */
   private showNotification(message: string, type: 'success' | 'error' | 'info' = 'info'): void {
-    console.log(`[${type.toUpperCase()}] ${message}`);
-    // Aquí integrarías con tu servicio de notificaciones/toasts
+    // TODO: integrate with a toast/notification service
     // this.notificationService.show(message, type);
   }
 
@@ -310,34 +300,16 @@ signup() {
   }
 
   /**
-   * Obtener badge del producto
-   */
-  getProductBadge(product: Product): string | null {
-    if (product.isNew) return $localize`:home.badgeNew@@home.badgeNew:Nuevo`;
-    if (product.isBestseller) return $localize`:home.badgeBestseller@@home.badgeBestseller:Bestseller`;
-    if (product.isLimitedEdition) return $localize`:home.badgeLimited@@home.badgeLimited:Edición Limitada`;
-    return null;
-  }
-
-  /**
-   * Obtener clase CSS del badge
-   */
-  getBadgeClass(product: Product): string {
-    if (product.isBestseller) return 'bestseller';
-    return '';
-  }
-
-  /**
    * Categorías de ejemplo (fallback)
    */
   private getExampleCategories(): Category[] {
     return [
-      { id: 1, name: 'Té Verde', description: 'Frescura y vitalidad en cada taza', slug: 'te-verde', productCount: 12, imageUrl: '' },
-      { id: 2, name: 'Té Negro', description: 'Cuerpo intenso y carácter robusto', slug: 'te-negro', productCount: 15, imageUrl: '' },
-      { id: 3, name: 'Té Blanco', description: 'Delicadeza y sutileza ancestral', slug: 'te-blanco', productCount: 8, imageUrl: '' },
-      { id: 4, name: 'Oolong', description: 'La perfecta armonía entre mundos', slug: 'oolong', productCount: 10, imageUrl: '' },
-      { id: 5, name: 'Infusiones', description: 'Bienestar natural sin cafeína', slug: 'infusiones', productCount: 20, imageUrl: '' },
-      { id: 6, name: 'Matcha', description: 'Energía concentrada de tradición', slug: 'matcha', productCount: 5, imageUrl: '' }
+      { id: 1, name: 'Té Verde', description: 'Frescura y vitalidad en cada taza' },
+      { id: 2, name: 'Té Negro', description: 'Cuerpo intenso y carácter robusto' },
+      { id: 3, name: 'Té Blanco', description: 'Delicadeza y sutileza ancestral' },
+      { id: 4, name: 'Oolong', description: 'La perfecta armonía entre mundos' },
+      { id: 5, name: 'Infusiones', description: 'Bienestar natural sin cafeína' },
+      { id: 6, name: 'Matcha', description: 'Energía concentrada de tradición' }
     ];
   }
 
@@ -352,19 +324,8 @@ signup() {
         name: 'Dragon Well Premium',
         description: 'Té verde de alta calidad',
         price: 28.50,
-        stock: 50,
-        category: { id: 1, name: 'Té Verde', description: '', slug: 'te-verde', productCount: 12 },
-        imageUrl: '',
-        origin: 'Hangzhou, China',
-        weight: 100,
-        unit: 'g',
-        rating: 5,
-        reviewCount: 127,
-        isNew: true,
-        isBestseller: false,
-        isLimitedEdition: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        category: { id: 1, name: 'Té Verde', description: '' },
+        imageUrl: ''
       }
     ];
   }

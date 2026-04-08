@@ -132,13 +132,10 @@ export class AdminComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       price: ['', [Validators.required, Validators.min(0.01)]],
-      stock: ['', [Validators.required, Validators.min(0)]],
       categoryId: ['', Validators.required],
+      measureUnit: [''],
       imageUrl: [''],
-      thumbnailUrl: [''],
-      origin: ['', Validators.required],
-      weight: ['', [Validators.required, Validators.min(0.1)]],
-      unit: ['g', Validators.required]
+      thumbnailUrl: ['']
     });
   }
 
@@ -218,7 +215,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   addProductForm(): void {
     this.isEditingProduct = true;
     this.selectedProduct = null;
-    this.productForm.reset({ unit: 'g' });
+    this.productForm.reset();
   }
 
   editProduct(product: Product): void {
@@ -228,13 +225,10 @@ export class AdminComponent implements OnInit, OnDestroy {
       name: product.name,
       description: product.description,
       price: product.price,
-      stock: product.stock,
       categoryId: product.category.id,
+      measureUnit: product.measureUnit,
       imageUrl: product.imageUrl,
-      thumbnailUrl: product.thumbnailUrl,
-      origin: product.origin,
-      weight: product.weight,
-      unit: product.unit
+      thumbnailUrl: product.thumbnailUrl
     });
   }
 
@@ -374,8 +368,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   viewOrderDetails(order: OrderClient): void {
-    // Placeholder para ver detalles de orden
-    console.log('Detalles de orden:', order);
+    // TODO: navigate to order detail view
   }
 
   $any(value: any): any {

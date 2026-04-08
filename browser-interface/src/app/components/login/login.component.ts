@@ -23,7 +23,7 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],   // ← CORREGIDO: era 'email', el backend espera 'username'
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -37,7 +37,6 @@ export class LoginComponent {
     this.isSubmitting = true;
     this.errorMessage = '';
 
-    // ← CORREGIDO: usa las credenciales del formulario en vez de redirigir a OAuth2
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {
         const returnUrl = localStorage.getItem('returnUrl') || '/';
