@@ -56,10 +56,10 @@
           <div class="rating">
             <div class="stars">
               @for (i of [1,2,3,4,5]; track i) {
-                <span [class.filled]="i <= Math.round(product.rating)">★</span>
+                <span [class.filled]="i <= Math.round(product.rating ?? 0)">★</span>
               }
             </div>
-            <span class="rating-value">{{ product.rating.toFixed(1) }}/5</span>
+            <span class="rating-value">{{ (product.rating ?? 0).toFixed(1) }}/5</span>
             <span class="review-count">({{ product.reviewCount }} <span i18n="product.reviews@@product.reviews">comentarios</span>)</span>
           </div>
         </div>
@@ -105,7 +105,7 @@
                 id="quantity"
                 [(ngModel)]="quantity"
                 min="1"
-                [max]="product.stock"
+                [max]="product.stock ?? 0"
                 [disabled]="isOutOfStock()"
                 class="quantity-input"
                 >
@@ -113,7 +113,7 @@
                 type="button"
                 class="btn-quantity"
                 (click)="increaseQuantity()"
-                [disabled]="quantity >= product.stock || isOutOfStock()"
+                [disabled]="quantity >= (product.stock ?? 0) || isOutOfStock()"
                 >
                 +
               </button>
@@ -163,7 +163,7 @@
           <div class="rating-small">
             <span class="stars-small">
               @for (i of [1,2,3,4,5]; track i) {
-                <span [class.filled]="i <= Math.round(relatedProduct.rating)">★</span>
+                <span [class.filled]="i <= Math.round(relatedProduct.rating ?? 0)">★</span>
               }
             </span>
           </div>

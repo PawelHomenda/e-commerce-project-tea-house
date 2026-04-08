@@ -92,8 +92,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     }
 
     // Verificar stock
-    if (this.quantity > this.product.stock) {
-      this.errorMessage = $localize`:product.insufficientStock@@product.insufficientStock:Stock insuficiente. Disponibles: ${this.product.stock}:stock:`;
+    if (this.quantity > (this.product.stock ?? 0)) {
+      this.errorMessage = $localize`:product.insufficientStock@@product.insufficientStock:Stock insuficiente. Disponibles: ${this.product.stock ?? 0}:stock:`;
       return;
     }
 
@@ -115,7 +115,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   buyNow(): void {
-    if (this.product && this.quantity > 0 && this.quantity <= this.product.stock) {
+    if (this.product && this.quantity > 0 && this.quantity <= (this.product.stock ?? 0)) {
       // Primero añadir al carrito
       this.cartService.addProduct(this.product.id, this.quantity, this.product)
         .pipe(takeUntil(this.destroy$))
@@ -142,17 +142,17 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   increaseQuantity(): void {
-    if (this.product && this.quantity < this.product.stock) {
+    if (this.product && this.quantity < (this.product.stock ?? 0)) {
       this.quantity++;
     }
   }
 
   isOutOfStock(): boolean {
-    return this.product ? this.product.stock === 0 : false;
+    return this.product ? (this.product.stock ?? 0) === 0 : false;
   }
 
   getRatingPercentage(): number {
-    return this.product ? (this.product.rating / 5) * 100 : 0;
+    return this.product ? ((this.product.rating ?? 0) / 5) * 100 : 0;
   }
 
   Math = Math; // Exponer Math al template

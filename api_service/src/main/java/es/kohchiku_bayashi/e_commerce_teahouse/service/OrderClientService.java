@@ -7,7 +7,6 @@ import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.OrderState;
 import es.kohchiku_bayashi.e_commerce_teahouse.model.enums.ServiceType;
 import es.kohchiku_bayashi.e_commerce_teahouse.repository.OrderClientRepository;
 import es.kohchiku_bayashi.e_commerce_teahouse.repository.DetailOrderClientRepository;
-import es.kohchiku_bayashi.e_commerce_teahouse.repository.InvoiceClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +21,6 @@ public class OrderClientService {
     
     private final OrderClientRepository orderClientRepository;
     private final DetailOrderClientRepository detailOrderClientRepository;
-    private final InvoiceClientRepository invoiceClientRepository;
     private final ClientService clientService;
     private final EmployeeService employeeService;
     
