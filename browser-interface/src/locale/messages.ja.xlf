@@ -2005,7 +2005,7 @@
           <context context-type="linenumber">159,162</context>
         </context-group>
         <note priority="1" from="description">home.footer</note>
-      <target>© 2024 茶屋・香竹林 | 🍃 と 💚 で作られています</target></trans-unit>
+      <target>© 2024 茶屋・紅竹林 | 🍃 と 💚 で作られています</target></trans-unit>
       <trans-unit id="home.newsletterTitle" datatype="html">
         <source>Únete a Nuestra Comunidad</source>
         <context-group purpose="location">
@@ -2189,7 +2189,7 @@
           <context context-type="linenumber">5,8</context>
         </context-group>
         <note priority="1" from="description">navbar.subtitle</note>
-      <target>香竹林</target></trans-unit>
+      <target>紅竹林</target></trans-unit>
       <trans-unit id="navbar.home" datatype="html">
         <source>Inicio</source>
         <context-group purpose="location">
